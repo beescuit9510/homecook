@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/sellerMyPage/leftmenu.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -50,7 +51,7 @@
 				                        </p>
 				                        <p class="shipping goods_detail">내일(금) 새벽 도착 보장</p>
 				                        <p class="discount_price product-price"><span class="goods_detail lowest-price">최저가</span>0,231,230원<span class="original_price">1,231,230원</span></p>
-				                        <p class="star"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><span class="review-count goods_detail">(1222)</span></p>
+				                        <p class="star"><img src="/resources/mainboard/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><span class="review-count goods_detail">(1222)</span></p>
 				                    </div>
 				                </section>
 								            

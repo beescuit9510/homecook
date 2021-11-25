@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/resources/css/common/default2.css">
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -12,23 +14,48 @@
         <div class = "main_field">        	
         	<div class = "main_content">
         		<div class = "main_content_field">
-			        <div class="category-title"><h2>식품</h2></div>
+			        <div class="category-title"><h2 class="point"></h2>
+						 <form class="search-box">
+						    <input type="text" placeholder=" "/>
+						    <button type="reset"></button>
+					    </form>
+			        </div>
 			          <div class="category">
-				        <a class="shift_btn category-a" href="/a">집쿡 추천순</a>
-				        <a class="shift_btn category-a" href="/a">낮은가격순</a>
-				        <a class="shift_btn category-a" href="/a">높은가격순</a>
-				        <a class="shift_btn category-a" href="/a">판매량순</a>
-				        <a class="shift_btn category-a" href="/a">최신순</a>
-				            
-				            <form class="search-box">
-							    <input type="text" placeholder=" "/>
-							    <button type="reset"></button>
-							</form>
-											        
+
+
+
+
+			        <div class="seller-mypagewarp">
+						  <div class="select">
+					        <select>
+					        <option>Aw yeah.</option>
+					        <option>You should pick me instead.</option>
+					        <option>I think I'm the better option!</option>
+					        </select>
+					    </div>
+					</div>
+
+
+			          
+			          <!-- 
+			          
+			          
+				          <div class="cateogry-wrap">
+					        <a class="shift_btn category-a" href="/a">집쿡 추천순</a>
+					        <a class="shift_btn category-a" href="/a">낮은가격순</a>
+					        <a class="shift_btn category-a" href="/a">높은가격순</a>
+					        <a class="shift_btn category-a" href="/a">판매량순</a>
+					        <a class="shift_btn category-a" href="/a">최신순</a>				   											        
+				          </div>
+			           -->
 				    </div>
+				    
+				    
 				    <div class="main-board-container">
 				        <div class="main-menu">
 				            <ul>
+				            
+				            
 		  	                    <a href="/a"><li class="menu-item">식품</li></a>
 					            <a href="/a"><li class="menu-item">생활용품</li></a>
 					            <a href="/a"><li class="menu-item">뷰티</li></a>
@@ -41,6 +68,19 @@
 					            <a href="/a"><li class="menu-item">헬스/건강식품</li></a>
 					            <a href="/a"><li class="menu-item">패션</li></a>
 					            <a href="/a"><li class="menu-item">유아동패션</li></a>
+				            <!-- -
+					            <div class="menu-left">
+					                <h4>MY PAGE<br> </h4>
+					                <ul class="left-menu" style="float: left;">
+					                    <li><a class="leftmenu" href="sellerMypage.do">주문/배송</a></li>
+					                    <li><a class="leftmenu" href="productMgr.do">상품 관리</a></li>
+					                    <li><a class="leftmenu" href="sellerQNA.do">고객 관리</a></li>
+					                    <li><a class="leftmenu" href="#">판매 통계</a></li>
+					                    <li><a class="leftmenu" href="sellerInfo.do">판매자정보</a></li>
+					                </ul>
+					            </div>
+				             -->
+
 					            <!-- 
 								<a href="/a"><li class="menu-item">집쿠욱 추천순</li></a>
 				                <a href="/a"><li class="menu-item">낮은가격순</li></a>
@@ -54,9 +94,10 @@
 				        
 				        
 				        <div class="product-list-container">
+				            <c:forEach begin="1" end="3">
 				            <div class="product-list-row">
 				            
-				            
+				            <c:forEach begin="1" end="4">
 						         <section class="product-container shadow">
 				                    <div  class="img-container"><div class="product-img"></div></div>
 				                    <div class="product-info">
@@ -65,12 +106,20 @@
 				                        </p>
 				                        <p class="shipping goods_detail">내일(금) 새벽 도착 보장</p>
 				                        <p class="discount_price product-price"><span class="goods_detail lowest-price">최저가</span>0,231,230원<span class="original_price">1,231,230원</span></p>
-				                        <p class="star"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><span class="review-count goods_detail">(1222)</span></p>
+				                        <p class="star"><img src="/resources/mainboard/img/star-on.png"><img src="/resources/mainboard/img/star-on.png"><img src="/resources/mainboard/img/star-on.png"><img src="/resources/mainboard/img/star-on.png"><img src="/resources/mainboard/img/star-on.png"><span class="review-count goods_detail">(1222)</span></p>
 				                    </div>
 				                </section>
+				            </c:forEach>
+				        
+	
+				        
+
+				        
 				        
 				        
 				            </div>
+				            </c:forEach>
+
 				        </div>
 				    </div>
 					 
@@ -98,22 +147,23 @@
 </div>
 </body>
 <style>
+	.point{
+    	color:#9ac6e8;
+
+	}
+	.category{
+		margin-top:20px;
+		margin-bottom:20px;
+		width:250px;
+	}
    .star{
         padding-top: 5px;
-    }
-    .category-a{
-        float: left;
-        text-decoration: none;
-        margin-right: 10px;
-        
-    }
-    .category-a:first-child{
-        clear: both;
     }
     .category-title{
         display: inline-block;
         width: 100%;
         text-align: center;
+    	color:#9ac6e8;
     }
     .lowest-price{
         color: red;
@@ -227,7 +277,9 @@
     .main-menu{
         background-color: #ffffff;
         overflow: hidden;
+
         width: 170px;
+        
     }
     .main-menu .menu-item{
         padding: 10px;
@@ -246,6 +298,8 @@
         padding: 0 0 0 0;
         display: block ;
         width: 170px;
+ 
+   
     }
     .main-menu .main-item {
         font-size: 25px;
@@ -258,16 +312,21 @@
         width: 170px;
         
     }
+    li.main-item{
+    }
+    .main-menu .menu-item:hover{
+        /*
+        background-color: #d6d6d6;
+        */
+        font-weight: 600;
+        cursor: pointer;
+    }
+    
 </style>
 <style>
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700");
-html, body {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
 
+/*
 body {
   display: flex;
   justify-content: center;
@@ -275,9 +334,10 @@ body {
   flex-wrap: nowrap;
   overflow: hidden;
 }
+*/
 
 .search-box {
-  border: solid 5px black;
+  border: solid 5px #9ac6e8 ;
   display: inline-block;
   position: relative;
   border-radius: 50px;
@@ -292,10 +352,12 @@ body {
   border: none;
   box-sizing: border-box;
   border-radius: 50px;
-  transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 150ms;
+  transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 150ms;  
+  color:#9ac6e8;
 }
 .search-box input[type=text]:focus {
   outline: none;
+  color:#9ac6e8;
 }
 .search-box input[type=text]:focus, .search-box input[type=text]:not(:placeholder-shown) {
   width: 300px;
@@ -331,6 +393,7 @@ body {
   content: "";
   height: 25px;
   border-left: solid 5px black;
+  border-left: solid 5px #9ac6e8 ;
   position: absolute;
   transform: rotate(-45deg);
 }
@@ -341,6 +404,77 @@ body {
   right: -10px;
   transition: top 150ms ease-out, right 150ms ease-out, opacity 150ms ease-out;
 }
+/*
+*/
 </style>
+<style>
+    .select {
+  position: relative;
+  height: 47.5px;
+  background: white;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.05);
+}
+.select:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  right: 10px;
+  bottom: 0;
+  margin: auto;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color:  #0091ff transparent transparent transparent;
+  
+  pointer-events: none;
+}
+.select:before {
+  width: 30px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  background: whitesmoke;
+  content: "";
+  pointer-events: none;
+}
+.select:hover:before {
+}
+.select select {
+  font-size: 14px;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  padding-right: 35px;
+  padding-left: 15px;
+  border: 1px solid #9ac6e8;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+.select select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+.select select::-ms-expand {
+  display: none;
+}
+.select select:focus {
+  border-color: #9ac6e8;
+}
 
+@media all and (min-width: 0\0 ) and (min-resolution: 0.001dpcm) {
+  .select select {
+    padding-right: 0;
+  }
+  .select:after, .select:before {
+    display: none;
+  }
+}
+</style>
 </html>
