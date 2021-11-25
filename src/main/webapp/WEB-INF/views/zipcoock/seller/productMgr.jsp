@@ -9,8 +9,7 @@
 <link rel="stylesheet" href="/resources/css/common/default.css">
 <link rel="stylesheet" href="/resources/css/common/font.css">
 <link rel="stylesheet" href="/resources/css/sellerMyPage/leftmenu.css">
-<link rel="stylesheet"
-	href="/resources/css/sellerMyPage/sellermypage.css">
+<link rel="stylesheet" href="/resources/css/sellerMyPage/sellermypage.css">
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
@@ -34,8 +33,8 @@
 					<div id="title">
 						<h2>상품 조회</h2>
 						<div class="productTotal">
-							<img src="/final/hanger.png" width="50px" height="50px"> <span>판매중인
-								상품 </span><span> [9]</span>
+							<img src="#" width="50px" height="50px"> 
+							<span>판매중인 상품 </span><span> [9]</span><button style="float:right; margin-top:20px;">상품등록</button>
 						</div>
 						<div>
 							<table class="table total-table">
@@ -44,7 +43,6 @@
 									<th>상품이미지</th>
 									<th>상품명</th>
 									<th>가격</th>
-									<th>인증상태</th>
 									<th>관리</th>
 								</tr>
 								<tr class="totalInfo">
@@ -58,7 +56,7 @@
 										href="/productView?id=${p.productId }&seller=${p.productSeller }&reqPage=1"
 										style="color: black">상품명</a></td>
 									<td class="priceTd">79,000원</td>
-									<td>인증완료</td>
+									
 									<td>
 
 										<button class="btn updateBtn">상품수정</button> <br>
