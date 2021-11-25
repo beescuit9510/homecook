@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class MainBoardController {
-	@RequestMapping(value = "/mypage.do")
+public class MypageController {
+	@RequestMapping(value = "/zipcoockMypage.do")
 	public String call_MainPage()
 	{
 		return "zipcoock/mypage/receipt";

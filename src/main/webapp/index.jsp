@@ -11,7 +11,7 @@
 <h1>final project</h1>
 <a href = "/call_MainPage.do">main</a>
 <a href = "/mainboard.do">집쿠욱메인보드</a>
-<a href = "/mypage.do">mypage</a>
+<a href = "/zipcoockMypage.do">mypage</a>
 <a href = "/sellerMypage.do">판매자 마이페이지</a>
 </body>
 </html>
