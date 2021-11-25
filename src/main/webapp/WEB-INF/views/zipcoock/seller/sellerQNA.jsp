@@ -23,7 +23,7 @@
                     <li><a class="leftmenu" href="productMgr.do">상품 관리</a></li>
                     <li><a class="leftmenu" href="sellerQNA.do">고객 관리</a></li>
                     <li><a class="leftmenu" href="#">판매 통계</a></li>
-                    <li><a class="leftmenu" href="sellerInfo">판매자정보</a></li>
+                    <li><a class="leftmenu" href="sellerInfo.do">판매자정보</a></li>
                 </ul>
             </div>
             <div class="mypage-context">
