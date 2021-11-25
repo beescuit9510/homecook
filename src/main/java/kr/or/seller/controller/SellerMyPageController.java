@@ -9,7 +9,22 @@ public class SellerMyPageController {
 	@RequestMapping(value = "/sellerMypage.do")
 	public String sellerMypage()
 	{
-		return "zipcoock/sellerMypage/SellerMypage";
+		return "zipcoock/sellerMypage/sellerMypage";
+	}
+	@RequestMapping(value = "productMgr.do")
+	public String productMgr()
+	{
+		return "zipcoock/sellerMypage/productMgr";
+	}
+	@RequestMapping(value = "sellerInfo.do")
+	public String sellerInfo()
+	{
+		return "zipcoock/sellerMypage/sellerInfo";
+	}
+	@RequestMapping(value = "sellerQNA.do")
+	public String sellerQNA()
+	{
+		return "zipcoock/sellerMypage/sellerQNA";
 	}
 	
 }

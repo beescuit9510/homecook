@@ -21,12 +21,11 @@
             <div class="menu-left">
                 <h4>MY PAGE<br> </h4>
                 <ul class="left-menu" style="float: left;">
-                    <li><a class="leftmenu" href="#">상품 관리</a></li>
-                    <li><a class="leftmenu" href="#">주문/배송</a></li>
-                    <li><a class="leftmenu" href="#">　정 산　</a></li>
-                    <li><a class="leftmenu" href="#">고객 관리</a></li>
+                    <li><a class="leftmenu" href="sellerMypage.do">주문/배송</a></li>
+                    <li><a class="leftmenu" href="productMgr.do">상품 관리</a></li>
+                    <li><a class="leftmenu" href="sellerQNA.do">고객 관리</a></li>
                     <li><a class="leftmenu" href="#">판매 통계</a></li>
-                    <li><a class="leftmenu" href="#">판매자정보</a></li>
+                    <li><a class="leftmenu" href="sellerInfo">판매자정보</a></li>
                 </ul>
             </div>
             <div class="mypage-context" style="background-color: ddd;">
