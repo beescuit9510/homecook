@@ -42,8 +42,7 @@
 				        <div class="product-list-container">
 				            <div class="product-list-row">
 				            
-				            
-						         <section class="product-container shadow">
+	                            <section class="product-container shadow">
 				                    <div  class="img-container"><div class="product-img"></div></div>
 				                    <div class="product-info">
 				                        <p>
@@ -54,8 +53,8 @@
 				                        <p class="star"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><img src="/img/star-on.png"><span class="review-count goods_detail">(1222)</span></p>
 				                    </div>
 				                </section>
-				        
-				        
+								            
+				            
 				            </div>
 				        </div>
 				    </div>
@@ -83,167 +82,5 @@
 		<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
 </body>
-<style>
-   .star{
-        padding-top: 5px;
-    }
-    .category-a{
-        float: left;
-        text-decoration: none;
-        margin-right: 10px;
-        
-    }
-    .category-a:first-child{
-        clear: both;
-    }
-    .category-title{
-        display: inline-block;
-        width: 100%;
-        text-align: center;
-    }
-    .lowest-price{
-        color: red;
-        font-weight: 600;
-    }
-    .original_price{
-        display: block;
-    }
-    .review-count{
-        display: inline-block;
-        color: black;
-        vertical-align: middle;
-        margin-bottom: 5px;
-    }
-    .product-info{
-        margin: 10px;
-    }
-    .product-price {
-        border: 0px;
-        padding: 0px;
-        margin: 12px 0px 0px;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    .main-board-container{
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-    }
-    
-    .product-container{
-        width: 180px;
-        margin-left:15px;
-        overflow: hidden;
-        border-bottom: solid 1px #EAEBED;
-        
-    }
-    .product-list-container{
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .product-list-row{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        justify-items: center;
-        margin-bottom: 50px;
-    }
-    .product-img{
-        width: 100%;
-        height: 170px;
-                
-    }
-    
-    /* 상품 이미지 */
-    .product-img{
-        background: url("https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    /*상품명 2줄 이상 ... 처리*/
-    .product-name{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        white-space:normal;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        
-    }
-    
-    /* hover 그림자 처리
-    .shadow:hover{
-        box-shadow: 0px 0px 5px rgb(0, 0, 0, 15%);      
-    }
-    */
-    .product-name{
-        text-decoration-line: none;
-    }
-    .shadow:hover .product-name{
-        text-decoration-line: underline;
-        
-    }
-    
-    /* 이미지 확대*/
-    .img-container{
-        overflow:hidden;
-    }
-    
-    .shadow:hover > .img-container> .product-img{
-        transform:scale(1.1); 
-    }
-    
-    .product-img:hover{ 
-        -webkit-transition: all 0.5s ease;
-        -moz-transition: all 0.5s ease;
-        -o-transition: all 0.5s ease;
-        transition: all 0.5s ease;
-        -ms-transition: all 0.5s ease; 
-    }
-    .product-img:not(:hover){
-        -webkit-transition: all 0.5s ease;
-        -moz-transition: all 0.5s ease;
-        -o-transition: all 0.5s ease;
-        transition: all 0.5s ease;
-        -ms-transition: all 0.5s ease; 
-    }
-</style>
-<style>
-    .main-menu{
-        background-color: #ffffff;
-        overflow: hidden;
-        width: 170px;
-    }
-    .main-menu .menu-item{
-        padding: 10px;
-        width: 100%;
-        height: 100%;
-    }
-    .main-menu .menu-item:hover{
-    /*
-        background-color: #d6d6d6;
-    */
-        font-weight: 600;
-        cursor: pointer;
-    }
-    .menu-item{
-        margin: 0 0 0 0;
-        padding: 0 0 0 0;
-        display: block ;
-        width: 170px;
-    }
-    .main-menu .main-item {
-        font-size: 25px;
-    }
-    .menu-item{
-        list-style: none;
-        border-bottom:  solid 1px #EAEBED;
-    }
-    .main-menu{
-        width: 170px;
-        
-    }
-</style>
 
 </html>
