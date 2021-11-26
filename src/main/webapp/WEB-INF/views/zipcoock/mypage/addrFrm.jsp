@@ -23,8 +23,10 @@
                         </tr>
                         <tr>
                             <td class="tg-0pky img-container" rowspan="2"><div class="product-img"></div></td>
-                            <td class="tg-73oq product-info" rowspan="3"><span class="product-name title">아이스컵 밀폐지(소/12cm)</span><span class="present_price product-price">53,220원 1-0개</span></td>
-                            <td class="tg-0pky"><button class="buy_btn">Q보기</button></td>
+                            <td class="tg-73oq product-info" rowspan="3"><span class="product-name title">장변덕</span><span class="present_price product-price">2021. 11. 23 주문</span><
+                            <span class="present_price product-price">2021. 11. 23 주문</span>
+                            </td>
+                            <td class="tg-0pky" colspan="2"><button class="buy_btn">수정하기</button></td>
                         </tr>
                         <tr>
                             <td class="tg-0pky"><button class="cart_btn">삭제하기</button> </td>
@@ -42,8 +44,7 @@
 <%@include file="/WEB-INF/views/zipcoock/mypage/common/footer.jsp" %>	
 </body>
 <script>
-	$("#mypage-title").html("QnA 관리");
-	$("[value=cheapest]").remove();
-	$("[value=highest]").remove();
+	$("#mypage-title").html("배송지 관리");
+    
 </script>
 </html>

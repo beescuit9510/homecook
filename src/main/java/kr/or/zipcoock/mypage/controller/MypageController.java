@@ -23,8 +23,8 @@ public class MypageController {
     	return "zipcoock/mypage/qnaFrm";
     }
 
-	@RequestMapping(value="/mypageReveiwFrm.do")
-    public String callReveiwFrm()
+	@RequestMapping(value="/mypageReviewFrm.do")
+    public String callReviewFrm()
     {
     	return "zipcoock/mypage/reviewFrm";
     }
