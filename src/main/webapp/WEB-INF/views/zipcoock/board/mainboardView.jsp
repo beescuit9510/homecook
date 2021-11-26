@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/css/sellerMyPage/leftmenu.css">
 <title>Insert title here</title>
 </head>
 <body>

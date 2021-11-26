@@ -38,7 +38,7 @@ public class MypageController {
 	@RequestMapping(value="/mypageMyInfoFrm.do")
     public String callMyInfoFrm()
     {
-    	return "zipcoock/mypage/myinfoFrm";
+    	return "zipcoock/mypage/myInfoFrm";
     }
 
 	@RequestMapping(value="/mypagePwFrm.do")

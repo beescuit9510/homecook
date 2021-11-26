@@ -52,5 +52,7 @@
 <%@include file="/WEB-INF/views/zipcoock/mypage/common/footer.jsp"%>	
 
 </body>
-
+<script>
+	$("#mypage-title").html("주문목록");
+</script>
 </html>

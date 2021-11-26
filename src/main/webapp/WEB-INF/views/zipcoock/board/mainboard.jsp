@@ -16,9 +16,9 @@
 			<div class="main_content">
 				<div class="main_content_field">
 					<div class="category-title">
-						<h2 class="point"></h2>
+						<h2 class="point">전체 상품 > 식품</h2>
 
-						<form action="/addrFrm.do" method=get " class="search-box">
+						<form action="/addrFrm.do" method="get " class="search-box">
 							<input type="text" placeholder=" " />
 							<button type="reset"></button>
 						</form>
@@ -66,11 +66,6 @@
 						</div>
 
 						<div class="product-list-container">
-
-
-
-
-
 							<c:forEach begin="1" end="3">
 								<div class="product-list-row">
 
@@ -80,36 +75,29 @@
 												<div class="product-img"></div>
 											</div>
 											<div class="product-info">
-												<p>
-													<a href="" class="goods_name product-name">다우니 초고농축
-														섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aa
-														aaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
-												</p>
+												<p><a href="" class="goods_name product-name">다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a></p>
 												<p class="shipping goods_detail">내일(금) 새벽 도착 보장</p>
-												<p class="discount_price product-price">
-													<span class="goods_detail lowest-price">최저가</span>0,231,230원<span
-														class="original_price">1,231,230원</span>
-												</p>
+												<p class="discount_price product-price"><span class="goods_detail lowest-price">최저가</span>0,231,230원<span class="original_price">1,231,230원</span></p>
 												<p class="star">
-													<img src="/resources/mainboard/img/star-on.png"><img
-														src="/resources/mainboard/img/star-on.png"><img
-														src="/resources/mainboard/img/star-on.png"><img
-														src="/resources/mainboard/img/star-on.png"><img
-														src="/resources/mainboard/img/star-on.png"><span
-														class="review-count goods_detail">(1222)</span>
+													<img src="/resources/mainboard/img/star-on.png">
+													<img src="/resources/mainboard/img/star-on.png">
+													<img src="/resources/mainboard/img/star-on.png">
+													<img src="/resources/mainboard/img/star-on.png">
+													<img src="/resources/mainboard/img/star-on.png">
+													<span class="review-count goods_detail">(1222)</span>
 												</p>
 											</div>
 										</section>
 									</c:forEach>
 
+
+
+
+
+
+
 								</div>
 							</c:forEach>
-
-
-
-
-
-
 
 							<div class="pagination p9">
 								<ul class="none-de">
@@ -123,11 +111,6 @@
 									<a href="#"><li>></li></a>
 								</ul>
 							</div>
-
-
-
-
-
 
 						</div>
 					</div>
