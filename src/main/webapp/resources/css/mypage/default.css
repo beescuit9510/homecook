@@ -127,6 +127,8 @@ table {
 	width: 170px;
 }
 
+
+
 p, li, a {
 	font-size: 14px;
 }
@@ -172,8 +174,10 @@ p, li, a {
 	text-align: center;
 }
 
-</
-style> <style>.main-menu {
+
+
+
+.main-menu {
 	margin-top: 0px;
 }
 
@@ -189,3 +193,10 @@ style> <style>.main-menu {
 .table-wrap {
 	margin-left: -45px;
 }
+
+
+
+ul>a:last-child > li.menu-item{
+	border-bottom: none !important;
+}
+

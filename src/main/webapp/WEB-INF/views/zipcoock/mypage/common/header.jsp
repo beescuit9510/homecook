@@ -23,7 +23,7 @@
 								        </tr>
 								        <tr>
 								            <td></td>
-								            <td>
+								            <td id="insert-addr-td">
 								
 								                <form id="mypage-form" action="" method="post" class="mypage-form-class" >
 								                    <input id="mypage-keyword" placeholder="검색어 입력" name="keyword" class="input" type="text">
@@ -33,7 +33,7 @@
 								                        <option id="mypage-opt" value="cheapest">낮은가격순</option>
 								                        <option id="mypage-opt" value="highest">높은가격순</option>
 								                    </select>
-								                    <button id="mypage-form-submit" class="top_btn">검색</button>
+								                    <button type="submit" id="mypage-form-submit" class="top_btn">검색</button>
 								                </form>
 								
 								
