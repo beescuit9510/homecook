@@ -4,18 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/common/default2.css">
-<link rel="stylesheet" href="/resources/css/mypage/default.css">
-
+<title>qna</title>
 </head>
 <body>
 <%@include file="/WEB-INF/views/zipcoock/mypage/common/header.jsp"%>	
 
 
 <c:forEach begin="1" end="3">
-
-
                 <div class="container">        
                     <table class="tg" >
                         <thead>
@@ -43,14 +38,18 @@
                         </tbody>
                     </table>
                 </div>
-                
-                
 </c:forEach>
-
 
 
 <%@include file="/WEB-INF/views/zipcoock/mypage/common/footer.jsp"%>	
 
 </body>
-
+<script type="text/javascript">
+mypage-form
+mypage-title
+mypage-keyword  
+mypage-sel order
+mypage-opt 3
+mypage-form-submit
+</script>
 </html>
