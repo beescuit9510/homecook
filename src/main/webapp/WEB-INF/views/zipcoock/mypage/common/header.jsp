@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="/resources/css/common/default2.css">
 <link rel="stylesheet" href="/resources/css/mypage/default.css">
 <link rel="stylesheet" href="/resources/css/mypage/like.css">
+<link rel="stylesheet" href="/resources/css/mypage/myInfoPw.css">
 <link rel="stylesheet" href="/resources/css/mypage/polish.css">
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <div class="s-wrapper">

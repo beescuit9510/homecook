@@ -61,4 +61,12 @@
     $("#insert-addr-td").append("<button class='top_btn'>문의하기</button>");
     $(".tg-0pky ").css("width","10px");
 </script>
+<style>
+.help-title{
+	font-size:25px;
+}
+.help-status{
+	margin-top:7px;
+}
+</style>
 </html>

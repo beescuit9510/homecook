@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CartController {
 	@RequestMapping(value="/cart.do")
-	public String callReceiptFrm()
+	public String callCartFrm()
 	{
 		return "zipcoock/cart/cartFrm";
 	}

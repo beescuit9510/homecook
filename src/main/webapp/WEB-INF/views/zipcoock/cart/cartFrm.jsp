@@ -104,7 +104,7 @@
 					<tr>
 						<td>
 							<div class="carFrm-total-price">
-								<p class="title">1000000 + 10000000 = 2000000</p>
+								<p class="title"><span>1000000</span> + <span>10000000</span> = <span class="total-price">2000000</span></p>
 								<p class="sub_title">총 가격 + 총 배송비 = 총 결제액</p>
 								<button class="buy_btn cartFrm-buy-btn">결재하기</button>
 							</div>
@@ -121,4 +121,9 @@
 	<!-- main field -->
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
+<style>
+.total-price{
+	font-size:30px;
+}
+</style>
 </html>
