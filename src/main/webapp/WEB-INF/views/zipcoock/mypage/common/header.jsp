@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/resources/css/common/default2.css">
 <link rel="stylesheet" href="/resources/css/mypage/default.css">
 <link rel="stylesheet" href="/resources/css/mypage/like.css">
-<link rel="stylesheet" href="/resources/css/mypage/myInfoPw.css">
+<link rel="stylesheet" href="/resources/css/mypage/polish.css">
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <div class="s-wrapper">
 		<%@include file="/WEB-INF/views/common/header.jsp" %>	
@@ -17,15 +17,16 @@
 
 
 								
-								    <table class="table-wrap" >
+								    <table class="table-wrap">
 								        <tr>
-								            <td colspan="2"><h2 id="mypage-title" class="mypage-title">마이페이지</h2></td>
-								            <td></td>
+								            <td colspan="3"><h2 id="mypage-title" class="mypage-title">마이페이지</h2></td>
 								        </tr>
 								        <tr>
 								            <td></td>
+								            
 								            <td id="insert-addr-td">
 								
+																
 								                <form id="mypage-form" action="" method="post" class="mypage-form-class" >
 								                    <input id="mypage-keyword" placeholder="검색어 입력" name="keyword" class="input" type="text">
 								                    <select id="mypage-sel" name="order" class="mypage-select input select">
@@ -46,9 +47,10 @@
 								                    <div class="main-menu">
 								                        <ul>
 								                            <a href="/mypageReceiptFrm.do"><li class="menu-item">주문목록</li></a>
-								                            <a href="/mypageMembershipFrm.do"><li class="menu-item">집쿠욱 멤버심</li></a>
+								                            <a href="/mypageMembershipFrm.do"><li class="menu-item">집쿠욱 멤버십</li></a>
 								                            <a href="/mypageQnAFrm.do"><li class="menu-item">Q&A Q관리</li></a>
 								                            <a href="/mypageReviewFrm.do"><li class="menu-item">리뷰관리</li></a>
+								                            <a href="/mypageHelpFrm.do"><li class="menu-item">문의내역</li></a>
 								                            <a href="/mypageLikeFrm.do"><li class="menu-item">즐겨찾기</li></a>
 								                            <a href="/mypageMyInfoFrm.do"><li class="menu-item">정보 확인/수정</li></a>
 								                            <a href="/mypagePwFrm.do"><li class="menu-item">비밀번호 수정</li></a>

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -57,10 +58,12 @@
 
 	<%@include file="/WEB-INF/views/zipcoock/mypage/common/footer.jsp"%>
 </body>
+<link rel="stylesheet" href="/resources/css/mypage/myInfoPw.css">
 <script>
 	$("#mypage-title").html("내 정보 관리");
 	$("#mypage-form").remove();
 	$(".pagination").remove();
+	$(".myinfo-td ").css("width","150px")
 </script>
 <style>
 </style>

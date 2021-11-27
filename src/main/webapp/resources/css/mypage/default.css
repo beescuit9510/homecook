@@ -29,6 +29,7 @@
 	height: 50px;
 }
 
+
 .product-img {
 	background:
 		url("https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg");
@@ -199,4 +200,7 @@ p, li, a {
 ul>a:last-child > li.menu-item{
 	border-bottom: none !important;
 }
+
+
+
 

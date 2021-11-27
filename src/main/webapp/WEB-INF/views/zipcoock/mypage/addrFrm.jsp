@@ -52,10 +52,13 @@
 <script>
 	$("#mypage-title").html("배송지 관리");
     $("#mypage-form").remove();
-    $("#insert-addr-td").append("<td class='tg-0pky' colspan='2'><button class='top_btn'>추가하기</button></td>");
+    $("#insert-addr-td").append("<button class='top_btn'>추가하기</button>");
     $(".tg-0pky ").css("width","10px");
 </script>
 <style>
+#insert-addr-td{
+	text-align:right;
+}
 .spec-addr{
 	width:550px;
 	padding:10px;

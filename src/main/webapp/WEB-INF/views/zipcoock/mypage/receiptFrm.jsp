@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/common/default2.css">
-<link rel="stylesheet" href="/resources/css/mypage/default.css">
 
 </head>
 <body>
@@ -55,4 +53,7 @@
 <script>
 	$("#mypage-title").html("주문목록");
 </script>
+<style>
+
+</style>
 </html>

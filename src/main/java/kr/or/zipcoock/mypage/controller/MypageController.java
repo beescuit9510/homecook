@@ -28,6 +28,11 @@ public class MypageController {
     {
     	return "zipcoock/mypage/reviewFrm";
     }
+	@RequestMapping(value="/mypageHelpFrm.do")
+	public String callHelpFrm()
+	{
+		return "zipcoock/mypage/helpFrm";
+	}
 
 	@RequestMapping(value="/mypageLikeFrm.do")
     public String callLikeFrm()
