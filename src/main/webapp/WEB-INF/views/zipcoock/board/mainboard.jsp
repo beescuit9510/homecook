@@ -17,12 +17,20 @@
 			<div class="main_content">
 				<div class="main_content_field">
 					<div class="category-title">
-						<h2 class="point">전체 상품 > 식품</h2>
+						<h2 class="mainboard-title">
+							<span class="search-board point">전체상품 </span>
+							>
+							<span class="search-category point">전체</span>
+							oder by
+							<span class="search-order point">최신순</span></h2>
+
 
 						<form action="/addrFrm.do" method="get " class="search-box">
 							<input type="text" placeholder=" " />
 							<button type="reset"></button>
 						</form>
+
+
 
 					</div>
 					<div class="category">
@@ -46,11 +54,12 @@
 
 
 
-
+<!-- 
 					</div>
 					<div class="main-board-container">
 						<div class="main-menu">
 							<ul>
+								<a href="/a"><li class="menu-item">전체</li></a>
 								<a href="/a"><li class="menu-item">식품</li></a>
 								<a href="/a"><li class="menu-item">생활용품</li></a>
 								<a href="/a"><li class="menu-item">뷰티</li></a>
@@ -61,11 +70,32 @@
 								<a href="/a"><li class="menu-item">스포츠/레저</li></a>
 								<a href="/a"><li class="menu-item">도서/음반/DVD</li></a>
 								<a href="/a"><li class="menu-item">헬스/건강식품</li></a>
-								<a href="/a"><li class="menu-item">패션</li></a>
-								<a href="/a"><li class="menu-item">유아동패션</li></a>
 							</ul>
 						</div>
+ -->
 
+]        <div class="navigation">
+        <nav role="navigation">
+            <ul>
+                <li class=active><a href="">쇼핑</a>
+                <li ><a href="#">식품</a>
+                <li ><a href="#">Qui consulter ?</a>
+                <li ><a href="#">Les th&eacute;rapies</a>
+                <li ><a href="#">Pour qui ?</a>
+                <li ><a href="#">Psychotherapies</a>
+                <li ><a href="#">Relaxation</a>
+                <li ><a href="#">Psychomotricit&eacute;</a>
+                <li ><a href="#">Bilans</a>
+                <li ><a href="#">Qui suis-je ?</a>
+                <li ><a href="#">Le cabinet</a>
+                <li ><a href="#">Annuaire</a>
+            </ul>
+        </nav>
+    </div>
+
+
+<!-- 
+ -->
 						<div class="product-list-container">
 							<c:forEach begin="1" end="3">
 								<div class="product-list-row">
@@ -127,6 +157,7 @@
 
 						</div>
 					</div>
+
 
 					<!-- main content making area -->
 				</div>
@@ -325,6 +356,11 @@ li.main-item {
 	font-weight: 600;
 	cursor: pointer;
 }
+
+.menu-item{
+
+font-size:20px;
+}
 </style>
 <style>
 .category {
@@ -339,10 +375,6 @@ li.main-item {
 #mypage-form>.select {
 	box-shadow: 0 0 black;
 }
-</style>
-
-<style>
-
 </style>
 <style>
 .star{
@@ -361,6 +393,174 @@ float:left;
   	margin-left:100px;
   
 }
+.mainboard-title{
+	font-size:10px;
+	
+}
+.search-board {
+	font-size:30px;
+}
+.search-category {
+	font-size:20px;
+	
+}
+.search-order {
+	font-size:10px;
+	
+}
+</style>
+<style>
+
+    :root {
+--first-color: #081f37;
+	
+--second-color: #5fc9f3;
+
+--third-color: #2e79ba;
+
+--fourth-color: #1e549f;
+
+--main-color: #9ac6e8;
+
+}
+.first-color { 
+	background: #081f37; 
+}
+	
+.second-color { 
+	background: #5fc9f3; 
+}
+
+.third-color { 
+	background: #2e79ba; 
+}
+
+.fourth-color { 
+	background: #1e549f; 
+}
+
+
+.active a {
+  background: var(--main-color);
+}
+
+.navigation ul {
+}
+.navigation ul li {
+  list-style: none;
+}
+.navigation ul a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.2em;
+  font-family: "consolas";
+}
+
+.navigation {
+  width: 73.68421%;
+  float: left;
+  margin-right: 5.26316%;
+  padding: 0px;
+}
+.navigation li:first-child a {
+  border-left: 10px solid var(--third-color);
+}
+.navigation li:first-child a:after {
+  background:  var(--third-color);
+}
+.navigation li:nth-child(2) a {
+  border-left: 10px solid var(--fourth-color);
+}
+.navigation li:nth-child(2) a:after {
+  background: var(--fourth-color);
+}
+.navigation li:nth-child(3) a {
+  border-left: 10px solid var(--second-color);
+}
+.navigation li:nth-child(3) a:after {
+  background: var(--second-color);
+}
+.navigation li:nth-child(4) a {
+  border-left: 10px solid var(--first-color);
+}
+.navigation li:nth-child(4) a:after {
+  background:  var(--first-color);
+}
+.navigation li:nth-child(5) a {
+  border-left: 10px solid var(--third-color);
+}
+.navigation li:nth-child(5) a:after {
+  background:  var(--third-color);
+}
+.navigation li:nth-child(6) a {
+  border-left: 10px solid var(--fourth-color);
+}
+.navigation li:nth-child(6) a:after {
+  background: var(--fourth-color);
+}
+.navigation li:nth-child(7) a {
+  border-left: 10px solid var(--second-color);
+}
+.navigation li:nth-child(7) a:after {
+  background: var(--second-color);
+}
+.navigation li:nth-child(8) a {
+  border-left: 10px solid var(--first-color);
+}
+.navigation li:nth-child(8) a:after {
+  background:  var(--first-color);
+}
+.navigation li:nth-child(9) a {
+  border-left: 10px solid var(--third-color);
+}
+.navigation li:nth-child(9) a:after {
+  background:  var(--third-color);
+}
+.navigation li:nth-child(10) a {
+  border-left: 10px solid var(--fourth-color);
+}
+.navigation li:nth-child(10) a:after {
+  background: var(--fourth-color);
+}
+.navigation li:nth-child(11) a {
+  border-left: 10px solid var(--second-color);
+}
+.navigation li:nth-child(11) a:after {
+  background:  var(--second-color);
+}
+.navigation li:nth-child(12) a {
+  border-left: 10px solid var(--first-color);
+}
+.navigation li:nth-child(12) a:after {
+  background:  var(--first-color);
+}
+.navigation li a {
+  display: block;
+  width: 165px;
+  position: relative;
+  color: #000000;
+  padding: 10px;
+  z-index: 2;
+}
+.navigation li a:after {
+  content: "";
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0px;
+  position: absolute;
+  transition: all 0.5s ease 0s;
+  z-index: -1;
+}
+.navigation li a:hover {
+  color: #fff;
+}
+.navigation li a:hover:after {
+  width: 100%;
+}
+
+
+
 
 </style>
 </html>
