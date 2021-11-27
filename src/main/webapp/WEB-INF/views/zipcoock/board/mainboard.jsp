@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/resources/css/common/default2.css">
 <link rel="stylesheet" href="/resources/css/mypage/searchbar.css">
 <link rel="stylesheet" href="/resources/css/mypage/paging.css">
+<link rel="stylesheet" href="/resources/css/mainboard/star.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -79,13 +80,25 @@
 												<p class="shipping goods_detail">내일(금) 새벽 도착 보장</p>
 												<p class="discount_price product-price"><span class="goods_detail lowest-price">최저가</span>0,231,230원<span class="original_price">1,231,230원</span></p>
 												<p class="star">
-													<img src="/resources/mainboard/img/star-on.png">
-													<img src="/resources/mainboard/img/star-on.png">
-													<img src="/resources/mainboard/img/star-on.png">
-													<img src="/resources/mainboard/img/star-on.png">
-													<img src="/resources/mainboard/img/star-on.png">
+
+<div class="star-rating js-star-rating">
+  <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
+  <input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
+  <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
+  <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
+  <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
+  <div class="current-rating current-rating--5 js-current-rating"><i class="star-rating__star">AAA</i>
+  </div>
+</div>
 													<span class="review-count goods_detail">(1222)</span>
-												</p>
+													</p>
+
+
+													
+													
+													
+													
+													
 											</div>
 										</section>
 									</c:forEach>
@@ -326,5 +339,28 @@ li.main-item {
 #mypage-form>.select {
 	box-shadow: 0 0 black;
 }
+</style>
+
+<style>
+
+</style>
+<style>
+.star{
+display:inline-block;
+
+}
+.star-rating{
+  margin-left:0px;
+  margin-top:-15px;
+}
+
+.review-count{
+display:block;
+float:left;
+  	margin-top:-15px;
+  	margin-left:100px;
+  
+}
+
 </style>
 </html>
