@@ -13,7 +13,8 @@
 
 
     .qna-container{
-        border-bottom: solid 1px #EAEBED;
+/*	border-bottom: solid 1px #EAEBED;
+*/        
         margin-bottom: 20px;
         padding-bottom: 20px;
     }
@@ -33,6 +34,8 @@
         width: 100%;
         box-sizing: border-box;
         background-color:  #EAEBED;
+        background-color:  #daeaf7;
+
         border-radius: 5px;
         font-size: 16px;
         resize: both;
@@ -40,6 +43,7 @@
         clear: left;
     }
     .answer-status{
+    
         width: 60px;
         height: 20px;
         border-radius: 5px;
@@ -58,3 +62,5 @@
     .qna-q, .qna-a, .review-padding{
         padding: 20px;
     }
+    
+    

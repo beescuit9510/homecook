@@ -11,40 +11,6 @@
 
       <div id="receipt-view-wrapper">
 
-                <div class="container">        
-                    <table class="tg" >
-                        <thead>
-                            <tr>
-                            <th class="tg-0pky"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td class="tg-c3ow"><span class="title reviewView-product-info">상품정보</span>
-                            <!-- 
-                            <span class="top_btn top_btn-none delivery-status">배송완료</span></td>
-                            <td class="tg-0pky top_btn top_btn-none payment_no" colspan="3">주문번호 123213312</td>
-                             -->
-                        </tr>
-                        <tr>
-                        
-                            <td class="tg-0pky img-container" rowspan="2"><div class="product-img"></div></td>
-                            <td class="tg-73oq product-info" rowspan="3"><span class="product-name title">아이스컵 밀폐지(소/12cm)</span><span class="present_price product-price">53,220원 1-0개</span></td>
-                            <td class="tg-0pky"><button class="buy_btn">장바구니 담기</button></td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0pky"><button class="cart_btn">상품 보러가기</button> </td>
-                        </tr>
-                        <tr>
-                            <td class="tg-0pky"></td>
-                            <td class="tg-73oq present_price"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                
-
 
 
                         <div class="qna-container">
@@ -59,7 +25,7 @@
                                         
                                         <div class="qna-q-date text_sub_title">2021.11.24</div>
                                     </div> 
-                                    <textarea  class="qna-q-content qna-q-textarea input">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga eaque veniam commodi, nesciunt placeat unde nihil doloribus, soluta dolores similique, molestiae ducimus est optio ullam! Veniam repellat vel, velit adipisci, molestiae tempore dignissimos corporis laborum totam qui explicabo cumque cum consectetur et a quos iste aut voluptate accusantium. Recusandae, esse!.</textarea>
+                                    <div class="qna-q-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga eaque veniam commodi, nesciunt placeat unde nihil doloribus, soluta dolores similique, molestiae ducimus est optio ullam! Veniam repellat vel, velit adipisci, molestiae tempore dignissimos corporis laborum totam qui explicabo cumque cum consectetur et a quos iste aut voluptate accusantium. Recusandae, esse!.</div>
                               
                  <div class="review-view-btns">
 	<button class="top_btn">수정하기</button> 
@@ -97,7 +63,7 @@
 <link rel="stylesheet" href="/resources/css/mypage/receipt_table.css">
 <link rel="stylesheet" href="/resources/css/mypage/qnabox.css">
 <script>
-	$("#mypage-title").html("Q&A 상세 페이지");
+	$("#mypage-title").html("문의 상세 페이지");
 	$("#mypage-form").remove();
 	$(".pagination").remove();
 </script>
@@ -135,28 +101,5 @@ display:inline-block;
 	margin-left:390px;
 }
 
-
-    /*
-.qna-a-container{
-    background:#c9dff0;
-	background-color:  #daeaf7;
-}
-.answer-status{
-    background:#c9dff0;
-    background:#8ec7f5;
-        
-}
-
-    */
-.qna-q-textarea{
-	width:700px;
-	overflow:visible;
-}
 </style>
-<script>
-$("textarea.autosize").on('keydown keyup', function () {
-  $(this).height(1).height( $(this).prop('scrollHeight')+12 );	
-});
-</script>
-
 </html>
