@@ -46,4 +46,17 @@
 	$("[value=cheapest]").remove();
 	$("[value=highest]").remove();
 </script>
+<style>
+.review-view-btns > button{
+display:inline-block;
+	width:110px;
+	height:45px;
+	margin-right:10px;
+	
+}
+.review-view-btns{
+	margin-left:390px;
+}
+
+</style>
 </html>

@@ -53,9 +53,37 @@ public class MypageController {
     }
 
 	@RequestMapping(value="/mypageAddrFrm.do")
-    public String callAddressFrm()
+    public String callAddrFrm()
     {
     	return "zipcoock/mypage/addrFrm";
     }
+	
+	@RequestMapping(value="/mypageReceiptView.do")
+	public String callReceiptView()
+	{
+		return "zipcoock/mypage/receiptView";
+	}
+	@RequestMapping(value="/mypageQnAView.do")
+	public String callQnAView()
+	{
+		return "zipcoock/mypage/qnaView";
+	}
+	@RequestMapping(value="/mypageReviewView.do")
+	public String callReviewView()
+	{
+		return "zipcoock/mypage/reviewView";
+	}
+
+	@RequestMapping(value="/mypageHelpView.do")
+	public String callHelpView()
+	{
+		return "zipcoock/mypage/helpView";
+	}
+
+	@RequestMapping(value="/mypageAddrView.do")
+	public String callAddrView()
+	{
+		return "zipcoock/mypage/addrView";
+	}
 
 }

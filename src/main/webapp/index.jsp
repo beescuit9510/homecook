@@ -13,6 +13,9 @@
 <a href = "/mainboard.do">집쿠욱메인보드</a>
 <a href = "/mypageHelpFrm.do">mypage</a>
 <a href = "/cart.do">cart</a>
+<a href = "/mypageReceiptView.do">receiptView</a>
+<a href = "/mypageReviewView.do">receiptView</a>
+<a href = "/mypageQnAView.do">receiptView</a>
 <a href = "/sellerMypage.do">판매자 마이페이지</a>
 </body>
 </html>
