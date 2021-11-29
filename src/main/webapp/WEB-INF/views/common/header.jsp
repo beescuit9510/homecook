@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link rel="stylesheet" href="/resources/css/common/default2.css">
 <link rel="stylesheet" href="/resources/css/common/default.css">
 <link rel="stylesheet" href="/resources/css/common/font.css">
         <header class="header">
@@ -21,7 +22,7 @@
          		<ul class = "header-first">
          			<li><a href = "/">전체상품</a></li>
          			<li><a href = "/">집쿠욱 배송</a></li>
-         			<li><a href = "/">로집쿠욱직구</a></li>
+         			<li><a href = "/">집쿠욱직구</a></li>
          			<li><a href = "/">집쿠욱멤버할인</a></li>
          		</ul>
          		<div>
