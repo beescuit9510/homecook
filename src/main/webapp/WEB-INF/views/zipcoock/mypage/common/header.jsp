@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/resources/css/common/default2.css">
+<link rel="stylesheet" href="/resources/css/mypage/common/default2.css">
 <link rel="stylesheet" href="/resources/css/mypage/default.css">
 <link rel="stylesheet" href="/resources/css/mypage/like.css">
 <link rel="stylesheet" href="/resources/css/mypage/myInfoPw.css">

@@ -28,3 +28,12 @@
         	</div> <!-- main content -->
         </div> <!-- main field -->
 		<%@include file="/WEB-INF/views/common/footer.jsp" %>
+		
+		
+
+<link rel="stylesheet" href="/resources/css/mypage/common/default2.css">
+<link rel="stylesheet" href="/resources/css/mypage/default.css">
+<link rel="stylesheet" href="/resources/css/mypage/like.css">
+<link rel="stylesheet" href="/resources/css/mypage/myInfoPw.css">
+<link rel="stylesheet" href="/resources/css/mypage/polish.css">
+		

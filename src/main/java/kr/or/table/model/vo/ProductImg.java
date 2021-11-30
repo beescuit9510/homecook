@@ -7,8 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product_Category 
+public class ProductImg 
 {
-	private int categoryNo;
-	private String category;
+	private int productImgNo;
+	private int productNo;
+	private String fileName;
+	private String filePath;
+	private String mainImg;
 }
