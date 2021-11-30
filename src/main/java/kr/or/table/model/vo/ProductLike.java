@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class ProductLike 
 {
 	private int likeNo;
-	private int member_No;
-	private int product_No;
+	private int memberNo;
+	private int productNo;
 }

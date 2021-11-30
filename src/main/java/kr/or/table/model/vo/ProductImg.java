@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 public class ProductImg 
 {
 	private int productImgNo;
+	private int productNo;
 	private String fileName;
 	private String filePath;
-	private int productNo;
 	private String mainImg;
 }

@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 public class Qna {
 	private int qnaNo;
 	private int memberNo;
-	private int qnaRefNo;
-	private String qnaTitle;
-	private String writeDate;
-	private String qnaContent;
-	private int qnaLevel;
 	private int productRefNo;
+	private int qnaRefNo;
+	private int qnaLevel;
+	private String qnaTitle;
+	private String qnaContent;
+	private String writeDate;
 
 }

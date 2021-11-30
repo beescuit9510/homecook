@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReturnedProductInfo 
+public class ReturnedPaymentInfo 
 {
 	private int paymentInfoCode;
 	private String isReurned;
