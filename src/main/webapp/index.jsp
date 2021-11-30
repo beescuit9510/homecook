@@ -20,5 +20,9 @@
 <a href = "/mypageHelpView.do">help</a>
 <hr>
 <a href = "/sellerMypage.do">판매자 마이페이지</a>
+<hr>
+<a href="/eventList.do">이벤트 페이지</a>
+<h1>delivery</h1>
+<a href="/zcdMain.do">딜리버리 메인페이지</a>
 </body>
 </html>

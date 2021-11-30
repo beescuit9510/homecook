@@ -19,7 +19,7 @@ public class Product {
 	private String capacity;
 	private String orign;//country of origin 
 	private String matufacturer;
-	private String managerContact;
+	private String ccContact; //consumer Counseling Contact
 	private String consumerCounselingContact;
 	private int productCategory;
 	private int boardCategory;
