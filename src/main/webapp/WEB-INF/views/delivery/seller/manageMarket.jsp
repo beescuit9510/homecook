@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="s-wrapper">
-	<%@include file="/WEB-INF/views/common/header.jsp"%>
+	<%@include file="/WEB-INF/views/common/deliveryHeader.jsp"%>
 	<div class = "main_field">        	
         	<div class = "main_content2">
         		<div class = "side_nav">
