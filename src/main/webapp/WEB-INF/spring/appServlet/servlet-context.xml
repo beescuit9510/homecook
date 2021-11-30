@@ -70,6 +70,8 @@
 	<context:component-scan base-package="kr.or.zipcoock.mypage" />
 	<context:component-scan base-package="kr.or.zipcoock.cart" />	
 	<context:component-scan base-package="kr.or.seller" />
-	<context:component-scan base-package="kr.or.delivery" />
+	<context:component-scan base-package="kr.or.delivery.event"/>
+	<context:component-scan base-package="kr.or.delivery.purchase"/>
+	<context:component-scan base-package="kr.or.delivery.seller" />
 	
 </beans:beans>
