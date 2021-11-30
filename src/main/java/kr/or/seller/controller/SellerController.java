@@ -26,5 +26,8 @@ public class SellerController {
 	{
 		return "zipcoock/seller/sellerQNA";
 	}
-	
+	@RequestMapping(value = "statistics.do")
+	public String statistics() {
+	return "zipcoock/seller/statistics";
+}
 }

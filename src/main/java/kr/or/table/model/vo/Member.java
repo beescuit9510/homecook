@@ -14,5 +14,6 @@ public class Member {
 	private String memberPw;
 	private String memberPhone;
 	private String memberLevel;
-	private BusinessSellerInfo b;
+	private String deliveryLevel;
+	
 }
