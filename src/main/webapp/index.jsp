@@ -20,5 +20,7 @@
 <a href = "/mypageHelpView.do">help</a>
 <hr>
 <a href = "/sellerMypage.do">판매자 마이페이지</a>
+<hr>
+<a href = "/manageMarket.do">딜리버리 매장관리</a>
 </body>
 </html>
