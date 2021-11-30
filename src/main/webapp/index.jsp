@@ -10,7 +10,15 @@
 <body>
 <h1>final project</h1>
 <a href = "/call_MainPage.do">main</a>
+<hr>
 <a href = "/mainboard.do">집쿠욱메인보드</a>
+<a href = "/mypageHelpFrm.do">mypage</a>
+<a href = "/cart.do">cart</a>
+<a href = "/mypageReceiptView.do">receipt</a>
+<a href = "/mypageReviewView.do">review</a>
+<a href = "/mypageQnAView.do">qna</a>
+<a href = "/mypageHelpView.do">help</a>
+<hr>
 <a href = "/sellerMypage.do">판매자 마이페이지</a>
 </body>
 </html>

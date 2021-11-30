@@ -104,7 +104,7 @@ a{
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    padding-inline-start: 40px;   
 }
 
 .header-first>li
@@ -120,6 +120,26 @@ a{
     cursor: pointer;
     min-height: 40px;
     line-height: 40px;
+}
+
+.header-first>li>a
+{
+	font-family: ns_bold;
+    font-size: 14px;
+    font-weight: 1000;
+    
+    color: gray;
+}
+
+.header-last>li>a
+{
+	font-family: ns_bold;
+    font-size: 14px;
+    font-weight: 1000;
+    
+    color: gray;
+    
+    padding-right: 20px;
 }
 
 .header-main-content>div

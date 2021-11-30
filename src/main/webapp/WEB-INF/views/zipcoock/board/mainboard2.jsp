@@ -11,73 +11,37 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<div class="s-wrapper">
 		<%@include file="/WEB-INF/views/common/header.jsp"%>
 		<div class="main_field">
 			<div class="main_content">
 				<div class="main_content_field">
-	
+					<div class="category-title">
+						<h2 class="mainboard-title">
+							<span class="search-board point">전체상품 </span>
+							>
+							<span class="search-category point">전체</span>
+							oder by
+							<span class="search-order point">최신순</span></h2>
 
-					<div class="main-board-search-bar">
-					
-<!-- 
-						<form action="/addrFrm.do" method="get" class="search-box">
+
+						<form action="/addrFrm.do" method="get " class="search-box">
 							<input type="text" placeholder=" " />
 							<button type="reset"></button>
 						</form>
 
+
+
 					</div>
-
- -->
-
-
-<div class="mainboard-margin-auto">
+					<div class="category">
 
 
 
 
 
 
-<p class="search-p">
-	<span class="search-board">전체상품</span>
-	
-	<span class="search-category"> > 뷰티</span>
-</p>
-
-
-
-<div class="category">
-<!-- 
-<img class="img-category" alt="category" src="/resources/mainboard/img/a1.jpg" usemap="#image-map">
- -->
-<img class="img-category" alt="category" src="/resources/mainboard/img/category.jpg" usemap="#image-map">
- 
-    <map name="image-map">
-        <area shape="rect" target="" alt="beauty" title="/cart.do" href="/aaaa.html" coords="35,21,117,162" shape="rect">
-        <area target="" alt="baby" title="" href="/mypageQnAFrm.do" coords="144,17,278,163" shape="rect">
-        <area target="" alt="food" title="" href="/mypageQnAFrm.do" coords="311,24,391,161,433,22,537,161" shape="0">
-        <area target="" alt="kitchen" title="" href="/aaaa.html" coords="431,28,535,162,572,24,687,163" shape="0">
-        <area target="" alt="hobby" title="" href="/aaaa.html" coords="569,27,691,165,725,26" shape="0">
-        <area target="" alt="office" title="" href="/aaaa.html" coords="707,33,836,163" shape="0">
-        <area target="" alt="pet" title="" href="/aaaa.html" coords="854,33,970,167" shape="0">
-        <area target="" alt="health" title="" href="/aaaa.html" coords="1127,164,982,34" shape="0">
-        <area target="" alt="living" title="" href="/aaaa.html" coords="1243,164,1142,24" shape="0">
-        <area target="" alt="interior" title="" href="/aaaa.html" coords="1274,21,1403,165" shape="0">
-    </map>
-</div>
-
-
-
-
-
-
-
-
-
-
-						<form id="mypage-form" class="mainboard-order-form" action="" method="post"
-							class="">
+						<form id="mypage-form" action="" method="post"
+							class="mypage-form-class">
 							<select id="mypage-sel" name="order"
 								class="mypage-select input select">
 								<option id="mypage-opt" value="newest" selected>최신순</option>
@@ -88,13 +52,57 @@
 						</form>
 
 
+
+
+<!-- 
+					</div>
+					<div class="main-board-container">
+						<div class="main-menu">
+							<ul>
+								<a href="/a"><li class="menu-item">전체</li></a>
+								<a href="/a"><li class="menu-item">식품</li></a>
+								<a href="/a"><li class="menu-item">생활용품</li></a>
+								<a href="/a"><li class="menu-item">뷰티</li></a>
+								<a href="/a"><li class="menu-item">주방용품</li></a>
+								<a href="/a"><li class="menu-item">반려동물용품</li></a>
+								<a href="/a"><li class="menu-item">완구/취미</li></a>
+								<a href="/a"><li class="menu-item">문구/오피스</li></a>
+								<a href="/a"><li class="menu-item">스포츠/레저</li></a>
+								<a href="/a"><li class="menu-item">도서/음반/DVD</li></a>
+								<a href="/a"><li class="menu-item">헬스/건강식품</li></a>
+							</ul>
+						</div>
+ -->
+
+]        <div class="navigation">
+        <nav role="navigation">
+            <ul>
+                <li class=active><a href="">쇼핑</a>
+                <li ><a href="#">식품</a>
+                <li ><a href="#">생활용품</a>
+                <li ><a href="#">뷰티</a>
+                <li ><a href="#">주방용품</a>
+                <li ><a href="#">반려동물용품</a>
+                <li ><a href="#">완구/취미</a>
+                <li ><a href="#">문구/오피스</a>
+                <li ><a href="#">스포츠/레저</a>
+                <li ><a href="#">도서/음반/DVD</a>
+                <li ><a href="#">헬스/건강식품</a>
+<!--
+                 <li ><a href="#">Annuaire</a>
+--> 
+            </ul>
+        </nav>
+    </div>
+
+
 <!-- 
  -->
 						<div class="product-list-container">
 							<c:forEach begin="1" end="3">
 								<div class="product-list-row">
 
-									<c:forEach begin="1" end="5">
+									<c:forEach begin="1" end="4">
 										<section class="product-container shadow">
 											<div class="img-container">
 												<div class="product-img"></div>
@@ -103,7 +111,7 @@
 												<p><a href="" class="goods_name product-name">다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a></p>
 												<p class="shipping goods_detail">내일(금) 새벽 도착 보장</p>
 												<p class="discount_price product-price"><span class="goods_detail lowest-price">최저가</span>0,231,230원<span class="original_price">1,231,230원</span></p>
-												<div class="star">
+												<p class="star">
 
 <div class="star-rating js-star-rating">
   <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
@@ -115,7 +123,7 @@
   </div>
 </div>
 													<span class="review-count goods_detail">(1222)</span>
-													</div>
+													</p>
 
 
 													
@@ -132,10 +140,9 @@
 
 
 
+
 								</div>
 							</c:forEach>
-
-</div>
 
 							<div class="pagination p9">
 								<ul class="none-de">
@@ -164,23 +171,7 @@
 		<%@include file="/WEB-INF/views/common/footer.jsp"%>
 	</div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> <!-- JQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script> 
-<script>
-
-$(document).ready(function(e) {
-    $('img[usemap]').rwdImageMaps();//적용   
-});
- </script>
-
 <style>
-
-
-.mainboard-margin-auto{
-	margin:auto auto;
-	width:800px;
-}
-
 .point {
 	color: #9ac6e8;
 }
@@ -316,6 +307,64 @@ $(document).ready(function(e) {
 }
 </style>
 <style>
+.main-menu {
+	background-color: #ffffff;
+	overflow: hidden;
+	width: 170px;
+}
+
+.main-menu .menu-item {
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+}
+
+.main-menu .menu-item:hover {
+	/*
+        background-color: #d6d6d6;
+    */
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.menu-item {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	display: block;
+	width: 170px;
+}
+
+.main-menu .main-item {
+	font-size: 25px;
+}
+
+.menu-item {
+	list-style: none;
+	border-bottom: solid 1px #EAEBED;
+}
+
+.main-menu {
+	width: 170px;
+}
+
+li.main-item {
+	
+}
+
+.main-menu .menu-item:hover {
+	/*
+        background-color: #d6d6d6;
+        */
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.menu-item{
+
+font-size:20px;
+}
+</style>
+<style>
 .category {
 	width: 100%;
 }
@@ -340,8 +389,8 @@ display:inline-block;
 }
 
 .review-count{
-	display:block;
-	float:left;
+display:block;
+float:left;
   	margin-top:-15px;
   	margin-left:100px;
   
@@ -351,10 +400,10 @@ display:inline-block;
 	
 }
 .search-board {
-	font-size:40px;
+	font-size:30px;
 }
 .search-category {
-	font-size:30px;
+	font-size:20px;
 	
 }
 .search-order {
@@ -363,53 +412,157 @@ display:inline-block;
 }
 </style>
 <style>
-.img-category{
-	width:1000px;
-	margin-left:-100px;
 
-}
-.search-p{
-	display:inline-block;
-	margin-left:-60px;
-
-}
-
-.main-board-search-bar{
-margin:30px;
-}
-.product-list-container{
-margin-top:100px;
-}
-.mainboard-order-form > select{
-	width:100px;
-	height:30px;
-	font-size:16px;
-	padding:0px;
-	border-radius:0px;
-	margin-top:35px;
-	margin-right:-85px;
+    :root {
+--first-color: #081f37;
 	
+--second-color: #5fc9f3;
+
+--third-color: #2e79ba;
+
+--fourth-color: #1e549f;
+
+--main-color: #9ac6e8;
+
 }
-.main_content_field{
-	border:none;
+.first-color { 
+	background: #081f37; 
 }
-.search-p{
-	margin-top:50px;
-}
-.product-list-container{
-margin-left:-100px;
-}
-.main_field,.main_content{
-background:white;
-}
-.main-board-search-bar{
-	width:900px;
-	text-algin:center;
 	
+.second-color { 
+	background: #5fc9f3; 
 }
-.search-box{
-	margin:auto auto;
+
+.third-color { 
+	background: #2e79ba; 
 }
+
+.fourth-color { 
+	background: #1e549f; 
+}
+
+
+.active a {
+  background: var(--main-color);
+}
+
+.navigation ul {
+}
+.navigation ul li {
+  list-style: none;
+}
+.navigation ul a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.2em;
+  font-family: "consolas";
+}
+
+.navigation {
+  width: 73.68421%;
+  float: left;
+  margin-right: 5.26316%;
+  padding: 0px;
+}
+.navigation li:first-child a {
+  border-left: 10px solid var(--third-color);
+}
+.navigation li:first-child a:after {
+  background:  var(--third-color);
+}
+.navigation li:nth-child(2) a {
+  border-left: 10px solid var(--fourth-color);
+}
+.navigation li:nth-child(2) a:after {
+  background: var(--fourth-color);
+}
+.navigation li:nth-child(3) a {
+  border-left: 10px solid var(--second-color);
+}
+.navigation li:nth-child(3) a:after {
+  background: var(--second-color);
+}
+.navigation li:nth-child(4) a {
+  border-left: 10px solid var(--first-color);
+}
+.navigation li:nth-child(4) a:after {
+  background:  var(--first-color);
+}
+.navigation li:nth-child(5) a {
+  border-left: 10px solid var(--third-color);
+}
+.navigation li:nth-child(5) a:after {
+  background:  var(--third-color);
+}
+.navigation li:nth-child(6) a {
+  border-left: 10px solid var(--fourth-color);
+}
+.navigation li:nth-child(6) a:after {
+  background: var(--fourth-color);
+}
+.navigation li:nth-child(7) a {
+  border-left: 10px solid var(--second-color);
+}
+.navigation li:nth-child(7) a:after {
+  background: var(--second-color);
+}
+.navigation li:nth-child(8) a {
+  border-left: 10px solid var(--first-color);
+}
+.navigation li:nth-child(8) a:after {
+  background:  var(--first-color);
+}
+.navigation li:nth-child(9) a {
+  border-left: 10px solid var(--third-color);
+}
+.navigation li:nth-child(9) a:after {
+  background:  var(--third-color);
+}
+.navigation li:nth-child(10) a {
+  border-left: 10px solid var(--fourth-color);
+}
+.navigation li:nth-child(10) a:after {
+  background: var(--fourth-color);
+}
+.navigation li:nth-child(11) a {
+  border-left: 10px solid var(--second-color);
+}
+.navigation li:nth-child(11) a:after {
+  background:  var(--second-color);
+}
+.navigation li:nth-child(12) a {
+  border-left: 10px solid var(--first-color);
+}
+.navigation li:nth-child(12) a:after {
+  background:  var(--first-color);
+}
+.navigation li a {
+  display: block;
+  width: 165px;
+  position: relative;
+  color: #000000;
+  padding: 10px;
+  z-index: 2;
+}
+.navigation li a:after {
+  content: "";
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0px;
+  position: absolute;
+  transition: all 0.5s ease 0s;
+  z-index: -1;
+}
+.navigation li a:hover {
+  color: #fff;
+}
+.navigation li a:hover:after {
+  width: 100%;
+}
+
+
+
+
 </style>
-
 </html>
