@@ -10,4 +10,8 @@ public class EventController {
 		public String eventList() {
 			return "event/eventList";
 		}
+		@RequestMapping(value = "/eventView.do")
+		public String eventView() {
+			return "event/eventView";
+		}
 }
