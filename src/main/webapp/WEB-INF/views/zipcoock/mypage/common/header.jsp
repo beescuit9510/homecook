@@ -48,7 +48,9 @@
 								                    <div class="main-menu">
 								                        <ul>
 								                            <a href="/mypageReceiptFrm.do"><li class="menu-item">주문목록</li></a>
+								                            <!-- 
 								                            <a href="/mypageMembershipFrm.do"><li class="menu-item">집쿠욱 멤버십</li></a>
+								                             -->
 								                            <a href="/mypageQnAFrm.do"><li class="menu-item">Q&A Q관리</li></a>
 								                            <a href="/mypageReviewFrm.do"><li class="menu-item">리뷰관리</li></a>
 								                            <a href="/mypageHelpFrm.do"><li class="menu-item">문의내역</li></a>
