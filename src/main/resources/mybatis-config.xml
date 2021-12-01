@@ -4,5 +4,7 @@
 	<settings>
 	<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
-
+<typeAliases>
+		<typeAlias type="kr.or.table.model.vo.Member" alias="m"/>
+</typeAliases>
 </configuration>

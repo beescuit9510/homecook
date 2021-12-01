@@ -191,8 +191,6 @@ a{
     background: rgb(255, 255, 255);
     padding-left: 68px;
     padding-right: 68px;
-    
-    border: 1px solid red;
 }
 
 .footer
@@ -330,6 +328,8 @@ a{
     white-space: nowrap;
     cursor: pointer;
 }
+
+
 
 
 

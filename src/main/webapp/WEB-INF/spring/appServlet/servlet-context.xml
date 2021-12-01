@@ -31,7 +31,7 @@
 	<!-- DB 접속정보를 저장하는 dataSource 객체 생성 -->
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-	<beans:property name="url" value="jdbc:oracle:thin:1.220.236.74:15214:xe"/>
+	<beans:property name="url" value="jdbc:oracle:thin:@1.220.236.74:15214:xe"/>
 	<beans:property name="username" value="homecook"/>
 	<beans:property name="password" value="homecook"/>
 	</beans:bean>
@@ -59,7 +59,6 @@
 	</beans:bean>
 	<!-- 트랜잭션 어노테이션 사용을 위한 선언 -->
 	<tx:annotation-driven/>
-
 		<!-- AOP 어노테이션 방식 사용 선언 -->
 	<aop:aspectj-autoproxy/>
 	<!-- 예약작업 어노테이션방식 사용 성언 -->
@@ -73,5 +72,5 @@
 	<context:component-scan base-package="kr.or.delivery.event"/>
 	<context:component-scan base-package="kr.or.delivery.purchase"/>
 	<context:component-scan base-package="kr.or.delivery.seller" />
-	
+	<context:component-scan base-package="kr.or.member" />
 </beans:beans>
