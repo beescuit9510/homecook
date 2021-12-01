@@ -10,6 +10,8 @@
 <body>
 <h1>final project</h1>
 <a href = "/call_MainPage.do">main</a>
+
+<a href = "/loginFrm.do">로그인</a>
 <hr>
 <a href = "/mainboard.do">집쿠욱메인보드</a>
 <a href = "/mypageHelpFrm.do">mypage</a>
