@@ -11,4 +11,10 @@ public class MainPageController
 	{
 		return "common/main";
 	}
+	
+	@RequestMapping(value = "/call_AdminPage.do")
+	public String call_AdminMain()
+	{
+		return "admin/admin_main";
+	}
 }
