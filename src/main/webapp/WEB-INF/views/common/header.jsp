@@ -13,7 +13,7 @@
          			<li><a href = "/">집쿠욱 배달 메인</a></li> 
          		</ul>
 	         	<ul>         			
-	         		<li><a>로그인 정보(로그인 안하면 안보이게)</a></li> 
+	         		<li><a href = "/call_AdminPage.do">로그인 정보(로그인 안하면 안보이게)</a></li> 
 	         	</ul>          	
          	</div> 
          </div>
@@ -31,7 +31,7 @@
          			</div>
          		</div>
          		<ul class = "header-last">
-         			<li><a href = "/"><i class="fas fa-sign-in-alt"></i>  로그인</a></li>
+         			<li><a href = "/loginFrm.do"><i class="fas fa-sign-in-alt"></i>  로그인</a></li>
          			<li><a href = "/"><i class="fas fa-user-plus"></i>  회원 가입</a></li>
          			<li><a href = "/"><i class="fas fa-book-reader"></i>  고객 센터</a></li>
          		</ul>
