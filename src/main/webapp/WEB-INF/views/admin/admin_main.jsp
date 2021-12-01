@@ -10,24 +10,6 @@
 <script type="text/javascript" src="resources/js/jquery-3.3.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <style>
-.adminHead
-{
-	height: 50px;	
-	
-	display: flex;
-	justify-content: space-around;
-	border-bottom: 2px solid gray;
-}
-
-.adminHead>div>a
-{
-	font-family: ns_bold;
-	font-size: 12px;
-	font-weight: bold;
-	
-	line-height: 50px;
-	color: gray;
-}
 
 .chart_area2
 {
@@ -42,13 +24,8 @@
         <div class = "main_field">        	
         	<div class = "main_content">
         		<div class = "main_content_field">
-        			<!-- main content making area -->        			
-        			<div class = "adminHead">
-        				<div><a href = "/call_AdminPage.do">관리자 메인</a></div> 
-        				<div><a href = "/call_AdminPage.do">관리자 메뉴 1</a></div>    
-        				<div><a href = "/call_AdminPage.do">관리자 메뉴 2</a></div>     
-        				<div><a href = "/call_AdminPage.do">관리자 메뉴 3</a></div>          				        			
-        			</div>
+        			<!-- main content making area -->      
+        			<%@include file="/WEB-INF/views/admin/adminHeader.jsp" %>	 	
         			<div class = "amdin_main_content">
         				<div class = "chart_area" id = "test">
         					<canvas id="myChart"></canvas>
