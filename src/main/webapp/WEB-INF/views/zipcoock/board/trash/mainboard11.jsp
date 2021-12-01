@@ -16,9 +16,8 @@
 <body>
 
 <div class="s-wrapper">
+
 		<%@include file="/WEB-INF/views/common/header.jsp" %>	
-
-
 
 <div class="container-fluid position-relative" style="z-index: 99999;">
 	<div class="row">
@@ -32,7 +31,7 @@
 					<div class="col-md-2">
 				  <a href="#"><img src="" class="img-thumbnail p-0 border-0" /></a>
 				</div>
-					<div class="col-md-6">
+					<div class="col-md-6 mainboard-searchbar" >
 						<div class="input-group input-group-lg">
 							<input type="text" id="" name="" class="form-control" placeholder="상품을 검색해보세요" />
 							<div class="input-group-append">
@@ -40,6 +39,7 @@
 							</div>
 						</div>
 					</div>
+					<!-- 
 					<div class="col-md-1">
 						<button class="btn btn-outline-secondary btn-block btn-lg" type="button">
 							<i class="fas fa-sync-alt"></i>
@@ -49,11 +49,69 @@
 					</div>
 					<div class="col-md-2">
 					</div>
-				</div>
+					 -->
+					
+ 				</div>
+ 				<!-- 
 				<div class="row">
 					<div class="col-md-12">
+						<nav class="navbar navbar-expand-lg navbar-light bg-white">
+							
+							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item active">
+										<a class="nav-link" href="#">생활용품</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">뷰티</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">헬스, 건강식품</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">주방용품</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">식품</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">완구, 취미</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">문구, 오피스</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#">반려동물</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
 					</div>
 				</div>
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
 			</div>
 		</div>
 	</div>
@@ -79,84 +137,40 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+        <div class = "main_field">        	
+        	<div class = "main_content">
+        		<div class = "main_content_field">
+        		
 
 
 
 
 
 <div class="container">
+
+
+<div class="container mainboard-product-container">
 	<div class="row mb-5">
-		<div class="col-md-3">
-			<div class="card mb-4">
-				<div class="card-header">Categories</div>
-				<div class="list-group list-group-flush">
-					<a href="#" class="list-group-item list-group-item-action">생활용품 (13)</a>
-					<a href="#" class="list-group-item list-group-item-action active">뷰티 (5)</a>
-					<a href="#" class="list-group-item list-group-item-action">헬스/건강식품 (0)</a>
-					<a href="#" class="list-group-item list-group-item-action">주방용품 (0)</a>
-					<a href="#" class="list-group-item list-group-item-action">식품 (2)</a>
-					<a href="#" class="list-group-item list-group-item-action">완구/취미 (1)</a>
-					<a href="#" class="list-group-item list-group-item-action">문구/오피스 (0)</a>
-					<a href="#" class="list-group-item list-group-item-action">반려동물 (3)</a>
-				</div>
-			</div>
-
-
-			<div class="card">
-				<div class="card-header">검색하기</div>
-				<div class="card-body p-1">
-
-					<div class="card border-0 b-3">
-						<div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false">
-							<p class="m-0 h6">가격</p>
-						</div>
-						<div class="card-body p collapse show" id="collapseExample4">
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label>Min</label>
-									<input class="form-control" placeholder="0" type="number">
-								</div>
-								<div class="form-group text-right col-md-6">
-									<label>Max</label>
-									<input class="form-control" placeholder="50000" type="number">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card-footer">
-					<button type="button" class="btn btn-block btn-primary">검색</button>
-				</div>
-			</div>
+	<!-- 
+	 -->
+		<div class="col-md-12">
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header">
 					<div class="row">
 						<div class="col-md-4">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text">정렬:</span>
+									<span class="input-group-text">가격:</span>
 								</div>
 								<select class="form-control" id="" name="">
-									<option value="">최신순</option>
-									<option value="">가나다순</option>
-									<option value="">가나다역순</option>
-									<option value="">높은가격순</option>
-									<option value="">낮은가격순</option>
-									<option value="">오래된 순</option>
-									<option value="">인기순</option>
+									<option value="">가격 전체</option>
+									<option value="">5천원 이하</option>
+									<option value="">5천원 ~ 1만원 이하</option>
+									<option value="">1만원 ~ 5만원 이하</option>
+									<option value="">5만원 ~ 10만원 이하</option>
+									<option value="">10만원 이상</option>
 								</select>
 							</div>
 						</div>
@@ -170,6 +184,22 @@
 									<option value="">3점 이상</option>
 									<option value="">2점 이상</option>
 									<option value="">1점 이상</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">정렬:</span>
+								</div>
+								<select class="form-control" id="" name="">
+									<option value="">최신순</option>
+									<option value="">가나다순</option>
+									<option value="">가나다역순</option>
+									<option value="">높은가격순</option>
+									<option value="">낮은가격순</option>
+									<option value="">오래된 순</option>
+									<option value="">인기순</option>
 								</select>
 							</div>
 						</div>
@@ -193,7 +223,7 @@
 	<div class="row">
 		<div class="col-md-4 mb-4">
 			<div class="card">
-				<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
+				<img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" />
 				<div class="card-body">
 					<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
 					<p class="m-0">
@@ -217,6 +247,13 @@
 				</div>
 				<div class="card-footer p-0">
 				</div>
+
+
+
+
+
+
+
 			</div>
 		</div>
 	</div>
@@ -226,7 +263,7 @@
 						<div class="col-md-6">
 							<ul class="pagination m-0">
 								<li class="page-item disabled">
-									<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+									<a class="page-link" href="#" tabindex="-1" aria-disabled="true"> 이전 </a>
 								</li>
 								<li class="page-item"><a class="page-link" href="#">1</a></li>
 								<li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -238,7 +275,7 @@
 								<li class="page-item"><a class="page-link" href="#">8</a></li>
 								<li class="page-item"><a class="page-link" href="#">9</a></li>
 								<li class="page-item">
-									<a class="page-link" href="#">Next</a>
+									<a class="page-link" href="#"> 이후 </a>
 								</li>
 							</ul>
 						</div>
@@ -250,14 +287,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="row"></div>
-	<div class="row"></div>
-	<div class="row"></div>
-	<div class="row"></div>
-	<div class="row"></div>
-	<div class="row"></div>
-	<div class="row"></div>
-	<div class="row"></div>
 	<div class="row mb-5">
 		<div class="col-md-12">
 			<div class="card">
@@ -280,42 +309,36 @@
 							<p class="h5">24/7 서비스<br/><small class="text-muted">24/7 쉼없이 운영됩니다.</small></p>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row mb-5">
 	</div>
+</div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
 
 
 
 
+        		</div> <!-- main_content_field -->
+        	</div> <!-- main content -->
+        </div> <!-- main field -->
+		<%@include file="/WEB-INF/views/common/footer.jsp" %>
+</div>
+
+
 <!-- partial -->
-<script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
-<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
+  <script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'></script>
+
+
+	  <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+	  <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+	  <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 </body>
 <style>
 
@@ -559,7 +582,7 @@ background:white;
 <style>
 
 .container{
-	width:1100px;
+	width:900px;
 }
 .mainboard-searchbar{
 	margin-left:100px;
