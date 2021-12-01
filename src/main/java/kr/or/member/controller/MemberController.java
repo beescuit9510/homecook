@@ -54,17 +54,25 @@ public class MemberController {
 	public String bjoinFrm() {
 		return "zipcoock/member/bjoin";
 	}
-	@RequestMapping(value="/ajaxLogin")
-	public int ajaxLogin(Member member, HttpSession session, Model model) {
+	@RequestMapping(value="/kjoin.do")
+	public String kjoin(String memberId, Model model) {
+		model.addAttribute("id",memberId);
+		return "zipcoock/member/kjoin";
+	}
+	@RequestMapping(value="/ajaxLogin.do")
+	@ResponseBody
+	public int ajaxLogin(String id,Member member, HttpSession session, Model model) {
+		member.setMemberId(id);
+		member.setMemberPw(id);
+		System.out.println(id);
 		Member m = service.selectOneMember(member);
+		
 		if(m != null) {
 			session.setAttribute("m", m);
 			model.addAttribute("msg","로그인 성공");
 			model.addAttribute("loc", "/");
 			return 1;
 		}else {
-			model.addAttribute("msg","아이디 또는 비밀번호를 확인하세요");
-			model.addAttribute("loc", "/");
 			return 0;
 		}
 		
