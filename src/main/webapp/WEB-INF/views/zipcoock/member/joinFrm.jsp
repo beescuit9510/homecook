@@ -28,16 +28,16 @@
         </div>
         <div class="joinFrm_img">
             <img src="/resources/img/member/bg_benefit.png" alt="">
-            <div id="joinFrm_imgtext">
-                <button onclick = "location.href = '/noticeView?noticeNo=162'">회원등급별 혜택 더 보러가기</button>
-            </div>
-        </div>
-        <br>
-        <div class="joinbtn_wrap">
+             <div class="joinbtn_wrap">
             <div class="joinbtn"> <a style="background-color: #fee500; color: black;" href="javascript:kakaoLogin()"><b>카카오 계정으로 신규가입</b></a>
             </div>
-            <div class="joinbtn "><a style="background-color: #9ac6e8; color: white;" href="/bjoinFrm.do">만 14세 이상 회원가입</a></div>
-            <div class="joinbtn "><a style="background-color: #9ac6e8; color: white;" href="/checkSjoin.do">판매자 회원가입</a></div>
+            <div class="joinbtn "><a style="background-color: black; color: white;" href="/bjoinFrm.do">만 14세 이상 회원가입</a></div>
+        </div>
+        </div>
+        <div class="sellerjoinbtn_wrap">
+            <div class="sellerjoinbtn "><p class="sellerjointext">집쿡 판매자 가입하기</p><br><a style="background-color: #9ac6e8; color: white;" href="/sjoinFrm.do">가입하기</a></div>
+            <div class="sellerjoinbtn "><p class="sellerjointext">딜리버리 판매자 가입하기</p><br><a style="background-color: #9ac6e8; color: white;" href="#">가입하기</a></div>
+            <div class="sellerjoinbtn "><p class="sellerjointext">딜리버리 라이더 가입하기</p><br><a style="background-color: #9ac6e8; color: white;" href="#">가입하기</a></div>
         </div>
     </div>
     
