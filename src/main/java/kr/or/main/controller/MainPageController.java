@@ -17,4 +17,10 @@ public class MainPageController
 	{
 		return "admin/admin_main";
 	}
+	
+	@RequestMapping(value = "/allMember.do")
+	public String call_AllMemberPage()
+	{
+		return "admin/allMemberList";
+	}
 }
