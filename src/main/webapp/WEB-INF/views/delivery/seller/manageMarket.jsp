@@ -1,15 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/deliverySeller/manageMarket.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
+
 </head>
 <body>
 <div class="s-wrapper">
-	<%@include file="/WEB-INF/views/common/deliveryHeader.jsp"%>
+	<jsp:include page="/WEB-INF/views/common/deliveryHeader.jsp" />
 	<div class="main_field">        	
         	<div class="main_content2">
         		<div class="side_nav">
@@ -48,7 +56,7 @@
         		</div>
         	</div> <!-- main content -->
         </div> <!-- main field -->
-	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </div>
 </body>
 </html>
