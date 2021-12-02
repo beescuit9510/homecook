@@ -11,7 +11,9 @@
 		<typeAlias type="kr.or.table.model.vo.Qna" alias="qna"/>		
 		<typeAlias type="kr.or.table.model.vo.HomepageQna" alias="homepageQna"/>		
 		<typeAlias type="kr.or.table.model.vo.ProductLike" alias="like"/>		
-		<typeAlias type="kr.or.zipcoock.mypage.vo.InsertObj" alias="insertObj"/>		
+		<typeAlias type="kr.or.zipcoock.mypage.vo.InsertObj" alias="insertObj"/>	
+		<typeAlias type="kr.or.zipcoock.mypage.vo.UpdateObj1" alias="updateObj"/>	
+		<typeAlias type="kr.or.zipcoock.mypage.vo.DeleteObj1" alias="deleteObj"/>	
 		<typeAlias type="kr.or.table.model.vo.BusinessSellerInfo" alias="bsi"/>
 </typeAliases>
 </configuration>
