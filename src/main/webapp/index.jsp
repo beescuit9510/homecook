@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
 </head>
 <body>
 <h1>final project</h1>
@@ -13,6 +15,7 @@
 
 <a href = "/loginFrm.do">로그인</a>
 <a href = "/joinFrm.do">회원가입</a>
+<a href = "/CheckSnum.do">회원가입</a>
 <hr>
 <a href = "/mainboard.do">집쿠욱메인보드</a>
 <a href = "/mypageHelpFrm.do">mypage</a>
@@ -30,6 +33,9 @@
 
 <hr>
 <a href="/eventList.do">이벤트 페이지</a>
+
+
+
 
 </body>
 </html>

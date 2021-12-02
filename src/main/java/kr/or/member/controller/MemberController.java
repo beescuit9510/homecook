@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import kr.or.member.model.service.MemberService;
+import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
 
 
@@ -76,7 +77,27 @@ public class MemberController {
 			return 0;
 		}
 		
-	}
+		}	
 	
+	@RequestMapping(value="/CheckSnum.do") // 사업자 번호 조회 페이지 이동
+	public String checkSnum() {
+		return "zipcoock/member/CheckSnum";
+	}
+	@RequestMapping(value="/ajaxbNoCheck.do") //입력한 사업자 번호 DB와 조회하는 AJAX 
+	@ResponseBody
+	public int ajaxbNoCheck(BusinessSellerInfo BusinessSellerInfo) {
+		BusinessSellerInfo bsi = service.selectOneBusinessNo(BusinessSellerInfo);
+		if(bsi != null) {
+			return 1;
+		}else {
+			return 0;
+		}
+		
+		
+	}
+	@RequestMapping(value="sjoinFrm.do") // 판매자 가입 페이지 이동
+	public String sjoinFrm() {
+		return "zipcoock/member/sjoin";
+	}	
 	
 	}
