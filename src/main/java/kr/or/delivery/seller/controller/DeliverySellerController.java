@@ -7,9 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DeliverySellerController {
 
 	@RequestMapping(value = "/manageMarket.do")
-	public String deliverySeller()
+	public String manageMarket()
 	{
 		return "delivery/seller/manageMarket";
+	}
+	
+	@RequestMapping(value = "/manageMenu.do")
+	public String manageMenu()
+	{
+		return "delivery/seller/manageMenu";
 	}
 	
 }
