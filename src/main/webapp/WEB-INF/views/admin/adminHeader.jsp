@@ -21,9 +21,13 @@
 	color: gray;
 }
 </style>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.js"></script>
+
 <div class = "adminHead">
     <div><a href = "/call_AdminPage.do">관리자 메인</a></div> 
-    <div><a href = "/allMember.do">전체 회원 관리</a></div>    
-    <div><a href = "/call_AdminPage.do">관리자 메뉴 2</a></div>     
-    <div><a href = "/call_AdminPage.do">관리자 메뉴 3</a></div>          				        			
+    <div><a href = "/admin_qna.do">사이트 문의 현황</a></div>    
+    <div><a href = "/admin_allMember.do">전체 회원 관리</a></div>     
+    <div><a href = "/call_AdminPage.do">관리자 메뉴 3</a></div>  
+    <div><a href = "/call_AdminPage.do">관리자 메뉴 4</a></div>
 </div>

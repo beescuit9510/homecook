@@ -2,6 +2,7 @@ package kr.or.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainPageController 
@@ -18,7 +19,7 @@ public class MainPageController
 		return "admin/admin_main";
 	}
 	
-	@RequestMapping(value = "/allMember.do")
+	@RequestMapping(value = "/admin_allMember.do")
 	public String call_AllMemberPage()
 	{
 		return "admin/allMemberList";

@@ -24,6 +24,7 @@ function join() {
 	var mailcode;
 	//개인정보 동의가 체크 되었을경우1
 	if (agree.checked) {
+		
 		//아이디가 맞았을경우2
 		if ($("#memberId").val() != '' && $("#idchk").val() == '1') {
 		
@@ -31,107 +32,98 @@ function join() {
 				if ($("#memberPw").val() == $("#chkpw").val() && $("#chkpw").val() && memberPwchk == true
 						&& $("#memberPw").val() && $("#chkpw").val() != '') {
 				
-				//닉네임이 맞았을경우4
-				if ($("#memberNickname").val() != ''
-						&& $("#nicknamechk").val() == '1') {
+				//상호명이 맞았을경우4
+				if ($("#tradeName").val() != ''
+						&& $("#tradeNamechk").val() == '1') {
 					
-					//이름값 입력했을경우 5
-					if ($("#memberName").val() != '') {
+					//대표자이름 공백아닌경우5
+					if($("#memberName").val() !=''){
+						
+					
 					
 						//휴대폰 값 입력했을경우6
 						if ($("#memberPhone2").val() && $("#memberPhone3").val() != '') {
 							
-							//생일값 입력 했을경우7
-							if ($("#birth").val() != '') {
-								
-								//주소 입력 했을경우8
+								//주소 입력 했을경우7
 								if ($("#postCode1").val() && $("#addressRoad1").val() != '') {
 																		
-									//상세주소 입력했을경우9
+									//상세주소 입력했을경우8
 									if ($("#addressDetail1").val() != '') {
 										
-										//메일 주소 인증 & 아이디중복체크 & null이 아닌경우10
-										if ($("#emailchk").val() == '1' && $("#email1") != '') {
+										//메일 주소 인증 & null이 아닌경우9
+										if ($("#emailverification").val() == '1' && $("#email1") != '') {
 											
-											//회원가입 확인버튼 버튼 눌렀을경우 11
+											//회원가입 확인버튼 버튼 눌렀을경우 10
 											if (confirm("회원가입 하시겠습니까?")) {
 												alert("회원가입이 완료되었습니다.");
 												
 												return true;
-												//회원가입 확인버튼 취소했을경우11
+												//회원가입 확인버튼 취소했을경우10
 											} else {
 												return false;
 											}
-											//이메일 중복체크/인증/null일경우10
+											//이메일 중복체크/인증/null일경우9
 										} else {
 											alert("이메일을 확인해주세요!");
 											$("#email1").focus();
 											return false;
 										}
-										//상세주소 입력안했을경우9
+										//상세주소 입력안했을경우8
 									} else {
 										alert("상세주소를 확인해주세요!");
 										$("#addressDetail1").focus();
 										return false;
 
 									}
-									//주소검색 안했을경우8
+									//주소검색 안했을경우7
 								} else {
 									alert("주소를 확인해주세요!");
 									$("#postCode1").focus();
 									return false;
 
 								}
-
-								//생일값 입력안했을경우7
-							} else {
-								alert("생일을 확인해주세요!");
-								$("#birth").focus();
-								return false;
-
-							}
+							
 							//핸드폰번호값 null일경우6
 						} else {
-							alert("핸드폰 번호를 확인해주세요!");
+							alert("상호 번호를 확인해주세요!");
 							$("#memberPhone2").focus();
 							return false;
 						}
-						//이름이 null이 아닐경우5
+						//대표자 이름 공백인경우6
 					} else {
-						alert("이름을 확인해주세요!");
+						alert("대표자 이름을 확인해주세요!");
 						$("#memberName").focus();
 						return false;
-					}
-					//닉네임 중복이거나 null일경우4
+						}
+						//상호면 중복이거나 null일경우4
 				} else {
-					alert("닉네임을 확인해주세요!");
-					$("#memberNickName").focus();
+						alert("상호명을 확인해주세요!");
+						$("tradeName").focus();
+						return false;
+					}
+					//비밀번호 일치하지않거나 null일경우3
+				} else {
+					alert("비밀번호를 확인해주세요!");
+					$("#memberPw").focus();
 					return false;
+
 				}
-				//비밀번호 일치하지않거나 null일경우3
+				//아이디값 중복이거나 null일 경우2
 			} else {
-				alert("비밀번호를 확인해주세요!");
-				$("#memberPw").focus();
+				alert("아이디를 확인해주세요!");
+				$("#memberId").focus();
 				return false;
 
 			}
-			//아이디값 중복이거나 null일 경우2
+
+			//이용약관 체크안했을경우1
 		} else {
-			alert("아이디를 확인해주세요!");
-			$("#memberId").focus();
+			alert("이용약관 동의를 체크해주세요");
+			$("#allAgreement").focus();
 			return false;
 
 		}
-
-		//이용약관 체크안했을경우1
-	} else {
-		alert("이용약관 동의를 체크해주세요");
-		$("#allAgreement").focus();
-		return false;
-
 	}
-}
-
 
 	//전체체크
 	function allCheck(obj) {
@@ -141,7 +133,7 @@ function join() {
 			chks[i].checked = status;
 		}
 	}
-    //비밀번호 여부
+	//비밀번호 여부
 	function chkPw(obj) {
 		var pwChk = document.getElementById("pwChk");
 		var pw = document.getElementsByName("memberPw")[0].value;
@@ -166,7 +158,7 @@ function join() {
 		var email2 = document.getElementsByName("email2")[0];
 		email2.value = obj.value;
 		var Bno = dacument.getElementByName("Bno").val;
-		
+
 	}
 
 	//주소 검색
@@ -174,13 +166,11 @@ function join() {
 		new daum.Postcode({
 			oncomplete : function(data) {
 				$("#postCode1").val(data.zonecode);
-				$("#addressRoad1").val(data.roadAddress)
-				$("#addressDetail1").focus
+				$("#addressRoad1").val(data.roadAddress);
+				$("#addressDetail1").focus;
 			}
 		}).open();
 	}
-
-
 </script>
 
 </head>
@@ -245,7 +235,7 @@ function join() {
 
 					
 					<input type="hidden" id="businessNo" name="businessNo" value="${requestScope.Bno }">
-					
+					<input type="hidden" id="emailverification">
 
 					<br>
 					<br>
@@ -282,20 +272,14 @@ function join() {
 							</tr>
 							<tr>
 								<td>상호명</td>
-								<td><input type="text" class="joinInput short3" id="memberNickname" name="memberNickname"><span id="ajaxNicknameCheck"></span><input type="hidden" id="nicknamechk"></td>
+								<td><input type="text" class="joinInput short3" id="tradeName" name="tradeName"><span id="ajaxTradeNameCheck"></span><input type="hidden" id="tradeNamechk"></td>
 							</tr>
 							<tr>
 								<td>대표자 이름</td>
 								<td><input type="text" class="joinInput short3" id="memberName" name="memberName"></td>
 								<td><input type="hidden" class="joinInput short3" id="representative" name="representative" value="$("#idchk"))"></td>
 							</tr>
-							<tr>
-								<td>성별</td>
-								<td><select class="joinInput short1 text-align" name="memberGender">
-										<option value="1">남성</option>
-										<option value="2">여성</option>
-								</select></td>
-							</tr>
+						
 							<tr>
 								<td>대표 전화번호</td>
 								<td>
@@ -368,7 +352,7 @@ function join() {
             if (regExp.test(memberId)) {
                 //중복검사
                 $.ajax({
-                    url: "/ajaxIdCheck",
+                    url: "/ajaxIdCheck.do",
                     data: {
                         memberId: memberId
                     },
@@ -391,36 +375,38 @@ function join() {
                 $("#ajaxCheck").css("color", "red");
             }
         });
-
-        $("[name=memberNickname]").eq(0).keyup(function() {
-            var memberNickname = $(this).val();
-            var regExp = /[a-z0-9]{5,}/; //유효성검사 소문자와 숫자를섞어 4글자이하
-            if (regExp.test(memberId)) {
-                //중복검사
+	
+        $("[name=tradeName]").eq(0).keyup(function() {
+            var tradeName = $(this).val();
+            var regExpTn = /\S/g;
+            if(regExpTn.test(tradeName)){
+            	
                 $.ajax({
-                    url: "ajaxNicknameCheck",
+                    url: "ajaxTradeNameCheck.do",
                     data: {
-                        memberNickname: memberNickname
+                    	tradeName: tradeName
                     },
                     type: "post",
                     success: function(data) {
                         if (data == 0) {
-                            $("#ajaxNicknameCheck").html("사용 가능한 닉네임 입니다.");
-                            $("#ajaxNicknameCheck").css("color", "blue");
-                            $("#nicknamechk").val('1');                        
-                        } else if (data == 1) {
-                            $("#ajaxNicknameCheck").html("이미 사용중인 닉네임 입니다.");
-                            $("#ajaxNicknameCheck").css("color", "red");
-                            $("#nicknamechk").val('2'); 
+                            $("#ajaxTradeNameCheck").html("사용 가능한 상호명 입니다.");
+                            $("#ajaxTradeNameCheck").css("color", "blue");
+                            $("#tradeNamechk").val('1');                        
+                        } else {
+                            $("#ajaxTradeNameCheck").html("이미 사용중인 상호명 입니다.");
+                            $("#ajaxTradeNameCheck").css("color", "red");
+                            $("#tradeNamechk").val('2'); 
                         }
-
-                    }
-                });
-            } else {
-                $("#ajaxNicknameCheck").html("닉네임 영문+숫자로 4글자 이하입니다.")
-                $("#ajaxNicknameCheck").css("color", "red");
             }
-        });
+
+                });
+                    }else{
+                    	   $("#ajaxTradeNameCheck").html("상호명엔 공백이 들어갈 수 없습니다.");
+                           $("#ajaxTradeNameCheck").css("color", "red");
+                           $("#tradeNamechk").val('2'); 
+                    }
+            })
+   
         var memberPwchk = false;
 		$("[name=memberPw]").eq(0).keyup(function() {
 			var memberPw = $(this).val();
@@ -537,6 +523,7 @@ function join() {
                     				$("#authMsg").css("color","blue");
                     				clearInterval(intervalId);
                     				$("#timeZone").empty();
+                    				$("#emailverification").val('1');
                     			}else{
                     				$("#authMsg").html("인증코드를 확인하세요");
                     				$("#authMsg").css("color","red");

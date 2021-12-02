@@ -8,6 +8,11 @@ public class PurchaseController {
 	
 	@RequestMapping(value="zcdMain.do")
 	public String zcdMain() {
-		return "delievery/zcdMain";
+		return "delivery/buyer/zcdMain";
+	}
+	
+	@RequestMapping(value="zcdMypage.do")
+	public String zcdMypage() {
+		return "delivery/buyer/mypage";
 	}
 }
