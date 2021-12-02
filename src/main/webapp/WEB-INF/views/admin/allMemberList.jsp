@@ -60,6 +60,21 @@
 {
 	outline: none;
 }
+
+.pageTtile
+{
+	font-size : 20px;
+	font-weight: bolder;	
+}
+
+.pageTtitle_box
+{
+	margin-top : 10px;
+	width: 150px;
+	color : #252528;
+	border-bottom : 2px solid gray;
+}
+
 </style>
 <body>
 <div class="s-wrapper">
@@ -70,14 +85,16 @@
         			<!-- main content making area -->        			
         			<%@include file="/WEB-INF/views/admin/adminHeader.jsp" %>	
         			<div class = "amdin_main_content">
-        				<table class = "memberTabel" style = "width:100%;">
+        				<div class = "pageTtile">
+        					<div class = "pageTtitle_box">
+        						전체 회원 조회
+        					</div>        					
+        				</div>
+        				<table class = "memberTabel" id = "memberList" style = "width:100%;">
 						<tr class = "table_head">
 							<th>회원 번호</th><th>회원 아이디</th><th>회원이름</th><th>전화번호</th><th>회원 등급</th>
 							<th>딜리버리 등급</th>
-						</tr>	
-						<tr class = "table_value">
-							<td>11</td><td>아이디</td><td>이름</td><td>전화번호</td><td>등급</td><td>딜리버리 등급</td>
-						</tr>								
+						</tr>					
 						</table>
 						<div class = "search_content">
 							<div class="btn-group " role="group" aria-label="Basic radio toggle button group">
@@ -99,5 +116,52 @@
         </div> <!-- main field -->
 		<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
+<script>
+	$(function()
+	{		
+		var table = $('#memberList');
+		
+		$.ajax(
+		{
+			url 	: 	"/getAllMemberList.do", 	//서블릿을 요청할지 매핑값 
+			data 	:	
+			{				
+			},								// 서블릿에 전송할 데이터 오브젝트
+			type	: 	"get",				// method 설정
+			success	: function(data)		// 성공시와 에러시, 그리고 완료시
+			{			
+				var list  = data;
+				if(list != null)
+				{
+					indexMax = list.length;						
+					for(var i = 0; i < indexMax; ++i)
+					{						
+						var html = 
+						"<tr class = 'table_value' id = 'memberInfo'>";
+						var memberNo = "<td>"+list[i].memberNo +"</td>";
+						var memberId = "<td>"+list[i].memberId +"</td>";
+						var memberName = "<td>"+list[i].memberName +"</td>";
+						var memberPhone = "<td>"+list[i].memberPhone +"</td>";
+						var memberLevel = "<td>"+list[i].memberLevel +"</td>";
+						var deliveryLevel = "<td>"+list[i].deliveryLevel +"</td>";
+						
+						html += memberNo + memberId + memberName + memberPhone + memberLevel +deliveryLevel;
+						table.append(html);
+					}
+				}
+				else
+				{
+					console.log("결과 없음");
+				}
+			}
+		});
+		$(document.body).delegate('#memberInfo', 'click', 
+		function() 
+		{
+			if($(this).children(1).html() != '해당 자료 없음')
+			console.log($(this).children(1).html());
+		});
+	});
+</script>
 </body>
 </html>

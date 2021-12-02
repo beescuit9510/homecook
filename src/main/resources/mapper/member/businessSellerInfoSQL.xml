@@ -13,4 +13,17 @@
   email
   from business_seller_info where business_no=#{businessNo}
  </select>
+ 
+ <select id="selectOneTardeName" resultType="bsi">
+ select 
+  member_no as memberNo,
+  business_no as businessNo,
+  trade_name as tradeName,
+  representative,
+  business_location as businessLocation,
+  contact
+  email
+  from business_seller_info where trade_name=#{tradeName}
+ </select>
+
 </mapper>

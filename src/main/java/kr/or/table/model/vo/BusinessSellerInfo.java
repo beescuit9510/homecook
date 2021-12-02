@@ -12,7 +12,6 @@ public class BusinessSellerInfo extends Member {
 	private String tradeName;
 	private String representative;
 	private String businessLoc;
-	private String purchasingSafetyService;
 	private String contact;
 	private String email;
 

@@ -98,6 +98,33 @@ public class MemberController {
 	@RequestMapping(value="sjoinFrm.do") // 판매자 가입 페이지 이동
 	public String sjoinFrm() {
 		return "zipcoock/member/sjoin";
-	}	
+	}
+	@RequestMapping(value="ajaxTradeNameCheck.do")// 상호명 조회 ajax
+	@ResponseBody
+	public int ajaxTradeNameCheck(BusinessSellerInfo BusinessSellerInfo) {
+		BusinessSellerInfo bsi = service.selectOneTradeNameCheck(BusinessSellerInfo);
+		if (bsi == null) {
+			// 사용가능한 상호명
+			return 0;
+		} else {
+			// 사용중인 상호명
+			return 1;
+		}
+		
+		
+	}
+	@RequestMapping(value="/ajaxIdCheck.do")
+	@ResponseBody
+	public int ajaxIdcheck(Member member ) {
+		Member m = service.selectOneMemberId(member);
+		if (m == null) {
+			// 사용가능한 아이디
+			return 0;
+		} else {
+			// 사용중인 아이디
+			return 1;
+		}
+		
+	}
 	
 	}
