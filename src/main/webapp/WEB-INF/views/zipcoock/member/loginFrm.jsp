@@ -92,23 +92,32 @@
 								},
 								success : function(result) {
 									if (result == 0) {
-										alert("추가회원가입페이지로 이동");
+										if (confirm("카카오톡 계정으로 가입하시겠습니까??") == true){    //확인
+
+										   
+
+										
 										
 										(function kjoin() {
 											//form 태그 생성
-											var form = $("<form action='/kjoinFrm.do' method='post'></form>");
+											var form = $("<form action='/kjoin.do' method='post'></form>");
 											//form 태그 추가
-											form.append($("<input type='hidden' name='id' value='"+data1.id+"'>"));
+											form.append($("<input type='hidden' name='memberId' value='"+data1.id+"'>"));
 											//전송할 form태그를 현재 페이지에 추가
 											$("body").append(form);
 											//form태그 전송
 											form.submit();
 										})();
+										}else{   //취소
+
+											
 									
-										
-									} else {
+										}
+									} else if(result == 1) {
 										
 										location.href="/";
+									}else{
+										
 									}
 								}
 							})

@@ -1,14 +1,13 @@
 package kr.or.seller.model.dao;
 
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Repository;
 
+import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
 
 
@@ -21,4 +20,9 @@ public class MemberDao {
 		
 		return (Member)sqlSession.selectOne("member.selectOneMember",member);
 		}
+
+	public BusinessSellerInfo selectOneBusinessNo(BusinessSellerInfo businessSellerInfo) {
+		
+		return (BusinessSellerInfo)sqlSession.selectOne("businessSellerInfo.selectOneBusinessNo",businessSellerInfo);
+	}
 }

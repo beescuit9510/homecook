@@ -1,89 +1,54 @@
 package kr.or.zipcoock.mypage.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+import kr.or.table.model.vo.ProductReview;
+import kr.or.zipcoock.mypage.service.MypageService;
+import kr.or.zipcoock.mypage.vo.InsertObj;
+
 public class MypageController {
-	@RequestMapping(value="/mypageReceiptFrm.do")
-	public String callReceiptFrm()
-	{
-		return "zipcoock/mypage/receiptFrm";
+	@Autowired
+	MypageService service;
+
+	@RequestMapping(value="/insertReview.do")
+	public String insertReview(ProductReview review) {
+		
+		InsertObj obj = new InsertObj();
+		obj.setReview(review);
+		
+		service.insert(obj);
+		
+		return "redirect:/";
 	}
-
-	@RequestMapping(value="/mypageMembershipFrm.do")
-	public String callMembershipFrm()
-	{
-		return "zipcoock/mypage/membershipFrm";
-	}
-
-	@RequestMapping(value="/mypageQnAFrm.do")
-    public String callQnAFrm()
-    {
-    	return "zipcoock/mypage/qnaFrm";
-    }
-
-	@RequestMapping(value="/mypageReviewFrm.do")
-    public String callReviewFrm()
-    {
-    	return "zipcoock/mypage/reviewFrm";
-    }
-	@RequestMapping(value="/mypageHelpFrm.do")
-	public String callHelpFrm()
-	{
-		return "zipcoock/mypage/helpFrm";
-	}
-
-	@RequestMapping(value="/mypageLikeFrm.do")
-    public String callLikeFrm()
-    {
-    	return "zipcoock/mypage/likeFrm";
-    }
-
-	@RequestMapping(value="/mypageMyInfoFrm.do")
-    public String callMyInfoFrm()
-    {
-    	return "zipcoock/mypage/myInfoFrm";
-    }
-
-	@RequestMapping(value="/mypagePwFrm.do")
-    public String callPwFrm()
-    {
-    	return "zipcoock/mypage/pwFrm";
-    }
-
-	@RequestMapping(value="/mypageAddrFrm.do")
-    public String callAddrFrm()
-    {
-    	return "zipcoock/mypage/addrFrm";
-    }
 	
-	@RequestMapping(value="/mypageReceiptView.do")
-	public String callReceiptView()
-	{
-		return "zipcoock/mypage/receiptView";
-	}
-	@RequestMapping(value="/mypageQnAView.do")
-	public String callQnAView()
-	{
-		return "zipcoock/mypage/qnaView";
-	}
-	@RequestMapping(value="/mypageReviewView.do")
-	public String callReviewView()
-	{
-		return "zipcoock/mypage/reviewView";
-	}
+//	@RequestMapping(value="/insertAddress.do")
+//	public String insertAddress(Address addr) {
+//		return "/i";
+//	}
+//	@RequestMapping(value="/insertQna.do")
+//	public String insertQna(Qna qna) {
+//		return "/i";
+//	}
+//	@RequestMapping(value="/insertHomepageQna.do")
+//	public String insertHomepageQna(HomepageQna qna) {
+//		return "/i";
+//	}
+//	
+//	
+//	@RequestMapping(value="/insertLike.do")
+//	public String insertLike(ProductLike like) {
+//		return "/i";
+//	}
 
-	@RequestMapping(value="/mypageHelpView.do")
-	public String callHelpView()
-	{
-		return "zipcoock/mypage/helpView";
-	}
-
-	@RequestMapping(value="/mypageAddrView.do")
-	public String callAddrView()
-	{
-		return "zipcoock/mypage/addrView";
-	}
 
 }
+
+//	Address addr = new Address();
+//	addr.setAddr("강남");
+//	addr.setMemberNo(4);		
+//	addr.setReceiverName("ㅎㅅㅎ");		
+//	addr.setReceiverPhone("01022228888");
+//	InsertObj obj = new InsertObj();
+//	obj.setAddress(addr);
+//	System.out.println(insertA(obj));

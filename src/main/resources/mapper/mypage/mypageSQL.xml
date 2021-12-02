@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mypage">
+	<insert id="insert" parameterType="insertObj">
+
+	insert into
+
+	<where>
+	    <if test="review != null">
+	        product_review
+	    </if>
+	    <if test="address != null">
+	         address
+	    </if>
+	    <if test="hQna != null">
+	        homepage_qna
+	    </if>
+	    <if test="qna != null">
+	        qna
+	    </if>
+	    <if test="like != null">
+	        product_like
+	    </if>
+ 	</where>
+	
+	values(
+	
+	<where>
+	    <if test="review != null">
+			review_seq.nextval,#{review.memberNo},#{review.productNo},#{review.reviewContent},#{review.star},sysdate
+	    </if>
+	    <if test="address != null">
+			#{address.memberNo},address_seq.nextval,#{address.receiverName},#{address.receiverPhone},#{address.addr}
+	    </if>
+	    <if test="hQna != null">
+			homepage_qna_seq.nextval,#{hQna.memberNo},null,1,#{hQna.qnaTitle},#{hQna.qnaContent},sysdate
+	    </if>
+	    <if test="qna != null">
+			qna_seq.nextval,#{qna.memberNo},#{qna.productRefNo},null,1,#{qna.qnaTitle},#{qna.qnaContent},sysdate
+	    </if>
+	    <if test="like != null">
+			product_like_seq.nextval,#{like.memberNo},#{like.productNo}
+	    </if>
+ 	</where>
+		
+			)
+	</insert>
+	
+	
+	<!-- update -->
+	<!-- 개인 정보 수정 (회원 수정) -->
+	<update id="updateMember" parameterType="m">
+		update member set member_id= #{memberId}, member_name= #{memberName}, member_phone= #{memberPhone} where member_no = #{memberNo}				
+	</update>	
+	<!-- 비밀번호 수정 -->
+	<update id="updatePw" parameterType="m">
+		update member set member_pw= #{memberPw} where member_no = #{memberNo}
+	</update>
+	<!-- 배송지 수정 -->
+	<update id="updateAddr" parameterType="address">
+		update address set receiver_name= #{receiverName}, receiver_phone = #{receiverPhone}, addr = #{addr}
+		where addr_no = #{addrNo} and member_no = #{memberNo}
+	</update>
+	<!-- 상품 Q&A Q 수정 -->
+	<update id="updateQ" parameterType="qna">
+		update qna set qna_title= #{qnaTitle}, qna_content = #{qnaContent} 
+		where qna_no = #{qnaNo} and member_no = #{memberNo}
+	</update>
+	<!-- 홈페이지 Q&A Q 수정 -->
+	<update id="updateHompageQ" parameterType="homepageQna">
+		update homepage_qna set qna_title = #{qnaTitle}, qna_content = #{qnaContent}
+		where qna_no = #{qnaNo} and member_no = #{memberNo}
+	</update>
+	<!-- 리뷰 수정 -->
+	<update id="updateReview" parameterType="productReview">
+		update product_review set review_content = #{reviewContent}, star = #{star}
+		where review_no = #{reviewNo} and member_no = #{memberNo}
+	</update>
+	<!-- 좋아요이미지 수정 -->
+	<!-- 좋아요  수정(좋아요 수정)-->
+	
+	
+	
+	
+	<!-- delete -->
+	<!-- 개인 정보 삭제 (회원 삭제) -->
+	<delete id="deleteMember" parameterType="m">
+		delete from member where member_id = #{memberId} and member_no = #{memberNo}
+	</delete>	
+	<!-- 배송지 삭제 -->
+	<delete id="deleteAddr" parameterType="address">
+		delete from address where addr_no = #{addrNo} and member_no = #{memberNo}
+	</delete>
+	<!-- 상품 Q&A Q 삭제 -->
+	<delete id="deleteQ" parameterType="qna">
+		delete from qna where qna_no = #{qnaNo} and member_no = #{memberNo}
+	</delete>
+	<!-- 홈페이지 Q&A Q 삭제-->
+	<delete id="deleteHompageQ" parameterType="homepageQna">
+		delete from homepage_qna where qna_no = #{qnaNo} and member_no = #{memberNo}
+	</delete>
+	<!-- 리뷰 삭제 -->
+	<!-- 리뷰이미지 는 on delete cascade -->
+	<delete id="deleteReview" parameterType="productReview">
+		delete from product_review where review_no = #{reviewNo} and member_no = #{memberNo}
+	</delete>
+	<!-- 좋아요  삭제 (좋아요 취소)-->
+	<delete id="deleteLike" parameterType="productReview">
+		delete from product_like where member_no = #{memberNo} and product_no = #{productNo}
+	</delete>
+
+
+
+
+</mapper>

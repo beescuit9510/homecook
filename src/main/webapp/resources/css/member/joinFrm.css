@@ -49,15 +49,44 @@
 .joinbtn {
     width: 300px;
     min-width: 210px;
-    padding: 50px 20px 200px;
+    padding-bottom: 60px;
     text-align: center;
     display: inline-block;
     font-size: 14px;
    
 }
+.sellerjoinbtn_wrap{
+	text-align: center;
+    min-width: 1050px;
+    padding-bottom: 200px;
+}
+.sellerjoinbtn {
+    width: calc(100% / 3);
+    min-width: 210px;
+    padding: 50px 20px;
+    border: 2px solid rgba(128, 128, 128, 0.486);
+    text-align: center;
+    
+    font-size: 14px;
+        float: left;
+    overflow: hidden;
+   margin-bottom: 200px;
+}
+
+.sellerjoinbtn a {
+    width: 100px;
+    min-width: 100px;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+     
+}
 
 .joinbtn a {
-    width: 210px;
+    width: 220px;
     min-width: 210px;
     padding: 16px 20px;
     text-align: center;
@@ -65,7 +94,14 @@
     font-size: 14px;
     text-decoration: none;
      border-radius: 12px;
+      
 }
 .joinbtn a:hober {
 	text-decoration: none;
+}
+
+.sellerjointext {
+	font-size: 30px;
+	padding-bottom: 10px;
+	font-weight: bold;
 }
