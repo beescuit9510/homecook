@@ -35,14 +35,18 @@
 		cursor: pointer;
 		margin-left: 10px;
 	}
+	.sub-container{
+		margin-top: 30px;
+	}
 </style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/deliveryHeader.jsp"%>
 	<div class="container">
+		<a href="zcdMypage.do">마이페이지</a>
 		<div class="eventImage"></div>
 		<div class="main-copy">
-			<img src="/resources/img/delivery/sofancoock.png">
+			<img src="/resources/img/zcdBuyer/sofancoock.png">
 			<div class="copy"><span class="main-color">집</span>에서 <span class="main-color">쿠-욱</span><br>
 			누르기만 해도 찾아올 음식을 원하신다면,</div>
 			<div id="searchBox">
@@ -53,7 +57,11 @@
 			</div>
 		</div>
 		<div class="sub-container">
-			
+			<h3>집쿡 맛집을 찾고 있다면</h3>
+			<div class="store-wrap">
+				<div class="store-img"></div>
+				<div class="store-info"></div>
+			</div>
 		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
