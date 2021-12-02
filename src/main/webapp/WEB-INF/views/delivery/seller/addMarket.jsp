@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/deliverySeller/manageMenu.css">
+<link rel="stylesheet" href="/resources/css/deliverySeller/addMarket.css">
 
 <!-- bootstrap css -->
 <link rel="stylesheet" href="/resources/css/deliverySeller/bootstrap.css">
@@ -35,32 +35,26 @@
 	        			</div>
 	        		</div>
         			<div class="side_nav_content">
-	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMarket.do">매장관리</a></span></div>
-	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageMenu.do">메뉴관리</a></span></div>
+	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageMarket.do">매장관리</a></span></div>
+	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMenu.do">메뉴관리</a></span></div>
 	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/">주문접수</a></span></div>
 	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/">리뷰관리</a></span></div>       			
         			</div>
         		</div>
         		
         		<div class="content_div">
-        			<div class="content_title">메뉴관리</div>
+        			<div class="content_title">매장관리</div>
         			<div class="content_div_area">
-        				<div class="content_div_content">
-        					
-        					
-        					<ul class="nav nav-pills">
-							  <li class="nav-item dropdown nav-item-border">
-							    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">매장선택 </a>
-							    <div class="dropdown-menu">
-							      <a class="dropdown-item" href="#">죠샌드위치</a>
-							      <a class="dropdown-item" href="#">죠스떡볶이</a>
-							      <a class="dropdown-item" href="#">버거킹 신월점</a>
-							    </div>
-							  </li>
-							</ul>
-        					
-        					
-        					
+        				<div class="content_div_div">
+        					<div class="content_div_content">
+        						<div class="content_div_div_content">
+        							<div class="content_div_info">
+        								<div class="content_div_title">매장 추가</div>
+        								
+        							</div>
+        							<div class="content_div_end"></div>
+        						</div>
+        					</div>
         				</div>
         			</div>
         		</div>

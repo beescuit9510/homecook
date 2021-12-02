@@ -29,6 +29,16 @@ public class MemberService {
 			BusinessSellerInfo bsi = dao.selectOneBusinessNo(businessSellerInfo);
 			return bsi;
 		}
+
+		public BusinessSellerInfo selectOneTradeNameCheck(BusinessSellerInfo businessSellerInfo) {
+			BusinessSellerInfo bsi = dao.selectOneTradename(businessSellerInfo);
+			return bsi;
+		}
+
+		public Member selectOneMemberId(Member member) {
+			Member m = dao.selectOneMemberId(member);
+			return m;
+		}
 		
 
 		

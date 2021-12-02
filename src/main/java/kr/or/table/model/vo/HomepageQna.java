@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HomepageQna {
 	private int qnaNo;
-	private int productNo;
+	private int memberNo;
 	private int qnaRefNo;
 	private int qnaLevel;
 	private String qnaTitle;

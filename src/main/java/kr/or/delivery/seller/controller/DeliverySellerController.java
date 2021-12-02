@@ -12,6 +12,12 @@ public class DeliverySellerController {
 		return "delivery/seller/manageMarket";
 	}
 	
+	@RequestMapping(value = "/addMarket.do")
+	public String addMarket()
+	{
+		return "delivery/seller/addMarket";
+	}
+	
 	@RequestMapping(value = "/manageMenu.do")
 	public String manageMenu()
 	{

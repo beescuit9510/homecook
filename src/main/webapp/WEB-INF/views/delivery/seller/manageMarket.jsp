@@ -44,7 +44,7 @@
         						<div class="content_div_opt2">매장 전화번호</div>
         						<div class="content_div_opt3">관리</div>
         					</div>
-        					<button class="add_market_btn">+ 매장 정보 등록하기</button>
+        					<a class="add_market_btn" href="/addMarket.do">+ 매장 정보 등록하기</a>
         				</div>
         			</div>
         		</div>

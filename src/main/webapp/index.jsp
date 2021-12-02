@@ -35,6 +35,14 @@
 <a href="/eventList.do">이벤트 페이지</a>
 
 
+<hr/>
+<form action="/insertReview.do?memberNo=4">
+	<input type="text" name="star" value="5"/>
+	<input type="text" name="reviewContent" value="리뷰내용"/>
+	<input type="text" name="productNo" value="1"/>
+	<button type="submit">제출</button>
+</form>
+
 
 
 </body>
