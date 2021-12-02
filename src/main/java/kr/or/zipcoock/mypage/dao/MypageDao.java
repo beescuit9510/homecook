@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 public class MypageDao {
 	
 	
-	public
+
 
 }
