@@ -25,4 +25,14 @@ public class MemberDao {
 		
 		return (BusinessSellerInfo)sqlSession.selectOne("businessSellerInfo.selectOneBusinessNo",businessSellerInfo);
 	}
+
+	public BusinessSellerInfo selectOneTradename(BusinessSellerInfo businessSellerInfo) {
+		
+		return (BusinessSellerInfo)sqlSession.selectOne("businessSellerInfo.selectOneTardeName",businessSellerInfo);
+	}
+
+	public Member selectOneMemberId(Member member) {
+
+		return (Member)sqlSession.selectOne("member.selectOneMemberId",member);
+	}
 }
