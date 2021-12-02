@@ -14,7 +14,7 @@ public class PaymentInfo {
 	private String receiverPhone;
 	private String receiverAddr;
 	private String orderDate;
-	private String isDeliverd;
+	private String isDelivered;
 	private String paymentMethod;
 	
 }
