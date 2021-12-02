@@ -8,6 +8,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/deliverySeller/manageMarket.css">
 
+<!-- bootstrap css -->
+<link rel="stylesheet" href="/resources/css/deliverySeller/bootstrap.css">
+<!-- jQuery -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- bootstrap jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 <div class="s-wrapper">
