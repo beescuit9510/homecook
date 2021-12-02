@@ -6,8 +6,8 @@
 	</settings>
 <typeAliases>
 		<typeAlias type="kr.or.table.model.vo.Member" alias="m"/>
-		<typeAlias type="kr.or.table.model.vo.ProductReview" alias="review"/>		
-		<typeAlias type="kr.or.table.model.vo.Address" alias="addr"/>		
+		<typeAlias type="kr.or.table.model.vo.ProductReview" alias="productReview"/>		
+		<typeAlias type="kr.or.table.model.vo.Address" alias="address"/>		
 		<typeAlias type="kr.or.table.model.vo.Qna" alias="qna"/>		
 		<typeAlias type="kr.or.table.model.vo.HomepageQna" alias="homepageQna"/>		
 		<typeAlias type="kr.or.table.model.vo.ProductLike" alias="like"/>		

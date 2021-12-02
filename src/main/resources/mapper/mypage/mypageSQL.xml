@@ -105,7 +105,7 @@
 		delete from product_review where review_no = #{reviewNo} and member_no = #{memberNo}
 	</delete>
 	<!-- 좋아요  삭제 (좋아요 취소)-->
-	<delete id="deleteReview" parameterType="productReview">
+	<delete id="deleteLike" parameterType="productReview">
 		delete from product_like where member_no = #{memberNo} and product_no = #{productNo}
 	</delete>
 
