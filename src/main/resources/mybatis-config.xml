@@ -9,6 +9,9 @@
 		<typeAlias type="kr.or.table.model.vo.ProductReview" alias="productReview"/>		
 		<typeAlias type="kr.or.table.model.vo.Address" alias="address"/>		
 		<typeAlias type="kr.or.table.model.vo.Qna" alias="qna"/>		
+		<typeAlias type="kr.or.table.model.vo.AdminQna" alias="aQna"/>	
+		<typeAlias type="kr.or.table.model.vo.AdminDeal" alias="aDeal"/>
+		<typeAlias type="kr.or.table.model.vo.AdminRefund" alias="aRefund"/>
 		<typeAlias type="kr.or.table.model.vo.HomepageQna" alias="homepageQna"/>		
 		<typeAlias type="kr.or.table.model.vo.ProductLike" alias="like"/>		
 		<typeAlias type="kr.or.zipcoock.mypage.vo.InsertObj" alias="insertObj"/>	

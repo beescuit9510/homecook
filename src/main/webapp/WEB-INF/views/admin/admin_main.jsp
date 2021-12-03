@@ -32,11 +32,9 @@
         				</div>        				
         				<div class = "chart_area2">
         					<div><canvas id="myChart2"></canvas></div>
-        					<div><canvas id="myChart3"></canvas></div>
-        				</div>
-        			
-        			</div>
-        			
+        					<div><canvas id="myChart3"></canvas></div>        					
+        				</div>        			
+        			</div>        			
         		</div> <!-- main_content_field -->
         	</div> <!-- main content -->
         </div> <!-- main field -->
