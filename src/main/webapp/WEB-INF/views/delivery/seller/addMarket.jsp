@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/deliverySeller/manageMarket.css">
+<link rel="stylesheet" href="/resources/css/deliverySeller/addMarket.css">
 
 <!-- bootstrap css -->
 <link rel="stylesheet" href="/resources/css/deliverySeller/bootstrap.css">
@@ -45,13 +45,16 @@
         		<div class="content_div">
         			<div class="content_title">매장관리</div>
         			<div class="content_div_area">
-        				<div class="content_div_content">
-        					<div class="content_div_info">
-        						<div class="content_div_opt1">상호명</div>
-        						<div class="content_div_opt2">매장 전화번호</div>
-        						<div class="content_div_opt3">관리</div>
+        				<div class="content_div_div">
+        					<div class="content_div_content">
+        						<div class="content_div_div_content">
+        							<div class="content_div_info">
+        								<div class="content_div_title">매장 추가</div>
+        								
+        							</div>
+        							<div class="content_div_end"></div>
+        						</div>
         					</div>
-        					<a class="add_market_btn" href="/addMarket.do">+ 매장 정보 등록하기</a>
         				</div>
         			</div>
         		</div>
