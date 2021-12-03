@@ -31,4 +31,17 @@ public class MainPageController
 	{
 		return "admin/allMemberList";
 	}
+	
+	@RequestMapping(value = "/admin_homecookDeal.do")
+	public String call_adminhomecookDeal()
+	{
+		return "admin/adminHomecookDeal";
+	}
+	
+	@RequestMapping(value = "/admin_returnPolicy.do")
+	public String call_adminReturnPolicy()
+	{
+		return "admin/adminReturnPolicy";
+	}
+	
 }

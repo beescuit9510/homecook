@@ -32,5 +32,27 @@ from
 using (member_no))c 
 left outer join (select product_no, product_name from product) d on c.product_ref_no = d.product_no)
  </select>
+ 
+ <select id="get_DealList" resultType="aDeal">
+select 
+    product_no as productNo,
+    deal_no as dealNo,
+    discount_rate as discountRate,
+    discount_date as discountDate,
+    discountend_date as discountendDate,
+    product_name as productName
+from homecook_deal a left outer join (select product_no, product_name from product)b using (product_no)
+ </select> 
+ 
+  <select id="get_RefundList" resultType="aRefund">
+select
+	product_no as productNo,
+	return_policy_no as returnPolicyNo,
+	return_shipping as returnShipping,
+	return_length as retrunLength,
+	policy_content as policyContent,
+	product_name as productName
+from return_policy a left outer join (select product_no, product_name from product)b using (product_no)
+ </select> 
 
 </mapper>
