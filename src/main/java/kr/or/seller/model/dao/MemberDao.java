@@ -35,4 +35,26 @@ public class MemberDao {
 
 		return (Member)sqlSession.selectOne("member.selectOneMemberId",member);
 	}
+
+	public int insertOneMember(Member member) {
+		
+		return sqlSession.insert("member.insertOneMember",member);
+	}
+
+	public int insertOneSmember(Member member) {
+		
+		return sqlSession.insert("member.insertOneSmember",member);
+	}
+
+	public int insertOneSmember2(BusinessSellerInfo businessSellerInfo) {
+		
+
+		return sqlSession.insert("businessSellerInfo.insertOneSmember",businessSellerInfo);
+	}
+
+	public BusinessSellerInfo selectOneEmail(BusinessSellerInfo businessSellerInfo) {
+
+		return sqlSession.selectOne("businessSellerInfo.selectOneEmail",businessSellerInfo);
+	}
+	
 }

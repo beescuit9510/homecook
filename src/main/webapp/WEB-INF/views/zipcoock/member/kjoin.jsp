@@ -21,10 +21,10 @@
 	function join() {
 		var agree = document.getElementById('privacyAgreement');
 		var mailcode;
+		var phoneNumber = '010' + $("#memberPhone2").val() + $("#memberPhone3").val();
+		$("#memberPhone").val(phoneNumber);
 		//이용약관 동의가 체크 되었을경우1
 		if (agree.checked) {
-			//아이디가 맞았을경우2
-			if ($("#memberId").val() != '' && $("#idchk").val() == '1') {
 			
 						//이름값 입력했을경우 3
 						if ($("#memberName").val() != '') {
@@ -73,13 +73,7 @@
 							$("#memberName").focus();
 							return false;
 						}
-				//아이디값 중복이거나 null일 경우2
-			} else {
-				alert("아이디를 확인해주세요!");
-				$("#memberId").focus();
-				return false;
 
-			}
 			//이용약관 체크안했을경우 1
 		} else {
 			alert("이용약관 동의를 체크해주세요");
@@ -117,7 +111,7 @@
 
 
 			<div class="content">
-				<form action="/bjoin" method="post" class="contentDetail"
+				<form action="/bjoin.do" method="post" class="contentDetail"
 					id="contentDetail-field" name="joinFrm">
 					<legend class="contentDetail-legend">14세 이상 회원 가입 입력양식</legend>
 					<div class="contentDetail">
@@ -182,6 +176,7 @@
 									<!--카카오톡api값으로 받아온 id값으로 join   -->
 								<input type="hidden" class="joinInput" name="memberId" id="memberId" value="${requestScope.id }">							
 								<input type="hidden" class="joinInput" name="memberPw" value="${requestScope.id }">
+								<input type="hidden" name="memberPhone" id="memberPhone">
 								</td>
 							</tr>
 							
