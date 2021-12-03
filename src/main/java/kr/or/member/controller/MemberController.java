@@ -127,4 +127,10 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping(value="/bjoin.do")
+	public String bjoin(Member member) {
+		Member m =service.insertOneMember(member);
+		return "";
+	}
+	
 	}

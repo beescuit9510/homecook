@@ -161,7 +161,7 @@
 
 
 			<div class="content">
-				<form action="/bjoin" method="post" class="contentDetail"
+				<form action="/bjoin.do" method="post" class="contentDetail"
 					id="contentDetail-field" name="joinFrm">
 					<legend class="contentDetail-legend">14세 이상 회원 가입 입력양식</legend>
 					<div class="contentDetail">

@@ -26,4 +26,9 @@
   from member where member_id=#{memberId}
  </select>
 
+ <insert id="insertOneMember" parameterType="m">
+  insert into board values(MEMBER_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{boardWriter},to_char(sysdate,'yyyy-mm-dd'))
+  <selectKey resultType="_int" order="AFTER" keyProperty="boardNo">select max(board_no) from board</selectKey>  
+  </insert>
+  
 </mapper>

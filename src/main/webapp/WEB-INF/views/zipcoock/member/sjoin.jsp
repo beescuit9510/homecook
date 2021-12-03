@@ -38,9 +38,7 @@ function join() {
 					
 					//대표자이름 공백아닌경우5
 					if($("#memberName").val() !=''){
-						
-					
-					
+		
 						//휴대폰 값 입력했을경우6
 						if ($("#memberPhone2").val() && $("#memberPhone3").val() != '') {
 							
