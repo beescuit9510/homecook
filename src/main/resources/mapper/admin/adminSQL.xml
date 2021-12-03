@@ -54,5 +54,17 @@ select
 	product_name as productName
 from return_policy a left outer join (select product_no, product_name from product)b using (product_no)
  </select> 
+ 
+<select id="selectOneMemberInfo" parameterType = "_int" resultType="m">
+select 
+	MEMBER_NO as memberNo,
+	MEMBER_NAME as memberName,
+	MEMBER_ID as memberId,
+	MEMBER_PW as memberPw,
+	MEMBER_PHONE as memberPhone,
+	MEMBER_LEVEL as memberLevel,
+	DELIVERY_LEVEL as deliveryLevel
+from member where member_no = #{memberNo}
+</select>
 
 </mapper>
