@@ -13,5 +13,24 @@
   delivery_level as deliveryLevel
   from member
  </select>
+ 
+ 
+ <select id="get_QnaList" resultType="aQna">
+select 
+    member_no as memberNo,
+    member_name as memberName,
+    qna_no as qnaNo,
+    qna_ref_no as qnaRefNo,
+    qna_level as qnaLevel,
+    qna_title as qnaTitle,
+    qna_content as qnaContent,
+    write_date as writeDate,
+    product_no as productRefNo,
+    product_name as productName
+from 
+((select * from qna a left outer join (select member_no, member_name from member) b
+using (member_no))c 
+left outer join (select product_no, product_name from product) d on c.product_ref_no = d.product_no)
+ </select>
 
 </mapper>

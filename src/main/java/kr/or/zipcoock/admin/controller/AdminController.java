@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.table.model.vo.AdminQna;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.Qna;
 import kr.or.zipcoock.admin.model.service.AdminService;
 
 
@@ -24,5 +26,12 @@ public class AdminController
 	public ArrayList<Member> get_AllMemberList()
 	{		
 		return service.selectAllMember();
+	}
+	
+	@RequestMapping(value = "/getAllQnaList.do")
+	@ResponseBody
+	public ArrayList<AdminQna> get_AllQnaList()
+	{		
+		return service.selectAllQna();
 	}
 }

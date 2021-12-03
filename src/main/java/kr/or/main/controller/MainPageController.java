@@ -19,6 +19,13 @@ public class MainPageController
 		return "admin/admin_main";
 	}
 	
+	@RequestMapping(value = "/admin_qna.do")
+	public String call_adminQna()
+	{
+		return "admin/allQnaList";
+	}
+
+	
 	@RequestMapping(value = "/admin_allMember.do")
 	public String call_AllMemberPage()
 	{

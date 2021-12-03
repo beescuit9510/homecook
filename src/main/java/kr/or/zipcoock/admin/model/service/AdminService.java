@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.table.model.vo.AdminQna;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.Qna;
 import kr.or.zipcoock.admin.model.dao.AdminDao;
 
 @Service
@@ -17,6 +19,11 @@ public class AdminService
 	public ArrayList<Member> selectAllMember()
 	{
 		return dao.selectAllMember();
+	}
+
+	public ArrayList<AdminQna> selectAllQna() 
+	{
+		return dao.selectAllQna();
 	}
 	
 }
