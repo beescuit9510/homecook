@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import kr.or.member.model.service.MailSender;
 import kr.or.member.model.service.MemberService;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
@@ -24,6 +25,10 @@ public class MemberController {
 	// 의존성 주입(DI)
 	@Autowired  
 	private MemberService service;
+	@Autowired  
+	private MailSender mailsender;
+	
+	
 	@RequestMapping(value="/loginFrm.do")
 	public String loginFrm() {
 		return "zipcoock/member/loginFrm";
@@ -163,13 +168,22 @@ public class MemberController {
 	@RequestMapping(value="/ajaxEmailCheck.do")
 	@ResponseBody
 	public int ajaxEmailcheck(BusinessSellerInfo businessSellerInfo) {
+		System.out.println(businessSellerInfo);
 		BusinessSellerInfo bsi = service.selectOneEmail(businessSellerInfo);
 		System.out.println(bsi);
-		if (bsi != null) {
+		if (bsi == null) {
 			return 0;	
 		}else {
 			return 1;
 		}
 		
 	}
+	@RequestMapping(value="/sendMail.do")
+	@ResponseBody
+	public String sendMail(BusinessSellerInfo businessSellerInfo) {
+		String result = mailsender.mailSend(businessSellerInfo.getEmail());
+		return result;
+
+	}
+
 	}

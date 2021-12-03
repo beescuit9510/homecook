@@ -29,7 +29,7 @@ function join() {
 	$("#email").val(memberemail);
 	$("#businessLoc").val(addr);
 
-	/*
+	
 	$("#memberPhone").val(phoneNumber);
 	//개인정보 동의가 체크 되었을경우1
 	if (agree.checked) {
@@ -129,7 +129,7 @@ function join() {
 			return false;
 
 		}
-*/
+
 	}
 	//전체체크
 	function allCheck(obj) {
@@ -335,7 +335,7 @@ function join() {
 										<option value="nate.com">nate.com</option>
 										<option value="gmail.com">gmail.com</option>
 										<option value="hanmail.net">hanmail.net</option>
-								</select> <button type="button" onclick="checkEmail();" id="btnOpen1">중복체크</button><span id="ajaxEmailcheck.do"></span> 
+								</select> <button type="button" onclick="checkEmail();" id="btnOpen1">중복체크</button><span id="ajaxEmailcheck"></span> 
                                   
                                 </td>
 							</tr>
@@ -438,12 +438,12 @@ function join() {
 
 
          function checkEmail() {
-            var memberemail = $('#email1').val() + '@' + $('#email2').val();
+            var email = $('#email1').val() + '@' + $('#email2').val();
             
             $.ajax({
                 url: "ajaxEmailCheck.do",
                 data: {
-                    email: memberemail
+                    email: email
                 },
                 type: "post",
                 success: function(data) {
@@ -473,7 +473,7 @@ function join() {
                       	var email = $('#email1').val() + '@' + $('#email2').val();
                           modal1.style.display = 'block';
                       		$.ajax({
-                      			url :"/sendMail",
+                      			url :"/sendMail.do",
                       			data : {email:email},
                       			type : "post",
                       			success : function(data){
