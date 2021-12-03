@@ -96,7 +96,9 @@ public class MemberController {
 		
 	}
 	@RequestMapping(value="sjoinFrm.do") // 판매자 가입 페이지 이동
-	public String sjoinFrm() {
+	public String sjoinFrm(Model model, String businessNo) {
+		System.out.println(businessNo);
+		model.addAttribute("Bno",businessNo);
 		return "zipcoock/member/sjoin";
 	}
 	@RequestMapping(value="ajaxTradeNameCheck.do")// 상호명 조회 ajax
@@ -128,9 +130,46 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/bjoin.do")
-	public String bjoin(Member member) {
-		Member m =service.insertOneMember(member);
-		return "";
+	public String bjoin(Member member, Model model) {
+		
+		int result = service.insertOneMember(member);
+		if(result > 0) {
+			model.addAttribute("msg","회원가입 성공");
+			model.addAttribute("loc", "/");
+		}else {
+			model.addAttribute("msg","회원가입 실패");
+			model.addAttribute("loc", "/");
+		}
+		return "zipcoock/common/msg";
 	}
 	
+	@RequestMapping(value="/sjoin.do")
+
+	public String sjoin(BusinessSellerInfo businessSellerInfo,Model model) {
+		System.out.println("핸드폰"+businessSellerInfo.getMemberPhone());
+		System.out.println("비즈니스loc"+businessSellerInfo.getBusinessLoc());
+		int result = service.insertOneSmember(businessSellerInfo);		
+		if(result > 0 ) {
+			model.addAttribute("msg","회원가입 성공");
+			model.addAttribute("loc", "/");
+		}else {
+			model.addAttribute("msg","회원가입 실패");
+			model.addAttribute("loc", "/");
+		}
+		return "zipcoock/common/msg";
+	
+
+	}
+	@RequestMapping(value="/ajaxEmailCheck.do")
+	@ResponseBody
+	public int ajaxEmailcheck(BusinessSellerInfo businessSellerInfo) {
+		BusinessSellerInfo bsi = service.selectOneEmail(businessSellerInfo);
+		System.out.println(bsi);
+		if (bsi != null) {
+			return 0;	
+		}else {
+			return 1;
+		}
+		
+	}
 	}
