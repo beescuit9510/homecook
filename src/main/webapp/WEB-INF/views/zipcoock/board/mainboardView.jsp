@@ -21,17 +21,79 @@
 <body>
 <div class="s-wrapper">
 		<%@include file="/WEB-INF/views/common/header.jsp" %>	
-        <div class = "main_field">        	
-        	<div class = "main_content">
-        		<div class = "main_content_field">
-        		
+
+
 
 <div class="container">       
 <div class="container">
+	<div class="row mb-4">
+		<div class="col-md-2">
+      <a href="#"><img src="" class="img-thumbnail p-0 border-0" /></a>
+    	</div>
+		<div class="col-md-6">
+			<div class="input-group input-group-lg">
+				<input type="text" id="" name="" class="form-control" placeholder="상품을 검색해보세요" />
+				<select class="form-control form-control-lg rounded-0">
+					<option>최신순</option>
+					<option>낮은 가격순</option>
+					<option>높은 가격순</option>
+				</select>
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<button class="btn btn-outline-secondary btn-block btn-lg" type="button">
+				<i class="fas fa-sync-alt"></i>
+			</button>
+		</div>
+	</div>
+	
+		<div class="row mb-5">
+		<div class="col-md-12">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">생활용품</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">뷰티</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">헬스/건강식품</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">주방용품</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">식품</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">완구, 취미</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">문구, 오피스</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">반려동물</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+	
 	<div class="row mb-5">
 		<div class="col-md-8">
 			<div class="row">
 				
+
+
 				<div class="col-md-12 mb-4">
 					<img alt="" class="img-thumbnail p-0 border-0" src="https://media.istockphoto.com/photos/ginger-cat-sitting-on-floor-in-living-room-and-looking-at-camera-pet-picture-id1149347768" />
 				</div>
@@ -84,14 +146,14 @@
 					<div class="input-group input-group-lg mb-4">
 						<input type="number" class="form-control text-center" placeholder="Quantity" id="" name="" value="1" min="1" max="5" />
 						<div class="input-group-append">
-							<span class="input-group-text">Quantity</span>
+							<span class="input-group-text">수량</span>
 						</div>
 					</div>
 					<div>
 						<div class="likeButton-div-wrap">
 							<span class="likeButton">♥</psn>
 						</div>
-						<button class="cart_btn-pos cart_btn">장바구니 담기</button>
+						<button class="cart_btn-pos top_btn">장바구니 담기</button>
 	
 					</div>
 				</div>
@@ -379,11 +441,8 @@
 
 
 
-        		</div> <!-- main_content_field -->
-        	</div> <!-- main content -->
-        </div> <!-- main field -->
-		<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
+<%@include file="/WEB-INF/views/common/footer.jsp" %>
 
 </body>
 <style>
@@ -402,6 +461,7 @@ $(document).ready(function () {
 </script>
 
 <style>
+/*
 .likeButton-div-wrap{
 	margin-top:0px;
 	margin-left: 5px;
@@ -447,5 +507,6 @@ $(document).ready(function () {
 	height: 18px;
 	display:inline-block;
 }
+*/
 </style>
 </html>

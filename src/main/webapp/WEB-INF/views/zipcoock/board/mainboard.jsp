@@ -7,36 +7,39 @@
 <title>Insert title here</title>
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'>
+<link rel="stylesheet" href="/resources/css/mainboard/staticStar.css">
 <!-- partial -->
-<link rel="stylesheet" href="/resources/css/mypage/like.css">
-<link rel="stylesheet" href="/resources/css/mainboard/star.css">
-
+<!-- partial -->
+<script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 
 </head>
 <body>
-
 <div class="s-wrapper">
 		<%@include file="/WEB-INF/views/common/header.jsp" %>	
-
-
 
 <div class="container-fluid position-relative" style="z-index: 99999;">
 	<div class="row">
 		<div class="col-md-12 shadow-sm">
 			<div class="container">
+				<div class="row mb-4"></div>
 				<div class="row mb-4">
 					<div class="col-md-2">
-					</div>
-				</div>
-				<div class="row mb-4">
-					<div class="col-md-2">
-				  <a href="#"><img src="" class="img-thumbnail p-0 border-0" /></a>
 				</div>
 					<div class="col-md-6">
 						<div class="input-group input-group-lg">
-							<input type="text" id="" name="" class="form-control" placeholder="상품을 검색해보세요" />
+							<input type="text" id="keyword" class="form-control" placeholder="${tool.c }에서 검색" value="${tool.k }"/>
+							<select id="searchBy" class="form-control form-control-lg rounded-0">								
+							<c:forEach items="${tool.byList }" var="v">
+								<option value="${v }" <c:if test="${v eq tool.by}">selected</c:if>>${v }</option>
+							</c:forEach>
+							</select>							
 							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+								<button id="link" class="btn btn-outline-secondary" type="button">
+									<i class="fas fa-search"></i>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -45,14 +48,11 @@
 							<i class="fas fa-sync-alt"></i>
 						</button>
 					</div>
-					<div class="col-md-1">
-					</div>
-					<div class="col-md-2">
-					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-2"></div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
-					</div>
+					<div class="col-md-12"></div>
 				</div>
 			</div>
 		</div>
@@ -64,11 +64,13 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h2>생활용품</h2>
+						<h2>${tool.c }</h2>
 						<ol class="breadcrumb p-0 m-0 bg-transparent">
-							<li class="breadcrumb-item"><a href="#">전체 상품</a></li>
-							<li class="breadcrumb-item"><a href="#">생활용품</a></li>
-							<li class="breadcrumb-item active">무지스티커</li>
+							<li class="breadcrumb-item"><a href="#">${tool.b }</a></li>
+							<li class="breadcrumb-item"><a href="#">${tool.c }</a></li>
+							<c:if test="${not empty tool.k }">
+							<li class="breadcrumb-item active">${tool.k }</li>
+							</c:if>
 						</ol>
 					</div>
 				</div>
@@ -91,24 +93,23 @@
 
 
 
-
-
-
-
 <div class="container">
 	<div class="row mb-5">
 		<div class="col-md-3">
 			<div class="card mb-4">
-				<div class="card-header">Categories</div>
+				<div class="card-header">카테고리</div>
 				<div class="list-group list-group-flush">
-					<a href="#" class="list-group-item list-group-item-action">생활용품 (13)</a>
-					<a href="#" class="list-group-item list-group-item-action active">뷰티 (5)</a>
-					<a href="#" class="list-group-item list-group-item-action">헬스/건강식품 (0)</a>
-					<a href="#" class="list-group-item list-group-item-action">주방용품 (0)</a>
-					<a href="#" class="list-group-item list-group-item-action">식품 (2)</a>
-					<a href="#" class="list-group-item list-group-item-action">완구/취미 (1)</a>
-					<a href="#" class="list-group-item list-group-item-action">문구/오피스 (0)</a>
-					<a href="#" class="list-group-item list-group-item-action">반려동물 (3)</a>
+				
+				<c:forEach items="${tool.categoryMap }" var="v">
+					<a href="/mainboard.do?b=${tool.b }&c=${v.key }" 
+						class="list-group-item list-group-item-action 
+						<c:if test="${v.key eq tool.c}">active</c:if>">
+						${v.key } (${v.value })</a>
+				</c:forEach>
+				
+				
+				
+				
 				</div>
 			</div>
 
@@ -125,11 +126,11 @@
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label>Min</label>
-									<input class="form-control" placeholder="0" type="number">
+									<input id="min" class="form-control" placeholder="${tool.min }" type="number" min="0" max="9999999">
 								</div>
 								<div class="form-group text-right col-md-6">
 									<label>Max</label>
-									<input class="form-control" placeholder="50000" type="number">
+									<input id="max" class="form-control" placeholder="${tool.max }" type="number" min="0" max="9999999">
 								</div>
 							</div>
 						</div>
@@ -149,14 +150,10 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text">정렬:</span>
 								</div>
-								<select class="form-control" id="" name="">
-									<option value="">최신순</option>
-									<option value="">가나다순</option>
-									<option value="">가나다역순</option>
-									<option value="">높은가격순</option>
-									<option value="">낮은가격순</option>
-									<option value="">오래된 순</option>
-									<option value="">인기순</option>
+								<select class="selectBox form-control" id="orderBy">
+								<c:forEach items="${tool.orderList }" var="v">
+									<option value="${v }" <c:if test="${v eq tool.order}">selected = "selected"</c:if>>${v }</option>
+								</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -165,11 +162,10 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text">별점:</span>
 								</div>
-								<select class="form-control" id="" name="">
-									<option value="">4점 이상</option>
-									<option value="">3점 이상</option>
-									<option value="">2점 이상</option>
-									<option value="">1점 이상</option>
+								<select class="selectBox form-control" id="star" name="">
+								<c:forEach items="${tool.starList }" var="v">
+									<option value="${v }" <c:if test="${v eq tool.star}">selected = "selected"</c:if>>${v }</option>
+								</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -178,12 +174,10 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text">상품 보기:</span>
 								</div>
-								<select class="form-control" id="" name="">
-									<option value="">15</option>
-									<option value="">25</option>
-									<option value="">50</option>
-									<option value="">75</option>
-									<option value="">100</option>
+								<select class="selectBox form-control" id="show" name="">
+								<c:forEach items="${tool.showList }" var="v">
+									<option value="${v }" <c:if test="${v eq tool.show}">selected = "selected"</c:if>>${v }</option>
+								</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -191,59 +185,54 @@
 				</div>
 				<div class="card-body">
 	<div class="row">
+	
+		<c:forEach items="${cards }" var="c">
 		<div class="col-md-4 mb-4">
 			<div class="card">
-				<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
+				<img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" />
+<!--  
+		<img class="card-img-top" src=${c.tradeName } alt="" />
+-->		
 				<div class="card-body">
-					<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-					<p class="m-0">
-
-					<div class="star">
+					<p class="h6 goods_name product-name"><small class="text-muted">${c.tradeName }</small></br>${c.productName}</p>
+					<div class="m-0">
 						<div class="star-rating js-star-rating">
-						<input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
-						<input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
-						<input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
-						<input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
-						<input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
-						<div class="current-rating current-rating--5 js-current-rating"><i class="star-rating__star">AAA</i></div>
+							<input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
+							<input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
+							<input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
+							<input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
+							<input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
+							<div class="current-rating current-rating--${c.starAvg } js-current-rating"><i class="star-rating__star"></i></div>
 						</div>
-						<span class="review-count goods_detail">(1222)</span>
 					</div>
-					</p>
-					<!-- 
-					<p>내일(금) 새벽 도착 보장</p>
-					 -->
-					<p class="discount_price product-price"><span class="goods_detail lowest-price">최저가</span>0,231,230원<span class="original_price">1,231,230원</span></p>
+					<p class="review-count goods_detail">( ${c.reviewCount } ) 개의 후기</p>
+					<c:if test="${c.price eq c.orderPrice }">
+					<p class="m-0 discount_price product-price"><span class="present_price">${c.price }원</span></p>
+					</c:if>
+					<c:if test="${c.price ne c.orderPrice}">
+					<p class="m-0 discount_price product-price"><span class="goods_detail lowest-price">최저가</span>${c.discountedPrice }원<span class="original_price">${c.price }원</span></p>
+					</c:if>
 				</div>
 				<div class="card-footer p-0">
 				</div>
-			</div>
+			</div>			
 		</div>
+		</c:forEach>
+			
+
+			
+			
+			
+			
 	</div>
 				</div>
 				<div class="card-footer p-3">
 					<div class="row">
 						<div class="col-md-6">
-							<ul class="pagination m-0">
-								<li class="page-item disabled">
-									<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-								</li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">4</a></li>
-								<li class="page-item"><a class="page-link" href="#">5</a></li>
-								<li class="page-item"><a class="page-link" href="#">6</a></li>
-								<li class="page-item"><a class="page-link" href="#">7</a></li>
-								<li class="page-item"><a class="page-link" href="#">8</a></li>
-								<li class="page-item"><a class="page-link" href="#">9</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#">Next</a>
-								</li>
-							</ul>
+							<ul class="pagination m-0">${tool.pageNavi }</ul>
 						</div>
 						<div class="col-md-6">
-							<p class="text-right mb-0 mt-1">1 to 12 of 12 ( 1 )</p>
+							<p class="text-right mb-0 mt-1">총 ${tool.totalProduct }개 상품에서 ${tool.filteredProduct }개 상품 / 1 to ${tool.totalP } of ${tool.totalP } ( ${tool.p } )</p>
 						</div>
 					</div>
 				</div>
@@ -305,47 +294,60 @@
 
 
 
-		<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 
 
 
 
-<!-- partial -->
-<script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
-<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 </body>
+ <script>
+  $(function() {
+
+ 		$("#link").on("click", function(event) {
+	 		var bc = "/mainboard.do?b=${tool.b}&c=${tool.c}";
+	 		var k = "&k="+$("#keyword").val();
+	 		var by = "&by="+$("#searchBy").val();
+	 		var order = "&order="+$("#orderBy").val();
+	 		var star = "&star="+$("#star").val();
+	 		var show = "&show="+$("#show").val();
+	 		var min = "&min="+$("#min").val();
+	 		var max = "&max="+$("#max").val();
+	 		
+	 		
+	 		var uri = bc+k+by+order;
+	 		alert(uri);
+		  	$(this).attr("href",function(i,val){
+				$("<a href='"+bc+k+by+order+"'></a>")[0].click();
+		  	});
+		 
+	  });
+ 		
+ 		$(".selectBox").change(function(){
+	 		var bc = "/mainboard.do?b=${tool.b}&c=${tool.c}";
+	 		var k = "&k="+$("#keyword").val();
+	 		var by = "&by="+$("#searchBy").val();
+	 		var order = "&order="+$("#orderBy").val();
+	 		var star = "&star="+$("#star").val();
+	 		var show = "&show="+$("#show").val();
+	 		var min = "&min="+$("#min").val();
+	 		var max = "&max="+$("#max").val();
+	 		
+	 		
+	 		var uri = bc+k+by+order+star+show;
+	 		alert(uri);
+		  	$(this).attr("href",function(i,val){
+				$("<a href='"+uri+"'></a>")[0].click();
+		  	});
+
+ 			
+ 		})
+
+
+
+  })
+</script>
 <style>
-
-
-.mainboard-margin-auto{
-	margin:auto auto;
-	width:800px;
-}
-
-.point {
-	color: #9ac6e8;
-}
-
-.category {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	width: 250px;
-}
-
-.star {
-	padding-top: 5px;
-}
-
-.category-title {
-	display: inline-block;
-	width: 100%;
-	text-align: center;
-	color: #9ac6e8;
-}
-
 .lowest-price {
 	color: red;
 	font-weight: 600;
@@ -357,14 +359,10 @@
 
 .review-count {
 	display: inline-block;
-	color: black;
 	vertical-align: middle;
 	margin-bottom: 5px;
 }
 
-.product-info {
-	margin: 10px;
-}
 
 .product-price {
 	border: 0px;
@@ -374,30 +372,6 @@
 	font-weight: bold;
 }
 
-.main-board-container {
-	display: grid;
-	grid-template-columns: 1fr 3fr;
-}
-
-.product-container {
-	width: 180px;
-	margin-left: 15px;
-	overflow: hidden;
-	border-bottom: solid 1px #EAEBED;
-}
-
-.product-list-container {
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-}
-
-.product-list-row {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	justify-items: center;
-	margin-bottom: 50px;
-}
 
 .product-img {
 	width: 100%;
@@ -460,111 +434,27 @@
 }
 </style>
 <style>
-.category {
-	width: 100%;
-}
-
-#mypage-form {
-	float: right;
-	height: 50px;
-}
-
-#mypage-form>.select {
-	box-shadow: 0 0 black;
+.star-rating {
+	margin-left:0px;
+    box-sizing: border-box;
 }
 </style>
-<style>
-.star{
-display:inline-block;
-
-}
-.star-rating{
-  margin-left:0px;
-  margin-top:-15px;
-}
-
-.review-count{
-	display:block;
-	float:left;
-  	margin-top:-15px;
-  	margin-left:100px;
-  
-}
-.mainboard-title{
-	font-size:10px;
-	
-}
-.search-board {
-	font-size:40px;
-}
-.search-category {
-	font-size:30px;
-	
-}
-.search-order {
-	font-size:10px;
-	
-}
-</style>
-<style>
-.img-category{
-	width:1000px;
-	margin-left:-100px;
-
-}
-.search-p{
-	display:inline-block;
-	margin-left:-60px;
-
-}
-
-.main-board-search-bar{
-margin:30px;
-}
-.product-list-container{
-margin-top:100px;
-}
-.mainboard-order-form > select{
-	width:100px;
-	height:30px;
-	font-size:16px;
-	padding:0px;
-	border-radius:0px;
-	margin-top:35px;
-	margin-right:-85px;
-	
-}
-.main_content_field{
-	border:none;
-}
-.search-p{
-	margin-top:50px;
-}
-.product-list-container{
-margin-left:-100px;
-}
-.main_field,.main_content{
-background:white;
-}
-.main-board-search-bar{
-	width:900px;
-	text-algin:center;
-	
-}
-.search-box{
-	margin:auto auto;
-}
-</style>
-
-<style>
-
-.container{
-	width:1100px;
-}
-.mainboard-searchbar{
-	margin-left:100px;
- }
-</style>
-
+							<!-- 
+								<li class="page-item disabled">
+									<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#">4</a></li>
+								<li class="page-item"><a class="page-link" href="#">5</a></li>
+								<li class="page-item"><a class="page-link" href="#">6</a></li>
+								<li class="page-item"><a class="page-link" href="#">7</a></li>
+								<li class="page-item"><a class="page-link" href="#">8</a></li>
+								<li class="page-item"><a class="page-link" href="#">9</a></li>
+								<li class="page-item">
+									<a class="page-link" href="#">Next</a>
+								</li>
+							 -->
 
 </html>

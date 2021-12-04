@@ -17,6 +17,8 @@
 		<typeAlias type="kr.or.zipcoock.mypage.vo.InsertObj" alias="insertObj"/>	
 		<typeAlias type="kr.or.zipcoock.mypage.vo.UpdateObj1" alias="updateObj"/>	
 		<typeAlias type="kr.or.zipcoock.mypage.vo.DeleteObj1" alias="deleteObj"/>	
+		<typeAlias type="kr.or.zipcoock.board.vo.ProductCard" alias="card"/>	
+		<typeAlias type="kr.or.zipcoock.board.vo.SearchTool" alias="tool"/>	
 		<typeAlias type="kr.or.table.model.vo.BusinessSellerInfo" alias="bsi"/>
 </typeAliases>
 </configuration>
