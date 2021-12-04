@@ -29,19 +29,6 @@ public class MypageService {
 	}
 
 	public void selectList(SelectList list) {
-		Map<String, Object> map = null;
-		int clickedPage = 5;
-		int perPagePost = 10;
-		int pageNum = 10;
-
-		int total = dao.selectCnt(map);
-		
-		int totalPage = total%perPagePost+1;
-	
-		int activePage = (clickedPage);
-		int start = (clickedPage-pageNum);
-		
-		int end = (pageNum);
 		// TODO Auto-generated method stub
 
 	}

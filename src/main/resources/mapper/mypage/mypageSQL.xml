@@ -103,25 +103,8 @@
 	    </if>
 	</delete>
 	<!-- 총 게시물 cnt 구하기 -->
-	<select id="selectCnt" parameterType="map" resultType="_int">
-	
-		select count(*) from 
-		<if test="totalOf == addr">
-			address
-	    </if>
-		<if test="totalOf == q">
-			qna
-	    </if>
-		<if test="totalOf == hq">
-			homepage_qna
-	    </if>
-		<if test="totalOf == r">
-			product_review
-	    </if>
-		<if test="totalOf == like">
-			like
-	    </if>		
-		where member_no = #{memberNo}
+	<select id="selectCnt" parameterType="string" resultType="_int">
+		select count(*) as cnt from #{table} where member_no = #{memberNo}
 	</select>
 	
 	<!--내 문의 목록보기-->
