@@ -4,8 +4,6 @@ package kr.or.member.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import kr.or.seller.model.dao.MemberDao;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
@@ -41,27 +39,7 @@ public class MemberService {
 			Member m = dao.selectOneMemberId(member);
 			return m;
 		}
-
-		public int insertOneMember(Member member) {
-			int result = dao.insertOneMember(member);
-			
-			return result;
-		}
-		@Transactional
-		public int insertOneSmember(BusinessSellerInfo member) {
-			int result = dao.insertOneSmember(member);
-			if(result>0) {				
-				result = dao.insertOneSmember2(member);
-			}else {
-				return -1;
-			}
-			return result;
-		}
-
-		public BusinessSellerInfo selectOneEmail(BusinessSellerInfo businessSellerInfo) {
-			BusinessSellerInfo bsi = dao.selectOneEmail(businessSellerInfo);
-			return bsi;
-		}
+		
 
 		
 }

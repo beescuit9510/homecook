@@ -26,13 +26,4 @@
   from member where member_id=#{memberId}
  </select>
 
- <insert id="insertOneMember" parameterType="m">
-  insert into member values(member_seq.nextval,#{memberName},#{memberId},#{memberPw},#{memberPhone},'일반회원','집쿡초보')
-  
-  </insert>
-  
-  <insert id="insertOneSmember" parameterType="m">
-  insert into member values(member_seq.nextval,#{memberName},#{memberId},#{memberPw},#{memberPhone},'판매자','집쿡초보')
-    <selectKey resultType="_int" order="AFTER" keyProperty="memberNo">select max(member_no) from member</selectKey>  
-  </insert>
 </mapper>

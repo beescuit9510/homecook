@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'>
-<link rel="stylesheet" href="/resources/css/mainboard/staticStar.css">
 <!-- partial -->
 <!-- partial -->
 <script src='https://code.jquery.com/jquery-3.4.1.slim.min.js'></script>
@@ -15,6 +14,7 @@
 <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js'></script>
 
+<link rel="stylesheet" href="/resources/css/mainboard/staticStar.css">
 </head>
 <body>
 <div class="s-wrapper">
@@ -33,7 +33,7 @@
 							<input type="text" id="keyword" class="form-control" placeholder="${tool.c }에서 검색" value="${tool.k }"/>
 							<select id="searchBy" class="form-control form-control-lg rounded-0">								
 							<c:forEach items="${tool.byList }" var="v">
-								<option value="${v }" <c:if test="${v eq tool.by}">selected</c:if>>${v }</option>
+								<option value="${v }" <c:if test="${v eq tool.by}"> selected = "selected" </c:if>>${v }</option>
 							</c:forEach>
 							</select>							
 							<div class="input-group-append">
@@ -126,18 +126,18 @@
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label>Min</label>
-									<input id="min" class="form-control" placeholder="${tool.min }" type="number" min="0" max="9999999">
+									<input id="min" oninput="setMin()" class="form-control" placeholder="${tool.min }" type="number" min="0" max="9999999">
 								</div>
 								<div class="form-group text-right col-md-6">
 									<label>Max</label>
-									<input id="max" class="form-control" placeholder="${tool.max }" type="number" min="0" max="9999999">
+									<input id="max" oninput="setMax()" class="form-control" placeholder="${tool.max }" type="number" min="0" max="9999999">
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="card-footer">
-					<button type="button" class="btn btn-block btn-primary">검색</button>
+					<button id="price-btn" type="button" class="btn btn-block btn-primary">검색</button>
 				</div>
 			</div>
 		</div>
@@ -202,7 +202,10 @@
 							<input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
 							<input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
 							<input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
-							<div class="current-rating current-rating--${c.starAvg } js-current-rating"><i class="star-rating__star"></i></div>
+							<div class="current-rating current-rating--${c.starClass } js-current-rating"><i class="star-rating__star"></i></div>
+<!-- 
+							<div class="current-rating current-rating--${c.starClass } js-current-rating"><i class="star-rating__star"></i></div>
+ -->
 						</div>
 					</div>
 					<p class="review-count goods_detail">( ${c.reviewCount } ) 개의 후기</p>
@@ -232,7 +235,7 @@
 							<ul class="pagination m-0">${tool.pageNavi }</ul>
 						</div>
 						<div class="col-md-6">
-							<p class="text-right mb-0 mt-1">총 ${tool.totalProduct }개 상품에서 ${tool.filteredProduct }개 상품 / 1 to ${tool.totalP } of ${tool.totalP } ( ${tool.p } )</p>
+							<p class="text-right mb-0 mt-1">총 ${tool.totalProduct }개 상품중 ${tool.filteredProduct }개 상품이 검색되었습니다. ${tool.p } of ${tool.totalP }</p>
 						</div>
 					</div>
 				</div>
@@ -301,47 +304,64 @@
 
 
 </body>
- <script>
-  $(function() {
+<script>
+    var min = document.getElementById("min");
+    min.addEventListener("input",function () {
+        var min = Number($("#min").val()); 
+        var max = Number($("#max").val()); 
+        $("#max").attr("value",min>max?min:max);
+    });
+    
+    function setMin(e) {
+        var min = Number($("#min").val()); 
+       var max = Number($("#max").val()); 
+       min = min>9999999?9999999:min;
+        $("#min").val(min);
+       $("#max").val(min>max?min:max);
+    }
+    function setMax() {
+        var min = Number($("#min").val());
+        var max = Number($("#max").val()); 
+        max = max>9999999?9999999:max;
+        $("#max").val(max);
+       $("#min").val(min>max?max:min);
+    }
 
+</script>
+ <script>
+
+	var basic,b,c,k,by,order,shart,show,min,max,url;
+	
+	function initVar() {
+	 basic = "/mainboard.do?";
+	    b = "&b=${tool.b}";
+	    c = "&c=${tool.c}";
+	    k = "&k="+$("#keyword").val();
+	    by = "&by="+$("#searchBy").val();
+	    order = "&order="+$("#orderBy").val();
+	    star = "&star="+$("#star").val();
+	    show = "&show="+$("#show").val();
+	    var minVal = $("#min").val()==""? $("#min").attr("placeholder"):$("#min").val();
+	    var maxVal = $("#max").val()==""? $("#max").attr("placeholder"):$("#max").val();
+	    min = "&min="+minVal;
+	    max = "&max="+maxVal;
+	    url = basic+b+c+k+by+order+star+show+min+max;
+	    
+	}
+	
+	function clickURL() {
+	    initVar();
+	    $("<a href='"+url+"'></a>")[0].click();
+	};
+
+	$(function() {
+	    $("#price-btn").click(clickURL)
+	    $(".selectBox").change(clickURL)
  		$("#link").on("click", function(event) {
-	 		var bc = "/mainboard.do?b=${tool.b}&c=${tool.c}";
-	 		var k = "&k="+$("#keyword").val();
-	 		var by = "&by="+$("#searchBy").val();
-	 		var order = "&order="+$("#orderBy").val();
-	 		var star = "&star="+$("#star").val();
-	 		var show = "&show="+$("#show").val();
-	 		var min = "&min="+$("#min").val();
-	 		var max = "&max="+$("#max").val();
-	 		
-	 		
-	 		var uri = bc+k+by+order;
-	 		alert(uri);
-		  	$(this).attr("href",function(i,val){
-				$("<a href='"+bc+k+by+order+"'></a>")[0].click();
-		  	});
+		    url = basic+b+c+k+by;
+		    $("<a href='"+url+"'></a>")[0].click();
 		 
 	  });
- 		
- 		$(".selectBox").change(function(){
-	 		var bc = "/mainboard.do?b=${tool.b}&c=${tool.c}";
-	 		var k = "&k="+$("#keyword").val();
-	 		var by = "&by="+$("#searchBy").val();
-	 		var order = "&order="+$("#orderBy").val();
-	 		var star = "&star="+$("#star").val();
-	 		var show = "&show="+$("#show").val();
-	 		var min = "&min="+$("#min").val();
-	 		var max = "&max="+$("#max").val();
-	 		
-	 		
-	 		var uri = bc+k+by+order+star+show;
-	 		alert(uri);
-		  	$(this).attr("href",function(i,val){
-				$("<a href='"+uri+"'></a>")[0].click();
-		  	});
-
- 			
- 		})
 
 
 

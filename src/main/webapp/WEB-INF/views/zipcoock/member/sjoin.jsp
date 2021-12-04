@@ -22,15 +22,6 @@
 function join() {
 	var agree = document.getElementById('privacyAgreement');
 	var mailcode;
-	var phoneNumber = '010' + $("#memberPhone2").val() + $("#memberPhone3").val();
-	var addr = $("#addressRoad1").val() + $("#addressDetail1").val();
-	var memberemail = $('#email1').val() + '@' + $('#email2').val();
-	$("#memberPhone").val(phoneNumber);
-	$("#email").val(memberemail);
-	$("#businessLoc").val(addr);
-
-	
-	$("#memberPhone").val(phoneNumber);
 	//개인정보 동의가 체크 되었을경우1
 	if (agree.checked) {
 		
@@ -47,7 +38,9 @@ function join() {
 					
 					//대표자이름 공백아닌경우5
 					if($("#memberName").val() !=''){
-		
+						
+					
+					
 						//휴대폰 값 입력했을경우6
 						if ($("#memberPhone2").val() && $("#memberPhone3").val() != '') {
 							
@@ -120,6 +113,7 @@ function join() {
 				alert("아이디를 확인해주세요!");
 				$("#memberId").focus();
 				return false;
+
 			}
 
 			//이용약관 체크안했을경우1
@@ -129,8 +123,8 @@ function join() {
 			return false;
 
 		}
-
 	}
+
 	//전체체크
 	function allCheck(obj) {
 		var chks = document.getElementsByClassName("agreeCheck");
@@ -219,7 +213,7 @@ function join() {
 		<div class="wrap">
 
 			<div class="content">
-			<form action="/sjoin.do" method="post" class="contentDetail"
+			<form action="/sjoin" method="post" class="contentDetail"
 					id="contentDetail-field" name="joinFrm">
 					
 				<div class="contentDetail">
@@ -241,11 +235,8 @@ function join() {
 
 					
 					<input type="hidden" id="businessNo" name="businessNo" value="${requestScope.Bno }">
-					<input type="hidden" id="email" name="email">
 					<input type="hidden" id="emailverification">
-					<input type="hidden" id="representative" name="representative">
-					<input type="hidden" name="memberPhone" id="memberPhone">
-					<input type="hidden" name="businessLoc" id="businessLoc">
+
 					<br>
 					<br>
 					<hr>
@@ -286,7 +277,7 @@ function join() {
 							<tr>
 								<td>대표자 이름</td>
 								<td><input type="text" class="joinInput short3" id="memberName" name="memberName"></td>
-								
+								<td><input type="hidden" class="joinInput short3" id="representative" name="representative" value="$("#idchk"))"></td>
 							</tr>
 						
 							<tr>
@@ -438,12 +429,12 @@ function join() {
 
 
          function checkEmail() {
-            var email = $('#email1').val() + '@' + $('#email2').val();
+            var memberemail = $('#email1').val() + '@' + $('#email2').val();
             
             $.ajax({
-                url: "ajaxEmailCheck.do",
+                url: "ajaxEmailCheck",
                 data: {
-                    email: email
+                    memberEmail: memberemail
                 },
                 type: "post",
                 success: function(data) {
@@ -473,7 +464,7 @@ function join() {
                       	var email = $('#email1').val() + '@' + $('#email2').val();
                           modal1.style.display = 'block';
                       		$.ajax({
-                      			url :"/sendMail.do",
+                      			url :"/sendMail",
                       			data : {email:email},
                       			type : "post",
                       			success : function(data){
@@ -550,7 +541,9 @@ function join() {
             });
         }; 
     </script>
+    <script>
 
+    </script>
 <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 

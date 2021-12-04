@@ -9,6 +9,7 @@
 	</select>
 	<select id="selectProductCard" parameterType="tool" resultType="card">
 		select
+		SUBSTR(TO_CHAR((FLOOR(2 * r2.star_avg2) / 2) , '9.9'), 1, 2) || '-' ||SUBSTR(TO_CHAR((FLOOR(2 * r2.star_avg2) / 2) , '9.9'), 4, 4) as starClass,
 		r2.product_no as productNo,                     
 		r2.member_no as memberNo,                       
 		r2.product_name as productName,                 
@@ -27,7 +28,7 @@
 		(		
 		select t2.* from
 		(
-		<if test='b == "할인"'>	
+		<if test='b == "할인 상품"'>	
 		select t.* from
 		(
 		</if>
@@ -45,7 +46,7 @@
 		on bsi.member_no = p.member_no
 		)d
 		)d2
-		<if test='b == "할인"'>
+		<if test='b == "할인 상품"'>
 		)t
 		where t.d_rate is not null
 		</if>
@@ -84,11 +85,11 @@
 		and t2.price between #{min} and #{max}
 
 		<choose>
-			<when test='order == "최신순"'> order by t2.product_no asc</when>
-		   	<when test='order == "오래된순"'> order by t2.product_no desc </when>
+			<when test='order == "최신순"'> order by t2.product_no desc </when>
+		   	<when test='order == "오래된순"'> order by t2.product_no asc </when>
 		   	<when test='order == "가나다순"'> order by t2.product_name asc </when>
 		   	<when test='order == "가나다역순"'> order by t2.product_name desc </when>   	
-		   	<when test='order == "가나다역순"'> order by t2.product_name desc </when>
+		   	<when test='order == "인기순"'> order by t2.cnt desc </when>
 		   	<when test='order == "낮은가격순"'> order by t2.order_price asc </when>
 		   	<when test='order == "높은가격순"'> order by t2.order_price desc </when>
 			<otherwise> order by product_no asc</otherwise>
@@ -106,7 +107,7 @@
 		(		
 		select t2.* from
 		(
-		<if test='b == "할인"'>	
+		<if test='b == "할인 상품"'>	
 		select t.* from
 		(
 		</if>
@@ -124,7 +125,7 @@
 		on bsi.member_no = p.member_no
 		)d
 		)d2
-		<if test='b == "할인"'>
+		<if test='b == "할인 상품"'>
 		)t
 		where t.d_rate is not null
 		</if>
@@ -163,11 +164,11 @@
 		and t2.price between #{min} and #{max}
 
 		<choose>
-			<when test='order == "최신순"'> order by t2.product_no asc</when>
-		   	<when test='order == "오래된순"'> order by t2.product_no desc </when>
+			<when test='order == "최신순"'> order by t2.product_no desc </when>
+		   	<when test='order == "오래된순"'> order by t2.product_no asc </when>
 		   	<when test='order == "가나다순"'> order by t2.product_name asc </when>
 		   	<when test='order == "가나다역순"'> order by t2.product_name desc </when>   	
-		   	<when test='order == "가나다역순"'> order by t2.product_name desc </when>
+		   	<when test='order == "인기순"'> order by t2.cnt desc </when>
 		   	<when test='order == "낮은가격순"'> order by t2.order_price asc </when>
 		   	<when test='order == "높은가격순"'> order by t2.order_price desc </when>
 			<otherwise> order by product_no asc</otherwise>

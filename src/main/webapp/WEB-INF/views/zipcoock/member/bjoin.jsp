@@ -21,10 +21,6 @@
 	function join() {
 		var agree = document.getElementById('privacyAgreement');
 		var mailcode;
-		var phoneNumber = '010' + $("#memberPhone2").val() + $("#memberPhone3").val();
-		$("#memberPhone").val(phoneNumber);
-		var addr = $("#addr") + $("#addr") + $("#addr")
-		
 		//이용약관 동의가 체크 되었을경우1
 		if (agree.checked) {
 			//아이디가 맞았을경우2
@@ -40,7 +36,6 @@
 							//휴대폰 값 입력했을경우5
 							if ($("#memberPhone2").val() && $("#memberPhone3").val() != '') {
 								
-							
 									//주소 입력 했을경우6
 									if ($("#postCode1").val() && $("#addressRoad1").val() != '') {
 																			
@@ -49,10 +44,6 @@
 																							
 												//회원가입 확인버튼 버튼 눌렀을경우 10
 												if (confirm("회원가입 하시겠습니까?")) {
-													
-													
-													
-													
 													alert("회원가입이 완료되었습니다.");
 													
 													return true;
@@ -170,7 +161,7 @@
 
 
 			<div class="content">
-				<form action="/bjoin.do" method="post" class="contentDetail"
+				<form action="/bjoin" method="post" class="contentDetail"
 					id="contentDetail-field" name="joinFrm">
 					<legend class="contentDetail-legend">14세 이상 회원 가입 입력양식</legend>
 					<div class="contentDetail">
@@ -232,9 +223,7 @@
 
 								</select> - <input type="text" class="joinInput short2 memberphone"	id="memberPhone2" name="memberPhone2"> - 
 									<input type="text" class="joinInput short2 memberphone" id="memberPhone3" name="memberPhone3">
-									<input type="hidden" name="memberPhone" id="memberPhone">
 									</td>
-									
 							</tr>
 
 							<tr>
@@ -459,7 +448,18 @@
 					});
 		};
 	
-	
+		//sms 광고 수신 체크박스 밸류 리턴
+		if (document.getElementById("smsAgreement-check").checked) {
+			document.getElementById("smsAgreement_hidden").disabled = true;
+
+		}
+
+		//email 광고 수신 체크박스 밸류 리턴
+		if (document.getElementById("emailAgreement-check").checked) {
+			document.getElementById("emailgreement_hidden").disabled = true;
+
+		}
+		
 		
 	</script>
 

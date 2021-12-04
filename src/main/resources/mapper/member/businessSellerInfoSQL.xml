@@ -13,18 +13,7 @@
   email
   from business_seller_info where business_no=#{businessNo}
  </select>
-  <select id="selectOneEmail" resultType="bsi">
-  select 
-  member_no as memberNo,
-  business_no as businessNo,
-  trade_name as tradeName,
-  representative,
-  business_location as businessLocation,
-  contact
-  email
-  from business_seller_info where email=#{email}
- </select>
-
+ 
  <select id="selectOneTardeName" resultType="bsi">
  select 
   member_no as memberNo,
@@ -36,10 +25,5 @@
   email
   from business_seller_info where trade_name=#{tradeName}
  </select>
- 
- <insert id="insertOneSmember" parameterType="bsi">
-  insert into business_seller_info values(#{memberNo},#{businessNo},#{tradeName},#{memberName},#{businessLoc},#{memberPhone},#{email}) 
-  </insert>
-
 
 </mapper>

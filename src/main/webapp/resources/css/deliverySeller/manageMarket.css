@@ -182,7 +182,6 @@
     color: rgb(136, 136, 136);
     text-align: center;
 }
-
 /* 매장 정보 등록하기 btn */
 .add_market_btn {
     width: 100%;
@@ -211,7 +210,4 @@
     font-weight: 700;
     height: 56px;
     padding: 0px 16px;
-}
-.add_market_btn:hover {
-    filter: brightness(0.94);
 }

@@ -16,10 +16,11 @@ public class ProductCard {
 	private String tradeName;
 	private String filepath;
 	private String reviewCount;
-	private String starAvg;
+	private int starAvg;
 	private String dRate;
 	private String discountedPrice;
 	private String orderPrice;
+	private String starClass;
 
 	public String getPrice() {
 		return price != null ? price.trim() : price;
@@ -33,8 +34,12 @@ public class ProductCard {
 		return orderPrice != null ? orderPrice.trim() : orderPrice;
 	}
 	
+	public String getStarClass() {
+		return starClass != null ? starClass.trim() : starClass;
+	}
+
 //	public double getStarAvg() {
 //		return Math.ceil(starAvg *2 ) / 2;
 //		}
-
+	
 }

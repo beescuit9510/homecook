@@ -19,29 +19,9 @@ public class MainPageController
 		return "admin/admin_main";
 	}
 	
-	@RequestMapping(value = "/admin_qna.do")
-	public String call_adminQna()
-	{
-		return "admin/allQnaList";
-	}
-
-	
 	@RequestMapping(value = "/admin_allMember.do")
 	public String call_AllMemberPage()
 	{
 		return "admin/allMemberList";
 	}
-	
-	@RequestMapping(value = "/admin_homecookDeal.do")
-	public String call_adminhomecookDeal()
-	{
-		return "admin/adminHomecookDeal";
-	}
-	
-	@RequestMapping(value = "/admin_returnPolicy.do")
-	public String call_adminReturnPolicy()
-	{
-		return "admin/adminReturnPolicy";
-	}
-	
 }

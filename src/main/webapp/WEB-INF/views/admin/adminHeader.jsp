@@ -28,6 +28,6 @@
     <div><a href = "/call_AdminPage.do">관리자 메인</a></div> 
     <div><a href = "/admin_qna.do">사이트 문의 현황</a></div>    
     <div><a href = "/admin_allMember.do">전체 회원 관리</a></div>     
-    <div><a href = "/admin_homecookDeal.do">할인 상품 관리</a></div>  
-    <div><a href = "/admin_returnPolicy.do">환불 상태 관리</a></div>
+    <div><a href = "/call_AdminPage.do">관리자 메뉴 3</a></div>  
+    <div><a href = "/call_AdminPage.do">관리자 메뉴 4</a></div>
 </div>

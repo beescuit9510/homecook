@@ -46,47 +46,47 @@
 	display: block;
 }
 
-.current-rating.current-rating--1 .star-rating__star, .current-rating.current-rating--1-5 .star-rating__star,
-	.current-rating.current-rating--2 .star-rating__star, .current-rating.current-rating--2-5 .star-rating__star,
-	.current-rating.current-rating--3 .star-rating__star, .current-rating.current-rating--3-5 .star-rating__star,
-	.current-rating.current-rating--4 .star-rating__star, .current-rating.current-rating--4-5 .star-rating__star,
-	.current-rating.current-rating--5 .star-rating__star {
+.current-rating.current-rating--1-0 .star-rating__star, .current-rating.current-rating--1-5 .star-rating__star,
+	.current-rating.current-rating--2-0 .star-rating__star, .current-rating.current-rating--2-5 .star-rating__star,
+	.current-rating.current-rating--3-0 .star-rating__star, .current-rating.current-rating--3-5 .star-rating__star,
+	.current-rating.current-rating--4-0 .star-rating__star, .current-rating.current-rating--4-5 .star-rating__star,
+	.current-rating.current-rating--5-0 .star-rating__star {
 	opacity: 1;
 	
 }
 
-.current-rating.current-rating--1 .star-rating__star {
+.current-rating.current-rating--1-0 .star-rating__star {
 	width: 20%;
 }
 
 .current-rating.current-rating--1-5 .star-rating__star {
-	width: 30%;
+	width: 33%;
 }
 
-.current-rating.current-rating--2 .star-rating__star {
+.current-rating.current-rating--2-0 .star-rating__star {
 	width: 40%;
 }
 
 .current-rating.current-rating--2-5 .star-rating__star {
-	width: 50%;
+	width: 53%;
 }
 
-.current-rating.current-rating--3 .star-rating__star {
+.current-rating.current-rating--3-0 .star-rating__star {
 	width: 60%;
 }
 
 .current-rating.current-rating--3-5 .star-rating__star {
-	width: 70%;
+	width: 73%;
 }
 
-.current-rating.current-rating--4 .star-rating__star {
+.current-rating.current-rating--4-0 .star-rating__star {
 	width: 80%;
 }
 
 .current-rating.current-rating--4-5 .star-rating__star {
-	width: 90%;
+	width: 93%;
 }
 
-.current-rating.current-rating--5 .star-rating__star {
+.current-rating.current-rating--5-0 .star-rating__star {
 	width: 100%;
 }
