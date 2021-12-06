@@ -27,7 +27,7 @@ public class DeliverySellerController {
 		if(m != null) {
 			session.setAttribute("m", m);
 			model.addAttribute("msg","로그인 성공");
-			model.addAttribute("loc", "/manageMarket.do");
+			model.addAttribute("loc", "/manageMarketFrm.do");
 		}else {
 			model.addAttribute("msg","아이디 또는 비밀번호를 확인하세요");
 			model.addAttribute("loc", "/");
@@ -35,22 +35,22 @@ public class DeliverySellerController {
 		return "zipcoock/common/msg";
 	}
 	
-	@RequestMapping(value = "/manageMarket.do")
-	public String manageMarket()
+	@RequestMapping(value = "/manageMarketFrm.do")
+	public String manageMarketFrm()
 	{
-		return "delivery/seller/manageMarket";
+		return "delivery/seller/manageMarketFrm";
 	}
 	
-	@RequestMapping(value = "/addMarket.do")
-	public String addMarket()
+	@RequestMapping(value = "/addMarketFrm.do")
+	public String addMarketFrm()
 	{
-		return "delivery/seller/addMarket";
+		return "delivery/seller/addMarketFrm";
 	}
 	
-	@RequestMapping(value = "/manageMenu.do")
-	public String manageMenu()
+	@RequestMapping(value = "/manageMenuFrm.do")
+	public String manageMenuFrm()
 	{
-		return "delivery/seller/manageMenu";
+		return "delivery/seller/manageMenuFrm";
 	}
 	
 }

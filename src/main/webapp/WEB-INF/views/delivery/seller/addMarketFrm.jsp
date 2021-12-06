@@ -1,0 +1,287 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/deliverySeller/addMarket.css">
+
+<!-- bootstrap css -->
+<link rel="stylesheet" href="/resources/css/deliverySeller/bootstrap.css">
+<!-- jQuery -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- bootstrap jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</head>
+<body>
+<div class="s-wrapper">
+	<jsp:include page="/WEB-INF/views/common/deliveryHeader.jsp" />
+	<div class="main_field">        	
+        	<div class="main_content2">
+        		<div class="side_nav">
+	        		<div class="my_info">
+	        			<div class="my_info_div">
+	        				<span class="my_info_span">환영합니다</span>
+	        			</div>
+	        			<div class="user_div">
+	        				<div class="user_div_div">
+	        					<div class="user_div_content">
+	        						<span class="user_div_name">${sessionScope.m.memberName }<span class="user_div_nim">님</span></span>
+	        					</div>
+	        				</div>
+	        			</div>
+	        		</div>
+        			<div class="side_nav_content">
+	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageMarketFrm.do">매장관리</a></span></div>
+	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMenuFrm.do">메뉴관리</a></span></div>
+	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/">주문접수</a></span></div>
+	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/">리뷰관리</a></span></div>       			
+        			</div>
+        		</div>
+        		
+        		<div class="content_div">
+        			<div class="content_title">매장관리</div>
+        			<div class="content_div_area">
+        				<div class="content_div_div">
+        					<div class="content_div_content">
+        						<div class="content_div_div_content">
+        							<div class="content_div_info">
+        								<div class="content_div_title" style="font-weight: bold">매장 정보 등록</div>
+        								<div class="content_div_end"></div>
+        								<br>
+        								<div class="container2">
+	        								<form action="/addMarket.do" method="post" enctype="multipart/form-data">
+	        								<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
+	        									<fieldset>
+		        									
+		        									<span class="info_span">필수 정보</span>
+		        									<hr>
+		        									
+												    <div class="row">
+														<label for="market-write-name" class="col-2 col-form-label" name="market-name">상호명</label>
+														<div class="col-5">
+															<input type="text" class="form-control" id="market-write-name"
+																name="tradeTitle" placeholder="상호명을 입력하세요.">
+															<span class="titleChk span-rag-chk"></span>
+														</div>
+													</div>
+	        										<br>
+	        										
+	        										<div class="row">
+														<label for="market-wirte-time" class="col-2 col-form-label">운영시간</label>
+														<div class="col-10">
+															<textarea class="form-control" name="tradeContent"
+																id="market-wirte-time" rows="4" placeholder="운영시간을 입력하세요."></textarea>
+														</div>
+													</div>
+													<br>
+	        										
+	        										<div class="row">
+	        											<label for="market-wirte-phone" class="col-2 col-form-label">전화번호</label>
+	        											<div class="col-5">
+	        												<input type="text" class="form-control" id="market-write-phone"
+	        											 		name="storePhone" placeholder="전화번호를 입력하세요. (- 제외)" maxlength="11">
+															<span class="expResult"></span>
+	        											</div>
+	        										</div>
+	        										<br>
+	        										
+	        										<div class="row">
+	        											<label for="market-wirte-min" class="col-2 col-form-label">최소주문금액</label>
+	        											<div class="col-5">
+	        												<input type="text" class="form-control" id="market-write-min"
+	        											 		name="minPrice" placeholder="최소주문금액을 입력하세요." maxlength="5">
+															<span class="expResult"></span>
+	        											</div>
+	        										</div>
+	        										<br>
+	        										
+	        										<div class="row">
+	        											<label class="col-2 col-form-label">주소입력</label>
+	        											<div class="col-4">
+															<input type="text" name="postcode" id="postcode" class="form-control addr_margin" readonly placeholder="우편번호">
+	        											</div>
+	        											<div class="col-2" style="padding: 0;">
+															<button type="button" class="btn btn-primary" id="findpostcode" style="width: 70px;">찾기</button>	        											
+	        											</div>
+	        										</div>
+	        										
+	        										
+	        										<div class="row">
+														<label class="col-2 col-form-label"> </label>
+														<div class="col-8">
+															<input type="text" name="address1" id="address1" class="form-control addr_margin" readonly placeholder="주소">			
+														</div>
+													</div>
+										
+													<div class="row">
+														<label class="col-2 col-form-label"> </label>
+														<div class="col-8">
+															<input type="text" name="address2" id="address2" class="form-control addr_margin" placeholder="상세주소" maxlength="40">
+															<span class="expResult"></span>														
+														</div>
+													</div>
+	        										<br>
+	        										
+													<div class="row">
+														<label for="market-wirte-origin" class="col-2 col-form-label">원산지 정보</label>
+														<div class="col-10">
+															<textarea class="form-control" name="originInfo"
+																id="market-wirte-origin" rows="4" placeholder="재료명: 원산지 (돼지고기: 국내산, 닭고기: 브라질산)"></textarea>
+														</div>
+													</div>
+													<br>
+													
+													<div class="row">
+														<label class="col-2 col-form-label">카테고리</label>
+														<div class="col-3">
+															<select id="category1" name="category1" class="form-select addr_margin" >
+											                    <option value="" selected disabled>선택</option>
+											                    <option value="한식">한식</option>
+											                    <option value="치킨">치킨</option>
+											                    <option value="분식">분식</option>
+											                    <option value="돈까스">돈까스</option>
+											                    <option value="족발/보쌈">족발/보쌈</option>
+											                    <option value="찜/탕">찜/탕</option>
+											                    <option value="구이">구이</option>
+											                    <option value="피자">피자</option>
+											                    <option value="중식">중식</option>
+											                    <option value="일식">일식</option>
+											                    <option value="회/해물">회/해물</option>
+											                    <option value="양식">양식</option>
+											                    <option value="커피/차">커피/차</option>
+											                    <option value="디저트">디저트</option>
+											                    <option value="간식">간식</option>
+											                    <option value="아시안">아시안</option>
+											                    <option value="샌드위치">샌드위치</option>
+											                    <option value="샐러드">샐러드</option>
+											                    <option value="버거">버거</option>
+											                    <option value="멕시칸">멕시칸</option>
+											                    <option value="도시락">도시락</option>
+											                    <option value="죽">죽</option>
+											        		</select>
+											        		<select id="category2" name="category2" class="form-select">
+													        	<option value="" selected disabled>추가 선택</option>
+													        </select>
+											        	</div>
+											        </div>
+											        <br>
+													
+													<div class="row">
+														<label class="col-2 col-form-label">매장 로고</label>
+														<div class="col-8"> 
+															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png">  
+														</div>
+													</div>
+													<br>
+												
+	        										<br><br>
+	        										<span class="info_span">선택 정보</span>
+		        									<hr>
+	        										
+	        										<div class="row">
+														<label for="market-wirte-info" class="col-2 col-form-label">매장소개</label>
+														<div class="col-10">
+															<textarea class="form-control" name="storeInfo"
+																id="market-wirte-info" rows="4" placeholder="매장 소개를 입력하세요."></textarea>
+														</div>
+													</div>
+													<br>
+													
+													<div class="row">
+														<label for="market-wirte-notice" class="col-2 col-form-label">공지사항</label>
+														<div class="col-10">
+															<textarea class="form-control" name="storeNotice"
+																id="market-wirte-notice" rows="4" placeholder="공지사항을 입력하세요."></textarea>
+														</div>
+													</div>
+													<br>
+													
+													<div class="row">
+														<label for="market-wirte-tip" class="col-2 col-form-label">팁/안내</label>
+														<div class="col-10">
+															<textarea class="form-control" name="storeTip"
+																id="market-wirte-tip" rows="4" placeholder="팁 또는 안내 내용을 입력하세요."></textarea>
+														</div>
+													</div>
+													<br><br>
+	        									
+	        									</fieldset>
+	        									
+	        									<div class="row">
+		        									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/manageMarketFrm.do">취소</a>
+		        									<div class="col-md-auto"> </div>
+		        									<input type="submit" style="font-weight: 400; margin-right:200px;" class="buy_btn" id="enrollsubmit" value="등록">	        									
+	        									</div>
+	        								</form>
+        								
+        								</div>
+        							</div>
+        							<br>
+        							<div class="content_div_end"></div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div> <!-- main content -->
+        </div> <!-- main field -->
+    <script>
+    	$(function() {
+    		
+    		$("#findpostcode").on("click", function() {
+    			return findAddr();
+    		});
+    		
+    		function findAddr() {
+    			new daum.Postcode({
+    				oncomplete : function(data) {
+    					$("#postcode").val(data.zonecode);
+    					if (data.userSelectedType === 'R') {
+    						$("#address1").val(data.roadAddress);
+    					} else {
+    						$("#address1").val(data.jibunAddress);
+    					}
+    					$("#address2").focus();
+    				}
+    			}).open();
+    		}
+    		
+    		$("#category1").on("change", function() {
+    			$(this).next().empty();
+    			$(this).next().append("<option value='' selected>선택하지 않음</option>");
+    			$(this).next().append("<option value='1인분'>1인분</option>");
+    			$(this).next().append("<option value='프랜차이즈'>프랜차이즈</option>");
+   		    });
+    		
+    		$("input[name=files]").on("change", function() {
+    			var fileVal = $(this).val();
+    			var pathPoint = fileVal.lastIndexOf('.');
+    			var filePoint = fileVal.substring(pathPoint+1, this.length);
+    			var fileType = filePoint.toLowerCase();
+    			var fileSize = 10 * 1024 * 1024; // 10메가
+    			if (fileType == 'jpg' || fileType == 'png' || fileType == 'jpeg' || fileType == 'gif') {
+    			var uploadFileSize = this.files[0].size;
+    				if (uploadFileSize > fileSize) {
+    					alert("용량은 10MB 이하로 가능합니다.");
+    					$(this).val("");
+    				}
+    			} else if (fileVal == "") {
+    				
+    			} else {
+    				alert("이미지 파일만 가능합니다.");
+    				$(this).val("");
+    			}
+    		});
+    		
+    	});
+    </script>
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+</div>
+</body>
+</html>

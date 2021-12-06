@@ -191,3 +191,10 @@
     font-weight: 500;
 }
 
+.info_span {
+    font-weight: 700;
+    box-shadow: #c4ddf1 0px -3px inset;
+}
+.addr_margin {
+	margin-bottom: 5px;
+}
