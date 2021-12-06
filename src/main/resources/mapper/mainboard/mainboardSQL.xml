@@ -312,13 +312,13 @@
 
 		order by 
 		<choose>
-			<when test='order == "최신순"'> t2.product_no desc </when>
-		   	<when test='order == "오래된순"'> t2.product_no asc </when>
+			<when test='order == "최신순"'> t2.product_no desc, t2.product_name asc </when>
+		   	<when test='order == "오래된순"'> t2.product_no asc, t2.product_name asc </when>
 		   	<when test='order == "가나다순"'> t2.product_name asc </when>
 		   	<when test='order == "가나다역순"'> t2.product_name desc </when>   	
-		   	<when test='order == "인기순"'>  t2.cnt desc </when>
-		   	<when test='order == "낮은가격순"'> order_price asc </when>
-		   	<when test='order == "높은가격순"'> order_price desc </when>
+		   	<when test='order == "인기순"'>  t2.cnt desc, t2.star_avg desc  </when>
+		   	<when test='order == "낮은가격순"'> order_price asc, t2.star_avg desc </when>
+		   	<when test='order == "높은가격순"'> order_price desc, t2.star_avg desc </when>
 			<otherwise> t2.product_no asc</otherwise>
 		</choose>
 		)r
