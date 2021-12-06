@@ -33,10 +33,10 @@
 		<div class="col-md-6">
 			<div class="input-group input-group-lg">
 				<input type="text" id="" name="" class="form-control" placeholder="상품을 검색해보세요" />
-				<select class="form-control form-control-lg rounded-0">
-					<option>최신순</option>
-					<option>낮은 가격순</option>
-					<option>높은 가격순</option>
+				<select id="searchBy" class="form-control form-control-lg rounded-0">
+				<c:forEach items="${tool.byList }" var="v">
+					<option value="${v }" <c:if test="${v eq tool.by}"> selected = "selected" </c:if>>${v }</option>
+				</c:forEach>
 				</select>
 				<div class="input-group-append">
 					<button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
@@ -58,30 +58,11 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="#">생활용품</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">뷰티</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">헬스/건강식품</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">주방용품</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">식품</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">완구, 취미</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">문구, 오피스</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">반려동물</a>
-						</li>
+					<c:forEach items="${tool.categoryMap }" var="v">
+						<li class="nav-item <c:if test="${v.key eq tool.c}">active</c:if>">
+							<a class="nav-link" href="/mainboard.do?b=${tool.b }&c=${v.key }">${v.key } (${v.value })</a>
+						</li>					
+					</c:forEach>
 					</ul>
 				</div>
 			</nav>
@@ -107,19 +88,17 @@
 				<div class="card-body">
 					<h1 class="title">${pp.productName }</h1>
 					<p class="m-0">
-						<div class="star">
-							<div class="star-rating js-star-rating">
-							  <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
-							  <input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
-							  <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
-							  <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
-							  <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
-							  <div class="current-rating current-rating--${pp.starClass } js-current-rating"><i class="star-rating__star">AAA</i>
-							  </div>
-							</div>
-													</div>
-													<span class="review-count goods_detail">(1222)</span>
-												</p>
+					<div class="star-rating js-star-rating">
+					  <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
+					  <input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
+					  <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
+					  <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
+					  <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
+					  <div class="current-rating current-rating--${pp.starClass } js-current-rating"><i class="star-rating__star">AAA</i>
+					  </div>
+						</div>
+						<span class="review-count goods_detail">(${pp.productDetail })</span>
+					</p>
 
 					<ul class="list-group list-group-flush mb-4">
 						<li class="list-group-item pl-0 pr-0 pt-2 pb-2">Brand: ${pp.tradeName }<a href="#"></a></li>
@@ -173,10 +152,10 @@
 					<a class="nav-link lead active" role="tab" data-toggle="tab" href="#tabDescription">상품 상세</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link lead" role="tab" data-toggle="tab" href="#tabReview">상품후기</a>
+					<a class="nav-link lead" role="tab" data-toggle="tab" href="#tabReview">상품후기 (${pp.reviewCount })</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link lead" role="tab" data-toggle="tab" href="#tabQnA">Q&A</a>
+					<a class="nav-link lead" role="tab" data-toggle="tab" href="#tabQnA">Q&A (${pp.qnaCount })</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link lead" role="tab" data-toggle="tab" href="#tapShippingReturn">배송/환불 안내</a>
@@ -187,7 +166,7 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane pt-4 active" role="tabpanel" id="tabDescription">
-					<p>${p.productDetail }</p>
+					<p>${pp.productDetail }</p>
 				</div>
 				<div class="tab-pane pt-4" role="tabpanel" id="tapShippingReturn">
 					<table class="table table-bordered">
@@ -283,92 +262,28 @@
 					</table>
 				</div>
 				<div class="tab-pane pt-4" role="tabpanel" id="tabQnA">					
-					<div class="card">
+					<div class="card" id="qna-wrap">
 						<div class="card-header">상품관련 Q&A를 볼 수 있습니다. </div>
-						<div class="card-body">
-							<table class="table table-bordered">
-								<tbody>
-									<tr>
-										<td colspan="2">
-											<strong>(**덕) 왜 배송비 공짜라면서 자꾸 붙는건데요 왜 배송비 공짜라면서 자꾸 붙는건데요 왜 배송비 공짜라면서 자꾸 붙는건데요</strong>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<p>Libero sit ut sit ut in consequuntur, sed recusandae esse; qui eum alias fuga ratione ut reiciendis commodi et laboriosam? Earum eveniet et neque est alias commodi voluptatem veniam est. Ad aut sit excepturi unde laudantium voluptatem reiciendis nostrum eos. Molestiae omnis consectetur, culpa in sed aliquam porro quas asperiores.</p>
-											<p class="m-0">18/03/2013</p>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<strong>답변완료</strong>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<p>그럴수도 있지 너무 그러지 맙시다 그럴수도 있지 너무 그러지 맙시다 그럴수도 있지 너무 그러지 맙시다그럴수도 있지 너무 그러지 맙시다그럴수도 있지 너무 그러지 맙시다그럴수도 있지 너무 그러지 맙시다 그럴수도 있지 너무 그러지 맙시다그럴수도 있지 너무 그러지 맙시다 </p>
-											<p class="m-0">18/03/2013</p>
-										</td>
-									</tr>
-
-								</tbody>
-							</table>
-						</div>
+						
+						
+						
+						
+						
+						
+						
 					</div>
+					<button id="qna-btn" class="">더 보기</button>
 				</div>
 				<div class="tab-pane pt-4" role="tabpanel" id="tabReview">
 					
-					<div class="card">
+					<div class="card" id="review-wrap">
 						<div class="card-header">상품관련 후기를 볼 수 있습니다. </div>
-						<div class="card-body">
-							<table class="table table-bordered">
-								<tbody>
-									<tr>
-										<td colspan="2">
-											<strong>장변덕 </strong>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<p>상품 개별로임 </p>
-			<div class="row">
-
-				<div class="col-md-3 mb-4">
-					<img alt="" class="img-thumbnail p-0 border-0" src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" />
-				</div>
-				<div class="col-md-3 mb-4">
-					<img alt="" class="img-thumbnail p-0 border-0" src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" />
-				</div>
-				<div class="col-md-3 mb-4">
-					<img alt="" class="img-thumbnail p-0 border-0" src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" />
-				</div>
-				<div class="col-md-3 mb-4">
-					<img alt="" class="img-thumbnail p-0 border-0" src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" />
-				</div>
-</div>
-
-											<p class="m-0">18/03/2013</p>
-										</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<strong>장변덕님의 별점 : </strong>
-<div class="star-rating js-star-rating mainboard-review-star-rating">
-  <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
-  <input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
-  <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
-  <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
-  <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
-  <div class="current-rating current-rating--5 js-current-rating"><i class="star-rating__star">AAA</i>
-  </div>
-</div>
-
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+						
+						
+						
+						
 					</div>
+					<button id="review-btn" class="buy_btn">더 보기</button>
 				</div>
 
 
@@ -449,12 +364,119 @@
 <%@include file="/WEB-INF/views/common/footer.jsp" %>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+
+var rStar=0;
+var rEnd=0;
+var qStart=0;
+var qEnd = 0;
+var rTotal = ${pp.reviewCount};
+var qTotal = ${pp.qnaCount};
+
+$("#qna-btn").on("click",function(){
+	qStart = qEnd+1;
+	qEnd += 3;
+	$.ajax({
+		type:"GET",
+		url:"/getQna.do",
+		data:{start:qStart, end:qEnd, productNo:1},
+		contentType : "application/json;charset=UTF-8",
+		success:function(data){
+			data.forEach(q => {
+				var card = "<div class='card-body'><table class='table table-bordered'><tbody>";
+				card +="<tr><td colspan='2'><strong>("+q.memberName+") "+q.qnaTitle+"</strong></td></tr>";
+				card +="<tr><td colspan='2'><p>"+q.qnaContent+"</p><p class='m-0'>"+q.writeDate+"</p></td></tr>";
+
+				if(q.hasOwnProperty("aTitle")){
+					card +="<tr><td colspan='2'><strong>"+q.aTitle+"</strong></td></tr>";
+					card +="<tr><td colspan='2'><p>"+q.aContent+"</p><p class='m-0'>"+q.aWriteDate+"</p></td></tr>";					
+				}
+				
+				card += "</tbody></table></div>";
+				
+				qEnd>=qTotal && $("#qna-btn").hide();
+				$("#qna-wrap").append(card);
+				
+			})
+		}
+	})
+	
+})
+$("#review-btn").on("click",function(){
+	rStart = rEnd+1;
+	rEnd += 3;
+	$.ajax({
+		type:"GET",
+		url:"/getReview.do",
+		data:{start:rStart, end:rEnd, productNo:1},
+		contentType : "application/json;charset=UTF-8",
+		success:function(data){
+
+			for(var r in data ) {
+
+//				r = JSON.parse(r);
+				console.log(r[memberName]);
+				var card = "<div class='card-body'><table class='table table-bordered'><tbody>";
+				card += "<tr><td colspan='2'><strong>"+r.memberName+"</strong></td></tr>";
+				card += "<tr><td colspan='2'><p>"+r.reviewContent+"</p>"
+				card += "<div class='row'>";								
+				
+				var arr = data[r]
+				
+				
+				for(var i=0; i<arr.length;i++){
+					console.log(arr[i].filepath);
+					var img = arr[i];
+					card += "<div class='col-md-3 mb-4'><img alt='' class='img-thumbnail p-0 border-0' src='"+img.filepath+"' /></div>";
+					
+				}				
+				
+				card += "</div>";
+				card += "<p class='m-0'>"+r.writeDate+"</p>";
+				card += "</td></tr><tr><td colspan='2'><strong>"+r.memberName+"님의 별점 : </strong>";
+				card += "<div class='star-rating js-star-rating mainboard-review-star-rating'>";
+				card += "<input class='star-rating__input' type='radio' name='rating' value='1'><i class='star-rating__star'></i>";
+				card += "<input class='star-rating__input' type='radio' name='rating' value='2'><i class='star-rating__star'></i>";
+				card += "<input class='star-rating__input' type='radio' name='rating' value='3'><i class='star-rating__star'></i>";
+				card += "<input class='star-rating__input' type='radio' name='rating' value='4'><i class='star-rating__star'></i>";
+				card += "<input class='star-rating__input' type='radio' name='rating' value='5'><i class='star-rating__star'></i>";
+				card += "<div class='current-rating current-rating--"+r.starClass+" js-current-rating'><i class='star-rating__star'>AAA</i></div>";
+				card += "</div>";
+				card += "</td></tr></tbody></table></div>";
+
+				
+				rEnd>=rTotal && $("#review-btn").hide();
+				$("#review-wrap").append(card);
+  			}
+				
+
+				
+		}
+	})
+	
+})
+</script>
 <style>
 	.nav-link{
 		margin-left:25px;
 		margin-right:25px;
 	}
+	
+	
+	
+	
+
+
+
+
+	
 </style>
+<script>
+
+$(document).ready(function () {
+});
+</script>
 <script>
 
 $(document).ready(function () {
@@ -463,7 +485,6 @@ $(document).ready(function () {
 	});
 });
 </script>
-
 <style>
 /*
 .likeButton-div-wrap{
@@ -511,6 +532,14 @@ $(document).ready(function () {
 	height: 18px;
 	display:inline-block;
 }
+*/
+/*
+<div class='card-body'><table class='table table-bordered'><tbody>
+<tr><td colspan='2'><strong>(**덕) QNA 제목</strong></td></tr>
+<tr><td colspan='2'><p>QNA 내용 내용</p><p class='m-0'>18/03/2013</p></td></tr>
+<tr><td colspan='2'><strong>답변완료</strong></td></tr>
+<tr><td colspan='2'><p>QNA 답변 답변</p><p class='m-0'>18/03/2013</p></td></tr>
+</tbody></table></div>
 */
 </style>
 </html>

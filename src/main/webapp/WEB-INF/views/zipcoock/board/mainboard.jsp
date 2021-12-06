@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="col-md-1">
-						<button class="btn btn-outline-secondary btn-block btn-lg" type="button">
+						<button id="reset" class="btn btn-outline-secondary btn-block btn-lg" type="button">
 							<i class="fas fa-sync-alt"></i>
 						</button>
 					</div>
@@ -333,7 +333,7 @@
 	var basic,b,c,k,by,order,shart,show,min,max,url;
 	
 	function initVar() {
-	 basic = "/mainboard.do?";
+		 basic = "/mainboard.do?";
 	    b = "&b=${tool.b}";
 	    c = "&c=${tool.c}";
 	    k = "&k="+$("#keyword").val();
@@ -358,10 +358,17 @@
 	    $("#price-btn").click(clickURL)
 	    $(".selectBox").change(clickURL)
  		$("#link").on("click", function(event) {
+ 			initVar();
 		    url = basic+b+c+k+by;
 		    $("<a href='"+url+"'></a>")[0].click();
 		 
 	  });
+	    $("#reset").on("click",function(){
+	    	initVar();
+		    url = basic;
+		    $("<a href='"+url+"'></a>")[0].click();
+	    	
+	    })
 
 
 

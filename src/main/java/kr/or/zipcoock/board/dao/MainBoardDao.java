@@ -57,8 +57,8 @@ public class MainBoardDao {
 		return (ArrayList<ProductImg>) imgs;
 	}
 
-	public ArrayList<ReviewImg> selectReviewImg(ProductPageArgs args) {
-		List<ReviewImg> imgs = sqlSession.selectList("mainboard.selectReviewImg", args);
+	public ArrayList<ReviewImg> selectReviewImg(int reviewNo) {
+		List<ReviewImg> imgs = sqlSession.selectList("mainboard.selectReviewImg", reviewNo);
 		return (ArrayList<ReviewImg>) imgs;
 	}
 

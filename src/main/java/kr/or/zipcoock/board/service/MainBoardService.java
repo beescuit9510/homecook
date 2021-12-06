@@ -109,7 +109,7 @@ public class MainBoardService {
 		HashMap<ProductPageReview, ArrayList<ReviewImg>> mapToReturn = new HashMap<ProductPageReview, ArrayList<ReviewImg>>();
 
 		for (ProductPageReview r : review) {
-			ArrayList<ReviewImg> img = dao.selectReviewImg(args);
+			ArrayList<ReviewImg> img = dao.selectReviewImg(r.getReviewNo());
 			mapToReturn.put(r, img);
 		}
 

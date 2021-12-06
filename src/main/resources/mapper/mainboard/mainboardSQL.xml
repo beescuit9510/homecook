@@ -69,7 +69,7 @@
 		(select discount_rate from homecook_deal hd where hd.product_no = p.product_no and to_char(sysdate, 'YY/MM/DD') <![CDATA[ <= ]]> to_char(hd.discountend_date, 'YY/MM/DD')) as d_rate,
 		(select count(*) from product_like pl where pl.product_no = p.product_no and member_no = #{memberNo}) as isLiked,
 		(select count(*) from product_review pr where pr.product_no = p.product_no) as review_count,
-		(select count(*) from qna q where q.product_ref_no = p.product_no) as qna_count,
+		(select count(*) from qna q where q.product_ref_no = p.product_no and q.qna_level = 1 ) as qna_count,
 		NVL(TO_CHAR(FLOOR(2 *(select avg(pr.star) from product_review pr where pr.product_no = p.product_no)) / 2,'9.9') ,0) as star_avg
 		from product p 
 		join business_seller_info bsi on bsi.member_no = p.member_no
@@ -89,10 +89,10 @@
 		t2.qna_level as qnaLevel,
 		t2.qna_title as qnaTitle,
 		t2.qna_content as qnaContent,
-		t2.write_date as writeDate,
+		TRIM(TO_CHAR(t2.write_date, 'YY/MM/DD')) as writeDate,
 		(select q2.qna_title  from qna q2 where t2.qna_no = q2.qna_ref_no) as aTitle,
 		(select q2.qna_content from qna q2 where t2.qna_no = q2.qna_ref_no) as aContent,
-		(select q2.write_date from qna q2 where t2.qna_no = q2.qna_ref_no) as aWriteDate
+		TRIM(TO_CHAR((select q2.write_date from qna q2 where t2.qna_no = q2.qna_ref_no),'YY/MM/DD')) as aWriteDate
 		from
 		(select rownum as rnum, t.* from 
 		(select q.*,
@@ -137,9 +137,9 @@
 				
 	
 	</select>
-	<select id="selectReviewImg" parameterType="kr.or.zipcoock.board.vo.ProductPageArgs" resultType="kr.or.table.model.vo.ReviewImg">
+	<select id="selectReviewImg" parameterType="int" resultType="kr.or.table.model.vo.ReviewImg">
 		select filename, filepath
-		from review_img where review_no = #{productNo} order by review_img_no desc		
+		from review_img where review_no = #{value} order by review_img_no desc		
 	</select>
 
 	<select id="selectProductImg" parameterType="kr.or.zipcoock.board.vo.ProductPageArgs" resultType="kr.or.table.model.vo.ProductImg">
