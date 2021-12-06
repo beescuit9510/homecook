@@ -16,11 +16,9 @@ public class MainBoardController {
 	@RequestMapping(value = "/mainboard.do")
 	public String callMainboard(SearchTool tool, Model model) {
 
-		System.out.println(tool);
 		model.addAttribute("cards", service.MainBoard(tool));
 		
 		model.addAttribute("tool", tool);
-		System.out.println(tool);
 
 		return "zipcoock/board/mainboard";
 	}

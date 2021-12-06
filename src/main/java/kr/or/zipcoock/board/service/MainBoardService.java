@@ -76,7 +76,7 @@ public class MainBoardService {
 		}
 		
 		tool.setPageNavi(pageNavi.toString());
-		tool.setP(reqPage);
+
 
 		
 		System.out.println(cards);
