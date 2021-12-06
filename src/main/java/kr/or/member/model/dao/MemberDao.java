@@ -1,4 +1,4 @@
-package kr.or.seller.model.dao;
+package kr.or.member.model.dao;
 
 
 
@@ -31,9 +31,9 @@ public class MemberDao {
 		return (BusinessSellerInfo)sqlSession.selectOne("businessSellerInfo.selectOneTardeName",businessSellerInfo);
 	}
 
-	public Member selectOneMemberId(Member member) {
+	public Member selectOneMemberId(String memberId) {
 
-		return (Member)sqlSession.selectOne("member.selectOneMemberId",member);
+		return (Member)sqlSession.selectOne("member.selectOneMemberId",memberId);
 	}
 
 	public int insertOneMember(Member member) {
