@@ -105,35 +105,42 @@
 		<div class="col-md-4">
 			<div class="card">
 				<div class="card-body">
-					<h1 class="title">새콤달콤 새콤새콤 제주 사과</h1>
+					<h1 class="title">${pp.productName }</h1>
 					<p class="m-0">
 						<div class="star">
-
-<div class="star-rating js-star-rating">
-  <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
-  <input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
-  <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
-  <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
-  <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
-  <div class="current-rating current-rating--5 js-current-rating"><i class="star-rating__star">AAA</i>
-  </div>
-</div>
+							<div class="star-rating js-star-rating">
+							  <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
+							  <input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
+							  <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
+							  <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
+							  <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
+							  <div class="current-rating current-rating--${pp.starClass } js-current-rating"><i class="star-rating__star">AAA</i>
+							  </div>
+							</div>
 													</div>
 													<span class="review-count goods_detail">(1222)</span>
 												</p>
 
 					<ul class="list-group list-group-flush mb-4">
-						<li class="list-group-item pl-0 pr-0 pt-2 pb-2">Brand: 이마트<a href="#"></a></li>
-						<li class="list-group-item pl-0 pr-0 pt-2 pb-2">제조국 : 중국 </li>
-						<li class="list-group-item pl-0 pr-0 pt-2 pb-2">제조일자 : 2012. 11. 12</li>
-						<li class="list-group-item pl-0 pr-0 pt-2 pb-2">재고 : 200</li>
+						<li class="list-group-item pl-0 pr-0 pt-2 pb-2">Brand: ${pp.tradeName }<a href="#"></a></li>
+						<li class="list-group-item pl-0 pr-0 pt-2 pb-2">제조국 : ${pp.origin }</li>
+						<li class="list-group-item pl-0 pr-0 pt-2 pb-2">제조일자 : ${pp.manufactureDate }</li>
+						<li class="list-group-item pl-0 pr-0 pt-2 pb-2">재고 : ${pp.stock }</li>
 						<!--
 
 							<li class="list-group-item pl-0 pr-0 pt-2 pb-2">Price in reward points: 400</li>
 						-->
 						<li class="list-group-item pl-0 pr-0">
-							<p class="m-0 h2"><span class="mainboard-view-price">200000원</span><small><s class="original_price">2000000원</s></small></p>
-							<p class="m-0 text-muted">20 % 할인</p>
+						
+						<c:if test="${not empty pp.discountedPrice }">
+							<p class="m-0 h2"><span class="mainboard-view-price">${pp.discountedPrice }원</span><small><s class="original_price">${pp.price }원</s></small></p>
+							<p class="m-0 text-muted">${pp.dRate } %</p>
+						</c:if>
+						
+						<c:if test="${empty pp.discountedPrice }">
+						<p class="m-0 h2"><span class="mainboard-view-price">${pp.price }원</span></p>
+						</c:if>
+						
 						</li>
 						<!--
 
@@ -144,7 +151,7 @@
 						-->
 					</ul>
 					<div class="input-group input-group-lg mb-4">
-						<input type="number" class="form-control text-center" placeholder="Quantity" id="" name="" value="1" min="1" max="5" />
+						<input type="number" class="form-control text-center" placeholder="Quantity" id="" name="" value="1" min="1" max="${pp.limit}" />
 						<div class="input-group-append">
 							<span class="input-group-text">수량</span>
 						</div>
@@ -180,10 +187,7 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane pt-4 active" role="tabpanel" id="tabDescription">
-					<p>Morbi et feugiat massa, ut pretium felis. Fusce lobortis quam a turpis iaculis accumsan. In ac odio vitae augue vulputate egestas. Nulla iaculis mi in lectus accumsan pellentesque. Integer neque est, imperdiet eget ex at, suscipit euismod eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed malesuada elementum accumsan. Suspendisse rhoncus accumsan orci, id blandit ante accumsan viverra. Etiam id tortor in arcu suscipit iaculis. Donec efficitur, leo nec pulvinar pulvinar, nibh ligula feugiat augue, euismod condimentum turpis nulla nec ipsum. Praesent id tristique massa, id rhoncus diam. Sed vel odio porttitor, pretium augue nec, placerat neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ac elit sapien. Nullam semper laoreet ligula ut varius. Fusce interdum scelerisque porttitor.</p>
-					<p>Nunc mollis velit libero, vel semper lorem bibendum eu. Nam in purus arcu. Quisque et tortor ac nunc ullamcorper interdum vel eget sem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam ultrices cursus turpis interdum vulputate. Nullam vulputate, nisi ut hendrerit rhoncus, nunc nibh ultrices lorem, at facilisis lorem mauris id ex. Integer nec faucibus odio. Sed nec risus ut nisi tempus viverra. Vivamus hendrerit faucibus lorem. Curabitur vel laoreet est, nec accumsan lacus.</p>
-					<p>Maecenas tempus eu ex vitae vulputate. Cras non elit scelerisque, tempus risus eu, porta ipsum. Morbi elementum, lorem a viverra dictum, nibh urna sollicitudin elit, at vestibulum nisi urna at metus. Vivamus id volutpat nibh, finibus vehicula velit. In hac habitasse platea dictumst. Aliquam pharetra lectus massa, et dictum felis molestie et. Nunc sed nibh ac felis consequat consectetur ut sed lorem. Suspendisse tempus tincidunt eros vel pharetra. Mauris pellentesque lacus posuere lacus pellentesque lacinia. Nunc sit amet eros eu ipsum cursus pharetra. Mauris non nunc enim. Vestibulum lectus leo, dictum ut risus sed, semper tristique turpis. Etiam nec libero sed libero tristique condimentum.</p>
-					<p>In hac habitasse platea dictumst. Integer ut dignissim diam. Mauris varius eget erat quis sollicitudin. Sed congue nulla lacus. Proin nec hendrerit eros. Proin consequat vehicula quam commodo vestibulum. Etiam nec ligula mattis, laoreet ipsum vel, ultricies nisi. Vestibulum ut dignissim velit. In gravida velit vel vestibulum viverra. Sed convallis at turpis ut pharetra. Nulla eleifend urna arcu, a semper eros ultrices sit amet. Vivamus eget sapien ipsum. Etiam euismod, ante quis pellentesque pellentesque, mauris leo rhoncus dui, ut faucibus felis dui non odio. Etiam eleifend lobortis eros, sed aliquam elit fermentum et. Sed vel lectus accumsan, tempor magna venenatis, euismod orci.</p>
+					<p>${p.productDetail }</p>
 				</div>
 				<div class="tab-pane pt-4" role="tabpanel" id="tapShippingReturn">
 					<table class="table table-bordered">
@@ -195,19 +199,19 @@
 						<tbody>
 							<tr>
 								<td>배송방법</td>
-								<td>순차배송</td>
+								<td>${pp.shippingMethod }</td>
 							</tr>
 							<tr>
 								<td>배송사</td>
-								<td>CJ택배</td>
+								<td>${pp.shippingCompany }</td>
 							</tr>
 							<tr>
 								<td>배송비</td>
-								<td>5000원</td>
+								<td>${pp.shippingFee }원</td>
 							</tr>
 							<tr>
 								<td>배송기간</td>
-								<td>2주</td>
+								<td>${pp.shippingPeriod }일</td>
 							</tr>
 						</tbody>
 						<thead>
@@ -218,15 +222,15 @@
 						<tbody>
 							<tr>
 								<td>환불 비용</td>
-								<td>5000원</td>
+								<td>${pp.returnShipping}원</td>
 							</tr>
 							<tr>
 								<td>환불 신청 기간</td>
-								<td>7일내</td>
+								<td>${pp.returnLength}일내</td>
 							</tr>
 							<tr>
 								<td>환불 제한 기준</td>
-								<td>제품에 이상이 있을 경우</td>
+								<td>${pp.policyContent}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -242,23 +246,23 @@
 						<tbody>
 							<tr>
 								<td>상호</td>
-								<td>이마트</td>
+								<td>${pp.tradeName}</td>
 							</tr>
 							<tr>
 								<td>대표자</td>
-								<td>장변덕</td>
+								<td>${pp.representative}</td>
 							</tr>
 							<tr>
 								<td>사업장 소매지</td>
-								<td>강남구</td>
+								<td>${pp.businessLoc}</td>
 							</tr>
 							<tr>
 								<td>판매처 전화번호</td>
-								<td>010-111-1111</td>
+								<td>${pp.contact}</td>
 							</tr>
 							<tr>
 								<td>판매처 이메일</td>
-								<td>byunduck@gmail.com</td>
+								<td>${pp.email}</td>
 							</tr>
 						</tbody>
 						<thead>
@@ -269,11 +273,11 @@
 						<tbody>
 							<tr>
 								<td>a/s 책임자 번호</td>
-								<td>010-2222-22222</td>
+								<td>${pp.managerContact}</td>
 							</tr>
 							<tr>
 								<td>소비자 상담 관련 번호</td>
-								<td>010-2222-22222</td>
+								<td>${pp.ccContact}</td>
 							</tr>
 						</tbody>
 					</table>

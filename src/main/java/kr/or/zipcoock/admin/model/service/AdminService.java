@@ -37,5 +37,16 @@ public class AdminService
 		// TODO Auto-generated method stub
 		return dao.selectAllRefund();
 	}
+
+	public Member selectOneMemberInfo(int memberNo) 
+	{		
+		return dao.selectOneMemberInfo(memberNo);
+	}
+
+	public int updateMemberInfo(Member m)
+	{
+		return dao.updateMemberInfo(m);
+		
+	}
 	
 }

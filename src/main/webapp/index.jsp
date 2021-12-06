@@ -12,13 +12,16 @@
 <body>
 <h1>final project</h1>
 <a href = "/call_MainPage.do">main</a>
-
+<h1>옥승엽</h1>
 <a href = "/loginFrm.do">로그인</a>
 <a href = "/joinFrm.do">회원가입</a>
 <a href = "/CheckSnum.do">회원가입</a>
+<a href = "/sellerInfoFrm.do">판매자회원정보</a>
+<a href = "/zipsellerMypage.do">판매자정보</a>
+<a href = "/test.do">이메일 테스트</a>
 <hr>
 <a href = "/mainboard.do">집쿠욱메인보드</a>
-<a href = "/mainboardView.do">메인상세</a>
+<a href = "/mainboardView.do?memberNo=1&productNo=1">메인상세</a>
 
 <a href = "/mypageHelpFrm.do">mypage</a>
 <a href = "/cart.do">cart</a>
