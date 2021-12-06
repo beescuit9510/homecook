@@ -13,9 +13,9 @@
        	<div class = "content_div_area">
        		<div class = "content_div_content">
        			<div class = "content_div_info">
-       				<div class = "content_div_opt1">집쿠욱 레벨</div>
-       				<div class = "content_div_opt2">집쿠욱 포인트</div>
-       				<div class = "content_div_opt3">주문내역</div>
+       				<div class = "content_div_opt1">상호명</div>
+       				<div class = "content_div_opt2">북마크 일시</div>
+       				<div class = "content_div_opt3">주문하러가기</div>
        			</div>
        		</div>	
        	</div>
