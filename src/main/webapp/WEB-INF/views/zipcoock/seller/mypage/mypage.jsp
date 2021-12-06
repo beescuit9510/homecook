@@ -62,7 +62,7 @@
 								</select>	</div>
 	        		</div>
 	        		</form>
-	        		<form action="PwChange" id="PwChgFrm">
+	        		<form action="PwChange.do" id="PwChgFrm">
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">현재 비밀번호</div>
 	        			<div class="content_div_opt2"><input type="password" class="input"></div>

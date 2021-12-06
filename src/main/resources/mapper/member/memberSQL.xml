@@ -35,4 +35,20 @@
   insert into member values(member_seq.nextval,#{memberName},#{memberId},#{memberPw},#{memberPhone},'판매자','집쿡초보')
     <selectKey resultType="_int" order="AFTER" keyProperty="memberNo">select max(member_no) from member</selectKey>  
   </insert>
+  
+  <select id="selectOneMemberPW" resultType="m">
+  select 
+  member_no as memberNo,
+  member_name as memberName,
+  member_id as memberId,
+  member_pw as memberPw,
+  member_phone as memberPhone,
+  member_level as memberLevel,
+  delivery_level as deliveryLevel
+  from member where member_id=#{memberId} and member_pw=#{oldPassword}
+  </select>
+  
+  <update id="updateSmemberPW">
+update member set member_pw=#{newPassword} where member_id=#{memberId} and member_pw=#{oldPassword}
+</update>
 </mapper>

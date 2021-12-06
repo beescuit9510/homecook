@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.or.seller.model.service.SellerService;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PwChangeVO;
 
 @Controller
 public class SellerController {
@@ -72,16 +73,26 @@ private SellerService service;
  			 model.addAttribute("msg","회원정보수정실패");
  		 }
  		model.addAttribute("loc","/");
- 		 return "common/msg";
+ 		 return "zipcoock/common/msg";
 	}
-	@RequestMapping(value="/test.do")
-	public String test() {
 
-		String str = "oso792@naver.com";
-		String[] array = str.split("@");
-		for(int i=0;i<array.length;i++) {
-			System.out.println(array[i]);
-			}
-		return "";
+	@RequestMapping(value="/PwChange.do")
+	public String PwChange(PwChangeVO pwVO, Model model) {
+		Member m  = service.checkPwEnc(pwVO);
+		if(m == null) {
+			 model.addAttribute("msg","비밀번호가 틀립니다.");
+			 
+		 }else {
+			 int result = service.updatePwEnc(pwVO);
+			 if(result != 0) {
+				 
+				 model.addAttribute("msg","비밀번호 변경 성공.");
+			 }else {
+				 model.addAttribute("msg","비밀번호 변경 실패.");
+			 }
+		 }
+		model.addAttribute("loc","/");
+		return "zipcoock/common/msg";
+		
 	}
 }
