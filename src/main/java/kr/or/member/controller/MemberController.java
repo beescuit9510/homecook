@@ -122,8 +122,8 @@ public class MemberController {
 	}
 	@RequestMapping(value="/ajaxIdCheck.do")
 	@ResponseBody
-	public int ajaxIdcheck(Member member ) {
-		Member m = service.selectOneMemberId(member);
+	public int ajaxIdcheck(String memberId ) {
+		Member m = service.selectOneMemberId(memberId);
 		if (m == null) {
 			// 사용가능한 아이디
 			return 0;

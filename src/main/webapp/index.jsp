@@ -18,6 +18,8 @@
 <a href = "/CheckSnum.do">회원가입</a>
 <hr>
 <a href = "/mainboard.do">집쿠욱메인보드</a>
+<a href = "/mainboardView.do?memberNo=1&productNo=1">메인상세</a>
+
 <a href = "/mypageHelpFrm.do">mypage</a>
 <a href = "/cart.do">cart</a>
 <a href = "/mypageReceiptView.do">receipt</a>
