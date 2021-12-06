@@ -59,7 +59,7 @@
 }
 
 .current-rating.current-rating--1-5 .star-rating__star {
-	width: 30%;
+	width: 31%;
 }
 
 .current-rating.current-rating--2-0 .star-rating__star {
@@ -67,7 +67,7 @@
 }
 
 .current-rating.current-rating--2-5 .star-rating__star {
-	width: 50%;
+	width: 51%;
 }
 
 .current-rating.current-rating--3-0 .star-rating__star {
@@ -75,7 +75,7 @@
 }
 
 .current-rating.current-rating--3-5 .star-rating__star {
-	width: 70%;
+	width: 71%;
 }
 
 .current-rating.current-rating--4-0 .star-rating__star {
@@ -83,7 +83,7 @@
 }
 
 .current-rating.current-rating--4-5 .star-rating__star {
-	width: 90%;
+	width: 91%;
 }
 
 .current-rating.current-rating--5-0 .star-rating__star {
