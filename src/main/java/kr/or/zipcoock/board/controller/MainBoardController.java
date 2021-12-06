@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.zipcoock.board.service.MainBoardService;
+import kr.or.zipcoock.board.vo.ProductPageArgs;
 import kr.or.zipcoock.board.vo.SearchTool;
 
 @Controller
@@ -24,8 +25,13 @@ public class MainBoardController {
 	}
 
 	@RequestMapping(value = "/mainboardView.do")
-	public String callMainboarView() {
+	public String callMainboarView(ProductPageArgs args, Model model) {
+
+		model.addAttribute("pp", service.getProductPage(args));
+		
+		model.addAttribute("pi", service.getProductImg(args));
+		
 		return "zipcoock/board/mainboardView";
 	}
-
+	
 }
