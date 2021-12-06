@@ -4,7 +4,7 @@
 	font-size: 0;
 	position: relative;
 	width: 92.5px;
-	height: 18px;
+	height: 17.7px;
 	overflow: hidden;
 	background-image:
 		url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAkCAYAAAAOwvOmAAACZ0lEQVR42s2Yz0sUYRjH+wVmB4lCOgR66BAegoQU/4SgQ4culSeRoEKiU0QRrHpSwcCDFEREBMGSiMIOdpA9bGwbLTML+1MjQlE8GGmXgpTdPk/MxrLMzsDM484ufFne2ff9vp95nnee9905VKlUVFQqlQa1vFRM0un0CaB2TNPsbBmoYrF4E6hKoVC42zJQAMUECiVaAkpSRqT2bKhyPp/vCh0KoBEBqooUPmgFqI+1UMgKFSqbzZ4TkHpxvSc0KFL1xAkKjYUGRepKTlBc/xIKFJNfEoBGyuVyfWFAPXWDIlrTTYWKRqNHmXTLA2ozEokc8QWFwRAGb9EcWkRLXFtGCfSJtolyaAV9k8nQd3tyL23QdxVlUZr2B9vbQPP2vK/QczTDgzOJrv+7azpMoLIYhazXsrn/Dxnbw1Uu7oYE85tI3aqyOBVDq5lAUj4IyEXXhR6Px4/T8WWTgN6lUqmOega3aj0sYT0gmD/43/dVEghrLyZflaHWARoIVKcsyzoppUIJyMDrtErx5HMYs0cBYMoyXnxUK3p1r/MrUtatvs1wp6MBoe4cBJQZcD3FVKEymcxZhUX+K5lMtqtBYXhbAUpSeEUTKuZ1GkCPSfEPj36zKlCya7tVdkDeSC2rppn2e5e+aypQcnpoMMk2k1xrUNNGZA01ALsQGAqjFw7GC5wozniMO0+/zw5jHwaCkruuO/b+REMeprUnjmNS39BejUciEBSp668xW/b7nkB8AFuxffZpn/INxSM8bq+NexI1hXdYs3YKb/iGYvAzWRs+INyidhnfKd9Q8qdCvrVlGEab2+9/AaqhSf4SQ/sOAAAAAElFTkSuQmCC");
@@ -45,17 +45,16 @@
 .star-rating:hover .current-rating {
 	display: block;
 }
-
-.current-rating.current-rating--1 .star-rating__star, .current-rating.current-rating--1-5 .star-rating__star,
-	.current-rating.current-rating--2 .star-rating__star, .current-rating.current-rating--2-5 .star-rating__star,
-	.current-rating.current-rating--3 .star-rating__star, .current-rating.current-rating--3-5 .star-rating__star,
-	.current-rating.current-rating--4 .star-rating__star, .current-rating.current-rating--4-5 .star-rating__star,
-	.current-rating.current-rating--5 .star-rating__star {
+.current-rating.current-rating--1-0 .star-rating__star, .current-rating.current-rating--1-5 .star-rating__star,
+	.current-rating.current-rating--2-0 .star-rating__star, .current-rating.current-rating--2-5 .star-rating__star,
+	.current-rating.current-rating--3-0 .star-rating__star, .current-rating.current-rating--3-5 .star-rating__star,
+	.current-rating.current-rating--4-0 .star-rating__star, .current-rating.current-rating--4-5 .star-rating__star,
+	.current-rating.current-rating--5-0 .star-rating__star {
 	opacity: 1;
 	
 }
 
-.current-rating.current-rating--1 .star-rating__star {
+.current-rating.current-rating--1-0 .star-rating__star {
 	width: 20%;
 }
 
@@ -63,7 +62,7 @@
 	width: 30%;
 }
 
-.current-rating.current-rating--2 .star-rating__star {
+.current-rating.current-rating--2-0 .star-rating__star {
 	width: 40%;
 }
 
@@ -71,7 +70,7 @@
 	width: 50%;
 }
 
-.current-rating.current-rating--3 .star-rating__star {
+.current-rating.current-rating--3-0 .star-rating__star {
 	width: 60%;
 }
 
@@ -79,7 +78,7 @@
 	width: 70%;
 }
 
-.current-rating.current-rating--4 .star-rating__star {
+.current-rating.current-rating--4-0 .star-rating__star {
 	width: 80%;
 }
 
@@ -87,6 +86,6 @@
 	width: 90%;
 }
 
-.current-rating.current-rating--5 .star-rating__star {
+.current-rating.current-rating--5-0 .star-rating__star {
 	width: 100%;
 }
