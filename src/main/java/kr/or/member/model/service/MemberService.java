@@ -42,13 +42,13 @@ public class MemberService {
 			return m;
 		}
 		@Transactional
-		public int insertOneMember(Member member) {
+		public int insertOneMemberEnc(Member member) {
 			int result = dao.insertOneMember(member);
 			
 			return result;
 		}
 		@Transactional
-		public int insertOneSmember(BusinessSellerInfo member) {
+		public int insertOneSmemberEnc(BusinessSellerInfo member) {
 			int result = dao.insertOneSmember(member);
 			if(result>0) {				
 				result = dao.insertOneSmember2(member);

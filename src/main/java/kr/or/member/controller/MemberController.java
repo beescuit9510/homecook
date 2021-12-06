@@ -137,7 +137,7 @@ public class MemberController {
 	@RequestMapping(value="/bjoin.do")
 	public String bjoin(Member member, Model model) {
 		
-		int result = service.insertOneMember(member);
+		int result = service.insertOneMemberEnc(member);
 		if(result > 0) {
 			model.addAttribute("msg","회원가입 성공");
 			model.addAttribute("loc", "/");
@@ -153,7 +153,7 @@ public class MemberController {
 	public String sjoin(BusinessSellerInfo businessSellerInfo,Model model) {
 		System.out.println("핸드폰"+businessSellerInfo.getMemberPhone());
 		System.out.println("비즈니스loc"+businessSellerInfo.getBusinessLoc());
-		int result = service.insertOneSmember(businessSellerInfo);		
+		int result = service.insertOneSmemberEnc(businessSellerInfo);		
 		if(result > 0 ) {
 			model.addAttribute("msg","회원가입 성공");
 			model.addAttribute("loc", "/");
