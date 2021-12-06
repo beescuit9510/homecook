@@ -63,4 +63,21 @@ public class AdminController
 		
 		return "admin/adminMemberInfo";
 	}
+	
+	@RequestMapping(value = "/Fix_MemberInfo.do")
+	@ResponseBody
+	public int fix_MemberInfo(int memberNo, String memberName, String memberLevel, String memberDLevel, String memberPhone)
+	{		
+		
+		Member m = new Member();
+		
+		m.setMemberNo(memberNo);
+		m.setMemberName(memberName);
+		m.setMemberLevel(memberLevel);
+		m.setDeliveryLevel(memberDLevel);
+		m.setMemberPhone(memberPhone);
+		
+		return service.updateMemberInfo(m);
+	}	
+	
 }

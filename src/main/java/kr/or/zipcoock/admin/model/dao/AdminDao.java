@@ -48,4 +48,9 @@ public class AdminDao
 		return sqlSession.selectOne("admin.selectOneMemberInfo",memberNo);
 	}
 
+	public int updateMemberInfo(Member m) 
+	{
+		return sqlSession.update("admin.updateOneMemberInfo",m);
+	}
+
 }

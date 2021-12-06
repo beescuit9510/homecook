@@ -67,4 +67,16 @@ select
 from member where member_no = #{memberNo}
 </select>
 
+
+<update id="updateOneMemberInfo" parameterType = "m">
+update member 
+SET 
+	member_name = #{memberName},
+	member_phone = #{memberPhone},
+	member_Level = #{memberLevel},
+	delivery_level = #{deliveryLevel}
+WHERE member_no = #{memberNo}
+</update>
+
+
 </mapper>
