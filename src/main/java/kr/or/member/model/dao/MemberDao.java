@@ -56,5 +56,7 @@ public class MemberDao {
 
 		return sqlSession.selectOne("businessSellerInfo.selectOneEmail",businessSellerInfo);
 	}
+
+
 	
 }

@@ -22,21 +22,33 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td class="tg-0pky title"><div class="myinfo-td">이름</div></td>
+				<td class="tg-0pky title"><div class="myinfo-td">기업 이름</div></td>
 				<td class="tg-0pky"><input class="input myinfo-input"
-					type="text" placeholder="장변덕" /></td>
+					type="text" placeholder="${requestScope.bsi.tradeName }" /></td>
+				<td class="tg-0pky"></td>
+			</tr>
+			<tr>
+				<td class="tg-0pky title"><div class="myinfo-td">사업자 번호</div></td>
+				<td class="tg-0pky"><input class="input myinfo-input"
+					type="text" placeholder="${requestScope.bsi.businessNo }" readonly /></td>
 				<td class="tg-0pky"></td>
 			</tr>
 			<tr>
 				<td class="tg-0pky title"><div class="myinfo-td">아이디</div></td>
 				<td class="tg-0pky"><input class="input myinfo-input"
-					type="text" placeholder="byunduckiscute" /></td>
+					type="text" placeholder="${requestScope.bsi.memberId }" readonly /></td>
 				<td class="tg-0pky"></td>
 			</tr>
 			<tr>
-				<td class="tg-0lax title"><div class="myinfo-td">전화번호</div></td>
+				<td class="tg-0lax title"><div class="myinfo-td">상호명</div></td>
 				<td class="tg-0lax"><input class="input myinfo-input"
-					type="text" placeholder="010-7777-8767" /></td>
+					type="text" placeholder="${requestScope.bsi.memberName }" /></td>
+				<td class="tg-0lax"></td>
+			</tr>
+			<tr>
+				<td class="tg-0lax title"><div class="myinfo-td">대표번호</div></td>
+				<td class="tg-0lax"><input class="input myinfo-input"
+					type="text" placeholder="${requestScope.bsi.contact }" /></td>
 				<td class="tg-0lax"></td>
 			</tr>
 			<tr>
