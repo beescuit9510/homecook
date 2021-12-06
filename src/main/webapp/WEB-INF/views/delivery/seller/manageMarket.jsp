@@ -29,7 +29,7 @@
 	        			<div class="user_div">
 	        				<div class="user_div_div">
 	        					<div class="user_div_content">
-	        						<span class="user_div_name">신동훈<span class="user_div_nim">님</span></span>
+	        						<span class="user_div_name">${sessionScope.m.memberName }<span class="user_div_nim">님</span></span>
 	        					</div>
 	        				</div>
 	        			</div>
