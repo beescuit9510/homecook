@@ -15,4 +15,10 @@ public class SellerDao {
 		return sqlSession.selectOne("businessSellerInfo.selectOneSmember",memberNo);
 		
 	}
+
+
+	public int updateSellerMember(BusinessSellerInfo businessSellerInfo) {
+		
+		return sqlSession.update("businessSellerInfo.updateSellerMember",businessSellerInfo);
+	}
 }

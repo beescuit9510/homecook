@@ -14,4 +14,9 @@ public class SellerService {
 		BusinessSellerInfo bsi = dao.selectOneSmember(memberNo);
 		return bsi;
 	}
+	public int updateSellerMember(BusinessSellerInfo businessSellerInfo) {
+		int result = dao.updateSellerMember(businessSellerInfo);
+		
+		return result;
+	}
 }

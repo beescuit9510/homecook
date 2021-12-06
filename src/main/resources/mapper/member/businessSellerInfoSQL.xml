@@ -62,5 +62,8 @@ WHERE MEMBER_NO = #{memberNo}
 
  </select>
 
+<update id="updateSellerMember">
+update BUSINESS_SELLER_INFO set contact=#{contact},email=#{email} where member_no={memberNo}
+</update>
 
 </mapper>

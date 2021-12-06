@@ -49,5 +49,39 @@ private SellerService service;
 		return "zipcoock/seller/mypage/sellerInfoFrm";
 	}
 	
-	
+	@RequestMapping(value="/zipsellerMypage.do")
+	public String sellerMypage(Member member, Model model, HttpSession session) {
+		Member m = (Member)session.getAttribute("m");
+		
+		BusinessSellerInfo bsi = service.selectOneSmember(m.getMemberNo());
+		String email = bsi.getEmail();
+				String[] useremail = email.split("@");
+		 model.addAttribute("bsi", bsi);
+		 model.addAttribute("email1", useremail[0]);
+		 model.addAttribute("email2", useremail[1]);
+		 
+		return "zipcoock/seller/mypage/mypage";
+	}
+	@RequestMapping(value="/updateSellerMember.do")
+	public String updateSellerMember(BusinessSellerInfo businessSellerInfo, Model model, HttpSession session, String email1, String email2) {
+		businessSellerInfo.setEmail(email1 + "@" + email2);
+		int result = service.updateSellerMember(businessSellerInfo);
+		 if(result>0) {
+ 			 model.addAttribute("msg","회원정보수정성공");
+ 		 }else {
+ 			 model.addAttribute("msg","회원정보수정실패");
+ 		 }
+ 		model.addAttribute("loc","/");
+ 		 return "common/msg";
+	}
+	@RequestMapping(value="/test.do")
+	public String test() {
+
+		String str = "oso792@naver.com";
+		String[] array = str.split("@");
+		for(int i=0;i<array.length;i++) {
+			System.out.println(array[i]);
+			}
+		return "";
+	}
 }
