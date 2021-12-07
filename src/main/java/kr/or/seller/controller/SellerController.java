@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.or.seller.model.service.SellerService;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PwChangeVO;
 
 @Controller
 public class SellerController {
@@ -56,6 +57,7 @@ private SellerService service;
 		BusinessSellerInfo bsi = service.selectOneSmember(m.getMemberNo());
 		String email = bsi.getEmail();
 				String[] useremail = email.split("@");
+				
 		 model.addAttribute("bsi", bsi);
 		 model.addAttribute("email1", useremail[0]);
 		 model.addAttribute("email2", useremail[1]);
@@ -65,23 +67,36 @@ private SellerService service;
 	@RequestMapping(value="/updateSellerMember.do")
 	public String updateSellerMember(BusinessSellerInfo businessSellerInfo, Model model, HttpSession session, String email1, String email2) {
 		businessSellerInfo.setEmail(email1 + "@" + email2);
+		System.out.println(businessSellerInfo);
 		int result = service.updateSellerMember(businessSellerInfo);
+		
+		System.out.println(result);
 		 if(result>0) {
  			 model.addAttribute("msg","회원정보수정성공");
  		 }else {
  			 model.addAttribute("msg","회원정보수정실패");
  		 }
  		model.addAttribute("loc","/");
- 		 return "common/msg";
+ 		 return "zipcoock/common/msg";
 	}
-	@RequestMapping(value="/test.do")
-	public String test() {
 
-		String str = "oso792@naver.com";
-		String[] array = str.split("@");
-		for(int i=0;i<array.length;i++) {
-			System.out.println(array[i]);
-			}
-		return "";
+	@RequestMapping(value="/PwChange.do")
+	public String PwChange(PwChangeVO pwVO, Model model) {
+		System.out.println(pwVO);
+		int result  = service.sellerChangePw(pwVO);// 이떄 암호화 실행 그래서 service에 memberType만 보내짐 해결방안 1. service 2번 호출해서 newpw와 oldpw 각각 m에 넣어보냄
+		System.out.println(result);
+		if(result == -1) {
+			 model.addAttribute("msg","비밀번호가 틀립니다.");
+			 
+		 }else if(result == 0){
+				 
+				 model.addAttribute("msg","비밀번호 변경 실패.");
+			 }else {
+				 model.addAttribute("msg","비밀번호 변경 성공.");
+			 }
+		 
+		model.addAttribute("loc","/");
+		return "zipcoock/common/msg";
+		
 	}
 }

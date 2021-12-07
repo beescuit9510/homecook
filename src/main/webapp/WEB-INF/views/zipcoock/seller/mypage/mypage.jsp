@@ -21,13 +21,20 @@
 		color:#333; 
 		font-weight:600;
 	}
+		.input{
+			height: 24px;
+		}
 </style>
 </head>
 <body>
-<div class="s-wrapper">
-	<%@include file="/WEB-INF/views/delivery/buyer/mypage/zcdMypageHeader.jsp"%>
+<div class="s-wrapper" style="padding-bottom: 250px;">
+<%@include file="/WEB-INF/views/common/header.jsp"%>
+<%@include file="/WEB-INF/views/zipcoock/common/leftMenu.jsp"%>
         <div class = "content_div">
         	<div class = "content_div_area">
+        	<div class = "content_div_content">
+        	
+        			
         		<div class = "content_div_content">
         			
         			<form action="/updateSellerMember.do" id="bsiFrm">
@@ -61,30 +68,32 @@
 										<option value="hanmail.net">hanmail.net</option>
 								</select>	</div>
 	        		</div>
+	        		<input type="hidden" name="memberNo" value="${requestScope.bsi.memberNo }">
 	        		</form>
-	        		<form action="PwChange" id="PwChgFrm">
+	        		<form action="PwChange.do" id="PwChgFrm">
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">현재 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" class="input"></div>
+	        			<div class="content_div_opt2"><input type="password" class="input" name="oldPassword"></div>
 	        		</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">새로운 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" class="input"></div>
+	        			<div class="content_div_opt2"><input type="password" class="input" name="newPassword"></div>
+	        			<input type="hidden"name="memberId" value="${requestScope.bsi.memberId }">
 	        		<button onclick="document.getElementById('PwChgFrm').submit()" class="buy_btn" style="width: 200px; height: 30px; margin-left: 40px; border-radius: 10px; padding: 5px;">비밀번호 수정</button>
 	        		</div>
 	        		</form>
-	        		<div class="btn-area">
+	        		<div class="btn-area" style="padding-top: 30px">
 		        		<button type="button" class="buy_btn" onclick="document.getElementById('bsiFrm').submit();">변경</button>
 		        		<button type="reset" class="cart_btn">취소</button>	        		
 	        		</div>
         		</div>	
         	</div>
         </div>
+        	</div>
+        </div>
     </div> <!-- main content -->
-	<%@include file="/WEB-INF/views/delivery/buyer/mypage/zcdMypageFooter.jsp"%>
-	<style>
-		.input{
-			height: 24px;
-		}
-	</style>
+	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+
+      </body>
+      </html>
       

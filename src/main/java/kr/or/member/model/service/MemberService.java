@@ -24,7 +24,7 @@ public class MemberService {
 		 * dao.login2(memberId,memberPw); return m; }
 		 */
 		
-		public Member selectOneMember(Member member) {
+		public Member selectOneMemberEnc(Member member) {
 			Member m = dao.selectOneMember(member);
 			return m;
 		}
@@ -67,6 +67,7 @@ public class MemberService {
 			return bsi;
 		}
 
+	
 
 
 		
