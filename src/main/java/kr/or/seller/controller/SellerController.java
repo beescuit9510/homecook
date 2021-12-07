@@ -57,6 +57,7 @@ private SellerService service;
 		BusinessSellerInfo bsi = service.selectOneSmember(m.getMemberNo());
 		String email = bsi.getEmail();
 				String[] useremail = email.split("@");
+				
 		 model.addAttribute("bsi", bsi);
 		 model.addAttribute("email1", useremail[0]);
 		 model.addAttribute("email2", useremail[1]);
