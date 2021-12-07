@@ -191,10 +191,17 @@
     font-weight: 500;
 }
 
+/* 필수, 선택 정보 밑줄 */
 .info_span {
     font-weight: 700;
     box-shadow: #c4ddf1 0px -3px inset;
 }
-.addr_margin {
+/* input 위, 아래 간격 margin */
+.add_margin {
 	margin-bottom: 5px;
+}
+/* 유효성검사 span */
+.span_chk {
+	line-height: 38px;
+	font-size: 14px;
 }

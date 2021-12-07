@@ -63,48 +63,54 @@
 		        									<hr>
 		        									
 												    <div class="row">
-														<label for="market-write-name" class="col-2 col-form-label" name="market-name">상호명</label>
+														<label for="storeName" class="col-2 col-form-label">상호명</label>
 														<div class="col-5">
-															<input type="text" class="form-control" id="market-write-name"
-																name="tradeTitle" placeholder="상호명을 입력하세요.">
-															<span class="titleChk span-rag-chk"></span>
+															<input type="text" class="form-control" id="storeName"
+																name="storeName" placeholder="상호명을 입력하세요." maxlength="20">
+														</div>
+														<div class="col-4">
+															<span class="span_chk" id="marketNameChk"></span>
 														</div>
 													</div>
 	        										<br>
 	        										
 	        										<div class="row">
-														<label for="market-wirte-time" class="col-2 col-form-label">운영시간</label>
+														<label for="storeTime" class="col-2 col-form-label">운영시간</label>
 														<div class="col-10">
-															<textarea class="form-control" name="tradeContent"
-																id="market-wirte-time" rows="4" placeholder="운영시간을 입력하세요."></textarea>
+															<textarea class="form-control" name="storeTime"
+																id="storeTime" rows="4" placeholder="운영시간을 입력하세요."></textarea>
 														</div>
 													</div>
 													<br>
 	        										
 	        										<div class="row">
-	        											<label for="market-wirte-phone" class="col-2 col-form-label">전화번호</label>
+	        											<label for="storePhone" class="col-2 col-form-label">전화번호</label>
 	        											<div class="col-5">
-	        												<input type="text" class="form-control" id="market-write-phone"
+	        												<input type="text" class="form-control" id="storePhone"
 	        											 		name="storePhone" placeholder="전화번호를 입력하세요. (- 제외)" maxlength="11">
-															<span class="expResult"></span>
 	        											</div>
+	        											<div class="col-4">
+															<span class="span_chk" id="marketPhoneChk"></span>
+														</div>
 	        										</div>
 	        										<br>
 	        										
 	        										<div class="row">
-	        											<label for="market-wirte-min" class="col-2 col-form-label">최소주문금액</label>
+	        											<label for="minPrice" class="col-2 col-form-label">최소주문금액</label>
 	        											<div class="col-5">
-	        												<input type="text" class="form-control" id="market-write-min"
+	        												<input type="text" class="form-control" id="minPrice"
 	        											 		name="minPrice" placeholder="최소주문금액을 입력하세요." maxlength="5">
-															<span class="expResult"></span>
 	        											</div>
+	        											<div class="col-4">
+															<span class="span_chk" id="minPriceChk"></span>
+														</div>
 	        										</div>
 	        										<br>
 	        										
 	        										<div class="row">
 	        											<label class="col-2 col-form-label">주소입력</label>
 	        											<div class="col-4">
-															<input type="text" name="postcode" id="postcode" class="form-control addr_margin" readonly placeholder="우편번호">
+															<input type="text" name="postcode" id="postcode" class="form-control add_margin" readonly placeholder="우편번호">
 	        											</div>
 	        											<div class="col-2" style="padding: 0;">
 															<button type="button" class="btn btn-primary" id="findpostcode" style="width: 70px;">찾기</button>	        											
@@ -115,24 +121,23 @@
 	        										<div class="row">
 														<label class="col-2 col-form-label"> </label>
 														<div class="col-8">
-															<input type="text" name="address1" id="address1" class="form-control addr_margin" readonly placeholder="주소">			
+															<input type="text" name="address1" id="address1" class="form-control add_margin" readonly placeholder="주소">			
 														</div>
 													</div>
 										
 													<div class="row">
 														<label class="col-2 col-form-label"> </label>
 														<div class="col-8">
-															<input type="text" name="address2" id="address2" class="form-control addr_margin" placeholder="상세주소" maxlength="40">
-															<span class="expResult"></span>														
+															<input type="text" name="address2" id="address2" class="form-control add_margin" placeholder="상세주소" maxlength="40">														
 														</div>
 													</div>
 	        										<br>
 	        										
 													<div class="row">
-														<label for="market-wirte-origin" class="col-2 col-form-label">원산지 정보</label>
+														<label for="originInfo" class="col-2 col-form-label">원산지 정보</label>
 														<div class="col-10">
 															<textarea class="form-control" name="originInfo"
-																id="market-wirte-origin" rows="4" placeholder="재료명: 원산지 (돼지고기: 국내산, 닭고기: 브라질산)"></textarea>
+																id="originInfo" rows="4" placeholder="재료명: 원산지 (돼지고기: 국내산, 닭고기: 브라질산)"></textarea>
 														</div>
 													</div>
 													<br>
@@ -140,7 +145,7 @@
 													<div class="row">
 														<label class="col-2 col-form-label">카테고리</label>
 														<div class="col-3">
-															<select id="category1" name="category1" class="form-select addr_margin" >
+															<select id="category1" name="category1" class="form-select add_margin" >
 											                    <option value="" selected disabled>선택</option>
 											                    <option value="한식">한식</option>
 											                    <option value="치킨">치킨</option>
@@ -185,28 +190,28 @@
 		        									<hr>
 	        										
 	        										<div class="row">
-														<label for="market-wirte-info" class="col-2 col-form-label">매장소개</label>
+														<label for="storeInfo" class="col-2 col-form-label">매장소개</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeInfo"
-																id="market-wirte-info" rows="4" placeholder="매장 소개를 입력하세요."></textarea>
+																id="storeInfo" rows="4" placeholder="매장 소개를 입력하세요."></textarea>
 														</div>
 													</div>
 													<br>
 													
 													<div class="row">
-														<label for="market-wirte-notice" class="col-2 col-form-label">공지사항</label>
+														<label for="storeNotice" class="col-2 col-form-label">공지사항</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeNotice"
-																id="market-wirte-notice" rows="4" placeholder="공지사항을 입력하세요."></textarea>
+																id="storeNotice" rows="4" placeholder="공지사항을 입력하세요."></textarea>
 														</div>
 													</div>
 													<br>
 													
 													<div class="row">
-														<label for="market-wirte-tip" class="col-2 col-form-label">팁/안내</label>
+														<label for="storeTip" class="col-2 col-form-label">팁/안내</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeTip"
-																id="market-wirte-tip" rows="4" placeholder="팁 또는 안내 내용을 입력하세요."></textarea>
+																id="storeTip" rows="4" placeholder="팁 또는 안내 내용을 입력하세요."></textarea>
 														</div>
 													</div>
 													<br><br>
@@ -233,6 +238,11 @@
         </div> <!-- main field -->
     <script>
     	$(function() {
+    		
+    		var storeNameChk = false;
+    		var storePhoneChk = false;
+    		var minPriceChk = false;
+    		var address2Chk = false;
     		
     		$("#findpostcode").on("click", function() {
     			return findAddr();
@@ -266,7 +276,7 @@
     			var fileType = filePoint.toLowerCase();
     			var fileSize = 10 * 1024 * 1024; // 10메가
     			if (fileType == 'jpg' || fileType == 'png' || fileType == 'jpeg' || fileType == 'gif') {
-    			var uploadFileSize = this.files[0].size;
+    				var uploadFileSize = this.files[0].size;
     				if (uploadFileSize > fileSize) {
     					alert("용량은 10MB 이하로 가능합니다.");
     					$(this).val("");
@@ -276,6 +286,143 @@
     			} else {
     				alert("이미지 파일만 가능합니다.");
     				$(this).val("");
+    			}
+    		});
+    		
+    		
+    		$("#enrollsubmit").on("click", function() {
+    			return checkAddMarket();
+    		});
+    		
+    		function checkAddMarket() {
+    			var storeName = $("#storeName").val();
+    			var storeTime = $("#storeTime").val();
+    			var storePhone = $("#storePhone").val();
+    			var minPrice = $("#minPrice").val();
+    			var postcode = $("#postcode").val();
+    			var address1 = $("#address1").val();
+    			var address2 = $("#address2").val();
+    			var originInfo = $("#originInfo").val();
+    			var category1 = $("#category1").val();
+    			var files = $("input[name=files]").val();
+    			
+    			if (storeName == "" || storeNameChk == false) {
+    				alert("상호명을 확인하세요.");
+    				return false;
+    			} else if (storeTime == "") {
+    				alert("운영시간을 확인하세요.");
+    				return false;
+    			} else if (storePhone == "" || storePhoneChk == false) {
+    				alert("전화번호를 확인하세요.");
+    				return false;
+    			} else if (minPrice == "" || minPriceChk == false) {
+    				alert("최소주문금액을 확인하세요.");
+    				return false;
+    			} else if (postcode == "" || address1 == "" || address2 == "" || address2Chk == false) {
+    				alert("주소를 확인하세요.");
+    				return false;
+    			} else if (originInfo == "") {
+    				alert("원산지 정보를 확인하세요.");
+    				return false;
+    			} else if (category1 == null) {
+    				alert("카테고리를 확인하세요.");
+    				return false;
+    			} else if (files == "") {
+    				alert("매장 로고를 선택하세요.");
+    				return false;
+    			} else {
+    				return true;
+    			}
+    		}
+    		
+    		$("#storeName").on("keyup", function() {
+    			var storeName = $(this).val();
+    			var storeNameReg = /^[0-9a-zA-Z가-힣\s]{2,20}$/;
+    			if (storeNameReg.test(storeName)) {
+    				$.ajax({
+    					url : "/storeNameCheck.do",
+    					data : {
+    						storeName : storeName
+    					},
+    					type : "post",
+    					success : function(data) {
+    						if (data == 0) {
+    							$("#marketNameChk").html("");
+    							/*
+    							$("#marketNameChk").html("사용 가능한 상호명입니다.");
+    							$("#marketNameChk").css("color", "#9ac6e8");
+    							*/
+    							storeNameChk = true;
+    						} else if (data == 1) {
+    							$("#marketNameChk").html("사용중인 상호명입니다.");
+    							$("#marketNameChk").css("color", "red");
+    							storeNameChk = false;
+    						}
+    					}
+    				});
+    			} else {
+    				$("#marketNameChk").html("다시 입력해주세요.")
+    				$("#marketNameChk").css("color", "red");
+    				storeNameChk = false;
+    			}
+    		});
+    		
+    		$("#storePhone").on("keyup", function() {
+    			var storePhone = $(this).val();
+    			var storePhoneReg = /^[0-9]{10,11}$/;
+    			if (storePhoneReg.test(storePhone)) {
+    				$.ajax({
+    					url : "/storePhoneCheck.do",
+    					data : {
+    						storePhone : storePhone
+    					},
+    					type : "post",
+    					success : function(data) {
+    						if (data == 0) {
+    							$("#marketPhoneChk").html("");
+    							/*
+    							$("#marketPhoneChk").html("사용 가능한 전화번호입니다.");
+    							$("#marketPhoneChk").css("color", "#9ac6e8");
+    							*/
+    							storePhoneChk = true;
+    						} else if (data == 1) {
+    							$("#marketPhoneChk").html("사용중인 전화번호입니다.");
+    							$("#marketPhoneChk").css("color", "red");
+    							storePhoneChk = false;
+    						}
+    					}
+    				});
+    			} else {
+    				$("#marketPhoneChk").html("다시 입력해주세요.")
+    				$("#marketPhoneChk").css("color", "red");
+    				storePhoneChk = false;
+    			}
+    		});
+    		
+    		$("#minPrice").on("keyup", function() {
+    			var minPrice = $(this).val();
+    			var minPriceReg = /^[1-9][0-9]{3,4}$/;
+    			if (minPriceReg.test(minPrice)) {
+    				$("#minPriceChk").html("");
+					/*
+    				$("#minPriceChk").html("사용 가능");
+					$("#minPriceChk").css("color", "#9ac6e8");
+					*/
+    				minPriceChk = true;
+				} else {
+					$("#minPriceChk").html("1,000원 이상 입력해주세요.");
+					$("#minPriceChk").css("color", "red");
+					minPriceChk = false;
+    			}
+    		});
+    		
+    		$("#address2").on("keyup", function() {
+    			var address2 = $(this).val();
+    			var address2Reg = /^[0-9a-zA-Z가-힣][0-9a-zA-Z가-힣\s]{1,40}$/;
+    			if (address2Reg.test(address2)) {
+    				address2Chk = true;
+				} else {
+					address2Chk = false;
     			}
     		});
     		
