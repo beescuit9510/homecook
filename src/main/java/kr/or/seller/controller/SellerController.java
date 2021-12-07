@@ -1,5 +1,7 @@
 package kr.or.seller.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.or.seller.model.service.SellerService;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.PwChangeVO;
 
 @Controller
@@ -99,4 +102,15 @@ private SellerService service;
 		return "zipcoock/common/msg";
 		
 	}
-}
+	@RequestMapping(value="/productList.do")
+		public String productList(Model model, HttpSession session) {
+		Member m = (Member)session.getAttribute("m");
+		System.out.println(m);
+		ArrayList<Product> list = service.selectProductList(m);
+		System.out.println(list+"프로덕트 리스트");
+		model.addAttribute(list);
+			return "zipcoock/seller/mypage/productList";
+		}
+	}
+
+

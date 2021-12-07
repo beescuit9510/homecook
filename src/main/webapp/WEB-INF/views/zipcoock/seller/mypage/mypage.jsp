@@ -21,21 +21,19 @@
 		color:#333; 
 		font-weight:600;
 	}
-		.input{
-			height: 24px;
-		}
+	
 </style>
 </head>
 <body>
-<div class="s-wrapper" style="padding-bottom: 250px;">
+<div class="s-wrapper">
 <%@include file="/WEB-INF/views/common/header.jsp"%>
 <%@include file="/WEB-INF/views/zipcoock/common/leftMenu.jsp"%>
         <div class = "content_div">
         	<div class = "content_div_area">
-        	<div class = "content_div_content">
+        	
         	
         			
-        		<div class = "content_div_content">
+        		<div class = "content_div_content" style="background: white; padding: 20px 20px; border: 1px solid rgb(221, 221, 221);">
         			
         			<form action="/updateSellerMember.do" id="bsiFrm">
         			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">정보 확인/수정</div>
@@ -71,11 +69,11 @@
 	        		<input type="hidden" name="memberNo" value="${requestScope.bsi.memberNo }">
 	        		</form>
 	        		<form action="PwChange.do" id="PwChgFrm">
-	        		<div class = "content_div_info">
+	        		<div class = "content_div_info" style="border-top:1px solid gray;">
 	        			<div class="content_div_opt1">현재 비밀번호</div>
 	        			<div class="content_div_opt2"><input type="password" class="input" name="oldPassword"></div>
 	        		</div>
-	        		<div class = "content_div_info">
+	        		<div class = "content_div_info" style="border-bottom: 1px solid gray; margin-bottom: 50px;">
 	        			<div class="content_div_opt1">새로운 비밀번호</div>
 	        			<div class="content_div_opt2"><input type="password" class="input" name="newPassword"></div>
 	        			<input type="hidden"name="memberId" value="${requestScope.bsi.memberId }">
@@ -93,7 +91,16 @@
         </div>
     </div> <!-- main content -->
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
-
+<style>
+	.input{
+			height: 30px;
+		}
+	.content_div_info {
+	margin: 0px;
+	height : 80px;
+	border : unset;
+		}
+</style>
       </body>
       </html>
       

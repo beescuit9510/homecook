@@ -1,12 +1,16 @@
 package kr.or.seller.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import kr.or.member.model.dao.MemberDao;
 import kr.or.seller.model.dao.SellerDao;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.PwChangeVO;
 
 @Service
@@ -36,6 +40,10 @@ public class SellerService {
 			m.setMemberPw(pc.getNewPassword());
 			return mdao.updatePW(m);
 		}
+	}
+	public ArrayList<Product> selectProductList(Member m) {
+		ArrayList<Product> list = dao.selectProductList(m);
+		return list;
 	}
 	
 }
