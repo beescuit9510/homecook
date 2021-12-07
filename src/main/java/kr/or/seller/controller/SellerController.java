@@ -66,7 +66,10 @@ private SellerService service;
 	@RequestMapping(value="/updateSellerMember.do")
 	public String updateSellerMember(BusinessSellerInfo businessSellerInfo, Model model, HttpSession session, String email1, String email2) {
 		businessSellerInfo.setEmail(email1 + "@" + email2);
+		System.out.println(businessSellerInfo);
 		int result = service.updateSellerMember(businessSellerInfo);
+		
+		System.out.println(result);
 		 if(result>0) {
  			 model.addAttribute("msg","회원정보수정성공");
  		 }else {
@@ -78,19 +81,19 @@ private SellerService service;
 
 	@RequestMapping(value="/PwChange.do")
 	public String PwChange(PwChangeVO pwVO, Model model) {
-		Member m  = service.checkPwEnc(pwVO);
-		if(m == null) {
+		System.out.println(pwVO);
+		int result  = service.sellerChangePw(pwVO);// 이떄 암호화 실행 그래서 service에 memberType만 보내짐 해결방안 1. service 2번 호출해서 newpw와 oldpw 각각 m에 넣어보냄
+		System.out.println(result);
+		if(result == -1) {
 			 model.addAttribute("msg","비밀번호가 틀립니다.");
 			 
-		 }else {
-			 int result = service.updatePwEnc(pwVO);
-			 if(result != 0) {
+		 }else if(result == 0){
 				 
-				 model.addAttribute("msg","비밀번호 변경 성공.");
-			 }else {
 				 model.addAttribute("msg","비밀번호 변경 실패.");
+			 }else {
+				 model.addAttribute("msg","비밀번호 변경 성공.");
 			 }
-		 }
+		 
 		model.addAttribute("loc","/");
 		return "zipcoock/common/msg";
 		

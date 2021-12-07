@@ -61,15 +61,17 @@
 										<option value="hanmail.net">hanmail.net</option>
 								</select>	</div>
 	        		</div>
+	        		<input type="hidden" name="memberNo" value="${requestScope.bsi.memberNo }">
 	        		</form>
 	        		<form action="PwChange.do" id="PwChgFrm">
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">현재 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" class="input"></div>
+	        			<div class="content_div_opt2"><input type="password" class="input" name="oldPassword"></div>
 	        		</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">새로운 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" class="input"></div>
+	        			<div class="content_div_opt2"><input type="password" class="input" name="newPassword"></div>
+	        			<input type="hidden"name="memberId" value="${requestScope.bsi.memberId }">
 	        		<button onclick="document.getElementById('PwChgFrm').submit()" class="buy_btn" style="width: 200px; height: 30px; margin-left: 40px; border-radius: 10px; padding: 5px;">비밀번호 수정</button>
 	        		</div>
 	        		</form>

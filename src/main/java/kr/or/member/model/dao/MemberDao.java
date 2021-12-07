@@ -60,13 +60,13 @@ public class MemberDao {
 
 
 
-	public Member selectOneMemberPW(PwChangeVO pwVO) {
-		return  (Member)sqlSession.selectOne("member.selectOneMemberPW",pwVO);
+	public Member selectOneMemberPW(Member m) {
+		return  (Member)sqlSession.selectOne("member.selectOneMemberPW",m);
 	}
 
-	public int updatePW(PwChangeVO pwVO) {
+	public int updatePW(Member m) {
 
-		return sqlSession.update("member.updateSmemberPW",pwVO);
+		return sqlSession.update("member.updateSmemberPW",m);
 	}
 
 

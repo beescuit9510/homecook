@@ -25,12 +25,17 @@ public class SellerService {
 		return result;
 	}
 	
-	public Member checkPwEnc(PwChangeVO pwVO) {
-		Member m = mdao.selectOneMemberPW(pwVO);
-		return m;
+	public int sellerChangePw(PwChangeVO pc) {
+		Member m = new Member(); // 멤버객체를 매개변수로하기때문에 생성
+		m.setMemberId(pc.getMemberId());
+		m.setMemberPw(pc.getOldPassword());
+		Member member = mdao.selectOneMember(m);
+		if(member == null) {
+			return -1;
+		}else {
+			m.setMemberPw(pc.getNewPassword());
+			return mdao.updatePW(m);
+		}
 	}
-	public int updatePwEnc(PwChangeVO pwVO) {
-		int result = mdao.updatePW(pwVO);
-		return result;
-	}
+	
 }

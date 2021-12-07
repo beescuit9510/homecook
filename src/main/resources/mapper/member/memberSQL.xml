@@ -36,7 +36,7 @@
     <selectKey resultType="_int" order="AFTER" keyProperty="memberNo">select max(member_no) from member</selectKey>  
   </insert>
   
-  <select id="selectOneMemberPW" resultType="m">
+  <select id="selectOneMemberPW" parameterType="m" resultType="m">
   select 
   member_no as memberNo,
   member_name as memberName,
@@ -45,10 +45,10 @@
   member_phone as memberPhone,
   member_level as memberLevel,
   delivery_level as deliveryLevel
-  from member where member_id=#{memberId} and member_pw=#{oldPassword}
+  from member where member_id=#{memberId} and member_pw=#{memberPw}
   </select>
   
-  <update id="updateSmemberPW">
-update member set member_pw=#{newPassword} where member_id=#{memberId} and member_pw=#{oldPassword}
+  <update id="updateSmemberPW" parameterType="m">
+update member set member_pw=#{memberPw} where member_id=#{memberId}
 </update>
 </mapper>
