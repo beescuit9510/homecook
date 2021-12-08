@@ -35,4 +35,9 @@ public class PurchaseController {
 	public String zcdMyQnA() {
 		return "delivery/buyer/mypage/myQnA";
 	}
+	
+	@RequestMapping(value="zcdFindResult.do")
+	public String zcdFindResult() {
+		return "delivery/buyer/mypage/myQnA";
+	}
 }

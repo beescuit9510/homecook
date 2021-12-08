@@ -162,19 +162,15 @@
     padding-left: 16px;
 }
 /* no height*/
-.content_div_hfree {
+.content_div_question{
     font-size: 14px;
-    line-height: 20px;
     letter-spacing: -0.5px;
     font-weight: 400;
     background: rgb(255, 255, 255);
     border: 1px solid rgb(221, 221, 221);
     margin-bottom: 8px;
-    display: flex;
-    flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
-    padding-left: 16px;
 }
 /* 상호명 */
 .content_div_opt1 {
