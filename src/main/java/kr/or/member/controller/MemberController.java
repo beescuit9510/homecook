@@ -1,8 +1,5 @@
 package kr.or.member.controller;
 
-import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.google.gson.Gson;
 
 import kr.or.member.model.service.MailSender;
 import kr.or.member.model.service.MemberService;
@@ -40,7 +35,7 @@ public class MemberController {
 		//Model -> request영역에 데이터를 등록하기 위한 객체
 		//request.setAttribute("key",value) -> model.addAttribute("key",value);
 		System.out.println("사용자 입력 비밀번호 : " + member.getMemberPw());
-		Member m = service.selectOneMember(member);
+		Member m = service.selectOneMemberEnc(member);
 		if(m != null) {
 			session.setAttribute("m", m);
 			model.addAttribute("msg","로그인 성공");
@@ -71,7 +66,7 @@ public class MemberController {
 		member.setMemberId(id);
 		member.setMemberPw(id);
 		System.out.println(id);
-		Member m = service.selectOneMember(member);
+		Member m = service.selectOneMemberEnc(member);
 		
 		if(m != null) {
 			session.setAttribute("m", m);
@@ -185,5 +180,7 @@ public class MemberController {
 		return result;
 
 	}
+	
+	
 
 	}

@@ -2,6 +2,8 @@ package kr.or.member.model.service;
 
 
 
+import javax.mail.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +24,7 @@ public class MemberService {
 		 * dao.login2(memberId,memberPw); return m; }
 		 */
 		
-		public Member selectOneMember(Member member) {
+		public Member selectOneMemberEnc(Member member) {
 			Member m = dao.selectOneMember(member);
 			return m;
 		}
@@ -60,8 +62,13 @@ public class MemberService {
 
 		public BusinessSellerInfo selectOneEmail(BusinessSellerInfo businessSellerInfo) {
 			BusinessSellerInfo bsi = dao.selectOneEmail(businessSellerInfo);
+			
+			
 			return bsi;
 		}
+
+	
+
 
 		
 }

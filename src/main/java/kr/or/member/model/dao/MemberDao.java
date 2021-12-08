@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PwChangeVO;
 
 
 @Repository
@@ -56,5 +57,18 @@ public class MemberDao {
 
 		return sqlSession.selectOne("businessSellerInfo.selectOneEmail",businessSellerInfo);
 	}
+
+
+
+	public Member selectOneMemberPW(Member m) {
+		return  (Member)sqlSession.selectOne("member.selectOneMemberPW",m);
+	}
+
+	public int updatePW(Member m) {
+
+		return sqlSession.update("member.updateSmemberPW",m);
+	}
+
+
 	
 }
