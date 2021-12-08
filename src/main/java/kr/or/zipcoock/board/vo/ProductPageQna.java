@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class ProductPageQna {
 	private String memberName;
 	private String memberId;
+	private String memberNo;
 	private int qnaNo;
 	private int productRefNo;
 	private int qnaRefNo;

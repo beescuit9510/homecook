@@ -43,4 +43,20 @@ public class AdminDao
 		return (ArrayList<AdminRefund>)list;
 	}
 
+	public Member selectOneMemberInfo(int memberNo) 
+	{		
+		return sqlSession.selectOne("admin.selectOneMemberInfo",memberNo);
+	}
+
+	public int updateMemberInfo(Member m) 
+	{
+		return sqlSession.update("admin.updateOneMemberInfo",m);
+	}
+
+	public AdminQna selectOneQnaInfo(int qnaNum) 
+	{
+		
+		return sqlSession.selectOne("admin.selectOneQnaInfo",qnaNum);
+	}
+
 }

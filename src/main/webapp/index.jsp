@@ -12,11 +12,14 @@
 <body>
 <h1>final project</h1>
 <a href = "/call_MainPage.do">main</a>
-
-<a href = "/loginFrm.do">로그인</a>
-<a href = "/joinFrm.do">회원가입</a>
-<a href = "/CheckSnum.do">회원가입</a>
+<fieldset>옥승엽
+<a href = "/sellerInfoFrm.do">판매자회원정보</a>
+<a href = "/zipsellerMypage.do">판매자정보</a>
+<a href = "/sellerMypage.do">판매자 마이페이지</a>
+<a href = "/productList.do">상품 관리페이지</a>
+</fieldset>
 <hr>
+<br>
 <a href = "/mainboard.do">집쿠욱메인보드</a>
 <a href = "/mainboardView.do?memberNo=1&productNo=1">메인상세</a>
 
@@ -27,11 +30,11 @@
 <a href = "/mypageQnAView.do">qna</a>
 <a href = "/mypageHelpView.do">help</a>
 <hr>
-<a href = "/sellerMypage.do">판매자 마이페이지</a>
+
 <h1>delivery</h1>
 <a href="/zcdMain.do">딜리버리 메인페이지</a>
 
-<a href = "/manageMarket.do">딜리버리 매장관리</a>
+<a href = "/zcdSellerloginFrm.do">딜리버리 매장관리</a>
 
 <hr>
 <a href="/eventList.do">이벤트 페이지</a>

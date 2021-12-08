@@ -1,9 +1,11 @@
 package kr.or.zipcoock.admin.controller;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -53,5 +55,38 @@ public class AdminController
 	}
 	
 	
-	//getAllRefund
+	@RequestMapping(value = "/admin_MemberInfo.do")
+	public String call_MemberInfo(int memberNo, Model model)
+	{		
+		Member m = service.selectOneMemberInfo(memberNo);
+		model.addAttribute("m", m);
+		
+		return "admin/adminMemberInfo";
+	}
+	
+	@RequestMapping(value = "/Fix_MemberInfo.do")
+	@ResponseBody
+	public int fix_MemberInfo(int memberNo, String memberName, String memberLevel, String memberDLevel, String memberPhone)
+	{		
+		
+		Member m = new Member();
+		
+		m.setMemberNo(memberNo);
+		m.setMemberName(memberName);
+		m.setMemberLevel(memberLevel);
+		m.setDeliveryLevel(memberDLevel);
+		m.setMemberPhone(memberPhone);
+		
+		return service.updateMemberInfo(m);
+	}	
+	
+	@RequestMapping(value = "/admin_QnaInfo.do")
+	public String call_QnaInfo(int qnaNum, Model model)
+	{		
+		AdminQna q = service.selectOneQnaInfo(qnaNum);
+		model.addAttribute("q", q);		
+		
+		return "admin/adminQnaInfo";
+	}
+	
 }
