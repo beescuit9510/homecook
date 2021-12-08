@@ -117,9 +117,13 @@ private SellerService service;
 	model.addAttribute("sppd",sppd);
 		return "zipcoock/seller/mypage/productList";
 	}
-	@RequestMapping(value="/productinsert.do")
-	public String productinsert(Model model, HttpSession session,Product product, ReturnPolicy returnPlicy,ShippingInfo shippingInfo) {
+	@RequestMapping(value="/productInsert.do")
+	public String productInsert(Model model, HttpSession session,Product product, ReturnPolicy returnPlicy,ShippingInfo shippingInfo) {
 	return "zipcoock/common/msg";
+	}
+	@RequestMapping(value="/productInsertFrm.do")
+	public String producInsertFrm() {
+	return "zipcoock/seller/mypage/insertProduct";	
 	}
 	}
 

@@ -31,59 +31,157 @@
         <div class = "content_div">
         	<div class = "content_div_area">
         	
-        	
         			
         		<div class = "content_div_content" style="background: white; padding: 20px 20px; border: 1px solid rgb(221, 221, 221);">
-        			
-        			<form action="/updateSellerMember.do" id="bsiFrm">
-        			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">정보 확인/수정</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">상호명</div>
-	        			<div class="content_div_opt2"><input type="text" class="input" name="tradeName" value="${requestScope.bsi.tradeName }" readonly></div>
-	        		</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">사업자 번호</div>
-	        			<div class="content_div_opt2"><input type="text" class="input" name="businessNo" value="${requestScope.bsi.businessNo }" readonly></div>
-	        		</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">아이디</div>
-	        			<div class="content_div_opt2"><input type="text" class="input" name="memberId" value="${requestScope.bsi.memberId }" readonly ></div>
-	        		</div>
-	        		
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">대표 번호</div>
-	        			<div class="content_div_opt2"><input type="text" class="input" name="contact" value="${requestScope.bsi.contact }"></div>	
-	        		</div>
-	        		
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">이메일</div>
-	        			<div class="content_div_opt2"><input type="text" class="input" id="email1" name="email1" value="${requestScope.email1 }" style="width: 180px;">@
-	        			       			   <select name="emailSelect" id="emailSelect" onchange="mailSelect(this);">
-										<option value="${requestScope.email2 }">${requestScope.email2 }</option>
-										<option value="naver.com">naver.com</option>
-										<option value="nate.com">nate.com</option>
-										<option value="gmail.com">gmail.com</option>
-										<option value="hanmail.net">hanmail.net</option>
-								</select>	</div>
-	        		</div>
-	        		<input type="hidden" name="memberNo" value="${requestScope.bsi.memberNo }">
-	        		</form>
-	        		<form action="PwChange.do" id="PwChgFrm">
-	        		<div class = "content_div_info" style="border-top:1px solid gray;">
-	        			<div class="content_div_opt1">현재 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" class="input" name="oldPassword"></div>
-	        		</div>
-	        		<div class = "content_div_info" style="border-bottom: 1px solid gray; margin-bottom: 50px;">
-	        			<div class="content_div_opt1">새로운 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" class="input" name="newPassword"></div>
-	        			<input type="hidden"name="memberId" value="${requestScope.bsi.memberId }">
-	        		<button onclick="document.getElementById('PwChgFrm').submit()" class="buy_btn" style="width: 200px; height: 30px; margin-left: 40px; border-radius: 10px; padding: 5px;">비밀번호 수정</button>
-	        		</div>
-	        		</form>
-	        		<div class="btn-area" style="padding-top: 30px">
-		        		<button type="button" class="buy_btn" onclick="document.getElementById('bsiFrm').submit();">변경</button>
-		        		<button type="reset" class="cart_btn">취소</button>	        		
-	        		</div>
+        			   <form action="/inputProductInfo" method="post" enctype="multipart/form-data">
+				<table class="table" style="margin-top:70px">
+					<tr>
+						<th>카테고리</th>
+						<td colspan="4">
+							<select class="form-control" id="CategoryNo" name="CategoryNo">
+								<option value="0">대분류 선택</option>
+								<option value="1">생활용품</option>
+								<option value="2">뷰티</option>
+								<option value="3">헬스/건강식품</option>
+								<option value="4">주방용품</option>
+								<option value="5">완구/취미</option>
+								<option value="6">헬스/건강식품</option>
+								<option value="7">주방용품</option>
+								<option value="8">완구/취미</option>
+							</select>
+							<input type="hidden" id="category" name="category">
+						</td>
+					</tr>
+					<tr>
+					<th>상호명</th>
+					<td colspan="4">
+						<input type="text" id="productBrand" name="productBrand" class="form-control" readonly> 
+					</td>
+					</tr>
+					<tr>
+					<th>상품명</th>
+					<td colspan="4">
+						<input type="text" id="productName" name="productName" class="form-control"> 
+					</td>
+					</tr>
+					<tr>
+					<th>판매가</th>
+					<td colspan="4">
+						<input type="text" id="productPrice" name="productPrice" class="form-control" style="width:200px; float:left"><span style="    vertical-align: middle; line-height: 37px; font-size: 20px; padding-left: 10px;">원</span>
+					</td>
+					</tr>
+					<tr>
+					<th>재고</th>
+					<td colspan="4">
+						<input type="text" id="productSize" name="productSize" class="form-control" style="width:200px">
+					</td>
+					</tr>
+					<tr>
+					<th>제조일자</th>
+					<td colspan="4">
+						<input type="date" id="productColor" name="productColor" class="form-control" style="width:200px">
+					</td>
+					</tr>
+					<tr>
+					<th style="vertical-align: middle;text-align: center;">제조국</th>
+					<td colspan="2">
+						<input type="text" id="productColor" name="productColor" class="form-control">
+					</td>
+					<th style="width: 100px; vertical-align: middle;text-align: center;">제조자</th>
+					<td colspan="2">
+						<input type="text" id="productColor" name="productColor" class="form-control">
+					</td>
+					</tr>
+					<tr>
+					<th style="width:120px;">담당자 연락처</th>
+					<td colspan="4">
+						<input type="text" id="productColor" name="productColor" class="form-control" style="width:100px;display: inline;"><span>-</span>
+						<input type="text" id="productColor" name="productColor" class="form-control" style="width:200px;display: inline;"><span>-</span>
+						<input type="text" id="productColor" name="productColor" class="form-control" style="width:200px;display: inline;">
+					</td>
+				
+					</tr>
+					
+					<tr>
+						<th>상품설명</th>
+						<td colspan="4">
+							<textarea id="productContent" name="productContent" class="form-control" style="height:300px"></textarea>
+						</td>
+					</tr>
+					<tr>
+					<th>주의사항</th>
+					<td colspan="4">
+						<input type="text" id="productSize" name="productSize" class="form-control" style="width:200px">
+					</td>
+					</tr>
+					<tr>
+					<th>유통기한</th>
+					<td colspan="4">
+						<input type="date" id="productColor" name="productColor" class="form-control" style="width:200px">
+					</td>
+					</tr>
+					
+					
+					<tr>
+					<th>구매제한</th>
+					<td colspan="4">
+						<input type="text" id="productSize" name="productSize" class="form-control" style="width:200px">
+					</td>
+					</tr>
+					<tr>
+					<th>배송 방법</th>
+					<td colspan="4">
+						<input type="text" id="productSize" name="productSize" class="form-control" >
+					</td>
+					
+					<tr>
+					<th>배송 회사</th>
+					<td colspan="4">
+						<input type="text" id="productSize" name="productSize" class="form-control" >
+					</td>
+					
+					</tr>
+					<tr>
+					<th>배송예상기간</th>
+					<td colspan="4">
+						<input type="text" id="productSize" name="productSize" class="form-control" >
+					</td>
+					</tr>
+					
+					<tr>
+					<th>배송비</th>
+					<td colspan="4">
+						<input type="text" id="productSize" name="productSize" class="form-control" >
+					</td>
+					</tr>
+					
+					<tr>
+						<th>썸네일 파일</th>
+						<td colspan="4"> 
+							<input type="file" id="productImage" name="productImage" accept=".png,.jpg,.jpeg" style="float:left">
+							<span style="float:right" class="float-right">권장크기 : 500x500</span>
+						</td>
+					</tr>
+					<tr>
+						<th>상세보기 파일</th>
+						<td colspan="4">
+							<input type="file" id="productFile" name="productFile" accept=".pdf" style="float:left">
+							<span style="float:right" class="float-right">파일형식 : PDF</span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align: center;">
+							<button type="button" id="frmCheck" class="btn btn-block">수량입력</button>
+						</td>
+					</tr>
+				</table>
+
+				<%--나중에 session으로 받아서 memberNo 추가로 보내주기 --%>
+				<input type="hidden" name="productSeller" value="${sessionScope.m.memberNo }">
+				<input type="hidden" name="productId" value=${sessionScope.m.memberId }>
+			</form>
+        	
+        		
         		</div>	
         	</div>
         </div>
@@ -94,6 +192,9 @@
 <style>
 	.input{
 			height: 30px;
+		}
+		th{
+		 vertical-align: middle;text-align: center;
 		}
 	.content_div_info {
 	margin: 0px;
