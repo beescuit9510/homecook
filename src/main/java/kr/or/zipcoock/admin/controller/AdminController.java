@@ -89,4 +89,15 @@ public class AdminController
 		return "admin/adminQnaInfo";
 	}
 	
+	@RequestMapping(value = "/get_SelectOneQna.do")
+	@ResponseBody
+	public AdminQna get_SelectOneQna(int refQnaNo)
+	{
+		AdminQna q = service.selectOneRefNo(refQnaNo);			
+		return q;
+	}
+	
+	
+	
+	
 }

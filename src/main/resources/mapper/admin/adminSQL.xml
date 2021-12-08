@@ -90,4 +90,18 @@ where qna_no = #{qnaNum}
 </select>
 
 
+<select id="selectOneRefNo" parameterType = "_int" resultType="aQna">
+select 
+	member_no as memberNo,
+	member_name as memberName,
+	qna_no as qnaNo,
+	qna_ref_no as qnaRefNo,
+	qna_level as qnaLevel,
+	qna_title as qnaTitle,
+	qna_content as qnaContent,
+	write_date as writeDate 
+from homepage_qna a left outer join  (select member_no, member_name from member) using (member_no)
+where qna_level = 2 and qna_ref_no = #{refQnaNo}
+</select>
+
 </mapper>
