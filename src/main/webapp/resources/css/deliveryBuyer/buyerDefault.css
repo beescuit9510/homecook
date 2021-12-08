@@ -1,5 +1,8 @@
 @charset "UTF-8";
-
+#text-emp{
+	color:#333; 
+	font-weight:600;
+}
 .main_field>.main_content2
 {
 	width: 100%;
@@ -149,6 +152,21 @@
     letter-spacing: -0.5px;
     font-weight: 400;
     height: 48px;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 221, 221);
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 16px;
+}
+/* no height*/
+.content_div_hfree {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
     background: rgb(255, 255, 255);
     border: 1px solid rgb(221, 221, 221);
     margin-bottom: 8px;

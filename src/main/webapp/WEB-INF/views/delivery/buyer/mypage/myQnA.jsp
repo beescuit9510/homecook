@@ -12,10 +12,7 @@
        	<div class = "content_title">문의 내역</div>
        	<div class = "content_div_area">
        		<div class = "content_div_content">
-       			<div class = "content_div_info">
-       				<div class = "content_div_opt1">집쿠욱 레벨</div>
-       				<div class = "content_div_opt2">집쿠욱 포인트</div>
-       				<div class = "content_div_opt3">주문내역</div>
+       			<div class = "content_div_hfree">
        			</div>
        		</div>	
        	</div>
