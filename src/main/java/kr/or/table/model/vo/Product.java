@@ -1,5 +1,8 @@
 package kr.or.table.model.vo;
 
+import java.util.ArrayList;
+
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,4 +29,5 @@ public class Product {
 	private int limit;
 	private int productCategory;
 	private int boardCategory;
+	private String filepath;
 }

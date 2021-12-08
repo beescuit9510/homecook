@@ -10,10 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.seller.model.service.SellerService;
+import kr.or.seller.model.vo.SellerProductPageData;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.PwChangeVO;
+import kr.or.table.model.vo.ReturnPolicy;
+import kr.or.table.model.vo.ShippingInfo;
+import kr.or.zipcoock.board.vo.ProductPageReview;
 
 @Controller
 public class SellerController {
@@ -102,15 +106,21 @@ private SellerService service;
 		return "zipcoock/common/msg";
 		
 	}
+
+	
 	@RequestMapping(value="/productList.do")
-		public String productList(Model model, HttpSession session) {
-		Member m = (Member)session.getAttribute("m");
-		System.out.println(m);
-		ArrayList<Product> list = service.selectProductList(m);
-		System.out.println(list+"프로덕트 리스트");
-		model.addAttribute("list",list);
-			return "zipcoock/seller/mypage/productList";
-		}
+	public String productList(Model model, HttpSession session, int reqPage) {
+	Member m = (Member)session.getAttribute("m");
+	
+	SellerProductPageData sppd = service.selectProductList(m,reqPage);
+ System.out.println(sppd);
+	model.addAttribute("sppd",sppd);
+		return "zipcoock/seller/mypage/productList";
+	}
+	@RequestMapping(value="/productinsert.do")
+	public String productinsert(Model model, HttpSession session,Product product, ReturnPolicy returnPlicy,ShippingInfo shippingInfo) {
+	return "zipcoock/common/msg";
+	}
 	}
 
 

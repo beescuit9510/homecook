@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.context.annotation.RequestScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -39,11 +40,11 @@
 						<h2>상품 조회</h2>
 						<div class="productTotal">
 							
-							<span>판매중인 상품 </span><span> [9]</span><button style="float:right; margin-top:20px;">상품등록</button>
+							<span>판매중인 상품 </span><button style="float:right; margin-top:20px;">상품등록</button>
 						</div>
 						<div>
 							<table class="table total-table">
-								<tr>
+								<tr style="text-align:center ">
 									<th id="check"><input type="checkbox" id="checkAll"></th>
 									<th>상품이미지</th>
 									<th>상품명</th>
@@ -53,17 +54,17 @@
 
 
 						<c:forEach items="${list }" var="p" varStatus="i">
-								<tr class="totalInfo">
+								<tr class="totalInfo" style="text-align: center;">
 									<td><input type="checkbox" class="checkProduct"
 										name="checkId" value=${p.productName }></td>
 									<td><a
 										href="/productView?id=${p.productName }&seller=${p.matufacturer }&reqPage=1"><img
-											src="/upload/product/" width="100px"
+											src="/resources/upload/product/${p.filepath }" width="100px"
 											height="100px"></a></td>
-									<td><a
+									<td style="vertical-align: middle;"><a
 										href="/productView?id=${p.productName }&seller=${p.matufacturer }&reqPage=1"
 										style="color: black">상품명</a></td>
-									<td class="priceTd">${p.price }</td>
+									<td class="priceTd" style="vertical-align: middle;">${p.price }</td>
 									
 									<td>
 
@@ -79,6 +80,7 @@
 
 
 							<button class="btn selectDelBtn" onclick=func();>선택삭제</button>
+							<div id="pageNavi" style="text-align: center;">${sppd.pageNavi}</div>
 
 						</div>
 					</div>

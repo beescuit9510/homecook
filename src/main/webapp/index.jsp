@@ -16,6 +16,7 @@
 <a href = "/sellerInfoFrm.do">판매자회원정보</a>
 <a href = "/zipsellerMypage.do">판매자정보</a>
 <a href = "/sellerMypage.do">판매자 마이페이지</a>
+<a href = "/productList.do?reqPage=1">판매자 마이페이지 페이지네비</a>
 <a href = "/productList.do">상품 관리페이지</a>
 </fieldset>
 <hr>

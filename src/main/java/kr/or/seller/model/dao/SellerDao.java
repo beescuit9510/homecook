@@ -1,7 +1,9 @@
 package kr.or.seller.model.dao;
 
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,27 @@ public class SellerDao {
 		return sqlSession.update("businessSellerInfo.updateSellerMember",businessSellerInfo);
 	}
 
-	public ArrayList<Product> selectProductList(Member m) {
-		List<Product> list = sqlSession.selectList("product.selectProductList",m);
+
+
+	public ArrayList<Product> selectProductList(Map<Object, Object> pagedata) {
+		List<Product> list = sqlSession.selectList("product.selectProductList",pagedata);
 		return (ArrayList<Product>)list;
+	
 	}
+
+
+	public int selectTotalCount(Member m) {
+		return sqlSession.selectOne("product.selectTotalCount",m);
+	
+	}
+
+
+
+
+	/*
+	 * public ArrayList<Product> selectProductList(Member m) { List<Product> list =
+	 * sqlSession.selectList("product.selectProductList",m); return
+	 * (ArrayList<Product>)list; }
+	 */
+	
 }
