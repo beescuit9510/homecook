@@ -19,8 +19,5 @@ public class AdminQna
 	
 	private String qnaTitle;
 	private String qnaContent;
-	private String writeDate;
-	
-	private int productRefNo;
-	private String productName;
+	private String writeDate;	
 }
