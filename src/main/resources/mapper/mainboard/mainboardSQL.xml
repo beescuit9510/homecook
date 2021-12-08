@@ -120,7 +120,7 @@
 		star as star,
 		trimed_star as trimedStar,
 		TRIM(SUBSTR(trimed_star, 1, 1) || '-' ||SUBSTR(trimed_star, 3, 3)) as starClass,
-		write_date as writeDate
+		TRIM(TO_CHAR(write_date, 'YY/MM/DD')) as writeDate
 		from
 		(select rownum as rnum, t.* from 
 		(select pr.*, 
@@ -137,14 +137,14 @@
 				
 	
 	</select>
-	<select id="selectReviewImg" parameterType="int" resultType="kr.or.table.model.vo.ReviewImg">
+	<select id="selectReviewImg" parameterType="int" resultType="kr.or.zipcoock.board.vo.ReviewImg">
 		select filename, filepath
 		from review_img where review_no = #{value} order by review_img_no desc		
 	</select>
 
-	<select id="selectProductImg" parameterType="kr.or.zipcoock.board.vo.ProductPageArgs" resultType="kr.or.table.model.vo.ProductImg">
+	<select id="selectProductImg" parameterType="kr.or.zipcoock.board.vo.ProductPageArgs" resultType="kr.or.zipcoock.board.vo.ProductImg">
 		select filename, filepath
-		from product_img where product_no = #{productNo} order by product_img_no desc		
+		from product_img where product_no = #{productNo} and main_img = 'N' order by product_img_no desc		
 	</select>
 
 	

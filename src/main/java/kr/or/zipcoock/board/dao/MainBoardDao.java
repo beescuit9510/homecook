@@ -1,6 +1,7 @@
 package kr.or.zipcoock.board.dao;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,8 +9,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import kr.or.table.model.vo.ProductImg;
-import kr.or.table.model.vo.ReviewImg;
+import kr.or.zipcoock.board.vo.ProductImg;
+import kr.or.zipcoock.board.vo.ReviewImg;
 import kr.or.zipcoock.board.vo.ProductCard;
 import kr.or.zipcoock.board.vo.ProductPage;
 import kr.or.zipcoock.board.vo.ProductPageArgs;

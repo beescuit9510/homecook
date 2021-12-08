@@ -189,12 +189,23 @@
 		<c:forEach items="${cards }" var="c">
 		<div class="col-md-4 mb-4">
 			<div class="card">
-				<img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" />
+						
+				<c:if test="${ not empty sessionScopse.m.memberNo }">
+				<a href="/mainboardView.do?memberNo=${sessionScopse.m.memberNo }&productNo=${c.productNo }"><img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" /></a>
+				</c:if>
+				<c:if test="${ empty sessionScopse.m.memberNo }">
+				<a href="/mainboardView.do?memberNo=0&productNo=${c.productNo }"><img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" /></a>
+				</c:if>
 <!--  
-		<img class="card-img-top" src=${c.tradeName } alt="" />
+		<img class="card-img-top" src=${c.filepath } alt="" />
 -->		
 				<div class="card-body">
-					<p class="h6 goods_name product-name"><small class="text-muted">${c.tradeName }</small></br>${c.productName}</p>
+					<c:if test="${ not empty sessionScopse.m.memberNo }">
+					<a href="/mainboardView.do?memberNo=${sessionScopse.m.memberNo }&productNo=${c.productNo }"><p class="h6 goods_name product-name"><small class="text-muted">${c.tradeName }</small></br>${c.productName}</p></a>
+					</c:if>
+					<c:if test="${ empty sessionScopse.m.memberNo }">
+					<a href="/mainboardView.do?memberNo=0&productNo=${c.productNo }"><p class="h6 goods_name product-name"><small class="text-muted">${c.tradeName }</small></br>${c.productName}</p></a>
+					</c:if>
 					<div class="m-0">
 						<div class="star-rating js-star-rating">
 							<input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
@@ -465,5 +476,8 @@
 	margin-left:0px;
     box-sizing: border-box;
 }
+.active{
+   background: #9ac6e8;
+ }
 </style>
 </html>

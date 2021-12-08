@@ -1,10 +1,11 @@
 package kr.or.zipcoock.mypage.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.table.model.vo.ProductLike;
 import kr.or.zipcoock.mypage.service.MypageService;
 import kr.or.zipcoock.mypage.vo.DeleteObj1;
 import kr.or.zipcoock.mypage.vo.InsertObj;
@@ -43,7 +44,7 @@ public class MypageController {
 
 		service.delete(obj);
 
-		return "redirect:/";
+		return obj.getUrl();
 
 	}
 
@@ -54,6 +55,21 @@ public class MypageController {
 		
 		return "redirect:/";
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteLike.do")
+	public void deleteLike(ProductLike like) {
+		DeleteObj1 obj = new DeleteObj1();
+		obj.setLike(like);
+		service.delete(obj);
+	}
+	@ResponseBody
+	@RequestMapping(value = "/insertLike.do")
+	public void insertLike(ProductLike like) {
+		InsertObj obj = new InsertObj();
+		obj.setLike(like);
+		service.insert(obj);
 	}
 
 // review_img 등록/수정

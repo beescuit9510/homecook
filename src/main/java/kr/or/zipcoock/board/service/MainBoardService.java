@@ -1,19 +1,22 @@
 package kr.or.zipcoock.board.service;
 
 import java.util.ArrayList;
+
+
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.or.table.model.vo.ProductImg;
-import kr.or.table.model.vo.ReviewImg;
+import kr.or.zipcoock.board.vo.ProductImg;
+import kr.or.zipcoock.board.vo.ReviewImg;
 import kr.or.zipcoock.board.dao.MainBoardDao;
 import kr.or.zipcoock.board.vo.ProductCard;
 import kr.or.zipcoock.board.vo.ProductPage;
 import kr.or.zipcoock.board.vo.ProductPageArgs;
 import kr.or.zipcoock.board.vo.ProductPageQna;
 import kr.or.zipcoock.board.vo.ProductPageReview;
+import kr.or.zipcoock.board.vo.Review;
 import kr.or.zipcoock.board.vo.SearchTool;
 
 @Service
@@ -102,18 +105,18 @@ public class MainBoardService {
 		return pi;
 	}
 
-	public HashMap<ProductPageReview, ArrayList<ReviewImg>> getReview(ProductPageArgs args) {
+	public ArrayList<Review> getReview(ProductPageArgs args) {
 
+		ArrayList<Review> arr = new ArrayList<Review>();
+		
 		ArrayList<ProductPageReview> review = dao.selectReview(args);
-
-		HashMap<ProductPageReview, ArrayList<ReviewImg>> mapToReturn = new HashMap<ProductPageReview, ArrayList<ReviewImg>>();
 
 		for (ProductPageReview r : review) {
 			ArrayList<ReviewImg> img = dao.selectReviewImg(r.getReviewNo());
-			mapToReturn.put(r, img);
+			arr.add(new Review(r, img));
 		}
 
-		return mapToReturn;
+		return arr;
 
 	};
 

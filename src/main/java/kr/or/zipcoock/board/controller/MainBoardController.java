@@ -44,8 +44,8 @@ public class MainBoardController {
     @ResponseBody
 	@RequestMapping(value = "/getReview.do", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public String getReview(ProductPageArgs args) {
-		return new Gson().toJson(service.getReview(args));
-	};
+		return new Gson().toJson(service.getReview(args));	
+    };
 	@ResponseBody
 	@RequestMapping(value = "/getQna.do", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
 	public String getQna(ProductPageArgs args) {
