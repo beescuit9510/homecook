@@ -48,5 +48,10 @@ public class AdminService
 		return dao.updateMemberInfo(m);
 		
 	}
+
+	public AdminQna selectOneQnaInfo(int qnaNum) 
+	{
+		return dao.selectOneQnaInfo(qnaNum);
+	}
 	
 }

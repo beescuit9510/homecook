@@ -15,8 +15,8 @@ public class ProductPageReview {
 	private int productNo;
 	private String reviewContent;
 	private int star;
-	private int trimedStar;
-	private int starClass;
+	private String trimedStar;
+	private String starClass;
 	private String writeDate;
 	
 

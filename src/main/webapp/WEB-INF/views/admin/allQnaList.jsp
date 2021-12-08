@@ -92,7 +92,7 @@
         				</div>
         				<table class = "memberTabel" id = "memberList" style = "width:100%;">
 						<tr class = "table_head">
-							<th>문의 번호</th><th>회원 이름</th><th>문의 제목</th><th>문의 상품명</th><th>문의 작성시간</th>							
+							<th>문의 번호</th><th>회원 이름</th><th>문의 제목</th><th>문의 작성시간</th>							
 						</tr>					
 						</table>
 						<div class = "search_content">
@@ -139,11 +139,10 @@
 						"<tr class = 'table_value' id = 'memberInfo'>";
 						var qnaNo = "<td>"+list[i].qnaNo +"</td>";
 						var memberName = "<td>"+list[i].memberName +"</td>";
-						var qnaTitle = "<td>"+list[i].qnaTitle +"</td>";
-						var ProductName = "<td>"+list[i].productName +"</td>";
+						var qnaTitle = "<td>"+list[i].qnaTitle +"</td>";						
 						var writeDate = "<td>"+list[i].writeDate +"</td>";
 												
-						html += qnaNo + memberName + qnaTitle + ProductName + writeDate;
+						html += qnaNo + memberName + qnaTitle + writeDate;
 						table.append(html);
 					}
 				}
@@ -157,7 +156,7 @@
 		function() 
 		{
 			if($(this).children(1).html() != '해당 자료 없음')
-			console.log($(this).children(1).html());
+			window.location.href = '/admin_QnaInfo.do?qnaNum='+$(this).children(1).html();		
 		});
 	});
 </script>

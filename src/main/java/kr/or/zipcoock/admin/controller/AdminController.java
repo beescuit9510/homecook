@@ -80,4 +80,13 @@ public class AdminController
 		return service.updateMemberInfo(m);
 	}	
 	
+	@RequestMapping(value = "/admin_QnaInfo.do")
+	public String call_QnaInfo(int qnaNum, Model model)
+	{		
+		AdminQna q = service.selectOneQnaInfo(qnaNum);
+		model.addAttribute("q", q);		
+		
+		return "admin/adminQnaInfo";
+	}
+	
 }

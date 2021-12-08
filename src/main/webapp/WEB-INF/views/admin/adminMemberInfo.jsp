@@ -148,7 +148,7 @@
 				
 						</table>
 						<div class = "admin_submit_btn">
-							<button type="submit" class="btn btn-secondary" id = "submitButton"> < 정보 수정 > </button>	
+							<button type="submit" class="btn btn-secondary" id = "submitButton">정보 수정</button>	
 						</div>	 
         			</div>      				      			
         		</div> <!-- main_content_field -->
