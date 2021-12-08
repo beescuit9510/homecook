@@ -39,30 +39,31 @@ public class DeliverySellerController {
 		Member m = service.selectOneMember(member);
 		if(m != null) {
 			session.setAttribute("m", m);
-			model.addAttribute("msg","로그인 성공");
-			model.addAttribute("loc", "/manageMarketFrm.do");
-		}else {
+			ArrayList<ZcdStore> list = service.selectZcdStoreList(m.getMemberNo());
+			model.addAttribute("list", list);
+			return "delivery/seller/manageMarketFrm";
+		} else {
 			model.addAttribute("msg","아이디 또는 비밀번호를 확인하세요");
 			model.addAttribute("loc", "/");
+			return "zipcoock/common/msg";
 		}
-		return "zipcoock/common/msg";
 	}
 	
-	@RequestMapping(value = "/manageMarketFrm.do")
-	public String manageMarketFrm()
-	{
+	@RequestMapping(value="/manageMarketFrm.do")
+	public String manageMarketFrm(Member member, HttpSession session, Model model) {
+		Member m = (Member)session.getAttribute("m");
+		ArrayList<ZcdStore> list = service.selectZcdStoreList(m.getMemberNo());
+		model.addAttribute("list", list);
 		return "delivery/seller/manageMarketFrm";
 	}
 	
-	@RequestMapping(value = "/addMarketFrm.do")
-	public String addMarketFrm()
-	{
+	@RequestMapping(value="/addMarketFrm.do")
+	public String addMarketFrm() {
 		return "delivery/seller/addMarketFrm";
 	}
 	
-	@RequestMapping(value = "/manageMenuFrm.do")
-	public String manageMenuFrm()
-	{
+	@RequestMapping(value="/manageMenuFrm.do")
+	public String manageMenuFrm() {
 		return "delivery/seller/manageMenuFrm";
 	}
 	
@@ -150,6 +151,24 @@ public class DeliverySellerController {
 			model.addAttribute("loc", "/manageMarketFrm.do");
 		}
 		return "zipcoock/common/msg";
+	}
+	
+	@RequestMapping(value="/changeState.do")
+	@ResponseBody
+	public int changeState(ZcdStore zs, Model model) {
+		int result = service.changeState(zs);
+		if (result > 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	
+	@RequestMapping(value="/selectOneMarket.do")
+	public String selectOneMarket(int storeNo, Model model) {
+		ZcdStore zs = service.selectOneMarket(storeNo);
+		model.addAttribute("zs", zs);
+		return "delivery/seller/selectOneMarketFrm";
 	}
 	
 }

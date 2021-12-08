@@ -34,9 +34,7 @@ public class DeliverySellerService {
 
 	@Transactional
 	public int addMarket(ZcdStore zs, ArrayList<StoreLogo> list) {
-		System.out.println("insert 전: " + zs.getStoreNo());
 		int result1 = dao.addMarket(zs);
-		System.out.println("insert 후: " + zs.getStoreNo());
 		System.out.println("result1: " + result1);
 		int result = 0;
 		if (result1 > 0) {
@@ -49,6 +47,22 @@ public class DeliverySellerService {
 			return -1;
 		}
 		return result;
+	}
+
+	public ArrayList<ZcdStore> selectZcdStoreList(int memberNo) {
+		ArrayList<ZcdStore> list = dao.selectZcdStoreList(memberNo);
+		return list;
+	}
+
+	@Transactional
+	public int changeState(ZcdStore zs) {
+		int result = dao.changeState(zs);
+		return result;
+	}
+
+	public ZcdStore selectOneMarket(int storeNo) {
+		ZcdStore zs = dao.selectOneMarket(storeNo);
+		return zs;
 	}
 	
 }

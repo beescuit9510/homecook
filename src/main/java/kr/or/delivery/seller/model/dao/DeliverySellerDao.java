@@ -1,5 +1,8 @@
 package kr.or.delivery.seller.model.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,6 +35,19 @@ public class DeliverySellerDao {
 
 	public int insertStoreLogo(StoreLogo sl) {
 		return sqlSession.insert("zcdseller.insertStoreLogo", sl);
+	}
+
+	public ArrayList<ZcdStore> selectZcdStoreList(int memberNo) {
+		List<ZcdStore> list = sqlSession.selectList("zcdseller.selectZcdStoreList", memberNo);
+		return (ArrayList<ZcdStore>) list;
+	}
+
+	public int changeState(ZcdStore zs) {
+		return sqlSession.update("zcdseller.changeState", zs);
+	}
+
+	public ZcdStore selectOneMarket(int storeNo) {
+		return sqlSession.selectOne("zcdseller.selectOneMarket", storeNo);
 	}
 
 }

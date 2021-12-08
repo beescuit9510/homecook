@@ -166,13 +166,19 @@
 }
 /* 매장 전화번호 */
 .content_div_opt2 {
-    width: 300px;
+    width: 200px;
     text-align: center;
     color: rgb(136, 136, 136);
 }
 /* 관리 */
 .content_div_opt3 {
-	width: 200px;
+    width: 180px;
+    text-align: center;
+    color: rgb(136, 136, 136);
+}
+/* 영업 상태 */
+.content_div_opt4 {
+	width: 100px;
     display: flex;
     flex-direction: row;
     -webkit-box-align: center;
@@ -214,4 +220,28 @@
 }
 .add_market_btn:hover {
     filter: brightness(0.94);
+}
+
+.content_div_table {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 221, 221);
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 16px;
+}
+.table_tr_height {
+	height: 55px;
+}
+.table_tr_height>td {
+	border-bottom: 1px solid #ebebeb;
+}
+.table_tr_height:last-child>td {
+	border: none;
 }

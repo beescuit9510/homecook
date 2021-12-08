@@ -66,7 +66,7 @@
 														<label for="storeName" class="col-2 col-form-label">상호명</label>
 														<div class="col-5">
 															<input type="text" class="form-control" id="storeName"
-																name="storeName" placeholder="상호명을 입력하세요." maxlength="20">
+																name="storeName" placeholder="상호명을 입력하세요." maxlength="20" value="${zs.storeName }">
 														</div>
 														<div class="col-4">
 															<span class="span_chk" id="marketNameChk"></span>
@@ -78,7 +78,7 @@
 														<label for="storeTime" class="col-2 col-form-label">운영시간</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeTime"
-																id="storeTime" rows="4" placeholder="운영시간을 입력하세요."></textarea>
+																id="storeTime" rows="4" placeholder="운영시간을 입력하세요.">${zs.storeTime }</textarea>
 														</div>
 													</div>
 													<br>
@@ -87,7 +87,7 @@
 	        											<label for="storePhone" class="col-2 col-form-label">전화번호</label>
 	        											<div class="col-5">
 	        												<input type="text" class="form-control" id="storePhone"
-	        											 		name="storePhone" placeholder="전화번호를 입력하세요. (- 제외)" maxlength="11">
+	        											 		name="storePhone" placeholder="전화번호를 입력하세요. (- 제외)" maxlength="11" value="${zs.storePhone }">
 	        											</div>
 	        											<div class="col-4">
 															<span class="span_chk" id="marketPhoneChk"></span>
@@ -99,7 +99,7 @@
 	        											<label for="minPrice" class="col-2 col-form-label">최소주문금액</label>
 	        											<div class="col-5">
 	        												<input type="text" class="form-control" id="minPrice"
-	        											 		name="minPrice" placeholder="최소주문금액을 입력하세요." maxlength="5">
+	        											 		name="minPrice" placeholder="최소주문금액을 입력하세요." maxlength="5" value="${zs.minPrice }">
 	        											</div>
 	        											<div class="col-4">
 															<span class="span_chk" id="minPriceChk"></span>
@@ -110,7 +110,8 @@
 	        										<div class="row">
 	        											<label class="col-2 col-form-label">주소입력</label>
 	        											<div class="col-4">
-															<input type="text" name="postcode" id="postcode" class="form-control add_margin" readonly placeholder="우편번호">
+															<input type="text" name="postcode" id="postcode" class="form-control add_margin" readonly placeholder="우편번호"
+															 value="${zs.postcode }">
 	        											</div>
 	        											<div class="col-2" style="padding: 0;">
 															<button type="button" class="btn btn-primary" id="findpostcode" style="width: 70px;">찾기</button>	        											
@@ -121,14 +122,16 @@
 	        										<div class="row">
 														<label class="col-2 col-form-label"> </label>
 														<div class="col-8">
-															<input type="text" name="address1" id="address1" class="form-control add_margin" readonly placeholder="주소">			
+															<input type="text" name="address1" id="address1" class="form-control add_margin" readonly placeholder="주소"
+															 value="${zs.address1 }">			
 														</div>
 													</div>
 										
 													<div class="row">
 														<label class="col-2 col-form-label"> </label>
 														<div class="col-8">
-															<input type="text" name="address2" id="address2" class="form-control add_margin" placeholder="상세주소" maxlength="40">														
+															<input type="text" name="address2" id="address2" class="form-control add_margin" placeholder="상세주소" maxlength="40"
+															 value="${zs.address2 }">														
 														</div>
 													</div>
 	        										<br>
@@ -137,7 +140,7 @@
 														<label for="originInfo" class="col-2 col-form-label">원산지 정보</label>
 														<div class="col-10">
 															<textarea class="form-control" name="originInfo"
-																id="originInfo" rows="4" placeholder="재료명: 원산지 (돼지고기: 국내산, 닭고기: 브라질산)"></textarea>
+																id="originInfo" rows="4" placeholder="재료명: 원산지 (돼지고기: 국내산, 닭고기: 브라질산)">${zs.originInfo }</textarea>
 														</div>
 													</div>
 													<br>
@@ -146,8 +149,8 @@
 														<label class="col-2 col-form-label">카테고리</label>
 														<div class="col-3">
 															<select id="category1" name="category1" class="form-select add_margin" >
-											                    <option value="" selected disabled>선택</option>
-											                    <option value="한식">한식</option>
+																<option value="${zs.category1 }" selected disabled style="background-color: #ebebeb;">${zs.category1 }</option>
+																<option value="한식">한식</option>
 											                    <option value="치킨">치킨</option>
 											                    <option value="분식">분식</option>
 											                    <option value="돈까스">돈까스</option>
@@ -171,7 +174,12 @@
 											                    <option value="죽">죽</option>
 											        		</select>
 											        		<select id="category2" name="category2" class="form-select">
-													        	<option value="" selected disabled>추가 선택</option>
+											        			<c:if test="${not empty zs.category2 }">
+											        				<option value="${zs.category2 }" selected disabled style="background-color: #ebebeb;">${zs.category2 }</option>
+											        				<option value=''>선택하지 않음</option>
+											        				<option value='1인분'>1인분</option>
+											        				<option value='프랜차이즈'>프랜차이즈</option>
+											        			</c:if>
 													        </select>
 											        	</div>
 											        </div>
@@ -180,7 +188,9 @@
 													<div class="row">
 														<label class="col-2 col-form-label">매장 로고</label>
 														<div class="col-8"> 
-															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png">  
+															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png"
+															 value="${zs.list[0].filename }">
+															 
 														</div>
 													</div>
 													<br>

@@ -39,4 +39,66 @@
 	 	insert into store_logo values(logo_seq.nextval, #{storeNo}, #{filename}, #{filepath})
 	 </insert>
 	 
+	 <select id="selectZcdStoreList" resultType="zs">
+  		select 
+			store_no as storeNo,
+			member_no as memberNo,
+			store_name as storeName,
+			store_time as storeTime,
+			store_phone as storePhone,
+			store_info as storeInfo,
+			store_notice as storeNotice,
+			store_tip as storeTip,
+			postcode,
+			address1,
+			address2,
+			min_price as minPrice,
+			store_state as storeState,
+			origin_info as originInfo,
+			category1,
+			category2
+  		from zcd_store where member_no=#{memberNo}
+  	</select>
+	 
+	<update id="changeState" parameterType="zs">
+		update zcd_store set store_state=#{storeState} where store_no=#{storeNo}
+	</update>
+	
+	<select id="selectOneMarket" parameterType="_int" resultMap="ZcdStore">
+		select * from zcd_store where store_no=#{storeNo}
+	</select>
+	<select id="selectStoreLogo" parameterType="_int" resultType="sl">
+  		select
+  			logo_no as logoNo,
+  			store_no as storeNo,
+  			filename,
+  			filepath
+  		from store_logo where store_no = #{storeNo}
+  	</select>
+	<resultMap type="zs" id="ZcdStore">
+  		<result column="store_no" property="storeNo"/>
+  		<result column="member_no" property="memberNo"/>
+  		<result column="store_name" property="storeName"/>
+  		<result column="store_time" property="storeTime"/>
+  		<result column="store_phone" property="storePhone"/>
+  		<result column="store_info" property="storeInfo"/>
+  		<result column="store_notice" property="storeNotice"/>
+  		<result column="store_tip" property="storeTip"/>
+  		<result column="postcode" property="postcode"/>
+  		<result column="store_name" property="storeName"/>
+  		<result column="address1" property="address1"/>
+  		<result column="address2" property="address2"/>
+  		<result column="min_price" property="minPrice"/>
+  		<result column="store_state" property="storeState"/>
+  		<result column="origin_info" property="originInfo"/>
+  		<result column="category1" property="category1"/>
+  		<result column="category2" property="category2"/>
+  		<collection property="list"
+  					column="store_no"
+  					javaType="java.util.ArrayList"
+  					ofType="sl"
+  					select="selectStoreLogo"
+  		/>
+  	</resultMap>
+	
 </mapper>
