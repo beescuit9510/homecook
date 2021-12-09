@@ -53,5 +53,10 @@ public class AdminService
 	{
 		return dao.selectOneQnaInfo(qnaNum);
 	}
+
+	public AdminQna selectOneRefNo(int refQnaNo) 
+	{		
+		return dao.selectOneRefNo(refQnaNo);
+	}
 	
 }

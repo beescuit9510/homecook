@@ -17,10 +17,6 @@
 	.btn-area>button:first-child {
 		margin-right: 10px;
 	}
-	#text-emp{
-		color:#333; 
-		font-weight:600;
-	}
 </style>
 </head>
 <body>

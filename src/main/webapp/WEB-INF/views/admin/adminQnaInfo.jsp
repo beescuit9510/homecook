@@ -32,6 +32,15 @@
 	align-content: flex-start;
 }
 
+.admin_table_re
+{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;	
+	justify-content: center;	
+	align-content: flex-end;
+}
+
 .admin_mView_Table
 {
 	margin-top: 15px;
@@ -150,13 +159,12 @@
 									<textarea class = "qna_textarea" readonly="readonly">${q.qnaContent}</textarea>								
 								</td>
 							</tr>							
-						</table>					
-				
-						<div class = "admin_submit_btn">
-							<button type="submit" class="btn btn-secondary" id = "submitButton">답변 제출</button>	
-						</div>	 
+						</table>
         			</div>      				      			
         		</div> <!-- main_content_field -->
+        		<div class = "admin_submit_btn">
+							<button type="submit" class="btn btn-secondary" id = "submitButton">답변 제출</button>	
+						</div>	
         	</div> <!-- main content -->
         </div> <!-- main field -->
 		<%@include file="/WEB-INF/views/common/footer.jsp" %>
@@ -167,6 +175,72 @@ $(function()
 	$("#submitButton").click(function()
 	{
 		console.log("11");
+	});
+	
+	
+	var origin_qnaNo = $('#qna_no').html();	
+	
+	var content = $('.amdin_main_content');
+	var qnaData;
+	
+	
+	qna_ready();
+	function qna_ready()
+	{
+		qnaData = call_refQna(origin_qnaNo);	
+			
+		if(!qnaData)
+		{
+			console.log("end no = " + origin_qnaNo);			
+		}				
+		else
+		{
+			origin_qnaNo = qnaData.qnaRefNo;
+		}		
+	}		
+
+	
+	
+	
+	
+	function call_refQna(refQnaNo)
+	{
+		var QnaValue;
+		
+		$.ajax(
+		{
+			url 	: 	"/get_SelectOneQna.do", 	//서블릿을 요청할지 매핑값 
+			data 	:	
+			{	
+				refQnaNo:refQnaNo
+			},								// 서블릿에 전송할 데이터 오브젝트
+			type	: 	"get",				// method 설정
+			async: false,
+			success	: function(data)		// 성공시와 에러시, 그리고 완료시
+			{	
+				QnaValue = data;		
+				
+				if(QnaValue)
+				{
+					var div = "<div class = 'admin_table_re' >";
+					var table = "<table class = 'admin_mView_Table' style = 'width:70%;'>";
+						
+					var qnaNo = "<tr class = 'table-primary'><th class = 'q_table_00'>문의 번호</th><td class = 'q_table_content' id = 'qna_no'>"+QnaValue.qnaNo+"</td></tr>"
+					var memberNo = 					
+					'<tr class = "table-primary"><th class = "q_table_00">문의자 번호 </th><td class = "q_table_content" id = "member_no">'+QnaValue.memberNo+'</td></tr>';
+					var qnaContent = 
+					'<tr class = "table-primary"><th class = "q_table_00">문의 내용 </th><td class = "q_table_content" id = "qna_content"><textarea class = "qna_textarea" readonly="readonly">'+QnaValue.qnaContent+'</textarea></td></tr>';
+			
+					var table_end = "</table>";			
+					var div_end = "</div>"
+						
+					var htmlval = div + table + qnaNo + memberNo + qnaContent + table_end + div_end;
+					content.append(htmlval);
+				}
+				
+				return data;
+			}
+		});
 	}
 });
 </script>
