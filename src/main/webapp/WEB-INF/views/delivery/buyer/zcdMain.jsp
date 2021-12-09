@@ -57,7 +57,7 @@
 					<div class="input-group input-group-lg">
 						<input type="text" id="" name="" class="form-control" placeholder="음식을 검색해보세요" />
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+							<button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
 						</div>
 					</div>
 				</div>

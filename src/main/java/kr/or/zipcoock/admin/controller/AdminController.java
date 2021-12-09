@@ -89,4 +89,73 @@ public class AdminController
 		return "admin/adminQnaInfo";
 	}
 	
+	@RequestMapping(value = "/get_SelectOneQna.do")
+	@ResponseBody
+	public AdminQna get_SelectOneQna(int refQnaNo)
+	{
+		AdminQna q = service.selectOneRefNo(refQnaNo);			
+		return q;
+	}
+	
+	@RequestMapping(value = "/fix_reQna.do")
+	@ResponseBody
+	public int fix_reQna(int qna_no, String reContent)
+	{
+		AdminQna q = new AdminQna();
+		q.setQnaNo(qna_no);
+		q.setQnaContent(reContent);
+		int result = service.updateOneQna(q);			
+		return result;
+	}
+	
+	@RequestMapping(value = "/insert_reQna.do")
+	@ResponseBody
+	public int insert_reQna(int myNo, int qnaNo, String content, String title)
+	{
+		AdminQna q = new AdminQna();
+		
+		q.setMemberNo(myNo);
+		q.setQnaRefNo(qnaNo);
+		q.setQnaContent(content);
+		q.setQnaTitle(title);
+		
+		int result = service.insertOneQna(q);			
+		return result;
+	}
+	
+	@RequestMapping(value = "/admin_HomecookDeal.do")
+	public String call_HomecookDeal(int dealNo, Model model)
+	{		
+		AdminDeal d = service.selectOneDeal(dealNo);
+		model.addAttribute("d", d);	
+		
+		System.out.println("point of homecooklist_click : ");		
+		return "admin/adminDealInfo";
+	}
+	
+	@RequestMapping(value = "/fix_HomeDeal.do")
+	@ResponseBody
+	public int fix_HomeDeal(int dealNo, int productNo, String productName,
+			int discountRate, String discountDate, String discountendDate)
+	{
+		AdminDeal d = new AdminDeal();
+		d.setDealNo(dealNo);
+		d.setProductNo(productNo);
+		d.setProductName(productName);
+		d.setDiscountRate(discountRate);
+		
+		d.setDiscountDate(discountDate);
+		d.setDiscountendDate(discountendDate);
+		
+		System.out.println(d.getProductName().replaceAll("\n", "1"));
+		
+		int result = service.updateOneDeal(d);			
+		return result;
+	}
+	
+	//Fix_HomeDeal
+	
+	
+	
+	
 }

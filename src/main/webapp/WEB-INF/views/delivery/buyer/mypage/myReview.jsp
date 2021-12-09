@@ -5,6 +5,40 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.content_div_question{
+		padding: 20px;
+	}
+	span{
+		margin-right:10px;
+	}
+	.no-answer {
+		background-color: #c4ddf1;
+		padding: 3px 5px;
+		border-radius: 3px;
+	}
+	.complete-answer{
+		background-color: #7e7266;
+		padding: 3px 5px;
+		border-radius: 3px;
+		color: white !important; 
+	}
+	table{
+		width: 100%;
+		background-color: #eee;
+		margin-top: 20px;
+	}
+	.a-seller-info{
+		padding-top: 20px;
+	}
+	.acontent{
+		padding-bottom: 20px;
+	}
+	.icon {
+		width: 50px;
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/delivery/buyer/mypage/zcdMypageHeader.jsp"%>
@@ -12,10 +46,36 @@
        	<div class = "content_title">리뷰 내역</div>
        	<div class = "content_div_area">
        		<div class = "content_div_content">
-       			<div class = "content_div_info">
-       				<div class = "content_div_opt1">집쿠욱 레벨</div>
-       				<div class = "content_div_opt2">집쿠욱 포인트</div>
-       				<div class = "content_div_opt3">주문내역</div>
+       			<div class = "content_div_question">
+       				<div class="q-member-info">
+       					<span id="text-emp">이름</span><span>2021.12.08</span>
+       				</div>
+       				<div class="q-order-info">
+       					<span>상호명</span><span>주문 내역</span>
+       				</div>
+       				<div class="qcontent">
+       					내용내용내용
+       				</div>
+       			</div>
+       			<div class = "content_div_question">
+       				<div class="q-member-info">
+       					<span id="text-emp">이름</span><span>2021.12.08</span>
+       				</div>
+       				<div class="q-order-info">
+       					<span>상호명</span><span>주문 내역</span>
+       				</div>
+       				<div class="qcontent">
+       					내용내용내용
+       				</div>
+       				<table>
+       					<tr>
+       						<td rowspan="2" class="icon"><i class="far fa-hand-point-right"></i></td>
+       						<td class="a-seller-info"><span id="text-emp">사장님 댓글</span><span>2021.12.08</span></td>
+       					</tr>
+       					<tr>
+       						<td class="acontent">내용내용내용</td>
+       					</tr>
+       				</table>
        			</div>
        		</div>	
        	</div>

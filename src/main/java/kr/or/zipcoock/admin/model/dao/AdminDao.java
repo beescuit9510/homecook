@@ -59,4 +59,32 @@ public class AdminDao
 		return sqlSession.selectOne("admin.selectOneQnaInfo",qnaNum);
 	}
 
+	public AdminQna selectOneRefNo(int refQnaNo) 
+	{		
+		return sqlSession.selectOne("admin.selectOneRefNo",refQnaNo);
+	}
+	
+
+	public int updateOneQna(AdminQna q) 
+	{
+		return sqlSession.update("admin.updateOneQna",q);
+	}
+
+	public int insertOneQna(AdminQna q) 
+	{		
+		return sqlSession.insert("admin.insertOneQna_Re",q);
+	}
+
+	public AdminDeal selectOneDeal(int dealNo) 
+	{		
+		return sqlSession.selectOne("admin.get_OneDeal",dealNo);
+	}
+
+	public int updateOneDeal(AdminDeal d) 
+	{	
+		System.out.println("admindao.point");
+		System.out.println(d);
+		return sqlSession.update("admin.update_OneDeal",d);
+	}
+
 }
