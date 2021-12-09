@@ -132,7 +132,7 @@
         			<div class = "bank_link">서비스 가입사실 확인</div>
         		</div>
         		<div class = "call_info">
-        			<div class = "call_title">배민상회 고객센터</div>
+        			<div class = "call_title">집-쿡 고객센터</div>
         			<div class = "call_number">1600 - 4949</div>
         			<div class = "call_time">평 일</div>
         			<div class = "call_time">09:00~19:00</div>

@@ -104,4 +104,31 @@ from homepage_qna a left outer join  (select member_no, member_name from member)
 where qna_level = 2 and qna_ref_no = #{refQnaNo}
 </select>
 
+<update id="updateOneQna" parameterType = "aQna">
+	UPDATE homepage_qna SET qna_content = #{qnaContent} WHERE qna_no = #{qnaNo}
+</update>
+
+<insert id="insertOneQna_Re" parameterType = "aQna">
+INSERT INTO homepage_qna 
+(
+   QNA_NO,
+   MEMBER_NO,
+   QNA_REF_NO,
+   QNA_LEVEL,
+   QNA_TITLE,
+   QNA_CONTENT,
+   WRITE_DATE
+ )
+VALUES 
+( 
+homepage_qna_seq.nextval,
+#{memberNo},
+#{qnaRefNo},
+2,
+#{qnaTitle},
+#{qnaContent},
+SYSDATE
+)
+</insert>
+
 </mapper>

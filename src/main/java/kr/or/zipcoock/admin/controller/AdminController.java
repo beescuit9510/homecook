@@ -97,6 +97,37 @@ public class AdminController
 		return q;
 	}
 	
+	@RequestMapping(value = "/fix_reQna.do")
+	@ResponseBody
+	public int fix_reQna(int qna_no, String reContent)
+	{
+		AdminQna q = new AdminQna();
+		q.setQnaNo(qna_no);
+		q.setQnaContent(reContent);
+		int result = service.updateOneQna(q);			
+		return result;
+	}
+	
+	@RequestMapping(value = "/insert_reQna.do")
+	@ResponseBody
+	public int insert_reQna(int myNo, int qnaNo, String content, String title)
+	{
+		AdminQna q = new AdminQna();
+		
+		q.setMemberNo(myNo);
+		q.setQnaRefNo(qnaNo);
+		q.setQnaContent(content);
+		q.setQnaTitle(title);
+		
+		int result = service.insertOneQna(q);			
+		return result;
+	}
+	
+	
+	//insert_reQna
+	
+	
+	
 	
 	
 	
