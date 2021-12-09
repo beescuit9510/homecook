@@ -174,12 +174,17 @@
 											                    <option value="죽">죽</option>
 											        		</select>
 											        		<select id="category2" name="category2" class="form-select">
-											        			<c:if test="${not empty zs.category2 }">
-											        				<option value="${zs.category2 }" selected disabled style="background-color: #ebebeb;">${zs.category2 }</option>
-											        				<option value=''>선택하지 않음</option>
-											        				<option value='1인분'>1인분</option>
-											        				<option value='프랜차이즈'>프랜차이즈</option>
-											        			</c:if>
+											        			<c:choose>
+											        				<c:when test="${empty zs.category2 }">
+											        					<option value="" selected disabled>추가 선택</option>
+											        				</c:when>
+											        				<c:when test="${not empty zs.category2 }">
+											        					<option value="${zs.category2 }" selected disabled style="background-color: #ebebeb;">${zs.category2 }</option>
+												        				<option value=''>선택하지 않음</option>
+												        				<option value='1인분'>1인분</option>
+												        				<option value='프랜차이즈'>프랜차이즈</option>
+											        				</c:when>
+											        			</c:choose>
 													        </select>
 											        	</div>
 											        </div>
@@ -188,9 +193,9 @@
 													<div class="row">
 														<label class="col-2 col-form-label">매장 로고</label>
 														<div class="col-8"> 
-															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png"
-															 value="${zs.list[0].filename }">
-															 
+															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png" style="display:none;">
+															<img src='/resources/upload/zcdSeller/치킨_로고.png' style="width:150px; height: 150px;">
+															<input type="hidden" class="oldFilePath" name="oldFilePath" id="oldFilePath">
 														</div>
 													</div>
 													<br>
@@ -203,7 +208,7 @@
 														<label for="storeInfo" class="col-2 col-form-label">매장소개</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeInfo"
-																id="storeInfo" rows="4" placeholder="매장 소개를 입력하세요."></textarea>
+																id="storeInfo" rows="4" placeholder="매장 소개를 입력하세요.">${zs.storeInfo }</textarea>
 														</div>
 													</div>
 													<br>
@@ -212,7 +217,7 @@
 														<label for="storeNotice" class="col-2 col-form-label">공지사항</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeNotice"
-																id="storeNotice" rows="4" placeholder="공지사항을 입력하세요."></textarea>
+																id="storeNotice" rows="4" placeholder="공지사항을 입력하세요.">${zs.storeNotice }</textarea>
 														</div>
 													</div>
 													<br>
@@ -221,7 +226,7 @@
 														<label for="storeTip" class="col-2 col-form-label">팁/안내</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeTip"
-																id="storeTip" rows="4" placeholder="팁 또는 안내 내용을 입력하세요."></textarea>
+																id="storeTip" rows="4" placeholder="팁 또는 안내 내용을 입력하세요.">${zs.storeTip }</textarea>
 														</div>
 													</div>
 													<br><br>

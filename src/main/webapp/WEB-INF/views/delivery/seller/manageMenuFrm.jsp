@@ -46,18 +46,12 @@
         			<div class="content_title">메뉴관리</div>
         			<div class="content_div_area">
         				<div class="content_div_content">
+        					<div class="content_div_info">
+        						<div class="content_div_opt1">상호명</div>
+        						<div class="content_div_opt2">매장 전화번호</div>
+        						<div class="content_div_opt3">메뉴관리</div>
+        					</div>
         					
-        					
-        					<ul class="nav nav-pills">
-							  <li class="nav-item dropdown nav-item-border">
-							    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">매장선택 </a>
-							    <div class="dropdown-menu">
-							      <a class="dropdown-item" href="#">죠샌드위치</a>
-							      <a class="dropdown-item" href="#">죠스떡볶이</a>
-							      <a class="dropdown-item" href="#">버거킹 신월점</a>
-							    </div>
-							  </li>
-							</ul>
         					
         					
         					

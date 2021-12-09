@@ -101,19 +101,19 @@ public class DeliverySellerController {
 			// 반복문을 이용해서 파일 처리(파일업로드)
 			for (MultipartFile file : files) {
 				// 사용자가 올린 파일명
-				String filename = file.getOriginalFilename();
-				String onlyFilename = filename.substring(0, filename.indexOf("."));
-				String extention = filename.substring(filename.indexOf("."));
+				String filename = file.getOriginalFilename(); // 치킨_로고.png
+				String onlyFilename = filename.substring(0, filename.indexOf(".")); // 치킨_로고
+				String extention = filename.substring(filename.indexOf(".")); // .png
 				String filepath = null;
 				// 파일명 중복 시 숫자를 붙이는 코드
 				int count = 0;
 				while (true) {
 					if (count == 0) {
-						filepath = onlyFilename + extention;
+						filepath = onlyFilename + extention; // 치킨_로고.png
 					} else {
-						filepath = onlyFilename + "_" + count + extention;
+						filepath = onlyFilename + "_" + count + extention; // 치킨_로고_1.png
 					}
-					File checkFile = new File(savePath + filepath);
+					File checkFile = new File(savePath + filepath); // /resources/upload/zcdSeller/치킨_로고.png
 					if (!checkFile.exists()) {
 						break;
 					}

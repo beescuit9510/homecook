@@ -162,3 +162,28 @@
 .nav-item-border {
 	border: 1px solid rgb(221, 221, 221);
 }
+
+/* 상호명 */
+.content_div_opt1 {
+    width: 330px;
+    text-align: center;
+    color: rgb(136, 136, 136);
+}
+/* 매장 전화번호 */
+.content_div_opt2 {
+    width: 330px;
+    text-align: center;
+    color: rgb(136, 136, 136);
+}
+/* 메뉴 관리 */
+.content_div_opt3 {
+	width: 100px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: rgb(136, 136, 136);
+    text-align: center;
+}
