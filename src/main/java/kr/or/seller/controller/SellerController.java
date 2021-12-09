@@ -108,7 +108,7 @@ private SellerService service;
 		System.out.println(m);
 		ArrayList<Product> list = service.selectProductList(m);
 		System.out.println(list+"프로덕트 리스트");
-		model.addAttribute(list);
+		model.addAttribute("list",list);
 			return "zipcoock/seller/mypage/productList";
 		}
 	}

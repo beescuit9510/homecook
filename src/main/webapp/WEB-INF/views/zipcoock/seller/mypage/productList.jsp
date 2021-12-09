@@ -50,32 +50,35 @@
 									<th>가격</th>
 									<th>관리</th>
 								</tr>
+
+
+						<c:forEach items="${list }" var="p" varStatus="i">
 								<tr class="totalInfo">
 									<td><input type="checkbox" class="checkProduct"
-										name="checkId" value=${p.productId }></td>
+										name="checkId" value=${p.productName }></td>
 									<td><a
-										href="/productView?id=${p.productId }&seller=${p.productSeller }&reqPage=1"><img
-											src="/upload/product/${p.productImage }" width="100px"
+										href="/productView?id=${p.productName }&seller=${p.matufacturer }&reqPage=1"><img
+											src="/upload/product/" width="100px"
 											height="100px"></a></td>
 									<td><a
-										href="/productView?id=${p.productId }&seller=${p.productSeller }&reqPage=1"
+										href="/productView?id=${p.productName }&seller=${p.matufacturer }&reqPage=1"
 										style="color: black">상품명</a></td>
-									<td class="priceTd">79,000원</td>
+									<td class="priceTd">${p.price }</td>
 									
 									<td>
 
 										<button class="btn" style="border : 1px solid black">상품수정</button> <br>
 									<br>
-										<button class="btn" style="border : 1px solid black" value=${p.productId }
+										<button class="btn" style="border : 1px solid black" value=${p.productName }
 											data-toggle="modal" data-target="#myModal">재고확인</button>
 									</td>
 								</tr>
-
+						</c:forEach>
 							</table>
 
 
 
-							<button class="btn selectDelBtn">선택삭제</button>
+							<button class="btn selectDelBtn" onclick=func();>선택삭제</button>
 
 						</div>
 					</div>
@@ -86,6 +89,11 @@
         </div>
     </div> <!-- main content -->
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+	<script>
+	function func(){
+		console.log(${list }+"test");
+	}
+	</script>
 <style>
 	.input{
 			height: 30px;

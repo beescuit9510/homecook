@@ -9,10 +9,6 @@
 	.content_div_info img{
 		width: 300px;
 	}
-	#text-emp{
-		color:#333; 
-		font-weight:600;
-	}
 </style>
 </head>
 <body>
