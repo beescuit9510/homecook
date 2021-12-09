@@ -14,15 +14,16 @@ import kr.or.seller.model.vo.SellerProductPageData;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.Product;
+import kr.or.table.model.vo.ProductImg;
 import kr.or.table.model.vo.PwChangeVO;
 import kr.or.table.model.vo.ReturnPolicy;
 import kr.or.table.model.vo.ShippingInfo;
-import kr.or.zipcoock.board.vo.ProductPageReview;
 
 @Controller
 public class SellerController {
 @Autowired
 private SellerService service;
+
 	@RequestMapping(value = "/sellerMypage.do")
 	public String sellerMypage()
 	{
@@ -118,13 +119,16 @@ private SellerService service;
 		return "zipcoock/seller/mypage/productList";
 	}
 	@RequestMapping(value="/productInsert.do")
-	public String productInsert(Model model, HttpSession session,Product product, ReturnPolicy returnPlicy,ShippingInfo shippingInfo) {
-	return "zipcoock/common/msg";
+	public String productInsert(Model model, HttpSession session,Product product, ReturnPolicy returnPolicy,ShippingInfo shippingInfo,ProductImg productImg) {
+	int result = service.productInsert(product,shippingInfo,productImg,returnPolicy);
+		return "zipcoock/seller/mypage/productList";
 	}
-	@RequestMapping(value="/productInsertFrm.do")
-	public String producInsertFrm() {
-	return "zipcoock/seller/mypage/insertProduct";	
-	}
+	
+	/*
+	 * @RequestMapping(value="/productInsertFrm.do") public String producInsertFrm()
+	 * { return "zipcoock/seller/mypage/insertProduct"; }
+	 */
+	
 	}
 
 

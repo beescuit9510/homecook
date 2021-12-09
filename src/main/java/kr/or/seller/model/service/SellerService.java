@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.member.model.dao.MemberDao;
 import kr.or.seller.model.dao.SellerDao;
@@ -14,7 +14,10 @@ import kr.or.seller.model.vo.SellerProductPageData;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.Product;
+import kr.or.table.model.vo.ProductImg;
 import kr.or.table.model.vo.PwChangeVO;
+import kr.or.table.model.vo.ReturnPolicy;
+import kr.or.table.model.vo.ShippingInfo;
 
 @Service
 public class SellerService {
@@ -22,6 +25,7 @@ public class SellerService {
 	private SellerDao dao;
 	@Autowired
 	private MemberDao mdao;
+	
 	public BusinessSellerInfo selectOneSmember(int memberNo) {
 		BusinessSellerInfo bsi = dao.selectOneSmember(memberNo);
 		return bsi;
@@ -104,6 +108,17 @@ public class SellerService {
 			
 				return sppd;
 			}
+	@Transactional
+	public int productInsert(Product product, ShippingInfo shippingInfo, ProductImg productImg,
+			ReturnPolicy returnPolicy) {
+		/*
+		 * int result1 = dao.insertProduct(product); int result2 =
+		 * dao.insertShippingInfo(shippingInfo); int result3 =
+		 * dao.insertProductImg(productImg); int result4 =
+		 * dao.insertReturnPolicy(returnPolicy);
+		 */
+		return 0;
+	}
 	}
 	
 

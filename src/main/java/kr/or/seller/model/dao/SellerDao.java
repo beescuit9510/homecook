@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.Product;
+import kr.or.table.model.vo.ProductImg;
+import kr.or.table.model.vo.ReturnPolicy;
+import kr.or.table.model.vo.ShippingInfo;
 @Repository
 public class SellerDao {
 	@Autowired
@@ -44,6 +47,25 @@ public class SellerDao {
 	}
 
 
+	
+	  public int insertProduct(Product product) {
+	  
+		  return sqlSession.insert("product.insertProduct",product); }
+	  
+	  
+	  public int insertShippingInfo(ShippingInfo shippingInfo) { 
+		  return sqlSession.insert("product.insertShippingInfo",shippingInfo); }
+	  
+	  
+	  public int insertProductImg(ProductImg productImg) {
+	  
+		  return sqlSession.insert("product.insertProductImg",productImg); }
+	 
+	  
+	  public int insertReturnPolicy(ReturnPolicy returnPolicy) {
+	  
+		  return sqlSession.insert("product.insertReturnPolicy",returnPolicy); }
+	
 
 
 	/*

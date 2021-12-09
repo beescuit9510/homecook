@@ -10,4 +10,9 @@ WHERE RNUM between #{start} and #{end}
 select count(*) as cnt from product where member_no = #{memberNo}
 </select>
 		
+<insert id="insertProduct" parameterType="p">
+INSERT INTO PRODUCT VALUES (PRODUCT_SEQ.NEXTVAL,#{memberNo},#{productName},#{productDetail},#{manufactureDate},#{stock},#{origin},#{manufacturer},#{managerContact},'1372',#{howToUse},#{precautions},#{expirationDate},#{capacity},#{price},#{limit},#{categoriNo});
+</insert>		
 </mapper>
+ 
+ 

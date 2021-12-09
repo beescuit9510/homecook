@@ -38,7 +38,7 @@
 					<tr>
 						<th>카테고리</th>
 						<td colspan="4">
-							<select class="form-control" id="CategoryNo" name="CategoryNo">
+							<select class="form-control" id="categoryNo" name="categoryNo">
 								<option value="0">대분류 선택</option>
 								<option value="1">생활용품</option>
 								<option value="2">뷰티</option>
@@ -67,37 +67,37 @@
 					<tr>
 					<th>판매가</th>
 					<td colspan="4">
-						<input type="text" id="productPrice" name="productPrice" class="form-control" style="width:200px; float:left"><span style="    vertical-align: middle; line-height: 37px; font-size: 20px; padding-left: 10px;">원</span>
+						<input type="text" id="Price" name="Price" class="form-control" style="width:200px; float:left"><span style="    vertical-align: middle; line-height: 37px; font-size: 20px; padding-left: 10px;">원</span>
 					</td>
 					</tr>
 					<tr>
 					<th>재고</th>
 					<td colspan="4">
-						<input type="text" id="productSize" name="productSize" class="form-control" style="width:200px">
+						<input type="text" id="stock" name="stock" class="form-control" style="width:200px">
 					</td>
 					</tr>
 					<tr>
 					<th>제조일자</th>
 					<td colspan="4">
-						<input type="date" id="productColor" name="productColor" class="form-control" style="width:200px">
+						<input type="date" id="manufactureDate" name="manufactureDate" class="form-control" style="width:200px">
 					</td>
 					</tr>
 					<tr>
 					<th style="vertical-align: middle;text-align: center;">제조국</th>
 					<td colspan="2">
-						<input type="text" id="productColor" name="productColor" class="form-control">
+						<input type="text" id="orgin" name="origin" class="form-control">
 					</td>
 					<th style="width: 100px; vertical-align: middle;text-align: center;">제조자</th>
 					<td colspan="2">
-						<input type="text" id="productColor" name="productColor" class="form-control">
+						<input type="text" id="manufacturer" name="manufacturer" class="form-control">
 					</td>
 					</tr>
 					<tr>
 					<th style="width:120px;">담당자 연락처</th>
 					<td colspan="4">
-						<input type="text" id="productColor" name="productColor" class="form-control" style="width:100px;display: inline;"><span>-</span>
-						<input type="text" id="productColor" name="productColor" class="form-control" style="width:200px;display: inline;"><span>-</span>
-						<input type="text" id="productColor" name="productColor" class="form-control" style="width:200px;display: inline;">
+						<input type="text" id="managerContact1" name="managerContact1" class="form-control" style="width:100px;display: inline;"><span>-</span>
+						<input type="text" id="managerContact2" name="managerContact2" class="form-control" style="width:200px;display: inline;"><span>-</span>
+						<input type="text" id="managerContact3" name="managerContact3" class="form-control" style="width:200px;display: inline;">
 					</td>
 				
 					</tr>
@@ -105,19 +105,19 @@
 					<tr>
 						<th>상품설명</th>
 						<td colspan="4">
-							<textarea id="productContent" name="productContent" class="form-control" style="height:300px"></textarea>
+							<textarea id="howToUse" name="howToUse" class="form-control" style="height:300px"></textarea>
 						</td>
 					</tr>
 					<tr>
 					<th>주의사항</th>
 					<td colspan="4">
-						<input type="text" id="productSize" name="productSize" class="form-control" style="width:200px">
+						<input type="text" id="precautions" name="precautions" class="form-control" style="width:200px">
 					</td>
 					</tr>
 					<tr>
 					<th>유통기한</th>
 					<td colspan="4">
-						<input type="date" id="productColor" name="productColor" class="form-control" style="width:200px">
+						<input type="date" id="expirationDate" name="expirationDate" class="form-control" style="width:200px">
 					</td>
 					</tr>
 					
@@ -125,19 +125,19 @@
 					<tr>
 					<th>구매제한</th>
 					<td colspan="4">
-						<input type="text" id="productSize" name="productSize" class="form-control" style="width:200px">
+						<input type="text" id="limit" name="limit" class="form-control" style="width:200px">
 					</td>
 					</tr>
 					<tr>
 					<th>배송 방법</th>
 					<td colspan="4">
-						<input type="text" id="productSize" name="productSize" class="form-control" >
+						<input type="text" id="shippingMethod" name="shippingMethod" class="form-control" >
 					</td>
 					
 					<tr>
 					<th>배송 회사</th>
 					<td colspan="4">
-						<input type="text" id="productSize" name="productSize" class="form-control" >
+						<input type="text" id="shippingCompany" name="shippingCompany" class="form-control" >
 					</td>
 					
 					</tr>
@@ -151,7 +151,7 @@
 					<tr>
 					<th>배송비</th>
 					<td colspan="4">
-						<input type="text" id="productSize" name="productSize" class="form-control" >
+						<input type="text" id="shipping_fee" name="shipping_fee" class="form-control" >
 					</td>
 					</tr>
 					
@@ -165,7 +165,7 @@
 					<tr>
 						<th>상세보기 파일</th>
 						<td colspan="4">
-							<input type="file" id="productFile" name="productFile" accept=".pdf" style="float:left">
+							<input type="file" id="productFile" name="productFile" accept=".png,.jpg,.jpeg" style="float:left">
 							<span style="float:right" class="float-right">파일형식 : PDF</span>
 						</td>
 					</tr>

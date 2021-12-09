@@ -41,7 +41,7 @@
   insert into business_seller_info values(#{memberNo},#{businessNo},#{tradeName},#{memberName},#{businessLoc},#{memberPhone},#{email}) 
   </insert>
   
-  <select id="selectOneSmember" resultType="bsi">
+  <select id="selectOneSmember" parameterType="m" resultType="bsi">
 SELECT 
   member_no as memberNo,
   member_name as memberName,
