@@ -319,7 +319,7 @@
 		   	<when test='order == "인기순"'>  t2.cnt desc, t2.star_avg desc  </when>
 		   	<when test='order == "낮은가격순"'> order_price asc, t2.star_avg desc </when>
 		   	<when test='order == "높은가격순"'> order_price desc, t2.star_avg desc </when>
-			<otherwise> t2.product_no asc</otherwise>
+			<otherwise> t2.product_no desc</otherwise>
 		</choose>
 		)r
 		)r2

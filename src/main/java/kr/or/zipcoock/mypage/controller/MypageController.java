@@ -1,6 +1,7 @@
 package kr.or.zipcoock.mypage.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,7 +10,7 @@ import kr.or.table.model.vo.ProductLike;
 import kr.or.zipcoock.mypage.service.MypageService;
 import kr.or.zipcoock.mypage.vo.DeleteObj1;
 import kr.or.zipcoock.mypage.vo.InsertObj;
-import kr.or.zipcoock.mypage.vo.SelectList;
+import kr.or.zipcoock.mypage.vo.SearchTool;
 import kr.or.zipcoock.mypage.vo.UpdateObj1;
 
 @Controller
@@ -47,15 +48,6 @@ public class MypageController {
 		return obj.getUrl();
 
 	}
-
-	@RequestMapping(value = "/selectList.do")
-	public String selectList(SelectList list) {
-		
-		service.selectList(list);
-		
-		return "redirect:/";
-		
-	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/deleteLike.do")
@@ -64,6 +56,7 @@ public class MypageController {
 		obj.setLike(like);
 		service.delete(obj);
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/insertLike.do")
 	public void insertLike(ProductLike like) {
@@ -72,7 +65,55 @@ public class MypageController {
 		service.insert(obj);
 	}
 
-// review_img 등록/수정
+	@RequestMapping(value = "/mypageGoGo.do")
+	public String mypageGoGo() {
+		SearchTool tool = new SearchTool();
+		tool.setMemberNo(4);
+		
+		service.test(tool);
+		
+		return "zipcoock/mypage2/mypage";
+		
+	}
+
+	
+	@RequestMapping(value="zcdMypage1.do")
+	public String zcdMypage() {
+		service.selectList(new SearchTool());
+		
+		return "zipcoock/mypage2/mypage";
+	}
+	
+	@RequestMapping(value="zcdMyCoupon1.do")
+	public String zcdMyCoupon() {
+		return "zipcoock/mypage2/mypage/myCoupon";
+	}
+	
+	@RequestMapping(value="zcdBookmarks1.do")
+	public String zcdBookmarks() {
+		return "zipcoock/mypage2/mypage/bookmarks";
+	}
+	
+	@RequestMapping(value="zcdMyReview1.do")
+	public String zcdMyReview() {
+		return "zipcoock/mypage2/mypage/myReview";
+	}
+	
+	@RequestMapping(value="zcdMyQnA1.do")
+	public String zcdMyQnA() {
+		return "zipcoock/mypage2/mypage/myQnA";
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// review_img 등록/수정
 
 }
 
