@@ -222,9 +222,7 @@ $(function()
 			error	: function()
 			{
 				console.log("Update MemberInfo Fail");
-			}
-			
-					
+			}	
 		});
 		
 	});

@@ -75,4 +75,16 @@ public class AdminDao
 		return sqlSession.insert("admin.insertOneQna_Re",q);
 	}
 
+	public AdminDeal selectOneDeal(int dealNo) 
+	{		
+		return sqlSession.selectOne("admin.get_OneDeal",dealNo);
+	}
+
+	public int updateOneDeal(AdminDeal d) 
+	{	
+		System.out.println("admindao.point");
+		System.out.println(d);
+		return sqlSession.update("admin.update_OneDeal",d);
+	}
+
 }

@@ -131,4 +131,32 @@ SYSDATE
 )
 </insert>
 
+
+
+<select id="get_OneDeal" parameterType = "_int" resultType="aDeal">
+select 
+    product_no as productNo,
+    deal_no as dealNo,
+    discount_rate as discountRate,
+    discount_date as discountDate,
+    discountend_date as discountendDate,
+    product_name as productName
+from homecook_deal a left outer join (select product_no, product_name from product)b using (product_no)
+where a.DEAL_NO = #{dealNo}
+</select>
+
+<update id="update_OneDeal" parameterType = "aDeal">
+UPDATE homecook_deal SET
+discount_rate = #{discountRate},
+discount_date = to_date(#{discountDate},'YY-MM-DD:HH24:MI:SS'),
+discountend_date = to_date(#{discountendDate},'YY-MM-DD:HH24:MI:SS')
+WHERE deal_no = #{dealNo}
+</update>
+
+
+
+
+
+
+
 </mapper>

@@ -68,5 +68,15 @@ public class AdminService
 	{		
 		return dao.insertOneQna(q);
 	}
+
+	public AdminDeal selectOneDeal(int dealNo) 
+	{		
+		return dao.selectOneDeal(dealNo);
+	}
+
+	public int updateOneDeal(AdminDeal d) 
+	{		
+		return dao.updateOneDeal(d);
+	}
 	
 }
