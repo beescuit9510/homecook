@@ -63,5 +63,16 @@ public class AdminDao
 	{		
 		return sqlSession.selectOne("admin.selectOneRefNo",refQnaNo);
 	}
+	
+
+	public int updateOneQna(AdminQna q) 
+	{
+		return sqlSession.update("admin.updateOneQna",q);
+	}
+
+	public int insertOneQna(AdminQna q) 
+	{		
+		return sqlSession.insert("admin.insertOneQna_Re",q);
+	}
 
 }

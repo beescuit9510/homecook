@@ -101,7 +101,7 @@
 	height: 25px;
 }
 
-.qna_textarea
+.qna_textarea, .qna_textarea_re
 {
 	margin-top: 5px;
 	margin-right: 5px;
@@ -160,11 +160,9 @@
 								</td>
 							</tr>							
 						</table>
+						<input type= "hidden"  id = "memberNo_Save" value = "${sessionScope.m.memberNo }" >
         			</div>      				      			
-        		</div> <!-- main_content_field -->
-        		<div class = "admin_submit_btn">
-							<button type="submit" class="btn btn-secondary" id = "submitButton">답변 제출</button>	
-						</div>	
+        		</div> <!-- main_content_field -->        		
         	</div> <!-- main content -->
         </div> <!-- main field -->
 		<%@include file="/WEB-INF/views/common/footer.jsp" %>
@@ -172,37 +170,94 @@
 <script>
 $(function()
 {
-	$("#submitButton").click(function()
-	{
-		console.log("11");
-	});
-	
-	
+	//----------------------------------<변수필드>//
+	var submitType = 0;
 	var origin_qnaNo = $('#qna_no').html();	
 	
 	var content = $('.amdin_main_content');
-	var qnaData;
-	
-	
+	var qnaData;	
+		
+	//----------------------------------<초기 실행 필드>//
 	qna_ready();
+	
+	//--------------------------------------------//
+	
+	$(document).on('click', '#submitButton', function()
+	{
+		if(submitType == 1)//fix
+		{	
+			var qna_no = $('#qna_no_re').html();			
+			var content = $('.qna_textarea_re').val();
+			
+			fix_reQna(qna_no,content);
+		}
+		else if(submitType == 2)//insert
+		{
+			var myNo = $('#memberNo_Save').val();
+			console.log(myNo);
+			
+			insert_reQna();
+		}			
+	});	
+	
 	function qna_ready()
 	{
 		qnaData = call_refQna(origin_qnaNo);	
-			
-		if(!qnaData)
+	}	
+	
+	function insert_reQna()
+	{
+		var myNo = $('#memberNo_Save').val();
+		var qnaNo = $('#qna_no').html();
+		var content = $('.qna_textarea_re').val();
+		var title = $('#qna_title').html() + "_Reply";
+		console.log(title);
+		
+		$.ajax(
 		{
-			console.log("end no = " + origin_qnaNo);			
-		}				
-		else
-		{
-			origin_qnaNo = qnaData.qnaRefNo;
-		}		
-	}		
+			url 	: 	"/insert_reQna.do",	
+			data 	:	
+			{
+				myNo:myNo,
+				qnaNo:qnaNo,
+				content:content,
+				title:title
+			},								
+			type	: 	"get",				
+			async: false,
+			success	: function(data)
+			{
+				alert("성공적으로 답변이 등록되었습니다.");
+				location.href="/admin_qna.do";
+			},
+			error:function(request,status,error)
+			{
+			    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
 
+			});
+	}
 	
-	
-	
-	
+	function fix_reQna(qna_no_re,reContent)
+	{
+		$.ajax(
+		{
+			url 	: 	"/fix_reQna.do", 	
+			data 	:	
+			{	
+				qna_no : qna_no_re,
+				reContent: reContent
+			},								
+			type	: 	"get",				
+			async: false,
+			success	: function(data)
+			{
+				alert("성공적으로 답변이 수정되었습니다.");
+				location.href="/admin_qna.do";
+			}
+		});
+	}
+
 	function call_refQna(refQnaNo)
 	{
 		var QnaValue;
@@ -225,17 +280,35 @@ $(function()
 					var div = "<div class = 'admin_table_re' >";
 					var table = "<table class = 'admin_mView_Table' style = 'width:70%;'>";
 						
-					var qnaNo = "<tr class = 'table-primary'><th class = 'q_table_00'>문의 번호</th><td class = 'q_table_content' id = 'qna_no'>"+QnaValue.qnaNo+"</td></tr>"
+					var qnaNo = "<tr class = 'table-primary'><th class = 'q_table_00'>상담 번호</th><td class = 'q_table_content' id = 'qna_no_re'>"+QnaValue.qnaNo+"</td></tr>"
 					var memberNo = 					
-					'<tr class = "table-primary"><th class = "q_table_00">문의자 번호 </th><td class = "q_table_content" id = "member_no">'+QnaValue.memberNo+'</td></tr>';
+					'<tr class = "table-primary"><th class = "q_table_00">답변자</th><td class = "q_table_content" id = "member_no">'+QnaValue.memberName+'</td></tr>';
 					var qnaContent = 
-					'<tr class = "table-primary"><th class = "q_table_00">문의 내용 </th><td class = "q_table_content" id = "qna_content"><textarea class = "qna_textarea" readonly="readonly">'+QnaValue.qnaContent+'</textarea></td></tr>';
+					'<tr class = "table-primary"><th class = "q_table_00">문의 내용 </th><td class = "q_table_content" id = "qna_content"><textarea class = "qna_textarea_re" >'+QnaValue.qnaContent+'</textarea></td></tr>';
 			
-					var table_end = "</table>";			
+					var table_end = "</table>";
+					var btn = '<div class = "admin_submit_btn"><button type="submit" class="btn btn-secondary" id = "submitButton">답변 수정</button></div>';
 					var div_end = "</div>"
 						
-					var htmlval = div + table + qnaNo + memberNo + qnaContent + table_end + div_end;
-					content.append(htmlval);
+					var htmlval = div + table + qnaNo + memberNo + qnaContent + table_end + btn +div_end;
+					content.append(htmlval);					
+					submitType = 1;
+				}
+				else
+				{
+					var div = "<div class = 'admin_table_re' >";
+					var table = "<table class = 'admin_mView_Table' style = 'width:70%;'>";
+					var qnaContent = 
+						'<tr class = "table-primary"><th class = "q_table_00">문의 내용 </th><td class = "q_table_content" id = "qna_content"><textarea class = "qna_textarea_re" ></textarea></td></tr>';
+				
+					var table_end = "</table>";
+					var btn = '<div class = "admin_submit_btn"><button type="submit" class="btn btn-secondary" id = "submitButton">답변 전송</button></div>';
+					var div_end = "</div>"
+					
+					var htmlval =  div + table +qnaContent + table_end + btn +div_end;
+					
+					content.append(htmlval);					
+					submitType = 2;	
 				}
 				
 				return data;
