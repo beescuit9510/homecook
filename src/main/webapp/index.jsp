@@ -13,11 +13,11 @@
 <h1>final project</h1>
 <a href = "/call_MainPage.do">main</a>
 <fieldset>옥승엽
-<a href = "/sellerInfoFrm.do">판매자회원정보</a>
-<a href = "/zipsellerMypage.do">판매자정보</a>
-<a href = "/sellerMypage.do">판매자 마이페이지</a>
-<a href = "/productList.do?reqPage=1">판매자 마이페이지 페이지네비</a>
-<a href = "/productInsertFrm.do">판매자 상품등록 페이지</a>
+<a href = "/zipsellerMypage.do">판매자 마이페이지</a>
+<a href = "/productList.do?reqPage=1">판매자 상품 리스트 페이지</a>
+<a href = "/insertProductFrm.do">판매자 상품등록 페이지</a>
+<a href = "/loginFrm.do">로그인</a>
+<a href = "/join.do">회원가입</a>
 </fieldset>
 <hr>
 <br>

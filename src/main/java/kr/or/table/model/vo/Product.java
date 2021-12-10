@@ -18,7 +18,7 @@ public class Product {
 	private String manufactureDate;
 	private int stock;
 	private String origin;//country of origin 
-	private String matufacturer;
+	private String manufacturer;
 	private String managerContact;
 	private String ccContact; //consumer Counseling Contact
 	private String howToUse;
@@ -27,7 +27,7 @@ public class Product {
 	private String capacity;
 	private String price;
 	private int limit;
-	private int productCategory;
+	private int categoryNo;
 	private int boardCategory;
 	private String filepath;
 }

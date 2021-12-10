@@ -58,12 +58,14 @@ public class SellerService {
 				Map<Object, Object> pagedata = new HashMap<Object, Object>();
 				pagedata.put("start", start);
 				pagedata.put("end", end);
-				pagedata.put("m", m);
+				pagedata.put("memberNo", m.getMemberNo());
 				//값 가져오기
-				
+				System.out.println(pagedata);
 				ArrayList<Product> pList = dao.selectProductList(pagedata);
+				System.out.println(pList);
 				//전체 게시물의 수
 				int totalCount = dao.selectTotalCount(m);
+				System.out.println(totalCount);
 				int totalPage = 0;
 				if(totalCount%numPerPage == 0) {
 					totalPage = totalCount/numPerPage;
@@ -72,7 +74,7 @@ public class SellerService {
 				}
 				int pageNaviSize = 5;
 				int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-				String pageNavi = "<ul class='pagination pagination-sm' style='display: inline-block;'>";
+				String pageNavi = "<ul class='pagination pagination-sm' style='display: inline-flex;'>";
 				//이전버튼
 				if(pageNo != 1) {
 					pageNavi += "<li class='page-item'>";
@@ -104,20 +106,55 @@ public class SellerService {
 				pageNavi +="</ul>";
 				
 				SellerProductPageData sppd = new SellerProductPageData(pList, pageNavi, start);
+				System.out.println(sppd);
 				
 			
 				return sppd;
 			}
 	@Transactional
-	public int productInsert(Product product, ShippingInfo shippingInfo, ProductImg productImg,
-			ReturnPolicy returnPolicy) {
-		/*
-		 * int result1 = dao.insertProduct(product); int result2 =
-		 * dao.insertShippingInfo(shippingInfo); int result3 =
-		 * dao.insertProductImg(productImg); int result4 =
-		 * dao.insertReturnPolicy(returnPolicy);
-		 */
-		return 0;
+	public int productInsert(Product product, ShippingInfo shippingInfo, ArrayList<ProductImg> list, ReturnPolicy returnPolicy) {
+	
+		  int result1 = dao.insertProduct(product); 
+		  int result = 0; //FILE_TBL 테이블에 인서트 성공여부를 위한 INT값
+			//insertproduct 성공했을경우
+			if(result1 > 0) {
+				ProductImg pi = new ProductImg();
+				pi = list.get(0);
+				pi.setProductNo(product.getProductNo());
+				System.out.println(list.get(0)+"dao로 넘어온 list값");
+				System.out.println(pi+"dao로 넘어와서 저장한 pi값");
+				result = dao.insertProductMainImg(pi);
+				// 가장 최근에 넣은 product값 MAX로 구하기for(int i=0; i<list.length; i++)//for(ProductImg fv : list )
+				for(int i=1; i<list.size(); i++) { // ArrayList에 들어간 여러개의 파일 불러오기
+					ProductImg fv = new ProductImg();
+					fv = list.get(i);
+					fv.setProductNo(product.getProductNo()); //db에 insert하기위해 필요한 boardNo
+					result += dao.insertProductImg(fv);//db에 file_tbl에 insert한 횟수만큼 추가하여 result에 대입
+				}
+				shippingInfo.setProductNo(product.getProductNo());
+				System.out.println(product.getProductNo()+"셀렉트키확인");
+				System.out.println(shippingInfo+"프로덕트 no 넣은 값");
+				
+				int result2 = dao.insertShippingInfo(shippingInfo); 
+				
+				if( result2 > 0) {
+					returnPolicy.setProductNo(product.getProductNo());
+					int result3 = dao.insertReturnPolicy(returnPolicy);	
+					if (result3 > 0) {
+						return result;
+						
+					}else return -3;//환불정책 insert 실패
+					
+				}else return -2; //배송정보 insert 실패 
+			
+			}else {
+				return -1; //파일 없는경우
+			}
+			 
+		 
+		  
+		 
+		
 	}
 	}
 	

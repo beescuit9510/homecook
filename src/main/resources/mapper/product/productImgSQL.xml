@@ -3,10 +3,10 @@
 <mapper namespace="productImg">
 
 <insert id="insertProductMainImg" parameterType="pImg">
-insert into product values(product_seq.nexpval,#{productNo},#{fileName},#{filePath},'Y')
+insert into product_img values(PRODUCT_IMG_SEQ.NEXTVAL,#{productNo},#{fileName},#{filePath},'Y')
 </insert>
 <insert id="insertProductImg" parameterType="pImg">
-insert into product values(product_seq.nexpval,#{productNo},#{fileName},#{filePath},'N')
+insert into product_img values(PRODUCT_IMG_SEQ.NEXTVAL,#{productNo},#{fileName},#{filePath},'N')
 </insert>
 
 </mapper>
