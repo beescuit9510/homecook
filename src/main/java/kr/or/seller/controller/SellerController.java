@@ -140,7 +140,7 @@ private SellerService service;
 	public String productInsert(Model model, HttpSession session,Product product,HttpServletRequest request, ReturnPolicy returnPolicy,ShippingInfo shippingInfo,MultipartFile[] productImg) {
 		//파일목록을 저장할 List
 		ArrayList<ProductImg> list = new ArrayList<ProductImg>();
-		System.out.println("오류발생시점 테스트 1"+productImg[0]);
+	
 		
 		//MultipartFile[]배열은 파일을 첨부하지 않더라도 무조건 길이가 1인 배열
 		//배열의 첫번째 파일이 비어있는지 체크하는 방식으로 파일 첨부여부 확인
@@ -152,7 +152,7 @@ private SellerService service;
 			//MultipartFile을 이용하여 파일업로드 작업을 수행해야함
 			//파일을 업로드할 경우 설정
 			//request.....getrealPath -> /wabapp/폴더
-			String savePath = request.getSession().getServletContext().getRealPath("resources/upload/board/");
+			String savePath = request.getSession().getServletContext().getRealPath("resources/upload/product/");
 			//반복문 통해서 파일 처리(파일업로드)564 891 5428
 			for(MultipartFile file : productImg) {
 				//유저가 올린 파일명이 이미 업로드 폴더에 존재하면 덮어쓰기가 되어 이전파일이 삭제 

@@ -95,40 +95,40 @@
 		     		<th id="check"><input type="checkbox" id="checkAll"></th><th>상품이미지</th><th>상품명</th><th>가격</th><th>관리</th>
 		     		</tr>
 		     		<%--판매자 상품 리스트 띄우는 for문 --%>
-		     	<%-- 	<c:forEach items="${pList }" var="p">
+		     	 	<c:forEach items="${pList }" var="p">
 		     			<tr class="totalInfo">
-		     				<td><input type="checkbox" class="checkProduct" name="checkId" value=${p.productId }></td>
-		     				<td><a href="/productView?id=${p.productId }&seller=${p.productSeller }&reqPage=1"><img src="/upload/product/${p.productImage }" width="100px" height="100px"></a></td>
-		     				<td><a href="/productView?id=${p.productId }&seller=${p.productSeller }&reqPage=1" style="color:black">${p.productName }</a></td>
-		     				<td class="priceTd">${p.productPrice }</td>
+		     				<td><input type="checkbox" class="checkProduct" name="checkId" value=${p.productNo }></td>
+		     				<td><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1"><img src="resources/upload/product/${p.filepath }" width="100px" height="100px"></a></td>
+		     				<td><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1" style="color:black">${p.productName }</a></td>
+		     				<td class="priceTd">${p.price }</td>
 		     				
 		     				<td>
 			     					<form action="/updateProductInfoFrm">
 			     					<button class="btn updateBtn">상품수정 </button>
-			     					<input type="hidden" name="productId" value=${p.productId }>
-			     					<input type="hidden" name="memberNo" value=${p.productSeller }>
+			     					<input type="hidden" name="productNo" value=${p.productNo }>
+			     					<input type="hidden" name="memberNo" value=${p.memberNo }>
 			     					</form>
 			     					<br>
-			     					<button class="btn inventory" value=${p.productId } data-toggle="modal" data-target="#myModal">재고확인</button>
+			     					<button class="btn inventory" value=${p.productNo } data-toggle="modal" data-target="#myModal">재고확인</button>
 		     				</td>
 		     			</tr>
-		     		</c:forEach> --%>
+		     		</c:forEach> 
 		     	</table>
 							
 
 
-						<c:forEach items="${list }" var="p" varStatus="i">
+						<c:forEach items="${plist }" var="p" varStatus="i">
 								<tr class="totalInfo" style="text-align: center;">
 									<td><input type="checkbox" class="checkProduct"
-										name="checkId" value=${p.productName }></td>
+										name="checkId" value=${p.productNo }></td>
 									<td><a
-										href="/productView?id=${p.productName }&seller=${p.matufacturer }&reqPage=1"><img
+										href="/productView?id=${p.productNo }&seller=${p.matufacturer }&reqPage=1"><img
 											src="/resources/upload/product/${p.filepath }" width="100px"
 											height="100px"></a></td>
 									<td style="vertical-align: middle;"><a
-										href="/productView?id=${p.productName }&seller=${p.matufacturer }&reqPage=1"
+										href="/productView?id=${p.productNo }&seller=${p.matufacturer }&reqPage=1"
 										style="color: black">상품명</a></td>
-									<td class="priceTd" style="vertical-align: middle;">${p.price }</td>
+									<td class="priceTd" style="vertical-align: middle;">${p.productNo }</td>
 									
 									<td>
 
