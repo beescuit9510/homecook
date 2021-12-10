@@ -216,15 +216,13 @@ $(function()
 				else
 					alert("변경 실패")
 							
-				console.log("success update MemberInfo");
+				location.href="/admin_allMember.do";				
 				//location.replace("/adminMemberList?reqPage=1&dataType=List&data=''");
 			},
 			error	: function()
 			{
 				console.log("Update MemberInfo Fail");
-			}
-			
-					
+			}	
 		});
 		
 	});
