@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PurchaseController {
+public class DeliveryBuyerController {
 	
 	@RequestMapping(value="zcdMain.do")
 	public String zcdMain() {
@@ -38,6 +38,6 @@ public class PurchaseController {
 	
 	@RequestMapping(value="zcdFindResult.do")
 	public String zcdFindResult() {
-		return "delivery/buyer/mypage/myQnA";
+		return "delivery/buyer/findResult";
 	}
 }

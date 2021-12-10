@@ -184,6 +184,13 @@ $(function()
 	
 	$(document).on('click', '#submitButton', function()
 	{
+		var content_test = $('.qna_textarea_re').val();		
+		if(content_test == "")
+		{
+			alert("답변 내용을 입력해주세요.");
+			return;
+		}		
+		
 		if(submitType == 1)//fix
 		{	
 			var qna_no = $('#qna_no_re').html();			
@@ -193,8 +200,7 @@ $(function()
 		}
 		else if(submitType == 2)//insert
 		{
-			var myNo = $('#memberNo_Save').val();
-			console.log(myNo);
+			var myNo = $('#memberNo_Save').val();			
 			
 			insert_reQna();
 		}			
