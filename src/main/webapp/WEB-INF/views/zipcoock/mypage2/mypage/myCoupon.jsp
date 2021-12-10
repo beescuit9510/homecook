@@ -32,11 +32,13 @@
        	<div class = "content_title">쿠폰함</div>
        	<div class = "content_div_area">
        		<div class = "content_div_content">
+       	<!-- 
        			<div class = "content_div_info">
        				<div class = "content_div_opt1">쿠폰 정보</div>
        				<div class = "content_div_opt2">사용기한</div>
        				<div class = "content_div_opt3">사용여부</div>
        			</div>
+       	 -->
        			<c:forEach begin="1" end="3">
        			
        			
@@ -75,3 +77,38 @@
 		clear:right;
 	}
 </style>
+<script>
+$(document).ready(function () {
+	var like = ${pp.isLiked};
+ 	Number(like)==1	&& $(".likeButton").toggleClass("liked");
+ 	
+	qEnd>=qTotal && $("#qna-btn").hide();
+	rEnd>=rTotal && $("#review-btn").hide();	
+	
+	qEnd<qTotal && $("#qna-btn").click();
+	rEnd<rTotal && $("#review-btn").click();	
+	
+	$(".likeButton").click(function() {
+		if(memberNo==0){
+			alert("로그인해주세요.")
+			return;
+		};
+		var isLiked = $(".likeButton").hasClass("liked");
+		var url = isLiked? "/deleteLike.do":"/insertLike.do";
+		$.ajax({
+			type:"GET",
+			url:url,		
+			data:{memberNo:memberNo,productNo:productNo},
+			contentType : "application/json;charset=UTF-8",
+			success:function(){			
+				$(".likeButton").toggleClass("liked");
+				}
+			})
+
+	});
+
+
+	
+});
+
+</script>	

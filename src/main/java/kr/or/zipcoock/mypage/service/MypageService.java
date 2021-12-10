@@ -64,30 +64,35 @@ public class MypageService {
 	public ArrayList<MyAddr> selectMyAddr(SearchTool tool) {
 		tool.setFilteredPost(dao.selectMyAddrCnt(tool));
 		selectTotal(tool, "address");
+		selectList(tool);
 		return dao.selectMyAddr(tool);
 	}
 
 	public ArrayList<MyHQna> selectMyHQna(SearchTool tool) {
 		tool.setFilteredPost(dao.selectMyHQnaCnt(tool));
-		selectTotal(tool, "qna");
+		selectTotal(tool, "homepage_qna");
+		selectList(tool);
 		return dao.selectMyHQna(tool);
 	}
 
 	public ArrayList<MyLike> selectMyLike(SearchTool tool) {
 		tool.setFilteredPost(dao.selectMyLikeCnt(tool));
 		selectTotal(tool, "product_like");
+		selectList(tool);
 		return dao.selectMyLike(tool);
 
 	}
 	public ArrayList<MyQna> selectMyQna(SearchTool tool) {
 		tool.setFilteredPost(dao.selectMyQnaCnt(tool));
-		selectTotal(tool, "homepage_qna");
+		selectTotal(tool, "qna");
+		selectList(tool);
 		return dao.selectMyQna(tool);
 
 	}
 	public ArrayList<MyReview> selectMyReview(SearchTool tool) {
 		tool.setFilteredPost(dao.selectMyReviewCnt(tool));
 		selectTotal(tool, "product_review");
+		selectList(tool);
 		return dao.selectMyReview(tool);
 
 	}
@@ -111,6 +116,7 @@ public class MypageService {
 		tool.setEnd(end);
 
 		int total = tool.getFilteredPost();
+		
 
 		int totalPage = total % postPerPage == 0 ? total / postPerPage : total / postPerPage + 1;
 		int pageNaviSize = 10;

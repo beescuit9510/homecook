@@ -21,7 +21,7 @@
 
 	<%@include file="/WEB-INF/views/zipcoock/mypage2/mypage/zcdMypageHeader.jsp"%>
 		<div class = "content_div">
-       	<div class = "content_title">즐겨찾기
+       	<div class = "content_title">리뷰내역
 					<button id="reset" class="btn btn-outline-secondary btn-block btn" type="button">
 						<i class="fas fa-sync-alt"></i>
 					</button>
@@ -29,17 +29,23 @@
 
 		
 		<div class="mt input-group">
-			<input type="text" id="keyword" class="form-control" placeholder="검색"<c:if test="${tool.productName ne ''}">value="${tool.productName }"</c:if><c:if test="${tool.tradeName ne ''}">value="${tool.tradeName }"</c:if>/>
+			<input type="text" id="keyword" class="form-control" placeholder="검색"
+			<c:if test="${tool.productName ne ''}">value="${tool.productName }"</c:if>
+			<c:if test="${tool.title ne ''}">value="${tool.title }"</c:if>
+			<c:if test="${tool.content ne ''}">value="${tool.content }"</c:if>
+			<c:if test="${tool.tradeName ne ''}">value="${tool.tradeName }"</c:if>/>
 			<select id="searchBy" class="form-control rounded-0">								
 				<option value="productName" <c:if test="${tool.productName ne '' }"> selected = "selected" </c:if>>상품명</option>
-			<option value="tradeName" <c:if test="${tool.tradeName ne '' }"> selected = "selected" </c:if>>상호</option>
-				</select>							
-				<div class="input-group-append">
-					<button id="link" class="btn btn-outline-secondary" type="button">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
+				<option value="tradeName" <c:if test="${tool.tradeName ne '' }"> selected = "selected" </c:if>>상호</option>
+				<option value="tradeName" <c:if test="${tool.title ne '' }"> selected = "selected" </c:if>>제목</option>
+				<option value="tradeName" <c:if test="${tool.content ne '' }"> selected = "selected" </c:if>>내용</option>
+			</select>							
+			<div class="input-group-append">
+				<button id="link" class="btn btn-outline-secondary" type="button">
+					<i class="fas fa-search"></i>
+				</button>
 			</div>
+		</div>
 	
 
 
@@ -53,6 +59,18 @@
 					<select class="selectBox form-control" id="order" name="">
 					<c:forEach items="${tool.orderList }" var="v">
 						<option value="${v }" <c:if test="${v eq tool.order}">selected = "selected"</c:if>>${v }</option>
+					</c:forEach>
+					</select>
+				</div>
+			</div>			
+			<div class="col-md-4">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text">글기간:</span>
+					</div>
+					<select class="selectBox form-control" id="period" name="">
+					<c:forEach items="${tool.periodList }" var="v">
+						<option value="${v }" <c:if test="${v eq tool.period}">selected = "selected"</c:if>>${v }</option>
 					</c:forEach>
 					</select>
 				</div>
@@ -74,14 +92,6 @@
 
        	<div class = "content_div_area">
        		<div class = "content_div_content">
-       		<!-- 
-       			<div class = "content_div_info">
-       				<div class = "content_div_opt1">쿠폰 정보</div>
-       				<div class = "content_div_opt2">사용기한</div>
-       				<div class = "content_div_opt3">사용여부</div>
-       			</div>
-       		 -->
-       		 
        		<c:forEach items="${list}" var="v" >
    			<div class ="content_div_info coupon-tbl" style="height: 110px;">
    			<!-- 
@@ -99,7 +109,8 @@
    					</c:if>
    				</div>
    				<div class = "content_div_opt3" id="text-emp">
-	   				<div class="like-wrap"><span class="likeButton" id="${v.productNo }">♥</span></div>
+		   			<button class="buy_btn update-btn" id =${v.reviewNo }>수정하기</button>
+   					<button class="cart_btn delete-btn" id =${v.reviewNo }>삭제하기</button>
    				</div>
        		</div>
        		 </c:forEach>
@@ -110,7 +121,7 @@
 		<div class="col-md-6">
 			<ul class="pagination m-0">${tool.pageNavi }</ul>
 		</div>
-		<div class="col-md-6"><p class="text-right mb-0 mt-1">총 ${tool.totalPost }개 상품중 ${tool.filteredPost}개 상품이 검색되었습니다. ${tool.p } of ${tool.totalP }</p>
+		<div class="col-md-6"><p class="text-right mb-0 mt-1">총 ${tool.totalPost }개 리뷰중 ${tool.filteredPost}개 리뷰가 검색되었습니다. ${tool.p } of ${tool.totalP }</p>
 		</div>
 	</div>
 
@@ -132,44 +143,18 @@ var basic,show,productName,tradeName,title,content,period,order;
 
 function initVar() {
     keyword = "&"+$("#searchBy").val()+"="+$("#keyword").val();   	
-	basic = "/myLikeList.do?";
+	basic = "/myReviewList.do?";
     order = "&order="+$("#order").val();
+    period = "&period="+$("#period").val();
     show = "&show="+$("#show").val();
-    url = basic+order+show+keyword;    
+    url = basic+order+period+show+keyword;    
 }
-
-$(".likeButton").toggleClass("liked");
-$(document).ready(function () {
-	$(".likeButton").click(function() {
-		var id = $(this).attr("id")
-		$("#"+id).toggleClass("liked");		
-		initVar();
-	    p = "&p="+${tool.p};
-	    url += p;
-	    
-		var newForm = $('<form></form>'); 
-		newForm.attr("name","newForm"); 
-		newForm.attr("method","post"); 
-		newForm.attr("action","/delete.do");
-		newForm.append($('<input/>', {type: 'hidden', name: 'like.memberNo', value:memberNo})); 
-		newForm.append($('<input/>', {type: 'hidden', name: 'like.productNo', value:id })); 
-		newForm.append($('<input/>', {type: 'hidden', name: 'url', value:url })); 
-		newForm.appendTo('body');
-		newForm.submit();
-	});
-
-
-	
-});
-
 
 function clickURL() {
     initVar();
     
     $("<a href='"+url+"'></a>")[0].click();
 };
-
-
 
 $(function() {
     $(".selectBox").change(clickURL)
@@ -191,5 +176,32 @@ $(function() {
 })
 
 
-</script>	
+
+
+$(".delete-btn").click(function() {
+	var id = $(this).attr("id")
+	initVar();
+    p = "&p="+${tool.p};
+    url += p;
+    
+	var newForm = $('<form></form>'); 
+	newForm.attr("name","newForm"); 
+	newForm.attr("method","post"); 
+	newForm.attr("action","/delete.do");
+	newForm.append($('<input/>', {type: 'hidden', name: 'r.memberNo', value:memberNo})); 
+	newForm.append($('<input/>', {type: 'hidden', name: 'r.reviewNo', value:id })); 
+	newForm.append($('<input/>', {type: 'hidden', name: 'url', value:url })); 
+	newForm.appendTo('body');
+	newForm.submit();
+});
+
+$(".update-btn").click(function() {
+	var id = $(this).attr("id")
+    $("<a href='/updateMyReview?reviewNo="+id+"'></a>")[0].click();
+});
+
+
+
+
+</script>
 </html>

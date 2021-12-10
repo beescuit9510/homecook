@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class MyQna {
 	private int qnaNo;
 	private String qnaTitle;
+	private int isAnswered;
 	private String qnaContent;
 	private String writeDate;
 	private String productName;
@@ -17,6 +18,6 @@ public class MyQna {
 	private String tradeName;
 	private String price;
 	private String discountedPrice;
-	private String dRate;
+	private String discountRate;
 
 }

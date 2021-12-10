@@ -1,12 +1,18 @@
 package kr.or.zipcoock.mypage.controller;
 
+import javax.servlet.http.HttpSession;
+import javax.tools.Tool;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.ProductLike;
+import kr.or.zipcoock.board.vo.ProductPageArgs;
 import kr.or.zipcoock.mypage.service.MypageService;
 import kr.or.zipcoock.mypage.vo.DeleteObj1;
 import kr.or.zipcoock.mypage.vo.InsertObj;
@@ -43,9 +49,10 @@ public class MypageController {
 	@RequestMapping(value = "/delete.do")
 	public String delete(DeleteObj1 obj) {
 
+		System.out.println(obj.getLike());
 		service.delete(obj);
 
-		return obj.getUrl();
+		return "redirect:"+obj.getUrl();
 
 	}
 	
@@ -105,7 +112,37 @@ public class MypageController {
 	}
 
 	
-	
+	@RequestMapping(value="/myLikeList.do")
+	public String myLikeList(SearchTool tool, HttpSession session, Model model) {
+//		Member m = (Member)session.getAttribute("m");		
+//		tool.setMemberNo(m.getMemberNo()); 
+		tool.setBasic("/myLikeList.do?");
+		tool.setMemberNo(4);
+		model.addAttribute("tool", tool);
+		model.addAttribute("list", service.selectMyLike(tool));				
+		return "zipcoock/mypage2/mypage/hompageQna";
+	}
+	@RequestMapping(value="/myReviewList.do")
+	public String myReviewList(SearchTool tool, HttpSession session, Model model) {
+//		Member m = (Member)session.getAttribute("m");		
+//		tool.setMemberNo(m.getMemberNo()); 
+		tool.setBasic("/myReviewList.do?");
+		tool.setMemberNo(4);
+		model.addAttribute("tool", tool);
+		model.addAttribute("list", service.selectMyReview(tool));				
+		return "zipcoock/mypage2/mypage/myReviews";
+	}
+	@RequestMapping(value="/myQnaList.do")
+	public String myQnaList(SearchTool tool, HttpSession session, Model model) {
+//		Member m = (Member)session.getAttribute("m");		
+//		tool.setMemberNo(m.getMemberNo()); 
+		tool.setBasic("/myReviewList.do?");
+		tool.setMemberNo(4);
+		model.addAttribute("tool", tool);
+		model.addAttribute("list", service.selectMyQna(tool));				
+		return "zipcoock/mypage2/mypage/myQnas";
+	}
+
 	
 	
 	

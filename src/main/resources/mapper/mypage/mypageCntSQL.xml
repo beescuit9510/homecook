@@ -19,10 +19,10 @@
 		productName like '%'||#{productName}||'%'
 		and tradeName like '%'||#{tradeName}||'%' 		
 		<choose>
-			<when test='period == "한달이내"'> and write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월 이내"'> and write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년 이내"'> and write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루전"'> and write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and write_date >= add_months(sysdate,-1) </when>
+		   	<when test='period == "6개월 "'> and write_date >= add_months(sysdate,-6) </when>
+		   	<when test='period == "1년 "'> and write_date >= add_months(sysdate,-12) </when>
+		   	<when test='period == "하루"'> and write_date >= sysdate </when>   	
 			<otherwise></otherwise>
 		</choose>				
 	</select>	

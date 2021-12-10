@@ -224,7 +224,7 @@
 					<p class="m-0 discount_price product-price"><span class="present_price">${c.price }원</span></p>
 					</c:if>
 					<c:if test="${c.price ne c.orderPrice}">
-					<p class="m-0 discount_price product-price"><span class="goods_detail lowest-price">최저가</span>${c.discountedPrice }원<span class="original_price">${c.price }원</span></p>
+					<p class="m-0 discount_price product-price"><span class="goods_detail lowest-price">${c.discountRate }% off</span><span class="goods_detail lowest-price"></span>${c.discountedPrice }원<span class="original_price">${c.price }원</span></p>
 					</c:if>
 				</div>
 				<div class="card-footer p-0">
@@ -380,8 +380,7 @@
 		    $("<a href='"+url+"'></a>")[0].click();
 	    	
 	    })
-
-
+	    
 
   })
 </script>
@@ -476,8 +475,33 @@
 	margin-left:0px;
     box-sizing: border-box;
 }
+
+/*
 .active{
-   background: #9ac6e8;
+   background: #9ac6e8 !important;
  }
+ 
+ 	.page-link {
+  	 	color: #9ac6e8;
+	   border:#c4ddf1 !important;
+	}
+	.page-link:hover{
+  	 	color: #9ac6e8;
+	   border:#c4ddf1 !important;
+	}
+	li.active > *{
+		color:fff;
+	   background-color: #c4ddf1 !important;
+	   border:#c4ddf1 !important;
+	}
+	a{
+  	 	color: #9ac6e8;
+	}
+	
+	.btn-primary {
+	   border:#c4ddf1 !important;
+	   background-color: #c4ddf1 !important;
+	}	
+*/ 
 </style>
 </html>

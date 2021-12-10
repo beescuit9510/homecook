@@ -10,10 +10,11 @@ import lombok.NoArgsConstructor;
 public class MyLike {
 	private int likeNo;
 	private String productName;
+	private String productNo;
 	private String filepath;
 	private String tradeName;
 	private String price;
 	private String discountedPrice;
-	private String dRate;
+	private String discountRate;
 
 }
