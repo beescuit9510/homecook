@@ -47,7 +47,7 @@
         			<div class="content_div_area">
         				<div class="content_div_content">
         					<div class="content_div_info">
-        						<div class="content_div_opt1">상호명</div>
+        						<div class="content_div_opt1 overflow-text">상호명</div>
         						<div class="content_div_opt2">매장 전화번호</div>
         						<div class="content_div_opt3">관리</div>
         						<div class="content_div_opt4">영업 상태</div>
@@ -60,7 +60,8 @@
 											<td><div class="content_div_opt2" style="color: #333">${zs.storePhone }</div></td>
 											<td>
 												<div class="content_div_opt3">
-													<a href="/selectOneMarket.do?storeNo=${zs.storeNo }" style="color: #9ac6e8;">삭제 및 변경</a>
+													<a href="/selectOneMarket.do?storeNo=${zs.storeNo }" style="color: #9ac6e8;">변경</a> /
+													<a href="/deleteOneMarket.do?storeNo=${zs.storeNo }" style="color: #9ac6e8;">삭제</a>
 													<input type="hidden" name="storeNo" value="${zs.storeNo }">
 												</div>
 											</td>
@@ -100,7 +101,7 @@
 	<script>
 		$(".state-change").change(function() {
 			var storeState = $(this).val();
-			var storeNo = $(this).parent().parent().prev().children().children().eq(1).val();
+			var storeNo = $(this).parent().parent().prev().children().children().eq(2).val();
 			console.log(storeState);
 			console.log(storeNo);
 			var data = {storeState : storeState, storeNo : storeNo};

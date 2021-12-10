@@ -24,9 +24,17 @@ public class DeliverySellerDao {
 	public String selectOneStoreName(String storeName) {
 		return sqlSession.selectOne("zcdseller.selectOneStoreName", storeName);
 	}
+	
+	public String selectOneStoreName2(int storeNo) {
+		return sqlSession.selectOne("zcdseller.selectOneStoreName2", storeNo);
+	}
 
 	public String selectOneStorePhone(String storePhone) {
 		return sqlSession.selectOne("zcdseller.selectOneStorePhone", storePhone);
+	}
+	
+	public String selectOneStorePhone2(int storeNo) {
+		return sqlSession.selectOne("zcdseller.selectOneStorePhone2", storeNo);
 	}
 
 	public int addMarket(ZcdStore zs) {
@@ -48,6 +56,18 @@ public class DeliverySellerDao {
 
 	public ZcdStore selectOneMarket(int storeNo) {
 		return sqlSession.selectOne("zcdseller.selectOneMarket", storeNo);
+	}
+
+	public int modifyMarket(ZcdStore zs) {
+		return sqlSession.update("zcdseller.modifyMarket", zs);
+	}
+
+	public int modifyStoreLogo(StoreLogo sl) {
+		return sqlSession.update("zcdseller.modifyStoreLogo", sl);
+	}
+
+	public int deleteOneMarket(int storeNo) {
+		return sqlSession.delete("zcdseller.deleteOneMarket", storeNo);
 	}
 
 }

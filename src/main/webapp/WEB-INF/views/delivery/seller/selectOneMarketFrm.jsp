@@ -55,12 +55,14 @@
         								<div class="content_div_end"></div>
         								<br>
         								<div class="container2">
-	        								<form action="/addMarket.do" method="post" enctype="multipart/form-data">
+	        								<form action="/modifyMarket.do" method="post" enctype="multipart/form-data">
 	        								<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
 	        									<fieldset>
 		        									
 		        									<span class="info_span">필수 정보</span>
 		        									<hr>
+		        									
+		        									<input type="hidden" name="storeNo" value="${zs.storeNo }">
 		        									
 												    <div class="row">
 														<label for="storeName" class="col-2 col-form-label">상호명</label>
@@ -149,7 +151,7 @@
 														<label class="col-2 col-form-label">카테고리</label>
 														<div class="col-3">
 															<select id="category1" name="category1" class="form-select add_margin" >
-																<option value="${zs.category1 }" selected disabled style="background-color: #ebebeb;">${zs.category1 }</option>
+																<option value="${zs.category1 }" selected readonly style="background-color: #ebebeb;">${zs.category1 }</option>
 																<option value="한식">한식</option>
 											                    <option value="치킨">치킨</option>
 											                    <option value="분식">분식</option>
@@ -176,10 +178,10 @@
 											        		<select id="category2" name="category2" class="form-select">
 											        			<c:choose>
 											        				<c:when test="${empty zs.category2 }">
-											        					<option value="" selected disabled>추가 선택</option>
+											        					<option value="" selected readonly>추가 선택</option>
 											        				</c:when>
 											        				<c:when test="${not empty zs.category2 }">
-											        					<option value="${zs.category2 }" selected disabled style="background-color: #ebebeb;">${zs.category2 }</option>
+											        					<option value="${zs.category2 }" selected readonly style="background-color: #ebebeb;">${zs.category2 }</option>
 												        				<option value=''>선택하지 않음</option>
 												        				<option value='1인분'>1인분</option>
 												        				<option value='프랜차이즈'>프랜차이즈</option>
@@ -192,10 +194,13 @@
 													
 													<div class="row">
 														<label class="col-2 col-form-label">매장 로고</label>
-														<div class="col-8"> 
-															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png" style="display:none;">
-															<img src='/resources/upload/zcdSeller/치킨_로고.png' style="width:150px; height: 150px;">
-															<input type="hidden" class="oldFilePath" name="oldFilePath" id="oldFilePath">
+														<div class="col-8">
+															<input type="hidden" name="status" value="1">
+															<c:forEach items="${zs.list }" var="f">
+																<label for="formFile" class="btn btn-primary add_margin" style="width: 70px;">찾기</label>
+																<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png" style="display:none;">
+																<div class="logo_img"><img src='/resources/upload/zcdSeller/${f.filename }'></div>
+															</c:forEach>
 														</div>
 													</div>
 													<br>
@@ -254,10 +259,11 @@
     <script>
     	$(function() {
     		
-    		var storeNameChk = false;
-    		var storePhoneChk = false;
-    		var minPriceChk = false;
-    		var address2Chk = false;
+    		var storeNameChk = true;
+    		var storePhoneChk = true;
+    		var minPriceChk = true;
+    		var address2Chk = true;
+    		var divTag = document.querySelector(".logo_img");
     		
     		$("#findpostcode").on("click", function() {
     			return findAddr();
@@ -302,7 +308,25 @@
     				alert("이미지 파일만 가능합니다.");
     				$(this).val("");
     			}
+    			loadImg(this);
     		});
+    		
+    		function loadImg(obj) {
+    			var files = obj.files;
+    			if (files.length != 0) {
+    				var reader = new FileReader();
+    				reader.readAsDataURL(files[0]);
+    				reader.onload = function(e) {
+    					var imgTag = document.createElement("img");
+    					imgTag.setAttribute("src", e.target.result)
+    					divTag.innerHTML = "";
+    					divTag.appendChild(imgTag);
+    					$("[name=status]").val(2);
+    				}
+    			} else {
+    				divTag.innerHTML = "";
+    			}
+    		}
     		
     		
     		$("#enrollsubmit").on("click", function() {
@@ -342,7 +366,7 @@
     			} else if (category1 == null) {
     				alert("카테고리를 확인하세요.");
     				return false;
-    			} else if (files == "") {
+    			} else if (divTag.innerHTML = "") {
     				alert("매장 로고를 선택하세요.");
     				return false;
     			} else {
@@ -352,11 +376,13 @@
     		
     		$("#storeName").on("keyup", function() {
     			var storeName = $(this).val();
+    			var storeNo = $(this).parent().parent().prev().val();
+    			console.log(storeNo);
     			var storeNameReg = /^[0-9a-zA-Z가-힣\s]{2,20}$/;
     			if (storeNameReg.test(storeName)) {
     				$.ajax({
-    					url : "/storeNameCheck.do",
-    					data : {storeName : storeName},
+    					url : "/storeNameCheck2.do",
+    					data : {storeName : storeName, storeNo : storeNo},
     					type : "post",
     					success : function(data) {
     						if (data == 0) {
@@ -382,11 +408,13 @@
     		
     		$("#storePhone").on("keyup", function() {
     			var storePhone = $(this).val();
+    			var storeNo = $(this).parent().parent().prev().prev().prev().prev().prev().val();
+    			console.log(storeNo);
     			var storePhoneReg = /^[0-9]{10,11}$/;
     			if (storePhoneReg.test(storePhone)) {
     				$.ajax({
-    					url : "/storePhoneCheck.do",
-    					data : {storePhone : storePhone},
+    					url : "/storePhoneCheck2.do",
+    					data : {storePhone : storePhone, storeNo : storeNo},
     					type : "post",
     					success : function(data) {
     						if (data == 0) {

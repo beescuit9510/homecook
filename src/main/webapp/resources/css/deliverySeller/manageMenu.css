@@ -187,3 +187,35 @@
     color: rgb(136, 136, 136);
     text-align: center;
 }
+
+.content_div_table {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 221, 221);
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 16px;
+}
+.table_tr_height {
+	height: 55px;
+}
+.table_tr_height>td {
+	border-bottom: 1px solid #ebebeb;
+}
+.table_tr_height:last-child>td {
+	border: none;
+}
+
+/* 넘치는 글자 ... 처리 */
+.overflow-text {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+

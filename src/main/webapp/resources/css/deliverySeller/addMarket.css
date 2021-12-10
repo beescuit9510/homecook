@@ -205,5 +205,9 @@
 	line-height: 38px;
 	font-size: 14px;
 }
+/* 매장로고 크기 */
+.logo_img>img {
+	height: 150px;
+}
 
 

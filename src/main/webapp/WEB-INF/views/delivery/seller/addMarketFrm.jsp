@@ -180,9 +180,9 @@
 													<div class="row">
 														<label class="col-2 col-form-label">매장 로고</label>
 														<div class="col-8"> 
-															<label for="formFile" class="btn btn-primary" style="width: 70px;">찾기</label>
+															<label for="formFile" class="btn btn-primary add_margin" style="width: 70px;">찾기</label>
 															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png" style="display:none;">
-															<div class="logo_img"></div>
+															<div class="logo_img" style="height: 150px;"></div>
 														</div>
 													</div>
 													<br>
@@ -307,7 +307,7 @@
     			} else {
     				divTag.innerHTML = "";
     			}
-    		}		
+    		}
     		
     		
     		$("#enrollsubmit").on("click", function() {
