@@ -69,7 +69,7 @@
 		(select discount_rate from homecook_deal hd where hd.product_no = p.product_no and to_char(sysdate, 'YY/MM/DD') <![CDATA[ <= ]]> to_char(hd.discountend_date, 'YY/MM/DD')) as d_rate,
 		(select count(*) from product_like pl where pl.product_no = p.product_no and member_no = #{memberNo}) as isLiked,
 		(select count(*) from product_review pr where pr.product_no = p.product_no) as review_count,
-		(select count(*) from qna q where q.product_ref_no = p.product_no) as qna_count,
+		(select count(*) from qna q where q.product_ref_no = p.product_no and q.qna_level = 1 ) as qna_count,
 		NVL(TO_CHAR(FLOOR(2 *(select avg(pr.star) from product_review pr where pr.product_no = p.product_no)) / 2,'9.9') ,0) as star_avg
 		from product p 
 		join business_seller_info bsi on bsi.member_no = p.member_no
@@ -89,10 +89,10 @@
 		t2.qna_level as qnaLevel,
 		t2.qna_title as qnaTitle,
 		t2.qna_content as qnaContent,
-		t2.write_date as writeDate,
+		TRIM(TO_CHAR(t2.write_date, 'YY/MM/DD')) as writeDate,
 		(select q2.qna_title  from qna q2 where t2.qna_no = q2.qna_ref_no) as aTitle,
 		(select q2.qna_content from qna q2 where t2.qna_no = q2.qna_ref_no) as aContent,
-		(select q2.write_date from qna q2 where t2.qna_no = q2.qna_ref_no) as aWriteDate
+		TRIM(TO_CHAR((select q2.write_date from qna q2 where t2.qna_no = q2.qna_ref_no),'YY/MM/DD')) as aWriteDate
 		from
 		(select rownum as rnum, t.* from 
 		(select q.*,
@@ -120,7 +120,7 @@
 		star as star,
 		trimed_star as trimedStar,
 		TRIM(SUBSTR(trimed_star, 1, 1) || '-' ||SUBSTR(trimed_star, 3, 3)) as starClass,
-		write_date as writeDate
+		TRIM(TO_CHAR(write_date, 'YY/MM/DD')) as writeDate
 		from
 		(select rownum as rnum, t.* from 
 		(select pr.*, 
@@ -137,14 +137,14 @@
 				
 	
 	</select>
-	<select id="selectReviewImg" parameterType="kr.or.zipcoock.board.vo.ProductPageArgs" resultType="kr.or.table.model.vo.ReviewImg">
+	<select id="selectReviewImg" parameterType="int" resultType="kr.or.zipcoock.board.vo.ReviewImg">
 		select filename, filepath
-		from review_img where review_no = #{productNo} order by review_img_no desc		
+		from review_img where review_no = #{value} order by review_img_no desc		
 	</select>
 
-	<select id="selectProductImg" parameterType="kr.or.zipcoock.board.vo.ProductPageArgs" resultType="kr.or.table.model.vo.ProductImg">
+	<select id="selectProductImg" parameterType="kr.or.zipcoock.board.vo.ProductPageArgs" resultType="kr.or.zipcoock.board.vo.ProductImg">
 		select filename, filepath
-		from product_img where product_no = #{productNo} order by product_img_no desc		
+		from product_img where product_no = #{productNo} and main_img = 'N' order by product_img_no desc		
 	</select>
 
 	
@@ -312,14 +312,14 @@
 
 		order by 
 		<choose>
-			<when test='order == "최신순"'> t2.product_no desc </when>
-		   	<when test='order == "오래된순"'> t2.product_no asc </when>
+			<when test='order == "최신순"'> t2.product_no desc, t2.product_name asc </when>
+		   	<when test='order == "오래된순"'> t2.product_no asc, t2.product_name asc </when>
 		   	<when test='order == "가나다순"'> t2.product_name asc </when>
 		   	<when test='order == "가나다역순"'> t2.product_name desc </when>   	
-		   	<when test='order == "인기순"'>  t2.cnt desc </when>
-		   	<when test='order == "낮은가격순"'> order_price asc </when>
-		   	<when test='order == "높은가격순"'> order_price desc </when>
-			<otherwise> t2.product_no asc</otherwise>
+		   	<when test='order == "인기순"'>  t2.cnt desc, t2.star_avg desc  </when>
+		   	<when test='order == "낮은가격순"'> order_price asc, t2.star_avg desc </when>
+		   	<when test='order == "높은가격순"'> order_price desc, t2.star_avg desc </when>
+			<otherwise> t2.product_no desc</otherwise>
 		</choose>
 		)r
 		)r2

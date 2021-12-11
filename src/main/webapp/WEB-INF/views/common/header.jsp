@@ -20,7 +20,7 @@
          <div class = "header-main">
          	<div class = "header-main-content">
          		<ul class = "header-first">
-         			<li><a href = "/">전체상품</a></li>
+         			<li><a href = "/mainboard.do">전체상품</a></li>
          			<li><a href = "/">집쿠욱 배송</a></li>
          			<li><a href = "/">집쿠욱직구</a></li>
          			<li><a href = "/">집쿠욱멤버할인</a></li>
@@ -32,7 +32,7 @@
          		</div>
          		<ul class = "header-last">
          			<li><a href = "/loginFrm.do"><i class="fas fa-sign-in-alt"></i>  로그인</a></li>
-         			<li><a href = "/"><i class="fas fa-user-plus"></i>  회원 가입</a></li>
+         			<li><a href = "/joinFrm.do"><i class="fas fa-user-plus"></i>  회원 가입</a></li>
          			<li><a href = "/"><i class="fas fa-book-reader"></i>  고객 센터</a></li>
          		</ul>
          	</div>

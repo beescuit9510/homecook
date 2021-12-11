@@ -13,9 +13,9 @@
        	<div class = "content_div_area">
        		<div class = "content_div_content">
        			<div class = "content_div_info">
-       				<div class = "content_div_opt1">집쿠욱 레벨</div>
-       				<div class = "content_div_opt2">집쿠욱 포인트</div>
-       				<div class = "content_div_opt3">주문내역</div>
+       				<div class = "content_div_opt1">1(개좁게 바꾸기)</div>
+       				<div class = "content_div_opt2">집쿠욱(개넓게)</div>
+       				<div class="content_div_opt3 likeButton">♥(누르면 취소)</div>
        			</div>
        		</div>	
        	</div>

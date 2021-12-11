@@ -158,7 +158,7 @@
 		function() 
 		{
 			if($(this).children(1).html() != '해당 자료 없음')
-			console.log($(this).children(1).html());
+				window.location.href = '/admin_HomecookDeal.do?dealNo='+$(this).children(1).html();	
 		});
 	});
 </script>

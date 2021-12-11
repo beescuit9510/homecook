@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
-<link rel="stylesheet" href="/resources/css/mainboard/star.css">
 <style>
 	.eventImage{
 		height: 300px;
@@ -38,6 +37,9 @@
 	.category-img img{
 		width: 60px;
 	}
+	.star{
+		color: #ffa500;
+	}
 </style>
 </head>
 <body>
@@ -54,12 +56,14 @@
 					<a href="#"><img src="" class="img-thumbnail p-0 border-0"></a>
 				</div>
 				<div class="col-md-6">
-					<div class="input-group input-group-lg">
-						<input type="text" id="" name="" class="form-control" placeholder="음식을 검색해보세요" />
-						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+					<form action="zcdFindResult.do" method="post">
+						<div class="input-group input-group-lg">
+							<input type="text" id="keyword" name="keyword" class="form-control" placeholder="음식을 검색해보세요" />
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -90,8 +94,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -100,8 +104,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -110,8 +114,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -120,8 +124,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -130,8 +134,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -140,8 +144,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -158,8 +162,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -168,8 +172,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -178,8 +182,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -188,8 +192,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -198,8 +202,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -208,8 +212,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -227,8 +231,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -237,8 +241,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -247,8 +251,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -257,8 +261,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -267,8 +271,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
@@ -277,8 +281,8 @@
 						<div class="card">
 							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small></br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0">
+								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>

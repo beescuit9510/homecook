@@ -29,14 +29,14 @@
 	        			<div class="user_div">
 	        				<div class="user_div_div">
 	        					<div class="user_div_content">
-	        						<span class="user_div_name">신동훈<span class="user_div_nim">님</span></span>
+	        						<span class="user_div_name">${sessionScope.m.memberName }<span class="user_div_nim">님</span></span>
 	        					</div>
 	        				</div>
 	        			</div>
 	        		</div>
         			<div class="side_nav_content">
-	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMarket.do">매장관리</a></span></div>
-	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageMenu.do">메뉴관리</a></span></div>
+	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMarketFrm.do">매장관리</a></span></div>
+	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageMenuFrm.do">메뉴관리</a></span></div>
 	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/">주문접수</a></span></div>
 	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/">리뷰관리</a></span></div>       			
         			</div>
