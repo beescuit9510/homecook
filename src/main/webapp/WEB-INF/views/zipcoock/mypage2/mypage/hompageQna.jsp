@@ -15,7 +15,7 @@
 	}
 </style>
 </head>
-<link rel="stylesheet" href="/resources/css/mypage/like.css">
+<link rel="stylesheet" href="/resources/css/mypage/smallLike.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <body>
 
@@ -127,18 +127,6 @@
 	
 </body>
 <style>
-.likeButton{
-	font-size: 32px;
-}
-.likeButton.liked:after {
-	font-size: 32px;
-}
-.go_btn{
-	margin-left:10px;
-	margin-bottom:10px;
-	text-align:center;
-	line-height:30px;
-}
 </style>
 <script>
 var memberNo = $("#memberNo").val()==""? 0:Number($("#memberNo").val());

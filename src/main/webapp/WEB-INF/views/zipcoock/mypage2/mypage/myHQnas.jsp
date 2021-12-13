@@ -113,25 +113,19 @@
        		<div class = "content_div_content">
        		<c:forEach items="${list}" var="v" >
    			<div class ="content_div_info coupon-tbl" style="height: 110px;">
-   			<!-- 
- 				<div class = "content_div_opt1"><div style="background:url(${v.filepath});"></div></div>
-   			 -->
- 				<div class = "content_div_opt1"><div class="card-img-top" style="background:url(https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg);"></div></div>
-   				<div class = "content_div_opt2" id="text-emp">
+ 				<div class = "content_div_opt1">${v.qnaTitle }
+	   				<span>
    					<c:if test="${v.isAnswered eq 0}">
    					답변중
    					</c:if>
    					<c:if test="${v.isAnswered eq 1}">
    					답변완료
    					</c:if>
-   					<span class="goods_detail">${v.tradeName }</span>
-   					${v.productName }
-   					<c:if test="${v.price eq v.discountedPrice}">
-   					<p>${v.price }원</p>
-   					</c:if>
-   					<c:if test="${v.price ne v.discountedPrice}">
-   					<p class="discount_price"><span class="goods_detail lowest-price">${v.discountRate }% off</span>${v.discountedPrice }원<span class="original_price">${v.price }원</span></p>   					
-   					</c:if>
+ 					</span>					
+ 				</div>
+   				<div class = "content_div_opt2" id="text-emp">
+   					<span>${v.qnaContent }</span>
+   					<span>${v.writeDate }</span>
    				</div>
    				<div class = "content_div_opt3" id="text-emp">
 		   			<button class="buy_btn update-btn" id =${v.qnaNo }>수정하기</button>
