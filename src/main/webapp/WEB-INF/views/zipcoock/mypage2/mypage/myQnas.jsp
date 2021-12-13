@@ -69,11 +69,19 @@
 						<span class="input-group-text">답변여부</span>
 					</div>
 					<select class="selectBox form-control" id="isAnswered" name="">
-						<option value="${0 }" <c:if test="${isAnswered eq 1}">selected = "selected"</c:if>>모두</option>
-						<option value="${1 }" <c:if test="${isAnswered eq 0}">selected = "selected"</c:if>>답변완료</option>
+					<c:if test="${tool.isAnswered eq 1 }">
+						<option value="0" >모두</option>
+						<option value="1" selected>답변완료</option>
+					</c:if>
+					<c:if test="${tool.isAnswered eq 0 }">
+						<option value="0" selected>모두</option>
+						<option value="1" >답변완료</option>
+					</c:if>
 					</select>
 				</div>
-			</div>			
+			</div>		
+			<!-- 
+			 -->	
 			<div class="col-md-4">
 				<div class="input-group">
 					<div class="input-group-prepend">
@@ -121,7 +129,7 @@
    					<c:if test="${v.price eq v.discountedPrice}">
    					<p>${v.price }원</p>
    					</c:if>
-   					<c:if test="${v.price ne v.discountedPrice}">
+   					<c:if test="${v.price ne v.discountedPrice}">   					
    					<p class="discount_price"><span class="goods_detail lowest-price">${v.discountRate }% off</span>${v.discountedPrice }원<span class="original_price">${v.price }원</span></p>   					
    					</c:if>
    				</div>
@@ -162,6 +170,9 @@ function initVar() {
     keyword = "&"+$("#searchBy").val()+"="+$("#keyword").val();   	
 	basic = "/myQnaList.do?";
     order = "&order="+$("#order").val();
+   	/*
+    period = "";
+   	*/
     period = "&period="+$("#period").val();
     show = "&show="+$("#show").val();
     isAnswered = "&isAnswered="+$("#isAnswered").val();
@@ -219,7 +230,10 @@ $(".update-btn").click(function() {
 });
 
 
-
-
 </script>
+<style>
+.form-control{
+	width:50px !important;
+}
+</style>
 </html>

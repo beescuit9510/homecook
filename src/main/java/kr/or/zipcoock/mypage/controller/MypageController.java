@@ -136,11 +136,21 @@ public class MypageController {
 	public String myQnaList(SearchTool tool, HttpSession session, Model model) {
 //		Member m = (Member)session.getAttribute("m");		
 //		tool.setMemberNo(m.getMemberNo()); 
-		tool.setBasic("/myReviewList.do?");
+		tool.setBasic("/myQnaList.do?");
 		tool.setMemberNo(4);
 		model.addAttribute("tool", tool);
 		model.addAttribute("list", service.selectMyQna(tool));				
 		return "zipcoock/mypage2/mypage/myQnas";
+	}
+	@RequestMapping(value="/myHQnaList.do")
+	public String myHQnaList(SearchTool tool, HttpSession session, Model model) {
+//		Member m = (Member)session.getAttribute("m");		
+//		tool.setMemberNo(m.getMemberNo()); 
+		tool.setBasic("/myHQnaList.do?");
+		tool.setMemberNo(4);
+		model.addAttribute("tool", tool);
+		model.addAttribute("list", service.selectMyHQna(tool));				
+		return "zipcoock/mypage2/mypage/myHQnas";
 	}
 
 	

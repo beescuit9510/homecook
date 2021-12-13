@@ -145,10 +145,10 @@
 		productName like '%'||#{productName}||'%'
 		and tradeName like '%'||#{tradeName}||'%' 		
 		<choose>
-			<when test='period == "한달"'> and write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월"'> and write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년"'> and write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루"'> and write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD')  </when>
+		   	<when test='period == "6개월"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD')  </when>
+		   	<when test='period == "1년"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD')  </when>
+		   	<when test='period == "하루"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1,'YYYYMMDD') </when>   	
 			<otherwise></otherwise>
 		</choose>
 		
@@ -193,17 +193,16 @@
 		)t
 		)t2
 		where 
-		(select count(*) from qna q2 where q2.qna_ref_no = qnaNo and q2.qna_level = 2) >= #{isAnswered}
+		NVL((select count(*) from qna q2 where q2.qna_ref_no = qnaNo and q2.qna_level = 2),0) <![CDATA[ >= ]]> #{isAnswered}
 		and productName like '%'||#{productName}||'%'
 		and tradeName like '%'||#{tradeName}||'%' 
 		and qnaTitle like '%'||#{title}||'%'
-		and qnaContent like '%'||#{content}||'%' 
-		
+		and qnaContent like '%'||#{content}||'%' 		
 		<choose>
-			<when test='period == "한달"'> and write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월"'> and write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년"'> and write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루 "'> and write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD') </when>
+		   	<when test='period == "6개월"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD') </when>
+		   	<when test='period == "1년"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD') </when>
+		   	<when test='period == "하루 "'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1, 'YYYYMMDD') </when>   	
 			<otherwise></otherwise>
 		</choose>
 		order by 
@@ -279,22 +278,24 @@
 		qna_no as qnaNo,
 		qna_title as qnaTitle,
 		qna_content as qnaContent,
-		writeDate
+		writeDate,
+		isAnswered
 		from(
 		select rownum as rnum, t.*
 		from(
-		select qna_no, qna_title, qna_content, TO_CHAR(write_date, 'YY/MM/DD') as writeDate
+		select qna_no, qna_title, qna_content, TO_CHAR(write_date, 'YY/MM/DD') as writeDate,
+		(select count(*) from homepage_qna q2 where q2.qna_ref_no = q.qna_no and q2.qna_level = 2) as isAnswered
 		from homepage_qna q
 		where member_no = #{memberNo}
-		and (select count(*) from homepage_qna q2 where q2.qna_ref_no = q.qna_no and q2.qna_level = 2) <![CDATA[ >= ]]> #{isAnswered }
+		and NVL((select count(*) from homepage_qna q2 where q2.qna_ref_no = q.qna_no and q2.qna_level = 2),0) <![CDATA[ >= ]]> #{isAnswered }
 		and qna_level = 1
 		and qna_title like '%'||#{title}||'%'
 		and qna_content like '%'||#{content}||'%' 
 		<choose>
-			<when test='period == "한달"'> and q.write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월"'> and q.write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년 "'> and q.write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루"'> and q.write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD') </when>
+		   	<when test='period == "6개월"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD') </when>
+		   	<when test='period == "1년 "'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD') </when>
+		   	<when test='period == "하루"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1,'YYYYMMDD')  </when>   	
 			<otherwise></otherwise>
 		</choose>
 		order by 
