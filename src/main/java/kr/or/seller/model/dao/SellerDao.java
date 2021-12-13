@@ -63,13 +63,13 @@ public class SellerDao {
 	}
 
 	public int insertReturnPolicy(ReturnPolicy returnPolicy) {
-		
+		System.out.println(returnPolicy);
 		return sqlSession.insert("returnPolicy.insertReturnPolicy", returnPolicy);
 	}
 
 	public HashMap<Object, Object> selectOneproductInfo(Product product) {
-		
-		return sqlSession.selectOne("product.selectOneProductInfo", product);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/*
