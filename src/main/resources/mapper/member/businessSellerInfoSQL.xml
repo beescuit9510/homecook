@@ -9,7 +9,7 @@
   trade_name as tradeName,
   representative,
   business_location as businessLocation,
-  contact
+  contact,
   email
   from business_seller_info where business_no=#{businessNo}
  </select>
@@ -20,7 +20,7 @@
   trade_name as tradeName,
   representative,
   business_location as businessLocation,
-  contact
+  contact,
   email
   from business_seller_info where email=#{email}
  </select>
