@@ -153,9 +153,12 @@ public class AdminController
 		return result;
 	}
 	
-	//Fix_HomeDeal
-	
-	
-	
+	@RequestMapping(value = "/admin_ReturnPolicy.do")
+	public String call_ReturnPolicy(int policyNo, Model model)
+	{		
+		AdminRefund r = service.selectOneReturnPolicyInfo(policyNo);		
+		model.addAttribute("r", r);				
+		return "admin/adminPolicyInfo";
+	}	
 	
 }
