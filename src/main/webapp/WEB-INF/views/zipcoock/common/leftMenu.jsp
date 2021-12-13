@@ -49,9 +49,9 @@
 				</div>
 				
 				<div class="side_nav_content">
-					<a href="zcdMypage.do" class="side_nav_div side_nav_div_selected"><span
+					<a href="/zipsellerMypage.do" class="side_nav_div side_nav_div_selected"><span
 						class="side_nav_span side_nav_span_selected">정보 확인/수정</span></a> <a
-						href="zcdMyCoupon.do" class="side_nav_div"><span
+						href="productList.do?reqPage=1"" class="side_nav_div"><span
 						class="side_nav_span">상품 관리</span></a> <a href="productList.do"
 						class="side_nav_div"><span class="side_nav_span">즐겨찾기
 							목록</span></a> <a href="zcdMyReview.do" class="side_nav_div"><span

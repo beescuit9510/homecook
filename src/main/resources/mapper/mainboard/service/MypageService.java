@@ -1,4 +1,4 @@
-package kr.or.zipcoock.mypage.service;
+package mapper.mainboard.service;
 
 import java.util.Map;
 

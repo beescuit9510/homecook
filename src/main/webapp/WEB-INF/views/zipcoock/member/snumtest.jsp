@@ -30,8 +30,9 @@ var result = {
 };
 
 $.ajax(result).done(function (response) {
-  console.log(response);
-  console.log(response.data);
+response.data
+console.log(response);
+console.log(response.data);
 });
 
 }

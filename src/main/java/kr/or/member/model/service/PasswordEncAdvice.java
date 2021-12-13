@@ -35,7 +35,7 @@ public class PasswordEncAdvice {
 		System.out.println("암호화 비밀번호 : "+encPass);
 	}
 	
-	@Pointcut(value="execution(* kr.or.seller.model.service..*Service.sellerChangePw(..))")//매개변수 중에 타입이 Member인것
+	@Pointcut(value="execution(* kr.or..*Service.*ChangePw(..))")//매개변수 중에 타입이 Member인것
 	public void changePwPointcut() {}
 	
 	@Before(value="changePwPointcut()")
