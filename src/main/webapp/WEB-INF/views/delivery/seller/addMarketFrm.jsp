@@ -187,7 +187,7 @@
 													</div>
 													<br>
 												
-	        										<br><br>
+	        										<br>
 	        										<span class="info_span">선택 정보</span>
 		        									<hr>
 	        										

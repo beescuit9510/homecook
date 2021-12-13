@@ -126,5 +126,21 @@
 	<delete id="deleteOneMarket" parameterType="_int">
 		delete from zcd_store where store_no=#{storeNo}
 	</delete>
+
+	<select id="selectMenuGroupList" resultType="mg">
+		select
+			group_no as groupNo,
+			store_no as storeNo,
+			group_name as groupName
+		from menu_group where store_no=#{storeNo}
+	</select>
+	
+	<insert id="addMenuGroup" parameterType="mg">
+	 	insert into menu_group values(group_seq.nextval, #{storeNo}, #{groupName})
+	</insert>
+	
+	<update id="modifyMenuGroup" parameterType="mg">
+		update menu_group set group_name=#{groupName} where store_no=#{storeNo}
+	</update>
 	
 </mapper>

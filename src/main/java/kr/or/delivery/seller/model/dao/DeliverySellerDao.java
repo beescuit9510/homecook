@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.table.model.vo.Member;
@@ -68,6 +69,19 @@ public class DeliverySellerDao {
 
 	public int deleteOneMarket(int storeNo) {
 		return sqlSession.delete("zcdseller.deleteOneMarket", storeNo);
+	}
+
+	public int addMenuGroup(MenuGroup mg) {
+		return sqlSession.insert("zcdseller.addMenuGroup", mg);
+	}
+
+	public ArrayList<MenuGroup> selectMenuGroupList(int storeNo) {
+		List<MenuGroup> list = sqlSession.selectList("zcdseller.selectMenuGroupList", storeNo);
+		return (ArrayList<MenuGroup>) list;
+	}
+
+	public int modifyMenuGroup(MenuGroup mg) {
+		return sqlSession.update("zcdseller.modifyMenuGroup", mg);
 	}
 
 }

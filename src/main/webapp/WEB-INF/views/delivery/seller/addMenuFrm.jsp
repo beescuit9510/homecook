@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/deliverySeller/addMarket.css">
+<link rel="stylesheet" href="/resources/css/deliverySeller/addMenu.css">
 
 <!-- bootstrap css -->
 <link rel="stylesheet" href="/resources/css/deliverySeller/bootstrap.css">
@@ -37,38 +37,36 @@
 	        			</div>
 	        		</div>
         			<div class="side_nav_content">
-	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageMarketFrm.do">매장관리</a></span></div>
-	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMenuFrm.do">메뉴관리</a></span></div>
+	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMarketFrm.do">매장관리</a></span></div>
+	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageMenuFrm.do">메뉴관리</a></span></div>
 	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/">주문접수</a></span></div>
 	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/">리뷰관리</a></span></div>       			
         			</div>
         		</div>
         		
         		<div class="content_div">
-        			<div class="content_title">매장관리</div>
+        			<div class="content_title">메뉴관리</div>
         			<div class="content_div_area">
         				<div class="content_div_div">
         					<div class="content_div_content">
         						<div class="content_div_div_content">
         							<div class="content_div_info">
-        								<div class="content_div_title" style="font-weight: bold">매장 정보 등록</div>
+        								<div class="content_div_title" style="font-weight: bold">메뉴 정보 등록</div>
         								<div class="content_div_end"></div>
         								<br>
         								<div class="container2">
-	        								<form action="/modifyMarket.do" method="post" enctype="multipart/form-data">
+	        								<form action="/addMarket.do" method="post" enctype="multipart/form-data">
 	        								<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
 	        									<fieldset>
 		        									
 		        									<span class="info_span">필수 정보</span>
 		        									<hr>
 		        									
-		        									<input type="hidden" name="storeNo" value="${zs.storeNo }">
-		        									
 												    <div class="row">
 														<label for="storeName" class="col-2 col-form-label">상호명</label>
 														<div class="col-5">
 															<input type="text" class="form-control" id="storeName"
-																name="storeName" placeholder="상호명을 입력하세요." maxlength="20" value="${zs.storeName }">
+																name="storeName" placeholder="상호명을 입력하세요." maxlength="20">
 														</div>
 														<div class="col-4">
 															<span class="span_chk" id="marketNameChk"></span>
@@ -80,7 +78,7 @@
 														<label for="storeTime" class="col-2 col-form-label">운영시간</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeTime"
-																id="storeTime" rows="4" placeholder="운영시간을 입력하세요.">${zs.storeTime }</textarea>
+																id="storeTime" rows="4" placeholder="운영시간을 입력하세요."></textarea>
 														</div>
 													</div>
 													<br>
@@ -89,7 +87,7 @@
 	        											<label for="storePhone" class="col-2 col-form-label">전화번호</label>
 	        											<div class="col-5">
 	        												<input type="text" class="form-control" id="storePhone"
-	        											 		name="storePhone" placeholder="전화번호를 입력하세요. (- 제외)" maxlength="11" value="${zs.storePhone }">
+	        											 		name="storePhone" placeholder="전화번호를 입력하세요. (- 제외)" maxlength="11">
 	        											</div>
 	        											<div class="col-4">
 															<span class="span_chk" id="marketPhoneChk"></span>
@@ -101,7 +99,7 @@
 	        											<label for="minPrice" class="col-2 col-form-label">최소주문금액</label>
 	        											<div class="col-5">
 	        												<input type="text" class="form-control" id="minPrice"
-	        											 		name="minPrice" placeholder="최소주문금액을 입력하세요." maxlength="5" value="${zs.minPrice }">
+	        											 		name="minPrice" placeholder="최소주문금액을 입력하세요." maxlength="5">
 	        											</div>
 	        											<div class="col-4">
 															<span class="span_chk" id="minPriceChk"></span>
@@ -112,8 +110,7 @@
 	        										<div class="row">
 	        											<label class="col-2 col-form-label">주소입력</label>
 	        											<div class="col-4">
-															<input type="text" name="postcode" id="postcode" class="form-control add_margin" readonly placeholder="우편번호"
-															 value="${zs.postcode }">
+															<input type="text" name="postcode" id="postcode" class="form-control add_margin" readonly placeholder="우편번호">
 	        											</div>
 	        											<div class="col-2" style="padding: 0;">
 															<button type="button" class="btn btn-primary" id="findpostcode" style="width: 70px;">찾기</button>	        											
@@ -124,16 +121,14 @@
 	        										<div class="row">
 														<label class="col-2 col-form-label"> </label>
 														<div class="col-8">
-															<input type="text" name="address1" id="address1" class="form-control add_margin" readonly placeholder="주소"
-															 value="${zs.address1 }">			
+															<input type="text" name="address1" id="address1" class="form-control add_margin" readonly placeholder="주소">			
 														</div>
 													</div>
 										
 													<div class="row">
 														<label class="col-2 col-form-label"> </label>
 														<div class="col-8">
-															<input type="text" name="address2" id="address2" class="form-control add_margin" placeholder="상세주소" maxlength="40"
-															 value="${zs.address2 }">														
+															<input type="text" name="address2" id="address2" class="form-control add_margin" placeholder="상세주소" maxlength="40">														
 														</div>
 													</div>
 	        										<br>
@@ -142,7 +137,7 @@
 														<label for="originInfo" class="col-2 col-form-label">원산지 정보</label>
 														<div class="col-10">
 															<textarea class="form-control" name="originInfo"
-																id="originInfo" rows="4" placeholder="재료명: 원산지 (돼지고기: 국내산, 닭고기: 브라질산)">${zs.originInfo }</textarea>
+																id="originInfo" rows="4" placeholder="재료명: 원산지 (돼지고기: 국내산, 닭고기: 브라질산)"></textarea>
 														</div>
 													</div>
 													<br>
@@ -151,8 +146,8 @@
 														<label class="col-2 col-form-label">카테고리</label>
 														<div class="col-3">
 															<select id="category1" name="category1" class="form-select add_margin" >
-																<option value="${zs.category1 }" selected readonly style="background-color: #ebebeb;">${zs.category1 }</option>
-																<option value="한식">한식</option>
+											                    <option value="" selected disabled>선택</option>
+											                    <option value="한식">한식</option>
 											                    <option value="치킨">치킨</option>
 											                    <option value="분식">분식</option>
 											                    <option value="돈까스">돈까스</option>
@@ -176,17 +171,7 @@
 											                    <option value="죽">죽</option>
 											        		</select>
 											        		<select id="category2" name="category2" class="form-select">
-											        			<c:choose>
-											        				<c:when test="${empty zs.category2 }">
-											        					<option value="" selected readonly>추가 선택</option>
-											        				</c:when>
-											        				<c:when test="${not empty zs.category2 }">
-											        					<option value="${zs.category2 }" selected readonly style="background-color: #ebebeb;">${zs.category2 }</option>
-												        				<option value=''>선택하지 않음</option>
-												        				<option value='1인분'>1인분</option>
-												        				<option value='프랜차이즈'>프랜차이즈</option>
-											        				</c:when>
-											        			</c:choose>
+													        	<option value="" selected disabled>추가 선택</option>
 													        </select>
 											        	</div>
 											        </div>
@@ -194,13 +179,10 @@
 													
 													<div class="row">
 														<label class="col-2 col-form-label">매장 로고</label>
-														<div class="col-8">
-															<input type="hidden" name="status" value="1">
-															<c:forEach items="${zs.list }" var="f">
-																<label for="formFile" class="btn btn-primary add_margin" style="width: 70px;">찾기</label>
-																<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png" style="display:none;">
-																<div class="logo_img"><img src='/resources/upload/zcdSeller/${f.filename }'></div>
-															</c:forEach>
+														<div class="col-8"> 
+															<label for="formFile" class="btn btn-primary add_margin" style="width: 70px;">찾기</label>
+															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png" style="display:none;">
+															<div class="logo_img" style="height: 150px;"></div>
 														</div>
 													</div>
 													<br>
@@ -213,7 +195,7 @@
 														<label for="storeInfo" class="col-2 col-form-label">매장소개</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeInfo"
-																id="storeInfo" rows="4" placeholder="매장 소개를 입력하세요.">${zs.storeInfo }</textarea>
+																id="storeInfo" rows="4" placeholder="매장 소개를 입력하세요."></textarea>
 														</div>
 													</div>
 													<br>
@@ -222,7 +204,7 @@
 														<label for="storeNotice" class="col-2 col-form-label">공지사항</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeNotice"
-																id="storeNotice" rows="4" placeholder="공지사항을 입력하세요.">${zs.storeNotice }</textarea>
+																id="storeNotice" rows="4" placeholder="공지사항을 입력하세요."></textarea>
 														</div>
 													</div>
 													<br>
@@ -231,7 +213,7 @@
 														<label for="storeTip" class="col-2 col-form-label">팁/안내</label>
 														<div class="col-10">
 															<textarea class="form-control" name="storeTip"
-																id="storeTip" rows="4" placeholder="팁 또는 안내 내용을 입력하세요.">${zs.storeTip }</textarea>
+																id="storeTip" rows="4" placeholder="팁 또는 안내 내용을 입력하세요."></textarea>
 														</div>
 													</div>
 													<br><br>
@@ -259,11 +241,10 @@
     <script>
     	$(function() {
     		
-    		var storeNameChk = true;
-    		var storePhoneChk = true;
-    		var minPriceChk = true;
-    		var address2Chk = true;
-    		var divTag = document.querySelector(".logo_img");
+    		var storeNameChk = false;
+    		var storePhoneChk = false;
+    		var minPriceChk = false;
+    		var address2Chk = false;
     		
     		$("#findpostcode").on("click", function() {
     			return findAddr();
@@ -313,6 +294,7 @@
     		
     		function loadImg(obj) {
     			var files = obj.files;
+    			var divTag = document.querySelector(".logo_img");
     			if (files.length != 0) {
     				var reader = new FileReader();
     				reader.readAsDataURL(files[0]);
@@ -321,7 +303,6 @@
     					imgTag.setAttribute("src", e.target.result)
     					divTag.innerHTML = "";
     					divTag.appendChild(imgTag);
-    					$("[name=status]").val(2);
     				}
     			} else {
     				divTag.innerHTML = "";
@@ -366,7 +347,7 @@
     			} else if (category1 == null) {
     				alert("카테고리를 확인하세요.");
     				return false;
-    			} else if (divTag.innerHTML = "") {
+    			} else if (files == "") {
     				alert("매장 로고를 선택하세요.");
     				return false;
     			} else {
@@ -376,13 +357,11 @@
     		
     		$("#storeName").on("keyup", function() {
     			var storeName = $(this).val();
-    			var storeNo = $(this).parent().parent().prev().val();
-    			console.log(storeNo);
     			var storeNameReg = /^[0-9a-zA-Z가-힣\s]{2,20}$/;
     			if (storeNameReg.test(storeName)) {
     				$.ajax({
-    					url : "/storeNameCheck2.do",
-    					data : {storeName : storeName, storeNo : storeNo},
+    					url : "/storeNameCheck.do",
+    					data : {storeName : storeName},
     					type : "post",
     					success : function(data) {
     						if (data == 0) {
@@ -408,13 +387,11 @@
     		
     		$("#storePhone").on("keyup", function() {
     			var storePhone = $(this).val();
-    			var storeNo = $(this).parent().parent().prev().prev().prev().prev().prev().val();
-    			console.log(storeNo);
     			var storePhoneReg = /^[0-9]{10,11}$/;
     			if (storePhoneReg.test(storePhone)) {
     				$.ajax({
-    					url : "/storePhoneCheck2.do",
-    					data : {storePhone : storePhone, storeNo : storeNo},
+    					url : "/storePhoneCheck.do",
+    					data : {storePhone : storePhone},
     					type : "post",
     					success : function(data) {
     						if (data == 0) {

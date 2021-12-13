@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.seller.model.service.DeliverySellerService;
@@ -281,6 +282,39 @@ public class DeliverySellerController {
 		} else {
 			model.addAttribute("msg","매장 정보가 삭제되지 않았습니다.");
 			model.addAttribute("loc", "/manageMarketFrm.do");
+		}
+		return "zipcoock/common/msg";
+	}
+	
+	@RequestMapping(value="/addMenuGroupFrm.do")
+	public String addMenuGroupFrm(int storeNo, HttpSession session, Model model) {
+		ArrayList<MenuGroup> list = service.selectMenuGroupList(storeNo);
+		model.addAttribute("list", list);
+		return "delivery/seller/addMenuGroupFrm";
+	}
+	
+	@RequestMapping(value="/addMenuGroup.do")
+	public String addMenuGroup(MenuGroup mg, Model model) {
+		int result = service.addMenuGroup(mg);
+		if (result > 0) {
+			model.addAttribute("msg","메뉴그룹이 등록되었습니다.");
+			model.addAttribute("loc", "/addMenuGroupFrm.do?storeNo=" + mg.getStoreNo());
+		} else {
+			model.addAttribute("msg","메뉴그룹이 등록되지 않았습니다.");
+			model.addAttribute("loc", "/addMenuGroupFrm.do?storeNo=" + mg.getStoreNo());
+		}
+		return "zipcoock/common/msg";
+	}
+	
+	@RequestMapping(value="/modifyMenuGroup.do")
+	public String modifyMenuGroup(MenuGroup mg, Model model) {
+		int result = service.modifyMenuGroup(mg);
+		if (result > 0) {
+			model.addAttribute("msg","메뉴그룹이 변경되었습니다.");
+			model.addAttribute("loc", "/addMenuGroupFrm.do?storeNo=" + mg.getStoreNo());
+		} else {
+			model.addAttribute("msg","메뉴그룹이 변경되지 않았습니다.");
+			model.addAttribute("loc", "/addMenuGroupFrm.do?storeNo=" + mg.getStoreNo());
 		}
 		return "zipcoock/common/msg";
 	}

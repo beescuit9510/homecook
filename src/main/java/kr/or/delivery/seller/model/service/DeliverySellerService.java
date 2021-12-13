@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.seller.model.dao.DeliverySellerDao;
@@ -100,6 +101,23 @@ public class DeliverySellerService {
 	@Transactional
 	public int deleteOneMarket(int storeNo) {
 		int result = dao.deleteOneMarket(storeNo);
+		return result;
+	}
+
+	@Transactional
+	public int addMenuGroup(MenuGroup mg) {
+		int result = dao.addMenuGroup(mg);
+		return result;
+	}
+
+	public ArrayList<MenuGroup> selectMenuGroupList(int storeNo) {
+		ArrayList<MenuGroup> list = dao.selectMenuGroupList(storeNo);
+		return list;
+	}
+
+	@Transactional
+	public int modifyMenuGroup(MenuGroup mg) {
+		int result = dao.modifyMenuGroup(mg);
 		return result;
 	}
 	
