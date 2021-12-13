@@ -12,5 +12,5 @@ public class MyHQna {
 	private String qnaTitle;
 	private String qnaContent;
 	private String writeDate;
-
+	private int isAnswered;
 }
