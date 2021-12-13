@@ -101,11 +101,14 @@
 	        		</div>
 	        		<div class="btn-area">
 		        		<button type="submit" class="buy_btn">변경</button>
-		        		<button type="reset" class="cart_btn">취소</button>	        		
+		        		<button type="reset" class="cart_btn">삭제</button>	        		
 	        		</div>
 					</c:forEach> 
  
         		</div>	
+	        		<div class="btn-area">
+		        <button type="submit" class="buy_btn">추가</button>
+	        		</div>
         	</div>
         </div>
     </div> <!-- main content -->

@@ -180,7 +180,9 @@
 													<div class="row">
 														<label class="col-2 col-form-label">매장 로고</label>
 														<div class="col-8"> 
-															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png">  
+															<label for="formFile" class="btn btn-primary add_margin" style="width: 70px;">찾기</label>
+															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png" style="display:none;">
+															<div class="logo_img" style="height: 150px;"></div>
 														</div>
 													</div>
 													<br>
@@ -287,7 +289,25 @@
     				alert("이미지 파일만 가능합니다.");
     				$(this).val("");
     			}
+    			loadImg(this);
     		});
+    		
+    		function loadImg(obj) {
+    			var files = obj.files;
+    			var divTag = document.querySelector(".logo_img");
+    			if (files.length != 0) {
+    				var reader = new FileReader();
+    				reader.readAsDataURL(files[0]);
+    				reader.onload = function(e) {
+    					var imgTag = document.createElement("img");
+    					imgTag.setAttribute("src", e.target.result)
+    					divTag.innerHTML = "";
+    					divTag.appendChild(imgTag);
+    				}
+    			} else {
+    				divTag.innerHTML = "";
+    			}
+    		}
     		
     		
     		$("#enrollsubmit").on("click", function() {
@@ -341,9 +361,7 @@
     			if (storeNameReg.test(storeName)) {
     				$.ajax({
     					url : "/storeNameCheck.do",
-    					data : {
-    						storeName : storeName
-    					},
+    					data : {storeName : storeName},
     					type : "post",
     					success : function(data) {
     						if (data == 0) {
@@ -373,9 +391,7 @@
     			if (storePhoneReg.test(storePhone)) {
     				$.ajax({
     					url : "/storePhoneCheck.do",
-    					data : {
-    						storePhone : storePhone
-    					},
+    					data : {storePhone : storePhone},
     					type : "post",
     					success : function(data) {
     						if (data == 0) {

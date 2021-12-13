@@ -26,17 +26,25 @@ public class DeliverySellerService {
 		String sn = dao.selectOneStoreName(storeName);
 		return sn;
 	}
+	
+	public String selectOneStoreName2(int storeNo) {
+		String sn2 = dao.selectOneStoreName2(storeNo);
+		return sn2;
+	}
 
 	public String selectOneStorePhone(String storePhone) {
 		String sp = dao.selectOneStorePhone(storePhone);
 		return sp;
 	}
+	
+	public String selectOneStorePhone2(int storeNo) {
+		String sp2 = dao.selectOneStorePhone2(storeNo);
+		return sp2;
+	}
 
 	@Transactional
 	public int addMarket(ZcdStore zs, ArrayList<StoreLogo> list) {
-		System.out.println("insert 전: " + zs.getStoreNo());
 		int result1 = dao.addMarket(zs);
-		System.out.println("insert 후: " + zs.getStoreNo());
 		System.out.println("result1: " + result1);
 		int result = 0;
 		if (result1 > 0) {
@@ -48,6 +56,50 @@ public class DeliverySellerService {
 		} else {
 			return -1;
 		}
+		return result;
+	}
+
+	public ArrayList<ZcdStore> selectZcdStoreList(int memberNo) {
+		ArrayList<ZcdStore> list = dao.selectZcdStoreList(memberNo);
+		return list;
+	}
+
+	@Transactional
+	public int changeState(ZcdStore zs) {
+		int result = dao.changeState(zs);
+		return result;
+	}
+
+	public ZcdStore selectOneMarket(int storeNo) {
+		ZcdStore zs = dao.selectOneMarket(storeNo);
+		return zs;
+	}
+
+	@Transactional
+	public int modifyMarket(ZcdStore zs) {
+		int result = dao.modifyMarket(zs);
+		return result;
+	}
+	
+	@Transactional
+	public int modifyMarket(ZcdStore zs, ArrayList<StoreLogo> list) {
+		int result1 = dao.modifyMarket(zs);
+		int result = 0;
+		if (result1 > 0) {
+			for (StoreLogo sl : list) {
+				System.out.println("zs.getStoreNo: " + zs.getStoreNo());
+				sl.setStoreNo(zs.getStoreNo());
+				result += dao.modifyStoreLogo(sl);
+			}
+		} else {
+			return -1;
+		}
+		return result;
+	}
+
+	@Transactional
+	public int deleteOneMarket(int storeNo) {
+		int result = dao.deleteOneMarket(storeNo);
 		return result;
 	}
 	

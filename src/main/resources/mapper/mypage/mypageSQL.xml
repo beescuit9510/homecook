@@ -129,14 +129,14 @@
 		(select bsi.trade_name from business_seller_info bsi where bsi.member_no = t.memberNo) as tradeName,
 		TRIM(TO_CHAR(t.price,'999,999,999,999,999')) as price,
 		TRIM(TO_CHAR(NVL(t.price-(t.price*t.dRate/100), t.price), '999,999,999,999,999')) as discountedPrice,
-		t.dRate,
+		t.dRate as discountRate,
 		NVL(t.price-(t.price*t.dRate/100), t.price) as order_price 
 		from(
 		select pr.review_no, pr.review_content, pr.write_date,
 		(select p.product_name from product p where p.product_no = pr.product_no) as productName,
 		(select p.member_no from product p where p.product_no = pr.product_no) as memberNo,
 		(select p.price from product p where p.product_no = pr.product_no) as price,
-		NVL((select hd.discount_rate from homecook_deal hd where hd.product_no  = pr.product_no and sysdate >=  hd.discountend_date ),0) as dRate,
+		NVL((select hd.discount_rate from homecook_deal hd where hd.product_no  = pr.product_no and TO_CHAR(sysdate,'YYYYMMDD') <![CDATA[ <= ]]>  TO_CHAR(hd.discountend_date, 'YYYYMMDD') ),0) as dRate,
 		(select pi.filepath from product_img pi where  pi.product_no  = pr.product_no and pi.main_img = 'Y') as filepath
 		from product_review pr where member_no = #{memberNo} 
 		)t
@@ -145,10 +145,10 @@
 		productName like '%'||#{productName}||'%'
 		and tradeName like '%'||#{tradeName}||'%' 		
 		<choose>
-			<when test='period == "한달이내"'> and write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월 이내"'> and write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년 이내"'> and write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루전"'> and write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD')  </when>
+		   	<when test='period == "6개월"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD')  </when>
+		   	<when test='period == "1년"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD')  </when>
+		   	<when test='period == "하루"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1,'YYYYMMDD') </when>   	
 			<otherwise></otherwise>
 		</choose>
 		
@@ -178,30 +178,31 @@
 		(select bsi.trade_name from business_seller_info bsi where bsi.member_no = t.memberNo) as tradeName,
 		TRIM(TO_CHAR(t.price,'999,999,999,999,999')) as price,
 		TRIM(TO_CHAR(NVL(t.price-(t.price*t.dRate/100), t.price), '999,999,999,999,999')) as discountedPrice,
-		t.dRate,
+		t.dRate as discountRate,
+		isAnswered,
 		NVL(t.price-(t.price*t.dRate/100), t.price) as order_price 
 		from(
 		select q.qna_no, q.qna_title, q.qna_content, q.write_date,
 		(select p.product_name from product p where p.product_no = q.product_ref_no) as productName,
 		(select p.member_no from product p where p.product_no = q.product_ref_no) as memberNo,
 		(select p.price from product p where p.product_no = q.product_ref_no) as price,
-		NVL((select hd.discount_rate from homecook_deal hd where hd.product_no  = q.product_ref_no and sysdate >=  hd.discountend_date ),0) as dRate,
-		(select pi.filepath from product_img pi where  pi.product_no  = q.product_ref_no and pi.main_img = 'Y') as filepath
+		NVL((select hd.discount_rate from homecook_deal hd where hd.product_no  = q.product_ref_no and TO_CHAR(hd.discountend_date, 'YYYYMMDD') <![CDATA[ >= ]]> TO_CHAR(sysdate,'YYYYMMDD') ),0) as dRate,
+		(select pi.filepath from product_img pi where  pi.product_no  = q.product_ref_no and pi.main_img = 'Y') as filepath,
+		(select count(*) from qna q2 where q2.qna_ref_no = q.qna_no and q2.qna_level = 2) as isAnswered		
 		from qna q where member_no = #{memberNo} 
 		)t
 		)t2
 		where 
-		(select count(*) from qna q2 where q2.qna_ref_no = qnaNo and q2.qna_level = 2) >= #{isAnswered}
+		NVL((select count(*) from qna q2 where q2.qna_ref_no = qnaNo and q2.qna_level = 2),0) <![CDATA[ >= ]]> #{isAnswered}
 		and productName like '%'||#{productName}||'%'
 		and tradeName like '%'||#{tradeName}||'%' 
 		and qnaTitle like '%'||#{title}||'%'
-		and qnaContent like '%'||#{content}||'%' 
-		
+		and qnaContent like '%'||#{content}||'%' 		
 		<choose>
-			<when test='period == "한달"'> and write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월"'> and write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년"'> and write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루 "'> and write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD') </when>
+		   	<when test='period == "6개월"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD') </when>
+		   	<when test='period == "1년"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD') </when>
+		   	<when test='period == "하루 "'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1, 'YYYYMMDD') </when>   	
 			<otherwise></otherwise>
 		</choose>
 		order by 
@@ -226,19 +227,19 @@
 		from(
 		select t2.*
 		from(
-		select t.like_no as likeNo, t.productName, t.filepath,
+		select t.like_no as likeNo, t.product_no as productNo, t.productName, t.filepath,
 		(select bsi.trade_name from business_seller_info bsi where bsi.member_no = t.memberNo) as tradeName,
 		TRIM(TO_CHAR(t.price,'999,999,999,999,999')) as price,
 		TRIM(TO_CHAR(NVL(t.price-(t.price*t.dRate/100), t.price), '999,999,999,999,999')) as discountedPrice,
-		t.dRate,
+		t.dRate as discountRate,
 		NVL(t.price-(t.price*t.dRate/100), t.price) as order_price 
 		from(
 		select 
-		pl.like_no,
+		pl.like_no, pl.product_no,
 		(select p.product_name from product p where p.product_no = pl.product_no) as productName,
 		(select p.member_no from product p where p.product_no = pl.product_no) as memberNo,
 		(select p.price from product p where p.product_no = pl.product_no) as price,
-		NVL((select hd.discount_rate from homecook_deal hd where hd.product_no  = pl.product_no and sysdate >=  hd.discountend_date ),0) as dRate,
+		NVL((select hd.discount_rate from homecook_deal hd where hd.product_no  = pl.product_no and TO_CHAR(sysdate,'YYYYMMDD') <![CDATA[ <= ]]> TO_CHAR(hd.discountend_date, 'YYYYMMDD') ),0) as dRate,
 		(select pi.filepath from product_img pi where  pi.product_no  = pl.product_no and pi.main_img = 'Y') as filepath
 		from product_like pl where member_no = #{memberNo} 
 		)t
@@ -277,22 +278,24 @@
 		qna_no as qnaNo,
 		qna_title as qnaTitle,
 		qna_content as qnaContent,
-		writeDate
+		writeDate,
+		isAnswered
 		from(
 		select rownum as rnum, t.*
 		from(
-		select qna_no, qna_title, qna_content, TO_CHAR(write_date, 'YY/MM/DD') as writeDate
+		select qna_no, qna_title, qna_content, TO_CHAR(write_date, 'YY/MM/DD') as writeDate,
+		(select count(*) from homepage_qna q2 where q2.qna_ref_no = q.qna_no and q2.qna_level = 2) as isAnswered
 		from homepage_qna q
 		where member_no = #{memberNo}
-		and (select count(*) from homepage_qna q2 where q2.qna_ref_no = q.qna_no and q2.qna_level = 2) >= #{isAnswered }
+		and NVL((select count(*) from homepage_qna q2 where q2.qna_ref_no = q.qna_no and q2.qna_level = 2),0) <![CDATA[ >= ]]> #{isAnswered }
 		and qna_level = 1
 		and qna_title like '%'||#{title}||'%'
 		and qna_content like '%'||#{content}||'%' 
 		<choose>
-			<when test='period == "한달"'> and q.write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월"'> and q.write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년 "'> and q.write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루"'> and q.write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD') </when>
+		   	<when test='period == "6개월"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD') </when>
+		   	<when test='period == "1년 "'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD') </when>
+		   	<when test='period == "하루"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1,'YYYYMMDD')  </when>   	
 			<otherwise></otherwise>
 		</choose>
 		order by 

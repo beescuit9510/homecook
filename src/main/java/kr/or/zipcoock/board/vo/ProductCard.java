@@ -17,7 +17,7 @@ public class ProductCard {
 	private String filepath;
 	private int reviewCount;
 	private String starAvg;
-	private int dRate;
+	private String discountRate;
 	private String discountedPrice;
 	private String orderPrice;
 	private String starClass;

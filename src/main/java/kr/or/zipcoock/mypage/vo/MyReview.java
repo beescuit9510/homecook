@@ -16,5 +16,5 @@ public class MyReview {
 	private String tradeName;
 	private String price;
 	private String discountedPrice;
-	private String dRate;
+	private String discountRate;
 }

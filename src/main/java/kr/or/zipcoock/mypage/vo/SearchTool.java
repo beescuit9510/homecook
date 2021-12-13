@@ -32,10 +32,12 @@ public class SearchTool {
 	private String pageNavi = "";
 	private int totalPost = 0;
 	private int filteredPost = 0;
-	private String URL;
+	private String url;
+	private String basic;
 	
 	public String getURL() {
-		URL += "";
-		return URL;
+		url =basic+"memberNo="+memberNo+"&isAnswered="+isAnswered+"&productName="+productName+"&tradeName="+tradeName+"&title="+title
+				+"&order="+order+"&content="+content+"&period="+period+"&p="+p;
+		return url;
 	};
 }

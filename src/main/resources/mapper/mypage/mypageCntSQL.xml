@@ -19,10 +19,10 @@
 		productName like '%'||#{productName}||'%'
 		and tradeName like '%'||#{tradeName}||'%' 		
 		<choose>
-			<when test='period == "한달이내"'> and write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월 이내"'> and write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년 이내"'> and write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루전"'> and write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD')  </when>
+		   	<when test='period == "6개월"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD')  </when>
+		   	<when test='period == "1년"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD')  </when>
+		   	<when test='period == "하루"'> and TO_CHAR(write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1,'YYYYMMDD')  </when>   	
 			<otherwise></otherwise>
 		</choose>				
 	</select>	
@@ -47,10 +47,10 @@
 		and qnaContent like '%'||#{content}||'%' 
 		
 		<choose>
-			<when test='period == "한달"'> and write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월"'> and write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년"'> and write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루 "'> and write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD') </when>
+		   	<when test='period == "6개월"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD') </when>
+		   	<when test='period == "1년"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD') </when>
+		   	<when test='period == "하루 "'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1, 'YYYYMMDD') </when>   	
 			<otherwise></otherwise>
 		</choose>
 	</select>
@@ -90,10 +90,10 @@
 		and qna_title like '%'||#{title}||'%'
 		and qna_content like '%'||#{content}||'%' 
 		<choose>
-			<when test='period == "한달"'> and q.write_date >= add_months(sysdate,-1) </when>
-		   	<when test='period == "6개월"'> and q.write_date >= add_months(sysdate,-6) </when>
-		   	<when test='period == "1년 "'> and q.write_date >= add_months(sysdate,-12) </when>
-		   	<when test='period == "하루"'> and q.write_date >= sysdate </when>   	
+			<when test='period == "한달"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD') </when>
+		   	<when test='period == "6개월"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD') </when>
+		   	<when test='period == "1년 "'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD') </when>
+		   	<when test='period == "하루"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1,'YYYYMMDD')  </when>   	
 			<otherwise></otherwise>
 		</choose>
 		)t

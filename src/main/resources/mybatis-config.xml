@@ -27,5 +27,6 @@
 
 		<typeAlias type="kr.or.delivery.model.vo.ZcdStore" alias="zs"/>
 		<typeAlias type="kr.or.delivery.model.vo.StoreLogo" alias="sl"/>
+		
 </typeAliases>
 </configuration>

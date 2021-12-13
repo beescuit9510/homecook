@@ -150,7 +150,7 @@
 					</div>
 					<div>
 						<div class="likeButton-div-wrap">
-							<span class="likeButton">♥</psn>
+							<span class="likeButton">♥</span>
 						</div>
 						<button id="addToCart" class="top_btn float-right">장바구니 담기</button>	
 					</div>
@@ -430,6 +430,7 @@ var rEnd=0;
 var qStart=0;
 var qEnd = 0;
 var memberNo = $("#memberNo").val()==""? 0:Number($("#memberNo").val());
+memberNo = 4;
 var rTotal = "${pp.reviewCount}";
 var qTotal = "${pp.qnaCount}";
 var productNo = "${pp.productNo}";
@@ -524,7 +525,7 @@ $("#qna-btn").on("click",function(){
 			data.forEach(q => {
 				var card = "<div class='card-body'><table class='table table-bordered'><tbody>";
 				if(memberNo == Number(q.memberNo)){
-					card += "<button class='top_btn index-btn'>수정하러 가기</button>";					
+					card += "<button class='top_btn index-btn' onClick='qnaUpdate("+q.qnaNo+")'>수정하러 가기</button>";					
 				}
 				card +="<tr><td colspan='2'><strong>("+q.memberName+") "+q.qnaTitle+"</strong></td></tr>";
 				card +="<tr><td colspan='2'><p>"+q.qnaContent+"</p><p class='m-0'>"+q.writeDate+"</p>";
@@ -563,7 +564,7 @@ $("#review-btn").on("click",function(){
 				
 				var card = "<div class='card-body'><table class='table table-bordered'><tbody>";
 				if(memberNo == Number(r.memberNo)){
-					card += "<button class='top_btn index-btn'>수정하러 가기</button>";					
+					card += "<button class='top_btn index-btn' onClick='reviewUpdate("+r.reviewNo+")'>수정하러 가기</button>";					
 				}
 				card += "<tr><td colspan='2'><strong>"+r.memberName+"</strong>";
 				card += "</td></tr>";
@@ -602,6 +603,17 @@ $("#review-btn").on("click",function(){
 	})
 	
 })
+
+
+
+function reviewUpdate(no) {
+    $("<a href='/updateMyReview?reviewNo="+no+"'></a>")[0].click();
+};
+function qnaUpdate(no) {
+    $("<a href='/updateMyQna?qnaNo="+no+"'></a>")[0].click();
+};
+
+
 </script>
 <style>
 .star-avg{
