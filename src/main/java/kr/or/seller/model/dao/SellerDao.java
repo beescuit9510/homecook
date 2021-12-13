@@ -1,6 +1,7 @@
 package kr.or.seller.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,6 +65,11 @@ public class SellerDao {
 	public int insertReturnPolicy(ReturnPolicy returnPolicy) {
 		System.out.println(returnPolicy);
 		return sqlSession.insert("returnPolicy.insertReturnPolicy", returnPolicy);
+	}
+
+	public HashMap<Object, Object> selectOneproductInfo(Product product) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/*

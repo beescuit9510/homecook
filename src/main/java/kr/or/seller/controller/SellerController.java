@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -128,6 +129,7 @@ private SellerService service;
 	public String productList(Model model, HttpSession session, int reqPage) {
 	Member m = (Member)session.getAttribute("m");
 	SellerProductPageData sppd = service.selectProductList(m,reqPage);
+	System.out.println(reqPage);
 	System.out.println(sppd);
 	
 	model.addAttribute("sppd",sppd);
@@ -223,7 +225,7 @@ private SellerService service;
 		model.addAttribute("loc","/productList.do");
 		return "zipcoock/common/msg";
 		
-		
+	
 		
 	}
 	
@@ -231,7 +233,13 @@ private SellerService service;
 	 * @RequestMapping(value="/productInsertFrm.do") public String producInsertFrm()
 	 * { return "zipcoock/seller/mypage/insertProduct"; }
 	 */
-	
+	@RequestMapping(value="/updateProductFrm.do")
+	public String insertProductFrm(Product product, Model model) {
+		HashMap<Object, Object> p = new HashMap<Object, Object>();
+		p = service.selectOneProductInfo(product);
+		model.addAttribute("p",p);
+		System.out.println(p+"맵 p 값");
+		return "zipcoock/seller/mypage/updateProductFrm";
 	}
 
-
+}
