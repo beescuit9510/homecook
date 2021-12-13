@@ -87,10 +87,10 @@
         				<div id="title">
 						<h2>상품 조회</h2>
 						<div class="productTotal">
-							<span>판매중인 상품 </span><button style="float:right; margin-top:20px;">상품등록</button>
+							<span>판매중인 상품 </span><button onclick="location.href='insertProductFrm.do'" style="float:right; margin-top:20px; margin-bottom:20px;">상품등록</button>
 						</div>
 						<div>
-						<table class="table total-table">
+						<table class="table total-table" style="text-align: center;">
 		     		<tr style="text-align:center">
 		     		<th id="check"><input type="checkbox" id="checkAll"></th><th>상품이미지</th><th>상품명</th><th>가격</th><th>관리</th>
 		     		</tr>
@@ -99,11 +99,11 @@
 		     			<tr class="totalInfo">
 		     				<td><input type="checkbox" class="checkProduct" name="checkId" value=${p.productNo }></td>
 		     				<td><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1"><img src="resources/upload/product/${p.filepath }" width="100px" height="100px"></a></td>
-		     				<td><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1" style="color:black">${p.productName }</a></td>
-		     				<td class="priceTd">${p.price }</td>
+		     				<td style="vertical-align: middle;"><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1" style="color:black; ">${p.productName }</a></td>
+		     				<td class="priceTd" style="vertical-align: middle;">${p.price }</td>
 		     				
 		     				<td>
-			     					<form action="/updateProductInfoFrm">
+			     					<form action="/updateProductFrm.do">
 			     					<button class="btn updateBtn">상품수정 </button>
 			     					<input type="hidden" name="productNo" value=${p.productNo }>
 			     					<input type="hidden" name="memberNo" value=${p.memberNo }>

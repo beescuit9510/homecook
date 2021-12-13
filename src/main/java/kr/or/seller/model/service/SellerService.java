@@ -54,7 +54,9 @@ public class SellerService {
 				int numPerPage = 10;
 				//시작 번호, 끝번호
 				int end = reqPage*numPerPage;
+				System.out.println(end+"end");
 				int start = end - numPerPage + 1;
+				System.out.println(start);
 				Map<Object, Object> pagedata = new HashMap<Object, Object>();
 				pagedata.put("start", start);
 				pagedata.put("end", end);
@@ -155,6 +157,11 @@ public class SellerService {
 		  
 		 
 		
+	}
+	public HashMap<Object, Object> selectOneProductInfo(Product product) {
+		HashMap<Object, Object> p = dao.selectOneproductInfo(product);
+		System.out.println(p);
+		return p;
 	}
 	}
 	
