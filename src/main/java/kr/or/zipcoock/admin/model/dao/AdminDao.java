@@ -82,9 +82,12 @@ public class AdminDao
 
 	public int updateOneDeal(AdminDeal d) 
 	{	
-		System.out.println("admindao.point");
-		System.out.println(d);
 		return sqlSession.update("admin.update_OneDeal",d);
+	}
+
+	public AdminRefund selectOneReturnPolicyInfo(int policyNo) 
+	{		
+		return sqlSession.selectOne("admin.get_OneReturnPolicy",policyNo);
 	}
 
 }
