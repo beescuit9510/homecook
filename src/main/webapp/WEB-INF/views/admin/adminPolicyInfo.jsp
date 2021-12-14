@@ -112,6 +112,11 @@
 								<td class = "q_table_content" id = "productNo">${r.productNo}</td>
 							</tr>
 							<tr class = "table-primary">
+								<th class = "q_table_00">상품 번호</th>
+								<td class = "q_table_content" id = "productName">${r.productName}</td>
+							</tr>
+							
+							<tr class = "table-primary">
 								<th class = "q_table_00">교환, 반품 소요 비용</th>
 								<td class = "q_table_content" id = "q_no">
 									<input type = "text" id = "returnShipping" value = "${r.returnShipping}">	
@@ -141,7 +146,43 @@
 <script>
 $(function()
 {
-
+	$("#submitButton").click(function()
+	{
+		var rePolicyNo = $('#rePolicyNo').html();
+		var productNo = $('#productNo').html();
+		var productName = $('#productName').html();
+				
+		var returnShipping = $('#returnShipping').val();
+		var retrunLength = $('#retrunLength').val();
+		var policyContent = $('.policyContent').val();
+				
+				
+		$.ajax({		
+		
+			url 	: 	"/Fix_RePolicyData.do", 	//서블릿을 요청할지 매핑값
+			type	: 	"post",						// method 설정
+			data 	:	
+			{	rePolicyNo:rePolicyNo,	
+				returnShipping:returnShipping,
+				retrunLength:retrunLength,
+				policyContent:policyContent		
+			},
+			success	: function(data)		// 성공시와 에러시, 그리고 완료시
+			{
+				if(data == 1)
+					alert("변경 성공");
+				else
+					alert("변경 실패")
+							
+				location.href="/admin_returnPolicy.do";	
+			},
+			error	: function()
+			{
+				console.log("Update rePolicyData Fail");
+			}	
+		});
+				
+	});
 });
 </script>
 </div>

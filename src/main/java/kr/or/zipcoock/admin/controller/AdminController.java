@@ -161,4 +161,18 @@ public class AdminController
 		return "admin/adminPolicyInfo";
 	}	
 	
+	@RequestMapping(value = "/Fix_RePolicyData.do")
+	@ResponseBody
+	public int fix_RePolicyData(int rePolicyNo, String returnShipping, String retrunLength, String policyContent)
+	{
+		AdminRefund r = new AdminRefund();
+		r.setReturnPolicyNo(rePolicyNo);
+		r.setReturnShipping(returnShipping);
+		r.setRetrunLength(retrunLength);
+		r.setPolicyContent(policyContent);	
+		
+		int result = service.updateOnePolicy(r);
+		return result;
+	}
+	
 }
