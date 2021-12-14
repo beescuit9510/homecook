@@ -20,7 +20,7 @@ public class SearchTool {
 	private String tradeName = "";
 	private String title = "";
 	private String content = "";
-	private String period = "";
+	private String period = "모두";
 	private String order = "최신순";
 //	private String table = "table";
 	private List<String> orderList = Arrays.asList("최신순", "가나다순", "가나다역순", "높은가격순", "낮은가격순", "오래된 순");

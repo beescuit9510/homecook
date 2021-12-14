@@ -1,21 +1,27 @@
 package kr.or.zipcoock.mypage.controller;
 
 import javax.servlet.http.HttpSession;
-import javax.tools.Tool;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
+import kr.or.member.controller.MemberController;
+import kr.or.member.model.service.MemberService;
+import kr.or.table.model.vo.HomepageQna;
 import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.ProductLike;
-import kr.or.zipcoock.board.vo.ProductPageArgs;
+import kr.or.table.model.vo.PwChangeVO;
 import kr.or.zipcoock.mypage.service.MypageService;
 import kr.or.zipcoock.mypage.vo.DeleteObj1;
+import kr.or.zipcoock.mypage.vo.HQnaPage;
 import kr.or.zipcoock.mypage.vo.InsertObj;
+import kr.or.zipcoock.mypage.vo.QnaPage;
 import kr.or.zipcoock.mypage.vo.SearchTool;
 import kr.or.zipcoock.mypage.vo.UpdateObj1;
 
@@ -23,6 +29,8 @@ import kr.or.zipcoock.mypage.vo.UpdateObj1;
 public class MypageController {
 	@Autowired
 	MypageService service;
+	@Autowired
+	MemberService memberService;
 
 	
 //	addr / qna / hp /r / like
@@ -31,7 +39,7 @@ public class MypageController {
 
 		service.insert(obj);
 
-		return "redirect:/";
+		return "redirect:"+obj.getUrl();
 	}
 
 //	 m / pwM 
@@ -41,7 +49,7 @@ public class MypageController {
 
 		service.update(obj);
 
-		return "redirect:/";
+		return "redirect:"+obj.getUrl();
 	}
 
 //	m 
@@ -52,8 +60,16 @@ public class MypageController {
 		System.out.println(obj.getLike());
 		service.delete(obj);
 
+		
 		return "redirect:"+obj.getUrl();
 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/changePw.do", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+	public String changePw(PwChangeVO pwchangeVo) {
+		String msg = service.ChangePw(pwchangeVo);		 
+		return new Gson().toJson(msg);
 	}
 	
 	@ResponseBody
@@ -73,14 +89,12 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/mypageGoGo.do")
-	public String mypageGoGo() {
-		SearchTool tool = new SearchTool();
-		tool.setMemberNo(4);
+	public String mypageGoGo(HttpSession session,Model model) {
+		Member member = (Member)session.getAttribute("m");		
+		System.out.println(member);
+		session.setAttribute("m", memberService.selectOneMemberId(member.getMemberId()));
 		
-		service.test(tool);
-		
-		return "zipcoock/mypage2/mypage";
-		
+		return "zipcoock/mypage2/mypage";		
 	}
 
 	
@@ -114,45 +128,68 @@ public class MypageController {
 	
 	@RequestMapping(value="/myLikeList.do")
 	public String myLikeList(SearchTool tool, HttpSession session, Model model) {
-//		Member m = (Member)session.getAttribute("m");		
-//		tool.setMemberNo(m.getMemberNo()); 
+		Member m = (Member)session.getAttribute("m");		
+		tool.setMemberNo(m.getMemberNo()); 
 		tool.setBasic("/myLikeList.do?");
-		tool.setMemberNo(4);
 		model.addAttribute("tool", tool);
 		model.addAttribute("list", service.selectMyLike(tool));				
 		return "zipcoock/mypage2/mypage/hompageQna";
 	}
 	@RequestMapping(value="/myReviewList.do")
 	public String myReviewList(SearchTool tool, HttpSession session, Model model) {
-//		Member m = (Member)session.getAttribute("m");		
-//		tool.setMemberNo(m.getMemberNo()); 
+		Member m = (Member)session.getAttribute("m");		
+		tool.setMemberNo(m.getMemberNo()); 
 		tool.setBasic("/myReviewList.do?");
-		tool.setMemberNo(4);
 		model.addAttribute("tool", tool);
 		model.addAttribute("list", service.selectMyReview(tool));				
 		return "zipcoock/mypage2/mypage/myReviews";
 	}
 	@RequestMapping(value="/myQnaList.do")
 	public String myQnaList(SearchTool tool, HttpSession session, Model model) {
-//		Member m = (Member)session.getAttribute("m");		
-//		tool.setMemberNo(m.getMemberNo()); 
+		Member m = (Member)session.getAttribute("m");		
+		tool.setMemberNo(m.getMemberNo()); 
 		tool.setBasic("/myQnaList.do?");
-		tool.setMemberNo(4);
+		System.out.println(tool);
 		model.addAttribute("tool", tool);
 		model.addAttribute("list", service.selectMyQna(tool));				
 		return "zipcoock/mypage2/mypage/myQnas";
 	}
 	@RequestMapping(value="/myHQnaList.do")
 	public String myHQnaList(SearchTool tool, HttpSession session, Model model) {
-//		Member m = (Member)session.getAttribute("m");		
-//		tool.setMemberNo(m.getMemberNo()); 
+		Member m = (Member)session.getAttribute("m");		
+		tool.setMemberNo(m.getMemberNo()); 
 		tool.setBasic("/myHQnaList.do?");
-		tool.setMemberNo(4);
 		model.addAttribute("tool", tool);
 		model.addAttribute("list", service.selectMyHQna(tool));				
 		return "zipcoock/mypage2/mypage/myHQnas";
 	}
+	@RequestMapping(value="/qnaPage.do")
+	public String qnaPage(int qnaNo,Model model) {
+		QnaPage qna = service.selecQnaPage(qnaNo);
+		model.addAttribute("qna",qna);
+		return "zipcoock/mypage2/mypage/qnaPage";
+	}
 
+	@RequestMapping(value="/hqnaPage.do")
+	public String hqnaPage(int qnaNo, Model model) {
+		HQnaPage qna = service.selecHQnaPage(qnaNo);
+		model.addAttribute("qna",qna);
+		return "zipcoock/mypage2/mypage/hqnaPage";
+	}
+	
+	
+	
+	
+	@RequestMapping(value="/insertHQnaPage.do")
+	public String insertHQnaPage() {
+		return "zipcoock/mypage2/mypage/insertHQnaPage";
+	}
+	@RequestMapping(value="/insertQnaPage.do")
+	public String insertQnaPage(int productRefNo, Model model) {
+		model.addAttribute("productRefNo",productRefNo);
+		return "zipcoock/mypage2/mypage/insertQnaPage";
+	}
+	
 	
 	
 	

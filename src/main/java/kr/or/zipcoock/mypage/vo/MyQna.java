@@ -12,6 +12,7 @@ public class MyQna {
 	private String qnaTitle;
 	private int isAnswered;
 	private String qnaContent;
+	private int productNo;
 	private String writeDate;
 	private String productName;
 	private String filepath;

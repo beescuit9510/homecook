@@ -9,13 +9,16 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.table.model.vo.PwChangeVO;
 import kr.or.zipcoock.mypage.vo.DeleteObj1;
+import kr.or.zipcoock.mypage.vo.HQnaPage;
 import kr.or.zipcoock.mypage.vo.InsertObj;
 import kr.or.zipcoock.mypage.vo.MyAddr;
 import kr.or.zipcoock.mypage.vo.MyHQna;
 import kr.or.zipcoock.mypage.vo.MyLike;
 import kr.or.zipcoock.mypage.vo.MyQna;
 import kr.or.zipcoock.mypage.vo.MyReview;
+import kr.or.zipcoock.mypage.vo.QnaPage;
 import kr.or.zipcoock.mypage.vo.SearchTool;
 import kr.or.zipcoock.mypage.vo.UpdateObj1;
 
@@ -80,6 +83,22 @@ public class MypageDao {
 
 	public int selectCnt(HashMap<String,String> map) {
 		return sqlSession.selectOne("mypageCnt.selectCnt",map);	
+	}
+
+	public int changePw(PwChangeVO pwchangeVo) {
+		return sqlSession.update("mypage.updatePw",pwchangeVo);	
+		
+	}
+	
+	public int selectPw(PwChangeVO pwchangeVo) {
+		return sqlSession.selectOne("mypage.selectPw",pwchangeVo);	
+	}
+
+	public HQnaPage selectHQnaPage(int hqnaNo) {
+		return sqlSession.selectOne("mypage.selectHQnaPage",hqnaNo);			
+	}
+	public QnaPage selectQnaPage(int qnaNo) {
+		return sqlSession.selectOne("mypage.selectQnaPage",qnaNo);			
 	}
 
 

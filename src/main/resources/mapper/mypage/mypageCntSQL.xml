@@ -47,11 +47,11 @@
 		and qnaContent like '%'||#{content}||'%' 
 		
 		<choose>
-			<when test='period == "한달"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD') </when>
+			<when test='period == "한달"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD')  </when>
 		   	<when test='period == "6개월"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD') </when>
 		   	<when test='period == "1년"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD') </when>
-		   	<when test='period == "하루 "'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1, 'YYYYMMDD') </when>   	
-			<otherwise></otherwise>
+		   	<when test='period == "모두"'></when>   	
+			<otherwise>and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1, 'YYYYMMDD') </otherwise>
 		</choose>
 	</select>
 	<!-- 내 좋아요 목록-->

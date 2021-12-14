@@ -7,14 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.table.model.vo.PwChangeVO;
 import kr.or.zipcoock.mypage.dao.MypageDao;
 import kr.or.zipcoock.mypage.vo.DeleteObj1;
+import kr.or.zipcoock.mypage.vo.HQnaPage;
 import kr.or.zipcoock.mypage.vo.InsertObj;
 import kr.or.zipcoock.mypage.vo.MyAddr;
 import kr.or.zipcoock.mypage.vo.MyHQna;
 import kr.or.zipcoock.mypage.vo.MyLike;
 import kr.or.zipcoock.mypage.vo.MyQna;
 import kr.or.zipcoock.mypage.vo.MyReview;
+import kr.or.zipcoock.mypage.vo.QnaPage;
 import kr.or.zipcoock.mypage.vo.SearchTool;
 import kr.or.zipcoock.mypage.vo.UpdateObj1;
 
@@ -157,5 +160,25 @@ public class MypageService {
 		tool.setPageNavi(pageNavi.toString());
 		tool.setP(reqPage);
 
+	}
+
+	@Transactional
+	public String ChangePw(PwChangeVO pwchangeVo) {
+		if(dao.selectPw(pwchangeVo) > 0) {			
+			if(dao.changePw(pwchangeVo) > 0) {			
+				return "비밀번호 변경 완료";
+			}else {
+				return "비밀번호 변경 실패";
+			}
+		}else {
+			return "잘못된 비밀번호입니다.";
+		}
+	}
+
+	public HQnaPage selecHQnaPage(int hqnaNo) {
+		return dao.selectHQnaPage(hqnaNo);
+	}
+	public QnaPage selecQnaPage(int qnaNo) {
+		return dao.selectQnaPage(qnaNo);
 	}
 }

@@ -100,7 +100,7 @@
    				</div>
    				<div class = "content_div_opt3" id="text-emp">
 	   				<div class="like-wrap"><span class="likeButton" id="${v.productNo }">♥</span></div>
-   					<a href="/mainboardView.do?memberNo=${sessionScopse.m.memberNo }&productNo=${v.productNo }" class="top_btn go_btn">상품 보러가기</a>	   				
+   					<a href="/mainboardView.do?memberNo=${sessionScope.m.memberNo }&productNo=${v.productNo }" class="top_btn go_btn">상품 보러가기</a>	   				
    				</div>
        		</div>
        		 </c:forEach>
@@ -130,7 +130,6 @@
 </style>
 <script>
 var memberNo = $("#memberNo").val()==""? 0:Number($("#memberNo").val());
-memberNo = 4;
 var basic,show,productName,tradeName,title,content,period,order;
 
 function initVar() {

@@ -41,7 +41,6 @@
 	        		</div>
         			<div class = "side_nav_content">
 	        			<a href="mypageGoGo.do" class = "side_nav_div side_nav_div_selected"><span class = "side_nav_span side_nav_span_selected">정보 확인/수정</span></a>
-	        			<a href="mypageGoGo.do" class = "side_nav_div side_nav_div_selected"><span class = "side_nav_span side_nav_span_selected">비밀번호 변경</span></a>
 	        			<a href="zcdMyCoupon1.do" class = "side_nav_div"><span class = "side_nav_span">주문목록</span></a>
 	        			<a href="myLikeList.do" class = "side_nav_div"><span class = "side_nav_span">즐겨찾기 목록</span></a>
 	        			<a href="zcdMyReview1.do" class = "side_nav_div"><span class = "side_nav_span">리뷰내역</span></a>

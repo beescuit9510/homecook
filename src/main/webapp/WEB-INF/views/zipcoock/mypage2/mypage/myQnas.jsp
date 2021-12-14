@@ -37,8 +37,8 @@
 			<select id="searchBy" class="form-control rounded-0">								
 				<option value="productName" <c:if test="${tool.productName ne '' }"> selected = "selected" </c:if>>상품명</option>
 				<option value="tradeName" <c:if test="${tool.tradeName ne '' }"> selected = "selected" </c:if>>상호</option>
-				<option value="tradeName" <c:if test="${tool.title ne '' }"> selected = "selected" </c:if>>제목</option>
-				<option value="tradeName" <c:if test="${tool.content ne '' }"> selected = "selected" </c:if>>내용</option>
+				<option value="title" <c:if test="${tool.title ne '' }"> selected = "selected" </c:if>>제목</option>
+				<option value="content" <c:if test="${tool.content ne '' }"> selected = "selected" </c:if>>내용</option>
 			</select>							
 			<div class="input-group-append">
 				<button id="link" class="btn btn-outline-secondary" type="button">
@@ -124,8 +124,11 @@
    					<c:if test="${v.isAnswered eq 1}">
    					답변완료
    					</c:if>
+   					
+   				    <a href="/mainboardView.do?memberNo=${sessionScope.m.memberNo }&productNo=${v.productNo }">   				   					
    					<span class="goods_detail">${v.tradeName }</span>
    					${v.productName }
+   				    </a>	   				
    					<c:if test="${v.price eq v.discountedPrice}">
    					<p>${v.price }원</p>
    					</c:if>
@@ -134,7 +137,7 @@
    					</c:if>
    				</div>
    				<div class = "content_div_opt3" id="text-emp">
-		   			<button class="buy_btn update-btn" id =${v.qnaNo }>수정하기</button>
+		   			<button class="buy_btn update-btn" id =${v.qnaNo }>상세보기</button>
    					<button class="cart_btn delete-btn" id =${v.qnaNo }>삭제하기</button>
    				</div>
        		</div>
@@ -163,7 +166,6 @@
 </body>
 <script>
 var memberNo = $("#memberNo").val()==""? 0:Number($("#memberNo").val());
-memberNo = 4;
 var basic,show,productName,tradeName,title,content,period,order;
 
 function initVar() {
@@ -226,7 +228,7 @@ $(".delete-btn").click(function() {
 
 $(".update-btn").click(function() {
 	var id = $(this).attr("id")
-    $("<a href='/updateMyQna?qnaNo="+id+"'></a>")[0].click();
+    $("<a href='/qnaPage.do?qnaNo="+id+"'></a>")[0].click();
 });
 
 

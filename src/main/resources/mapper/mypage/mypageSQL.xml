@@ -39,7 +39,7 @@
 		
 		<!-- 개인 정보 수정 (회원 수정) -->
 		<if test="m != null">
-			member set member_id= #{m.memberId}, member_name= #{m.memberName}, member_phone= #{m.memberPhone} where member_no = #{m.memberNo}				
+			member set member_phone= #{m.memberPhone} where member_no = #{m.memberNo}				
 	    </if>
 
 		<!-- 비밀번호 수정 -->
@@ -55,13 +55,13 @@
 
 		<!-- 상품 Q&A Q 수정 -->
 		<if test="q != null">
-			qna set qna_title= #{q.qnaTitle}, qna_content = #{q.qnaContent} 
+			qna set qna_title= #{q.qnaTitle}, qna_content = #{q.qnaContent}, write_date = sysdate
 			where qna_no = #{q.qnaNo} and member_no = #{q.memberNo}
 	    </if>
 
 		<!-- 홈페이지 Q&A Q 수정 -->
 		<if test="hq != null">
-			homepage_qna set qna_title = #{hq.qnaTitle}, qna_content = #{hq.qnaContent}
+			homepage_qna set qna_title = #{hq.qnaTitle}, qna_content = #{hq.qnaContent}, write_date = sysdate
 			where qna_no = #{hq.qnaNo} and member_no = #{hq.memberNo}
 	    </if>
 
@@ -180,9 +180,10 @@
 		TRIM(TO_CHAR(NVL(t.price-(t.price*t.dRate/100), t.price), '999,999,999,999,999')) as discountedPrice,
 		t.dRate as discountRate,
 		isAnswered,
-		NVL(t.price-(t.price*t.dRate/100), t.price) as order_price 
+		NVL(t.price-(t.price*t.dRate/100), t.price) as order_price,
+		productNo
 		from(
-		select q.qna_no, q.qna_title, q.qna_content, q.write_date,
+		select q.qna_no, q.qna_title, q.qna_content, q.write_date, q.product_ref_no as productNo,
 		(select p.product_name from product p where p.product_no = q.product_ref_no) as productName,
 		(select p.member_no from product p where p.product_no = q.product_ref_no) as memberNo,
 		(select p.price from product p where p.product_no = q.product_ref_no) as price,
@@ -199,11 +200,11 @@
 		and qnaTitle like '%'||#{title}||'%'
 		and qnaContent like '%'||#{content}||'%' 		
 		<choose>
-			<when test='period == "한달"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD') </when>
+			<when test='period == "한달"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD')  </when>
 		   	<when test='period == "6개월"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD') </when>
 		   	<when test='period == "1년"'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD') </when>
-		   	<when test='period == "하루 "'> and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1, 'YYYYMMDD') </when>   	
-			<otherwise></otherwise>
+		   	<when test='period == "모두"'></when>   	
+			<otherwise>and TO_CHAR(t2.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1, 'YYYYMMDD') </otherwise>
 		</choose>
 		order by 
 		<choose>
@@ -295,7 +296,7 @@
 			<when test='period == "한달"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-1),'YYYYMMDD') </when>
 		   	<when test='period == "6개월"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-6),'YYYYMMDD') </when>
 		   	<when test='period == "1년 "'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(add_months(sysdate,-12),'YYYYMMDD') </when>
-		   	<when test='period == "하루"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1,'YYYYMMDD')  </when>   	
+		   	<when test='period == "하루"'> and TO_CHAR(q.write_date,'YYYYMMDD') >= TO_CHAR(sysdate-1,'YYYYMMDD') </when>   	
 			<otherwise></otherwise>
 		</choose>
 		order by 
@@ -305,6 +306,46 @@
 			<otherwise> qna_no desc</otherwise>
 		</choose>
 		)t
-		)r where rnum between #{start} and #{end}
+		)r where rnum between #{start} and #{end} 
 	</select>		
+	<update id="updatePw" parameterType="kr.or.table.model.vo.PwChangeVO">
+			update member set member_pw= #{newPassword} where member_no = #{memberId}	
+	</update>
+	<select id="selectPw" parameterType="kr.or.table.model.vo.PwChangeVO" resultType="_int">
+			select count(*) from member where member_no = #{memberId} and member_pw= #{oldPassword}
+	</select>	
+	<select id="selectQnaPage" parameterType = "_int" resultType="kr.or.zipcoock.mypage.vo.QnaPage">
+		select 
+		q.qna_no as qnaNo,
+		q.qna_ref_no as qnaRefNo,
+		q.qna_level as qnaLevel,
+		q.qna_title as qnaTitle,
+		q.qna_content as qnaContent,
+		TO_CHAR(q.write_date, 'YY/MM/DD') as writeDate,
+		(select m.trade_name from business_seller_info m where q2.member_no = m.member_no) as aQnaWriter,
+		q2.qna_title as aQnaTitle,
+		q2.qna_content as aQnaContent,
+		TO_CHAR(q2.write_date, 'YY/MM/DD') as aWriteDate
+		from qna q
+		left join qna q2
+		on q2.qna_ref_no = q.qna_no
+		where q.qna_no = #{value}
+	</select>
+	<select id="selectHQnaPage" parameterType = "_int" resultType="kr.or.zipcoock.mypage.vo.HQnaPage">
+		select 
+		q.qna_no as qnaNo,
+		q.qna_ref_no as qnaRefNo,
+		q.qna_level as qnaLevel,
+		q.qna_title as qnaTitle,
+		q.qna_content as qnaContent,
+		TO_CHAR(q.write_date, 'YY/MM/DD') as writeDate,
+		q2.qna_title as aQnaTitle,
+		q2.qna_content as aQnaContent,
+		TO_CHAR(q2.write_date, 'YY/MM/DD') as aWriteDate
+		from homepage_qna q
+		left join homepage_qna q2
+		on q2.qna_ref_no = q.qna_no
+		where q.qna_no = #{value}
+	</select>
+		
 </mapper>

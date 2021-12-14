@@ -138,7 +138,6 @@
 </body>
 <script>
 var memberNo = $("#memberNo").val()==""? 0:Number($("#memberNo").val());
-memberNo = 4;
 var basic,show,productName,tradeName,title,content,period,order;
 
 function initVar() {

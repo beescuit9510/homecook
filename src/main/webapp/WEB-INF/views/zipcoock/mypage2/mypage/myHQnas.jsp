@@ -21,7 +21,7 @@
 
 	<%@include file="/WEB-INF/views/zipcoock/mypage2/mypage/zcdMypageHeader.jsp"%>
 		<div class = "content_div">
-       	<div class = "content_title">Q&A 내역
+       	<div class = "content_title">문의 내역
 					<button id="reset" class="btn btn-outline-secondary btn-block btn" type="button">
 						<i class="fas fa-sync-alt"></i>
 					</button>
@@ -30,15 +30,11 @@
 		
 		<div class="mt input-group">
 			<input type="text" id="keyword" class="form-control" placeholder="검색"
-			<c:if test="${tool.productName ne ''}">value="${tool.productName }"</c:if>
 			<c:if test="${tool.title ne ''}">value="${tool.title }"</c:if>
-			<c:if test="${tool.content ne ''}">value="${tool.content }"</c:if>
-			<c:if test="${tool.tradeName ne ''}">value="${tool.tradeName }"</c:if>/>
+			<c:if test="${tool.content ne ''}">value="${tool.content }"</c:if>/>
 			<select id="searchBy" class="form-control rounded-0">								
-				<option value="productName" <c:if test="${tool.productName ne '' }"> selected = "selected" </c:if>>상품명</option>
-				<option value="tradeName" <c:if test="${tool.tradeName ne '' }"> selected = "selected" </c:if>>상호</option>
-				<option value="tradeName" <c:if test="${tool.title ne '' }"> selected = "selected" </c:if>>제목</option>
-				<option value="tradeName" <c:if test="${tool.content ne '' }"> selected = "selected" </c:if>>내용</option>
+				<option value="title" <c:if test="${tool.title ne '' }"> selected = "selected" </c:if>>제목</option>
+				<option value="content" <c:if test="${tool.content ne '' }"> selected = "selected" </c:if>>내용</option>
 			</select>							
 			<div class="input-group-append">
 				<button id="link" class="btn btn-outline-secondary" type="button">
@@ -51,18 +47,6 @@
 
 
 		<div class="mt row">		
-			<div class="col-md-4">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text">정렬:</span>
-					</div>
-					<select class="selectBox form-control" id="order" name="">
-					<c:forEach items="${tool.orderList }" var="v">
-						<option value="${v }" <c:if test="${v eq tool.order}">selected = "selected"</c:if>>${v }</option>
-					</c:forEach>
-					</select>
-				</div>
-			</div>			
 			<div class="col-md-4">
 				<div class="input-group">
 					<div class="input-group-prepend">
@@ -108,33 +92,42 @@
 			</div>
 		</div>
 
+   				<div class="insert-btn-wrap">
+		   			<button class="top_btn insert-btn">문의하기</button>
+   				</div>
 
        	<div class = "content_div_area">
        		<div class = "content_div_content">
        		<c:forEach items="${list}" var="v" >
    			<div class ="content_div_info coupon-tbl" style="height: 110px;">
- 				<div class = "content_div_opt1">${v.qnaTitle }
-	   				<span>
+ 				<div class = "content_div_opt1">
+ 				 <p class="qna-title">
+ 					${v.qnaTitle }
+ 				 </p>
+ 				</div>
+   				<div class = "content_div_opt2" id="text-emp">
+	   				<p>
    					<c:if test="${v.isAnswered eq 0}">
    					답변중
    					</c:if>
    					<c:if test="${v.isAnswered eq 1}">
    					답변완료
    					</c:if>
- 					</span>					
- 				</div>
-   				<div class = "content_div_opt2" id="text-emp">
-   					<span>${v.qnaContent }</span>
-   					<span>${v.writeDate }</span>
+ 					</p>					
+   					<span class="qna-content">
+	   					${v.qnaContent }
+   					<!-- 
+   					 -->
+   					 </span>
+   					 <p><span class="qna-writedate">${v.writeDate }</span></p>
    				</div>
    				<div class = "content_div_opt3" id="text-emp">
-		   			<button class="buy_btn update-btn" id =${v.qnaNo }>수정하기</button>
+		   			<button class="buy_btn update-btn" id =${v.qnaNo }>상세보기</button>
    					<button class="cart_btn delete-btn" id =${v.qnaNo }>삭제하기</button>
    				</div>
        		</div>
        		 </c:forEach>
-       		 
-       		 
+       		        		 
        		 
 	<div class="row">
 		<div class="col-md-6">
@@ -157,12 +150,11 @@
 </body>
 <script>
 var memberNo = $("#memberNo").val()==""? 0:Number($("#memberNo").val());
-memberNo = 4;
 var basic,show,productName,tradeName,title,content,period,order;
 
 function initVar() {
     keyword = "&"+$("#searchBy").val()+"="+$("#keyword").val();   	
-	basic = "/myQnaList.do?";
+	basic = "/myHQnaList.do?";
     order = "&order="+$("#order").val();
    	/*
     period = "";
@@ -220,14 +212,69 @@ $(".delete-btn").click(function() {
 
 $(".update-btn").click(function() {
 	var id = $(this).attr("id")
-    $("<a href='/updateMyQna?qnaNo="+id+"'></a>")[0].click();
+    $("<a href='/hqnaPage.do?qnaNo="+id+"'></a>")[0].click();
 });
+$(".insert-btn").on("click",function() {
+    $("<a href='/insertHQnaPage.do'></a>")[0].click();
+});
+
 
 
 </script>
 <style>
 .form-control{
 	width:50px !important;
+}
+
+/*
+.help-content{
+	display:inline-block;
+	width:430px;
+	white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+}
+.help-title{
+}
+*/
+.qna-title{
+	overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.qna-writedate{
+	clear:left;
+	float:right;
+	margin-right:10px;
+}
+
+.qna-content{
+	overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+	float:left;
+}
+.content_div_opt1, .content_div_opt2{
+	width:280px;
+	margin-right:10px;
+
+}
+.insert-btn{
+	float:right;
+	width:100%;
+	height:90%;
+	font-size:20px;
+	font-weight:600;
+}
+.insert-btn-wrap{
+/*
+*/
+	width:100%;
+	height:70px;
 }
 </style>
 </html>

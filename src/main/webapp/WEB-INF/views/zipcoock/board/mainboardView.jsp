@@ -315,6 +315,7 @@
 					</table>
 				</div>
 				<div class="tab-pane pt-4" role="tabpanel" id="tabQnA">					
+					<button class="top_btn insert-qna-btn">Q 작성하러 가기</button>
 					<div class="card" id="qna-wrap">
 						<div class="card-header">상품관련 Q&A를 볼 수 있습니다. </div>
 						
@@ -331,7 +332,6 @@
 					
 					<div class="card" id="review-wrap">
 						<div class="card-header">상품관련 후기를 볼 수 있습니다. </div>
-						
 						
 						
 						
@@ -430,7 +430,6 @@ var rEnd=0;
 var qStart=0;
 var qEnd = 0;
 var memberNo = $("#memberNo").val()==""? 0:Number($("#memberNo").val());
-memberNo = 4;
 var rTotal = "${pp.reviewCount}";
 var qTotal = "${pp.qnaCount}";
 var productNo = "${pp.productNo}";
@@ -607,12 +606,15 @@ $("#review-btn").on("click",function(){
 
 
 function reviewUpdate(no) {
-    $("<a href='/updateMyReview?reviewNo="+no+"'></a>")[0].click();
+    $("<a href='/reviewPage.do?reviewNo="+no+"'></a>")[0].click();
 };
 function qnaUpdate(no) {
-    $("<a href='/updateMyQna?qnaNo="+no+"'></a>")[0].click();
+    $("<a href='/qnaPage.do?qnaNo="+no+"'></a>")[0].click();
 };
 
+$(".insert-qna-btn").on("click",function(){
+    $("<a href='/insertQnaPage.do?productRefNo="+productNo+"'></a>")[0].click();	
+})
 
 </script>
 <style>
@@ -745,5 +747,14 @@ button:focus {
 <tr><td colspan='2'><p>QNA 답변 답변</p><p class='m-0'>18/03/2013</p></td></tr>
 </tbody></table></div>
 */
+.insert-qna-btn{
+	width:100px;
+	width:100%;
+	height:50px;
+	margin-bottom:10px;
+}
+.insert-qna-btn+*{
+	clear:both;
+}
 </style>
 </html>

@@ -24,22 +24,10 @@
 </style>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <div class="s-wrapper">
 	<%@include file="/WEB-INF/views/zipcoock/mypage2/mypage/zcdMypageHeader.jsp"%>
         <div class = "content_div"> 
-        	<div class = "content_title">나의 집쿠욱</div>
-        	<div class = "content_div_area">
-        		<div class = "content_div_content">
-        			<div class = "content_div_info">
-        				<div class = "content_div_opt1">집쿠욱 레벨</div>
-        				<div class = "content_div_opt2">집쿠욱 포인트</div>
-        				<div class = "content_div_opt3">주문내역</div>
-        			</div>
-        			<div class = "content_div_info">
-        				<div class = "content_div_opt1" id="text-emp">집쿡초보</div>
-        				<div class = "content_div_opt2" id="text-emp">555</div>
-        				<div class = "content_div_opt3"><a href="#" id="text-emp">보러가기</a></div>
-        			</div>
         <!-- 
          //m
 //<form action="/update.do">
@@ -57,7 +45,9 @@
 //</form>
          
          -->
-<!-- 
+         <!-- 
+          -->
+	        		<form action="/update.do" method="post">
         			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">정보 확인/수정</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">이름</div>
@@ -69,58 +59,78 @@
 	        		</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">전화번호</div>
-	        			<div class="content_div_opt2"><input type="text" class="input" name="m.memberPhone" value="${sessionScope.m.memberPhone }"></div>
+	        			<div class="content_div_opt2"><input type="text" class="input" id="phone" name="m.memberPhone" value="${sessionScope.m.memberPhone }"></div>
 	        		</div>
+	        		<!-- 
+	        		<input type="text" class="input" name="m.memberNo" value="${sessionScope.m.memberNo }">
+	        		 -->
+	        		<input type="hidden" class="input" name="m.memberNo" value="4">
+	        		<input type="hidden" class="input" name="url" value="/mypageGoGo.do">
+	        		<div class="btn-area">
+		        		<button type="submit" id="mbtn" class="buy_btn">변경</button>
+		        		<button type="reset" class="cart_btn">취소</button>	        		
+	        		</div>
+	        		</form>
+	        		
+	        		<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">비밀번호 수정</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">현재 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="text" name="pwM.memberPw" class="input"></div>
+	        			<div class="content_div_opt2"><input type="text" id="currPw" name="pwM.memberPw" class="input"></div>
 	        		</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">새로운 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" name="pwM.memberPw" class="input"></div>
+	        			<div class="content_div_opt2"><input type="password" id="newPw" name="pwM.memberPw" class="input"></div>
 	        		</div>
 	        		<div class="btn-area">
-		        		<button type="submit" class="buy_btn">변경</button>
+		        		<button type="submit" id="phonebtn" class="buy_btn">변경</button>
 		        		<button type="reset" class="cart_btn">취소</button>	        		
 	        		</div>
- -->         
- 
-					<c:forEach begin="1" end="3">
-         			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">배송지1</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">이름</div>
-	        			<div class="content_div_opt2" id="text-emp"><input type="text" class="input" name="m.memberPhone" value="ㅁㅁㅁㅁㅁㅁㅁ"></div>
-	        		</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">전화번호</div>
-	        			<div class="content_div_opt2" id="text-emp"><input type="text" class="input" name="m.memberPhone" value="ㅁㅁㅁㅁㅁㅁㅁ"></div>
-	        		</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">주소</div>
-	        			<div class="content_div_opt2"><input type="text" class="input" name="m.memberPhone" value="ㅁㅁㅁㅁㅁㅁㅁ"></div>
-	        		</div>
-	        		<div class="btn-area">
-		        		<button type="submit" class="buy_btn">변경</button>
-		        		<button type="reset" class="cart_btn">삭제</button>	        		
-	        		</div>
-					</c:forEach> 
+	        		
+	        		
  
         		</div>	
-	        		<div class="btn-area">
-		        <button type="submit" class="buy_btn">추가</button>
-	        		</div>
-        	</div>
-        </div>
-    </div> <!-- main content -->
+	    </div> <!-- main content -->
 	<%@include file="/WEB-INF/views/zipcoock/mypage2/mypage/zcdMypageFooter.jsp"%>
-<body>
+	</div>
+</body>
 <style>
 	.input{
 		height: 24px;
 	}
 </style>
 <script>
-	var id = ""
-		/update.do
-			/update.do
+var memberNo = $("#memberNo").val()==""? 0:Number($("#memberNo").val());
+memberNo = 4;
+
+var pw = /[a-zA-Z0-9]{8,12}/;
+
+var phone = /^01([0|1|6|7|8|9])([0-9]{4})([0-9]{4})$/
+$("#mbtn").click(function () {
+    if(!phone.test($("#phone").val())){
+    	$("#phone").val("");
+    	alert("숫자로만 12자리로 입력해주세요. ex) 01012341234")
+        return false;
+    }
+    return true;
+
+})
+	
+	
+	$("#phonebtn").click(function() {
+	    if(!pw.test($("#newPw").val())){
+	    	$("#newPw").val("");
+	    	alert("8~12자 이내 영대소문,숫자. 특수문자 제외  ex) 12345678")
+	        return;
+	    }
+		$.ajax({
+			type:"POST",
+			url:"/changePw.do",
+			data:{newPassword:$("#newPw").val(), oldPassword:$("#currPw").val(), memberId:memberNo},
+			success:function(data){
+				alert(data);
+				location.reload();
+			}
+		})
+	});
+
 </script>
