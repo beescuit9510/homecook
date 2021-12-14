@@ -61,7 +61,7 @@
 											<td>
 												<div class="content_div_opt3">
 													<a href="/selectOneMarket.do?storeNo=${zs.storeNo }" style="color: #9ac6e8;">변경</a> /
-													<a href="/deleteOneMarket.do?storeNo=${zs.storeNo }" style="color: #9ac6e8;">삭제</a>
+													<a href="/deleteOneMarket.do?storeNo=${zs.storeNo }" style="color: #f45452;">삭제</a>
 													<input type="hidden" name="storeNo" value="${zs.storeNo }">
 												</div>
 											</td>

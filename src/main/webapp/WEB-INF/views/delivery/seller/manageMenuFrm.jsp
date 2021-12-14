@@ -59,7 +59,7 @@
 											<td><div class="content_div_opt2" style="color: #333">${zs.storePhone }</div></td>
 											<td>
 												<div class="content_div_opt3">
-													<a href="/addMenuGroupFrm.do?storeNo=${zs.storeNo }" style="color: #9ac6e8;">관리</a>
+													<a href="/addMenuGroupFrm.do?storeNo=${zs.storeNo }" style="color: #9ac6e8;">메뉴편집</a>
 													<input type="hidden" name="storeNo" value="${zs.storeNo }">
 												</div>
 											</td>

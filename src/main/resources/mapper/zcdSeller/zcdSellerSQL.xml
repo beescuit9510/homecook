@@ -143,4 +143,27 @@
 		update menu_group set group_name=#{groupName} where store_no=#{storeNo}
 	</update>
 	
+	<delete id="deleteMenuGroup" parameterType="_int">
+		delete from menu_group where group_no=#{groupNo}
+	</delete>
+	
+	<select id="selectMenuList" resultType="menu">
+		select
+			menu_no as menuNo,
+			group_no as groupNo,
+			menu_name as menuName,
+			menu_content as menuContent,
+			menu_price as menuPrice,
+			filename,
+  			filepath,
+  			menuadd_status
+  		from menu where group_no=#{groupNo}
+	</select>
+	
+	<select id="selectOneMenuName" resultType="string">
+		select
+			menu_name as menuName
+		from menu where menu_name=#{menuName}
+	 </select>
+	
 </mapper>

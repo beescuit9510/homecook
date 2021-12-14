@@ -48,8 +48,8 @@
         				<div class="content_div_content">
         					<div class="content_div_info">
         						<div class="content_div_opt1 overflow-text">메뉴그룹</div>
-        						<div class="content_div_opt2">관리</div>
-        						<div class="content_div_opt3">메뉴추가</div>
+        						<div class="content_div_opt2">메뉴그룹 삭제</div>
+        						<div class="content_div_opt3">메뉴관리</div>
         					</div>
         					<c:if test="${not empty list }">
         						<table class="content_div_table">
@@ -58,17 +58,23 @@
 											<td><div class="content_div_opt1" style="color: #333">${mg.groupName }</div></td>
 											<td>
 												<div class="content_div_opt2">
-													<input type="hidden" value="${mg.groupName }">
-													<a href="/deleteOneMarket.do?storeNo=${mg.storeNo }" style="color: #9ac6e8;">삭제</a>	
+													<input type="hidden" name="storeNo" value="${mg.storeNo }">
+													<input type="hidden" name="groupNo" value="${mg.groupNo }">
+													
+													<span class="delMenuGroup" style="color: #f45452;">삭제</span>	
 												</div>
 											</td>
 											<td>
 												<div class="content_div_opt3">
-													<a href="/addMenuGroupFrm.do?storeNo=${mg.storeNo }" style="color: #9ac6e8;">메뉴추가</a>
+													<a href="/addMenuFrm.do?groupNo=${mg.groupNo }" style="color: #9ac6e8;">관리</a>
 													
 												</div>
 											</td>
 										</tr>
+										
+										
+										
+										
 									</c:forEach>        						
         						</table>
         					</c:if>
@@ -95,7 +101,7 @@
 		      		<div class="modal-body">
   						<div class="form_opt">
   							<div class="form_opt_title">메뉴그룹명</div>
-  							<input type="hidden" id="storeNo" name="storeNo" value="${list[0].storeNo }">
+  							<input type="hidden" id="storeNo" name="storeNo" value="${storeNo }">
 							<input class="form-control" id="groupName" name="groupName" type="text" placeholder="영문 또는 한글 시작, 특수문자(&, /) 사용 가능" maxlength="20">
   						</div>
 		      		</div>
@@ -146,6 +152,18 @@
 					menuGroupChk = false;
     			}
     		});
+			
+			$(".delMenuGroup").click(function(e) {
+				e.preventDefault();
+				var del_ans = confirm("메뉴그룹 삭제 시, 등록된 메뉴도 함께 삭제됩니다. 삭제하시겠습니까?");
+				var storeNo = $(this).prev().prev().val();
+				var groupNo = $(this).prev().val();
+				if (del_ans == true) {
+					location.href="/deleteMenuGroup.do?storeNo=" + storeNo + "&groupNo=" + groupNo;			
+				} else {
+					
+				}
+			});
 		
 		});
 		

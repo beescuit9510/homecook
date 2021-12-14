@@ -217,7 +217,7 @@
     height: 56px;
     padding: 0px 16px;
 }
-.add_market_btn:hover {
+.add_menugroup_btn:hover {
     filter: brightness(0.94);
 }
 
@@ -278,4 +278,7 @@
 }
 .btn-100 {
 	width: 100%;
+}
+.delMenuGroup {
+	cursor: pointer;
 }

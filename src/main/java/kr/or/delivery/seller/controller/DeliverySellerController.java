@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdStore;
@@ -290,6 +291,7 @@ public class DeliverySellerController {
 	public String addMenuGroupFrm(int storeNo, HttpSession session, Model model) {
 		ArrayList<MenuGroup> list = service.selectMenuGroupList(storeNo);
 		model.addAttribute("list", list);
+		model.addAttribute("storeNo", storeNo);
 		return "delivery/seller/addMenuGroupFrm";
 	}
 	
@@ -306,6 +308,7 @@ public class DeliverySellerController {
 		return "zipcoock/common/msg";
 	}
 	
+	/*
 	@RequestMapping(value="/modifyMenuGroup.do")
 	public String modifyMenuGroup(MenuGroup mg, Model model) {
 		int result = service.modifyMenuGroup(mg);
@@ -317,6 +320,45 @@ public class DeliverySellerController {
 			model.addAttribute("loc", "/addMenuGroupFrm.do?storeNo=" + mg.getStoreNo());
 		}
 		return "zipcoock/common/msg";
+	}
+	*/
+	
+	@RequestMapping(value="/deleteMenuGroup.do")
+	public String deleteMenuGroup(MenuGroup mg, Model model) {
+		int result = service.deleteMenuGroup(mg.getGroupNo());
+		if (result > 0) {
+			model.addAttribute("msg","메뉴그룹이 삭제되었습니다.");
+			model.addAttribute("loc", "/addMenuGroupFrm.do?storeNo=" + mg.getStoreNo());
+		} else {
+			model.addAttribute("msg","메뉴그룹이 삭제되지 않았습니다.");
+			model.addAttribute("loc", "/addMenuGroupFrm.do?storeNo=" + mg.getStoreNo());
+		}
+		return "zipcoock/common/msg";
+	}
+	
+	@RequestMapping(value="/addMenuFrm.do")
+	public String addMenuFrm(int groupNo, HttpSession session, Model model) {
+		ArrayList<Menu> list = service.selectMenuList(groupNo);
+		model.addAttribute("groupNo", groupNo);
+		model.addAttribute("list", list);
+		return "delivery/seller/addMenuFrm";
+	}
+	
+	@RequestMapping(value="/enrollMenuFrm.do")
+	public String enrollMenuFrm(int groupNo, Model model) {
+		model.addAttribute("groupNo", groupNo);
+		return "delivery/seller/enrollMenuFrm";
+	}
+	
+	@RequestMapping(value="/menuNameCheck.do")
+	@ResponseBody
+	public int menuNameCheck(String menuName) {
+		String mn = service.selectOneMenuName(menuName);
+		if (mn == null) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 	
 }
