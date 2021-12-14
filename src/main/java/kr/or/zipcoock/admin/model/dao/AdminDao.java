@@ -90,4 +90,9 @@ public class AdminDao
 		return sqlSession.selectOne("admin.get_OneReturnPolicy",policyNo);
 	}
 
+	public int updateOnePolicy(AdminRefund r) 
+	{
+		return sqlSession.update("admin.update_OnePolicy",r);
+	}
+
 }

@@ -83,5 +83,10 @@ public class AdminService
 	{		
 		return dao.selectOneReturnPolicyInfo(policyNo);
 	}
+
+	public int updateOnePolicy(AdminRefund r) 
+	{
+		return dao.updateOnePolicy(r);
+	}
 	
 }
