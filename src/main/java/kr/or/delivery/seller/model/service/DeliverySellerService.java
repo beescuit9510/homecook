@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.StoreLogo;
@@ -136,6 +137,50 @@ public class DeliverySellerService {
 	public String selectOneMenuName(String menuName) {
 		String mn = dao.selectOneMenuName(menuName);
 		return mn;
+	}
+
+	@Transactional
+	public int addMenu(Menu menu) {
+		int result = dao.addMenu(menu);
+		System.out.println("result: " + result);
+		if (result > 0) {
+			return result;
+		} else {
+			return -1;
+		}
+	}
+
+	public String selectGroupName(int groupNo) {
+		String groupName = dao.selectGroupName(groupNo);
+		return groupName;
+	}
+
+	public Menu selectOneMenu(int menuNo) {
+		Menu menu = dao.selectOneMenu(menuNo);
+		return menu;
+	}
+
+	@Transactional
+	public int modifyMenu(Menu menu) {
+		int result = dao.modifyMenu(menu);
+		return result;
+	}
+
+	@Transactional
+	public int modifyMenu2(Menu menu) {
+		int result = dao.modifyMenu2(menu);
+		return result;
+	}
+
+	@Transactional
+	public int deleteMenu(int menuNo) {
+		int result = dao.deleteMenu(menuNo);
+		return result;
+	}
+
+	public ArrayList<AddMenu> selectAddMenuList(int menuNo) {
+		ArrayList<AddMenu> list = dao.selectAddMenuList(menuNo);
+		return list;
 	}
 	
 }

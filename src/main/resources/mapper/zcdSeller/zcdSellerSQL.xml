@@ -164,6 +164,51 @@
 		select
 			menu_name as menuName
 		from menu where menu_name=#{menuName}
-	 </select>
+	</select>
+	
+	<insert id="addMenu" parameterType="menu">
+	 	insert into menu values(menu_seq.nextval, #{groupNo}, #{menuName}, #{menuContent}, #{menuPrice}, #{filename}, #{filepath}, default)
+	</insert>
+	
+	<select id="selectGroupName" resultType="string">
+		select
+			group_name as groupName
+		from menu_group where group_no=#{groupNo}
+	</select>
+	
+	<select id="selectOneMenu" resultType="menu">
+		select
+  			menu_no as menuNo,
+  			group_no as groupNo,
+  			menu_name as menuName,
+  			menu_content as menuContent,
+  			menu_price as menuPrice,  			
+  			filename,
+  			filepath,
+  			menuadd_status as menuaddStatus
+  		from menu where menu_no=#{menuNo}
+	</select>
+	
+	<update id="modifyMenu" parameterType="menu">
+		update menu set menu_name=#{menuName}, menu_content=#{menuContent}, menu_price=#{menuPrice} where menu_no=#{menuNo}
+	</update>
+	
+	<update id="modifyMenu2" parameterType="menu">
+		update menu set menu_name=#{menuName}, menu_content=#{menuContent}, menu_price=#{menuPrice}, filename=#{filename}, filepath=#{filepath} where menu_no=#{menuNo}
+	</update>
+	
+	<delete id="deleteMenu" parameterType="_int">
+		delete from menu where menu_no=#{menuNo}
+	</delete>
+	
+	<select id="selectAddMenuList" resultType="addmenu">
+		select
+			addmenu_no as addmenuNo,
+			menu_no as menuNo,
+			addmenu_name as addmenuName,
+			addmenu_price as addmenuPrice,
+  			addmenu_status as addmenuStatus
+  		from add_menu where menu_no=#{menuNo}
+	</select>
 	
 </mapper>

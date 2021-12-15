@@ -43,7 +43,7 @@
         		</div>
         		
         		<div class="content_div">
-        			<div class="content_title">메뉴관리</div>
+        			<div class="content_title"><span class="prev_tap"><a class="prev_tap" href="/manageMenuFrm.do">메뉴관리</a> ></span> 메뉴편집</div>
         			<div class="content_div_area">
         				<div class="content_div_content">
         					<div class="content_div_info">
@@ -66,7 +66,7 @@
 											</td>
 											<td>
 												<div class="content_div_opt3">
-													<a href="/addMenuFrm.do?groupNo=${mg.groupNo }" style="color: #9ac6e8;">관리</a>
+													<a href="/addMenuFrm.do?groupNo=${mg.groupNo }&storeNo=${mg.storeNo }" style="color: #9ac6e8;">관리</a>
 													
 												</div>
 											</td>

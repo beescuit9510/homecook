@@ -56,13 +56,14 @@
         					<div class="content_div_content">
         						<div class="content_div_div_content">
         							<div class="content_div_info">
-        								<div class="content_div_title" style="font-weight: bold">메뉴 정보 등록</div>
+        								<div class="content_div_title" style="font-weight: bold">메뉴 정보 변경</div>
         								<div class="content_div_end"></div>
         								<br>
         								<div class="container2">
-	        								<form action="/addMenu.do" method="post" enctype="multipart/form-data">
+	        								<form action="/modifyMenu.do" method="post" enctype="multipart/form-data">
 	        								<input type="hidden" name="groupNo" value="${groupNo }">
 	        								<input type="hidden" name="storeNo" value="${storeNo }">
+	        								<input type="hidden" name="menuNo" value="${menu.menuNo }">
 	        									<fieldset>
 		        									
 		        									<span class="info_span">메뉴 정보</span>
@@ -72,7 +73,7 @@
 														<label for="menuName" class="col-2 col-form-label">메뉴명</label>
 														<div class="col-5">
 															<input type="text" class="form-control" id="menuName"
-																name="menuName" placeholder="메뉴명을 입력하세요." maxlength="20">
+																name="menuName" placeholder="메뉴명을 입력하세요." maxlength="20" value="${menu.menuName }">
 														</div>
 														<div class="col-4">
 															<span class="span_chk" id="menuNameChk"></span>
@@ -84,7 +85,7 @@
 														<label for="menuContent" class="col-2 col-form-label">메뉴설명</label>
 														<div class="col-10">
 															<textarea class="form-control" name="menuContent"
-																id="menuContent" rows="4" placeholder="메뉴설명을 입력하세요."></textarea>
+																id="menuContent" rows="4" placeholder="메뉴설명을 입력하세요.">${menu.menuContent }</textarea>
 														</div>
 													</div>
 													<br>
@@ -93,7 +94,7 @@
 	        											<label for="menuPrice" class="col-2 col-form-label">가격</label>
 	        											<div class="col-5">
 	        												<input type="text" class="form-control" id="menuPrice"
-	        											 		name="menuPrice" placeholder="가격을 입력하세요." maxlength="6">
+	        											 		name="menuPrice" placeholder="가격을 입력하세요." maxlength="6" value="${menu.menuPrice }">
 	        											</div>
 	        											<div class="col-4">
 															<span class="span_chk" id="menuPriceChk"></span>
@@ -103,10 +104,11 @@
 													
 													<div class="row">
 														<label class="col-2 col-form-label">메뉴 이미지</label>
-														<div class="col-8"> 
+														<div class="col-8">
+															<input type="hidden" name="status" value="1">
 															<label for="formFile" class="btn btn-primary add_margin" style="width: 70px;">찾기</label>
 															<input class="form-control" type="file" name="files" id="formFile" accept=".gif, .jpg, .jpeg, .png" style="display:none;">
-															<div class="logo_img" style="height: 150px;"></div>
+															<div class="logo_img"><img src='/resources/upload/zcdSeller/${menu.filename }'></div>
 														</div>
 													</div>
 													<br>
@@ -136,9 +138,9 @@
     <script>
     	$(function() {
     		
-    		var menuNameChk = false;
-    		var menuPriceChk = false;
-	
+    		var menuNameChk = true;
+    		var menuPriceChk = true;
+    		var divTag = document.querySelector(".logo_img");
     		
     		$("input[name=files]").on("change", function() {
     			var fileVal = $(this).val();
@@ -163,7 +165,6 @@
     		
     		function loadImg(obj) {
     			var files = obj.files;
-    			var divTag = document.querySelector(".logo_img");
     			if (files.length != 0) {
     				var reader = new FileReader();
     				reader.readAsDataURL(files[0]);
@@ -172,6 +173,7 @@
     					imgTag.setAttribute("src", e.target.result)
     					divTag.innerHTML = "";
     					divTag.appendChild(imgTag);
+    					$("[name=status]").val(2);
     				}
     			} else {
     				divTag.innerHTML = "";
@@ -198,7 +200,7 @@
     			} else if (menuPrice == "" || menuPriceChk == false) {
     				alert("금액을 확인하세요.");
     				return false;
-    			} else if (files == "") {
+    			} else if (divTag.innerHTML = "") {
     				alert("메뉴 이미지를 선택하세요.");
     				return false;
     			} else {

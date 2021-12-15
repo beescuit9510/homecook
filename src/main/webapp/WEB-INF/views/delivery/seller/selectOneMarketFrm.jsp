@@ -51,7 +51,7 @@
         					<div class="content_div_content">
         						<div class="content_div_div_content">
         							<div class="content_div_info">
-        								<div class="content_div_title" style="font-weight: bold">매장 정보 등록</div>
+        								<div class="content_div_title" style="font-weight: bold">매장 정보 변경</div>
         								<div class="content_div_end"></div>
         								<br>
         								<div class="container2">

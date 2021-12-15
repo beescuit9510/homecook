@@ -357,7 +357,7 @@
     		
     		$("#storeName").on("keyup", function() {
     			var storeName = $(this).val();
-    			var storeNameReg = /^[0-9a-zA-Z가-힣\s]{2,20}$/;
+    			var storeNameReg = /^[0-9a-zA-Z가-힣][0-9a-zA-Z가-힣\s]{1,20}$/;
     			if (storeNameReg.test(storeName)) {
     				$.ajax({
     					url : "/storeNameCheck.do",

@@ -282,3 +282,8 @@
 .delMenuGroup {
 	cursor: pointer;
 }
+.prev_tap {
+	font-weight: 500;
+	color: #bbb;
+}
+

@@ -163,20 +163,26 @@
 	border: 1px solid rgb(221, 221, 221);
 }
 
-/* 메뉴그룹 */
+/* 메뉴명 */
 .content_div_opt1 {
-    width: 330px;
+    width: 300px;
     text-align: center;
     color: rgb(136, 136, 136);
 }
-/* 설명 */
+/* 메뉴가격 */
 .content_div_opt2 {
-    width: 330px;
+    width: 200px;
     text-align: center;
     color: rgb(136, 136, 136);
 }
-/* 관리 */
+/* 메뉴관리 */
 .content_div_opt3 {
+    width: 180px;
+    text-align: center;
+    color: rgb(136, 136, 136);
+}
+/* 옵션관리 */
+.content_div_opt4 {
 	width: 100px;
     display: flex;
     flex-direction: row;
@@ -279,6 +285,10 @@
 .btn-100 {
 	width: 100%;
 }
-.delMenuGroup {
+.prev_tap {
+	font-weight: 500;
+	color: #bbb;
+}
+.deleteMenu {
 	cursor: pointer;
 }

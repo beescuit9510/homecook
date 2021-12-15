@@ -1,3 +1,5 @@
+<%@ page import="java.text.NumberFormat" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -43,29 +45,43 @@
         		</div>
         		
         		<div class="content_div">
-        			<div class="content_title">메뉴관리</div>
+        			<div class="content_title">
+        				<span class="prev_tap">
+        					<a class="prev_tap" href="/manageMenuFrm.do">메뉴관리</a> > 
+        					<a class="prev_tap" href="/addMenuGroupFrm.do?storeNo=${storeNo }">메뉴편집</a> >
+        				</span> ${groupName }
+        			</div>
         			<div class="content_div_area">
         				<div class="content_div_content">
         					<div class="content_div_info">
-        						<div class="content_div_opt1 overflow-text">메뉴이름</div>
+        						<div class="content_div_opt1">메뉴이름</div>
         						<div class="content_div_opt2">메뉴가격</div>
         						<div class="content_div_opt3">메뉴관리</div>
+        						<div class="content_div_opt4">옵션관리</div>
         					</div>
         					<c:if test="${not empty list }">
         						<table class="content_div_table">
 	        						<c:forEach items="${list }" var="menu">
 										<tr class="table_tr_height">
-											<td><div class="content_div_opt1" style="color: #333">${menu.menuName }</div></td>
+											<td><div class="content_div_opt1 overflow-text" style="color: #333">${menu.menuName }</div></td>
 											<td>
-												<div class="content_div_opt2">
-													
-													<span class="delMenuGroup" style="color: #f45452;">삭제</span>	
+												<div class="content_div_opt2" style="color: #333">
+													<fmt:formatNumber value="${menu.menuPrice }" pattern="#,###" /> 원
 												</div>
 											</td>
 											<td>
-												<div class="content_div_opt3">	
-													<a href="/addMenuFrm.do?groupNo=${mg.groupNo }" style="color: #9ac6e8;">관리</a>
-	
+												<div class="content_div_opt3">
+													<a href="/selectOneMenu.do?menuNo=${menu.menuNo }&storeNo=${storeNo }&groupNo=${groupNo }" style="color: #9ac6e8;">변경</a> ｜
+													<span class="deleteMenu" style="color: #f45452;">삭제</span>
+													<input type="hidden" name="menuNo" value="${menu.menuNo }">
+													<input type="hidden" name="groupNo" value="${groupNo }">
+													<input type="hidden" name="storeNo" value="${storeNo }">
+												</div>
+											</td>
+											<td>
+												<div class="content_div_opt4">
+													<a href="/addOptionFrm.do?menuNo=${menu.menuNo }&groupNo=${groupNo }&menuName=${menu.menuName }&storeNo=${storeNo }" style="color: #9ac6e8;">관리</a>
+
 												</div>
 											</td>
 										</tr>
@@ -73,7 +89,7 @@
         						</table>
         					</c:if>
         					
-        					<a class="add_menu_btn" href="/enrollMenuFrm.do?groupNo=${groupNo }">+ 메뉴 추가하기</a>
+        					<a class="add_menu_btn" href="/enrollMenuFrm.do?groupNo=${groupNo }&storeNo=${storeNo }">+ 메뉴 추가하기</a>
         				</div>
         			</div>
         		</div>
@@ -83,50 +99,15 @@
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	<script>
 		$(function() {
-		
-			var menuGroupChk = false;
 			
-			$(".add_menugroup_btn").click(function(e) {
+			$(".deleteMenu").click(function(e) {
 				e.preventDefault();
-				$("#modal1").modal("show");
-			});
-			
-			$(".btn-close").click(function() {
-				$("#groupName").val("");
-			});
-			
-			$("#addMenuGroup").on("click", function() {
-				return checkMenuGroup();
-			});
-			
-			function checkMenuGroup() {
-				var groupName = $("#groupName").val();
-				
-				if (groupName == "" || menuGroupChk == false) {
-    				alert("메뉴그룹명을 확인하세요.");
-    				return false;
-    			} else {
- 					return true;
-    			}
-			}
-			
-			$("#groupName").on("keyup", function() {
-    			var groupName = $(this).val();
-    			var groupNameReg = /^[a-zA-Z가-힣][0-9a-zA-Z가-힣&/\s]{1,20}$/;
-    			if (groupNameReg.test(groupName)) {
-    				menuGroupChk = true;
-				} else {
-					menuGroupChk = false;
-    			}
-    		});
-			
-			$(".delMenuGroup").click(function(e) {
-				e.preventDefault();
-				var del_ans = confirm("메뉴그룹 삭제 시, 등록된 메뉴도 함께 삭제됩니다. 삭제하시겠습니까?");
-				var storeNo = $(this).prev().prev().val();
-				var groupNo = $(this).prev().val();
+				var del_ans = confirm("해당 메뉴를 삭제하시겠습니까?");
+				var menuNo = $(this).next().val();
+				var groupNo = $(this).next().next().val();
+				var storeNo = $(this).next().next().next().val();
 				if (del_ans == true) {
-					location.href="/deleteMenuGroup.do?storeNo=" + storeNo + "&groupNo=" + groupNo;			
+					location.href="/deleteMenu.do?menuNo=" + menuNo + "&groupNo=" + groupNo + "&storeNo=" + storeNo;			
 				} else {
 					
 				}
