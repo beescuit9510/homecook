@@ -85,6 +85,9 @@ set product_name = #{productNo},
     where member_No = #{memberNo} and product_No = #{productNo}
 </update>
 
+<delete id="deleteChoiceProduct" parameterType="p">
+DELETE FROM product WHERE member_No=#{memberNo} and product_No=#{productNo}
+</delete>
 </mapper>
  
  

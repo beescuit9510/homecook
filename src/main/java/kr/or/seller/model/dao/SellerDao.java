@@ -106,6 +106,11 @@ public class SellerDao {
 		return sqlSession.delete("productImg.deleteProductImg",pimg);
 	}
 
+	public int deleteChoiceProduct(Product p) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("product.deleteChoiceProduct",p);
+	}
+
 	/*
 	 * public ArrayList<Product> selectProductList(Member m) { List<Product> list =
 	 * sqlSession.selectList("product.selectProductList",m); return

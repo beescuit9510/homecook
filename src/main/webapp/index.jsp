@@ -18,6 +18,7 @@
 <a href = "/insertProductFrm.do">판매자 상품등록 페이지</a>
 <a href = "/loginFrm.do">로그인</a>
 <a href = "/join.do">회원가입</a>
+<a href = "/shippingInfomation.do">배송정보</a>
 </fieldset>
 <hr>
 <br>
