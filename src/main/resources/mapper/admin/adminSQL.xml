@@ -154,9 +154,24 @@ WHERE deal_no = #{dealNo}
 </update>
 
 
+<select id="get_OneReturnPolicy" parameterType = "_int" resultType="aRefund">
+select
+	product_no as productNo,
+	return_policy_no as returnPolicyNo,
+	return_shipping as returnShipping,
+	return_length as retrunLength,
+	policy_content as policyContent,
+	product_name as productName
+from (return_policy a left outer join (select product_no, product_name from product)b using (product_no))
+where return_policy_no = #{policyNo}
+</select>
 
-
-
-
+<update id="update_OnePolicy" parameterType = "aRefund">
+update return_policy set 
+return_shipping = #{returnShipping},
+RETURN_LENGTH = #{retrunLength},
+policy_content = #{policyContent}
+where return_policy_no = #{returnPolicyNo}
+</update>
 
 </mapper>
