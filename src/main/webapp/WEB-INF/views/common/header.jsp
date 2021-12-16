@@ -27,7 +27,7 @@
          		</ul>
          		<div>
          			<div>
-         				<img src="/resources/img/common/logo_00.png" class="sc-eWnToP fEDxD">			
+         				<img style ="height : 50px;" src="/resources/img/common/logo_00.png" class="sc-eWnToP fEDxD">			
          			</div>
          		</div>
          		<ul class = "header-last">

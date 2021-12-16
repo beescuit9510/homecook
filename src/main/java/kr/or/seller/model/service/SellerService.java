@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import kr.or.member.model.dao.MemberDao;
 import kr.or.seller.model.dao.SellerDao;
@@ -158,11 +160,97 @@ public class SellerService {
 		 
 		
 	}
-	public HashMap<Object, Object> selectOneProductInfo(Product product) {
+	public HashMap<Object, Object> selectOneProductInfo(Product product, ProductImg productImg) {
 		HashMap<Object, Object> p = dao.selectOneproductInfo(product);
-		System.out.println(p);
+		productImg.setProductNo(product.getProductNo());
+		ArrayList<ProductImg> list = dao.selectProductImg(productImg);
+		p.put("oldpath", list);
 		return p;
 	}
-	}
 	
+	public int productUpdate(Product product, ShippingInfo shippingInfo, ArrayList<ProductImg> mainList,
+			ArrayList<ProductImg> detailList, ReturnPolicy returnPolicy, MultipartFile[] productImg, String[] oldPath,
+			int[] oldPathNo) {
+		int result1 = dao.updateProduct(product);
+		System.out.println(product + "업데이트할 프로덕트");
+		int result = 0; // FILE_TBL 테이블에 인서트 성공여부를 위한 INT값
+		// insertproduct 성공했을경우
+		if (result1 > 0) {
+			if (mainList.isEmpty()) {
+			} else {
+				ProductImg pi = new ProductImg();
+				pi = mainList.get(0);
+				pi.setProductNo(product.getProductNo());
+
+				result = dao.updateProductMainImg(pi);
+				// 가장 최근에 넣은 product값 MAX로 구하기for(int i=0; i<list.length; i++)//for(ProductImg
+				// fv : list )
+
+				for (ProductImg fv : detailList) { // ArrayList에 들어간 여러개의 파일 불러오기
+					fv.setProductNo(product.getProductNo()); // db에 insert하기위해 필요한 boardNo
+					System.out.println(fv);
+					result += dao.updateProductMainImg(fv);// db에 file_tbl에 insert한 횟수만큼 추가하여 result에 대입
+				}
+			}
+		}
+		if (result1 > 0) {
+			if (detailList.isEmpty()) {
+
+			} else {
+				ProductImg pi = new ProductImg();
+				pi = detailList.get(0);
+				pi.setProductNo(product.getProductNo());
+
+				result = dao.updateProductMainImg(pi);
+				// 가장 최근에 넣은 product값 MAX로 구하기for(int i=0; i<list.length; i++)//for(ProductImg
+				// fv : list )
+
+				for (ProductImg fv : detailList) { // ArrayList에 들어간 여러개의 파일 불러오기
+					fv.setProductNo(product.getProductNo()); // db에 insert하기위해 필요한 boardNo
+					System.out.println(fv);
+					result += dao.insertProductImg(fv);// db에 file_tbl에 insert한 횟수만큼 추가하여 result에 대입
+
+				}
+			}
+		}
+		shippingInfo.setProductNo(product.getProductNo());
+		System.out.println(product.getProductNo() + "셀렉트키확인");
+		System.out.println(shippingInfo + "프로덕트 no 넣은 값");
+
+		int result2 = dao.updateShippingInfo(shippingInfo);
+
+		if (result2 > 0) {
+			returnPolicy.setProductNo(product.getProductNo());
+			System.out.println("shippinginfo update 성공여부" + result2);
+			int result3 = dao.updateReturnPolicy(returnPolicy);
+			if (result3 > 0) {
+				System.out.println("returnPolicy update 성공여부" + result3);
+
+				ProductImg pimg = new ProductImg();
+				int result4 = 0;
+				if (oldPathNo != null) {
+
+					for (int i = 0; i < oldPathNo.length; i++) {
+						pimg.setProductImgNo(oldPathNo[i]);
+						result4 += dao.deleteProductImg(pimg);
+					}
+
+					if (result4 == oldPathNo.length) {
+						System.out.println("파일삭제 성공");
+						return result;
+
+					} else
+						return -5; // productImg delete실패
+
+				} else
+					return result; // 삭제할파일 없음
+
+			} else
+				return -3;// 환불정책 Update 실패}
+
+		} else
+			return -2; // 배송정보 Update 실패
+
+	}
+}
 
