@@ -560,4 +560,11 @@ public class DeliverySellerController {
 		return "zipcoock/common/msg";
 	}
 	
+	@RequestMapping(value="/marketView.do")
+	public String marketView(int storeNo, HttpSession session, Model model) {
+		ZcdStore zs = service.selectOneMarket(storeNo);
+		model.addAttribute("zs", zs);
+		return "delivery/seller/marketView";
+	}
+	
 }

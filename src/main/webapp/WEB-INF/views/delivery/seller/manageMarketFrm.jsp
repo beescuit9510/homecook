@@ -56,7 +56,10 @@
         						<table class="content_div_table">
 	        						<c:forEach items="${list }" var="zs">
 										<tr class="table_tr_height">
-											<td><div class="content_div_opt1 overflow-text" style="color: #333">${zs.storeName }</div></td>
+											<td>
+												<input type="hidden" value="${zs.storeNo }">
+												<div class="content_div_opt1 overflow-text marketView" style="color: #333">${zs.storeName }</div>
+											</td>
 											<td><div class="content_div_opt2" style="color: #333">${zs.storePhone }</div></td>
 											<td>
 												<div class="content_div_opt3">
@@ -130,6 +133,11 @@
 				} else {
 					
 				}
+			});
+			
+			$(".marketView").click(function() {
+				var storeNo = $(this).prev().val();
+				location.href="/marketView.do?storeNo=" + storeNo;
 			});
 			
 		});
