@@ -77,9 +77,9 @@
 
 .slider_box
 {
+	margin-top: 20px;
 	padding-left: 25px;
 	padding-right: 25px;	
-	
 	height: 300px;
 }
 
@@ -87,15 +87,88 @@
 {
 	width: 100%;
 	height: 248px;
-	
-	background-color: skyblue;
 }
 
 .slider_img
 {
 	width: 100%;
+}
+
+.product_box
+{
+	padding-left: 25px;
+	padding-right: 25px;	
+	height: 0 auto;
+	
+	margin-bottom: 20px;
+}
+
+.slider-card
+{
+	width: 144px;
+	height: 230px;	
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.slider-card>.img_box
+{
+	width: 144px;
+	height: 144px;
+}
+
+/*-- card text 설정 --*/
+.img_box>.img_content
+{
+	color: rgb(51, 51, 51);
+    transition: all 0.3s ease 0s;
+    margin-bottom: 4px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+    -webkit-line-clamp: 2 !important;
+}
+.img_box>.img_subcontent
+{
+	color: rgb(136, 136, 136);
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    display: block;
+    font-size: 12px;
+}
+
+.img_box>.img_price
+{
+	color: rgb(51, 51, 51);
+    white-space: pre;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -0.57px;
+}
+
+
+
+/*-- 서브타이틀css --*/
+.subtitle_text
+{
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.subtitle_box
+{
+	border-bottom: 2px solid gray;
+	margin-bottom: 10px;
+}
+
+.subtitle_more
+{
+	font-size: 15px !important;
+	font-weight: bolder !important;
 	
 }
+
 
 
 </style>
@@ -106,17 +179,7 @@
         <div class = "main_field">        	
         	<div class = "main_content">
         		<div class = "main_content_field">
-        			<!-- main content making area -->
-        			<div class = "subtitle_box">
-        				<div class = "subtitle_content">
-        					<div class = "content">
-        						<div class = "subtitle_text">
-        							배달비품BEST
-        						</div>
-        						<button type = "button" class = "subtitle_more" onclick = "/" >더보기 ></button>     					
-        					</div>
-        				</div>	
-        			</div>
+        			<!-- main content making area -->        			
         				<!-- stlye 은 slick 영역 확인용 -->
 					<div class = "slider_box">
 					  	<div id="slider-div">
@@ -134,6 +197,82 @@
 						    </div>
 						 
 					  	</div>
+					</div>
+					
+					<div class = "subtitle_box">
+        				<div class = "subtitle_content">
+        					<div class = "content">
+        						<div class = "subtitle_text">
+        							배달비품BEST
+        						</div>
+        						<button type = "button" class = "subtitle_more" onclick = "/" >더보기 ></button>     					
+        					</div>
+        				</div>	
+        			</div>				
+        			
+        			
+        				
+					<div class = "product_box">
+						<div class = "product_slider">
+							<div><div class = "slider-card">
+								<div class = "img_box">
+									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
+									<div class = "img_content">[1~2일내출고] ------------ 쩌는 랍스타</div>
+									<div class = "img_subcontent">개당 268원 / 200ea</div>
+									<div class = "img_price">53,500원</div>
+								</div>								
+							</div></div>
+							<div><div class = "slider-card">
+								<div class = "img_box">
+									<img src="/resources/img/common/test_product_01.jpg" class="slider_img">
+									<div class = "img_content">닭싸다.</div>
+								</div>								
+							</div></div>
+							<div><div class = "slider-card">
+								<div class = "img_box">
+									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
+									<div class = "img_content">게싸다.</div>
+								</div>								
+							</div></div>
+							<div><div class = "slider-card">
+								<div class = "img_box">
+									<img src="/resources/img/common/test_product_01.jpg" class="slider_img">
+									<div class = "img_content">닭싸다.</div>
+								</div>								
+							</div></div>
+							<div><div class = "slider-card">
+								<div class = "img_box">
+									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
+									<div class = "img_content">게싸다.</div>
+								</div>								
+							</div></div>
+							<div><div class = "slider-card">
+								<div class = "img_box">
+									<img src="/resources/img/common/test_product_01.jpg" class="slider_img">
+									<div class = "img_content">닭싸다.</div>
+								</div>								
+							</div></div>
+							<div><div class = "slider-card">
+								<div class = "img_box">
+									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
+									<div class = "img_content">게싸다.</div>
+								</div>								
+							</div></div>
+							<div><div class = "slider-card">
+								<div class = "img_box">
+									<img src="/resources/img/common/test_product_01.jpg" class="slider_img">
+									<div class = "img_content">닭싸다.</div>
+								</div>								
+							</div></div>
+							<div><div class = "slider-card">
+								<div class = "img_box">
+									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
+									<div class = "img_content">게싸다.</div>
+								</div>								
+							</div></div>
+							
+							
+						</div>
 					</div>
         
 					
@@ -217,8 +356,8 @@ $(document).ready(function()
 		autoplaySpeed : 10000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
 		pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
 		vertical : false,		// 세로 방향 슬라이드 옵션
-		prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
-		nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+		prevArrow : "<button type='button' class='slick-prev slick-skyblue'>Previous</button>",		// 이전 화살표 모양 설정
+		nextArrow : "<button type='button' class='slick-next slick-skyblue'>Next</button>",		// 다음 화살표 모양 설정
 		dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
 		draggable : true, 	//드래그 가능 여부 
 		responsive: [ // 반응형 웹 구현 옵션
@@ -237,9 +376,13 @@ $(document).ready(function()
 				} 
 			}
 		]
-		
-		
-
+	});
+	
+	$(".product_slider").slick({
+		slidesToShow : 5,			// 한 화면에 보여질 컨텐츠 개수
+		slidesToScroll : 5,			//스크롤 한번에 움직일 컨텐츠 개수		
+		prevArrow : "<button type='button' class='slick-prev slick-gray'>Previous</button>",		// 이전 화살표 모양 설정
+		nextArrow : "<button type='button' class='slick-next slick-gray'>Next</button>",		// 다음 화살표 모양 설정
 	});
 	
 	

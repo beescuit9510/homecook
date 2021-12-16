@@ -71,12 +71,23 @@
     font-size: 20px;
     line-height: 1;
 
-    opacity: .75;
-    color: skyblue;
+    opacity: .75; 
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.slick-skyblue:before
+{
+	color: skyblue;
+}
+
+.slick-gray:before
+{
+	color: gray;
+}
+
+
 
 .slick-prev
 {
