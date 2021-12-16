@@ -528,9 +528,36 @@ public class DeliverySellerController {
 		model.addAttribute("storeNo", storeNo);
 		model.addAttribute("groupNo", groupNo);
 		model.addAttribute("groupName", groupName);
+		model.addAttribute("menuNo", menuNo);
 		model.addAttribute("menuName", menuName);
 		model.addAttribute("list", list);
 		return "delivery/seller/addOptionFrm";
+	}
+	
+	@RequestMapping(value="/deleteOption.do")
+	public String deleteOption(int addmenuNo, int menuNo, int groupNo, int storeNo, String menuName, Model model) {
+		int result = service.deleteOption(addmenuNo);
+		if (result > 0) {
+			model.addAttribute("msg","해당 선택메뉴가 삭제되었습니다.");
+			model.addAttribute("loc", "/addOptionFrm.do?menuNo=" + menuNo + "&storeNo=" + storeNo + "&groupNo=" + groupNo + "&menuName=" + menuName);
+		} else {
+			model.addAttribute("msg","해당 선택메뉴가 삭제되지 않았습니다.");
+			model.addAttribute("loc", "/addOptionFrm.do?menuNo=" + menuNo + "&storeNo=" + storeNo + "&groupNo=" + groupNo + "&menuName=" + menuName);
+		}
+		return "zipcoock/common/msg";
+	}
+	
+	@RequestMapping(value="/addMenuOption.do")
+	public String addMenuOption(AddMenu addmenu, int groupNo, int storeNo, String menuName, Model model) {
+		int result = service.addMenuOption(addmenu);
+		if (result > 0) {
+			model.addAttribute("msg","선택메뉴가 등록되었습니다.");
+			model.addAttribute("loc", "/addOptionFrm.do?menuNo=" + addmenu.getMenuNo() + "&storeNo=" + storeNo + "&groupNo=" + groupNo + "&menuName=" + menuName);
+		} else {
+			model.addAttribute("msg","선택메뉴가 등록되지 않았습니다.");
+			model.addAttribute("loc", "/addOptionFrm.do?menuNo=" + addmenu.getMenuNo() + "&storeNo=" + storeNo + "&groupNo=" + groupNo + "&menuName=" + menuName);
+		}
+		return "zipcoock/common/msg";
 	}
 	
 }

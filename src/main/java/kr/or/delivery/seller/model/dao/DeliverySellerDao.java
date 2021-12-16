@@ -128,4 +128,12 @@ public class DeliverySellerDao {
 		return (ArrayList<AddMenu>) list;
 	}
 
+	public int deleteOption(int addmenuNo) {
+		return sqlSession.delete("zcdseller.deleteOption", addmenuNo);
+	}
+
+	public int addMenuOption(AddMenu addmenu) {
+		return sqlSession.insert("zcdseller.addMenuOption", addmenu);
+	}
+
 }

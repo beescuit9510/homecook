@@ -182,5 +182,17 @@ public class DeliverySellerService {
 		ArrayList<AddMenu> list = dao.selectAddMenuList(menuNo);
 		return list;
 	}
+
+	@Transactional
+	public int deleteOption(int addmenuNo) {
+		int result = dao.deleteOption(addmenuNo);
+		return result;
+	}
+
+	@Transactional
+	public int addMenuOption(AddMenu addmenu) {
+		int result = dao.addMenuOption(addmenu);
+		return result;
+	}
 	
 }

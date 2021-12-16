@@ -289,6 +289,10 @@
 	font-weight: 500;
 	color: #bbb;
 }
-.deleteMenu {
+.deleteOption {
 	cursor: pointer;
+}
+/* input 위, 아래 간격 margin */
+.add_margin {
+	margin-bottom: 20px;
 }

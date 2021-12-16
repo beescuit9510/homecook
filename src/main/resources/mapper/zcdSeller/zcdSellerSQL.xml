@@ -208,7 +208,15 @@
 			addmenu_name as addmenuName,
 			addmenu_price as addmenuPrice,
   			addmenu_status as addmenuStatus
-  		from add_menu where menu_no=#{menuNo}
+  		from add_menu where menu_no=#{menuNo} order by addmenu_status
 	</select>
+	
+	<delete id="deleteOption" parameterType="_int">
+		delete from add_menu where addmenu_no=#{addmenuNo}
+	</delete>
+	
+	<insert id="addMenuOption" parameterType="addmenu">
+		insert into add_menu values(addmenu_seq.nextval, #{menuNo}, #{addmenuName}, #{addmenuPrice}, #{addmenuStatus})
+	</insert>
 	
 </mapper>
