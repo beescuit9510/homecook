@@ -6,6 +6,14 @@
 insert into shipping_info values(SHIPPING_INFO_SEQ.NEXTVAL,#{productNo},#{shippingMethod},#{shippingCompany},#{shippingFee},#{shippingPeriod})
 </insert>
 
+<update id="updateShippingInfo" parameterType="si">
+update shipping_info 
+set shipping_method = #{shippingMethod},
+	shipping_company = #{shippingCompany},
+	shipping_fee = #{shippingFee},
+	shipping_period = #{shippingPeriod}
+	where product_no = #{productNo} 
+</update>
 </mapper>
  
  

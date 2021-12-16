@@ -47,6 +47,11 @@ public class SellerDao {
 
 		return sqlSession.insert("product.insertProduct", product);
 	}
+	public int updateProduct(Product product) {
+
+		return sqlSession.update("product.updateProduct", product);
+	}
+
 
 	public int insertShippingInfo(ShippingInfo si) {
 		return sqlSession.insert("shippingInfo.insertShippingInfo", si);
@@ -68,8 +73,37 @@ public class SellerDao {
 	}
 
 	public HashMap<Object, Object> selectOneproductInfo(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println(product);
+		return sqlSession.selectOne("product.selectOneProductInfo", product);
+	}
+
+	public int updateProductMainImg(ProductImg pi) {
+		return sqlSession.update("productImg.updateProductMainImg", pi);
+	}
+
+	public int updateProductImg(ProductImg fv) {
+		return sqlSession.update("productImg.updateProductImg", fv);
+		
+	}
+
+	public int updateShippingInfo(ShippingInfo shippingInfo) {
+		return sqlSession.update("shippingInfo.updateShippingInfo", shippingInfo);
+	}
+
+	public int updateReturnPolicy(ReturnPolicy returnPolicy) {
+		return sqlSession.update("returnPolicy.updateReturnPolicy", returnPolicy);
+		
+	}
+
+	public ArrayList<ProductImg> selectProductImg(ProductImg productImg) {
+		List<ProductImg> list= sqlSession.selectList("productImg.selectProductImg", productImg);
+		return (ArrayList<ProductImg>)list; 
+		
+	}
+
+	public int deleteProductImg(ProductImg pimg) {
+		
+		return sqlSession.delete("productImg.deleteProductImg",pimg);
 	}
 
 	/*

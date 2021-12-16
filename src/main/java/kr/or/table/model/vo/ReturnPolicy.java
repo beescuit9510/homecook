@@ -12,6 +12,6 @@ public class ReturnPolicy {
 	private int returnPolicyNo;
 	private int productNo;
 	private String returnShipping;
-	private String retrunLength;
+	private String returnLength;
 	private String policyContent;
 }

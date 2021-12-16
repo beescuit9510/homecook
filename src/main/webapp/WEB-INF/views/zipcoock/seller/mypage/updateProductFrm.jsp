@@ -1,17 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
 <script>
 function insert() {
 	var memberContact = $("#managerContact1").val() + $("#managerContact2").val() + $("#managerContact3").val();
 	$("#managerContact").val(memberContact);
 	
+	if ($("#photoStatus").val == '1' ){
+		alert($("#managerContact").val());
+		$("#productImage").attr("id", 'NoId');
+	}else{
+		
+	}
 	return true;
 }
+
+
+
+	
 </script>
 <style>
 	.content_div_info:first-child{
@@ -29,12 +42,17 @@ function insert() {
 		color:#333; 
 		font-weight:600;
 	}
+	$(function(){
+		var selectValue = $(#categoryNo).attr("selectValue");
+		$("#categoryNo>option").eq(selectValue).prop("selected",true);
+		console.log(selectValue);
+	});
 	
 </style>
 <link rel="stylesheet" href="/resources/css/deliveryBuyer/buyerDefault.css">
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
 </head>
 <body>
 <div class="s-wrapper">
@@ -75,13 +93,13 @@ function insert() {
         	
         			
         		<div class = "content_div_content" style="background: white; padding: 20px 20px; border: 1px solid rgb(221, 221, 221);">
-        			   <form action="/productInsert.do" method="post" enctype="multipart/form-data">
+        			   <form action="/productUpdate.do" method="post" enctype="multipart/form-data">
+        			   <input type="hidden" name="productNo" value="${p.PRODUCTNO }">
 				<table class="table" style="margin-top:70px">
 					<tr>
 						<th>카테고리</th>
 						<td colspan="4">
-							<select class="form-control" id="categoryNo" name="categoryNo">
-								<option value="0">"${p.CATEGORYNO }"</option>
+							<select class="form-control" id="categoryNo" name="categoryNo" selectValue="${p.CATEGORYNO }">								
 								<option value="1">생활용품</option>
 								<option value="2">뷰티</option>
 								<option value="3">헬스/건강식품</option>
@@ -103,35 +121,35 @@ function insert() {
 					<tr>
 					<th>상품명</th>
 					<td colspan="4">
-						<input type="text" id="productName" name="productName" value="${p.productName}"class="form-control"> 
+						<input type="text" id="productName" name="productName" value="${p.PRODUCTNAME}"class="form-control"> 
 					</td>
 					</tr>
 					<tr>
 					<th>판매가</th>
 					<td colspan="4">
-						<input type="text" id="price" name="price" class="form-control" style="width:200px; float:left" value="${p.price}"><span style="   vertical-align: middle; line-height: 37px; font-size: 20px; padding-left: 10px;" >원</span>
+						<input type="text" id="price" name="price" class="form-control" style="width:200px; float:left" value="${p.PRICE}"><span style="   vertical-align: middle; line-height: 37px; font-size: 20px; padding-left: 10px;" >원</span>
 					</td>
 					</tr>
 					<tr>
 					<th>재고</th>
 					<td colspan="4">
-						<input type="text" id="stock" name="stock" class="form-control" style="width:200px" value="${p.stock}">
+						<input type="text" id="stock" name="stock" class="form-control" style="width:200px" value="${p.STOCK}">
 					</td>
 					</tr>
 					<tr>
 					<th>제조일자</th>
 					<td colspan="4">
-						<input type="date" id="manufactureDate" name="manufactureDate" class="form-control" style="width:200px" value="${p.manufactureDate}">
+						<input type="date" id="manufactureDate" name="manufactureDate" class="form-control" style="width:200px" value="${p.MANUFACTUREDATE}">
 					</td>
 					</tr>
 					<tr>
 					<th style="vertical-align: middle;text-align: center;">제조국</th>
 					<td colspan="2">
-						<input type="text" id="orgin" name="origin" class="form-control" value="${p.origin}">
+						<input type="text" id="orgin" name="origin" class="form-control" value="${p.ORIGIN}">
 					</td>
 					<th style="width: 100px; vertical-align: middle;text-align: center;">제조자</th>
 					<td colspan="2">
-						<input type="text" id="manufacturer" name="manufacturer" class="form-control" value="${p.manufacturer}">
+						<input type="text" id="manufacturer" name="manufacturer" class="form-control" value="${p.MANUFACTURER}">
 					</td>
 					</tr>
 					<tr>
@@ -147,25 +165,25 @@ function insert() {
 					<tr>
 						<th>상품설명</th>
 						<td colspan="4">
-							<textarea id="howToUse" name="howToUse" class="form-control" style="height:300px">${p.howToUse}"</textarea>
+							<textarea id="howToUse" name="howToUse" class="form-control" style="height:300px">${p.HOWTOUSE}</textarea>
 						</td>
 					</tr>
 					<tr>
 						<th>상품사용법</th>
 						<td colspan="4">
-							<textarea id="productDetail" name="productDetail" class="form-control" style="height:300px">{p.productDetail}"</textarea>
+							<textarea id="productDetail" name="productDetail" class="form-control" style="height:300px">${p.PRODUCTDETAIL}</textarea>
 						</td>
 					</tr>
 					<tr>
 					<th>주의사항</th>
 					<td colspan="4">
-						<input type="text" id="precautions" name="precautions" class="form-control" style="width:200px"value="${p.precautions}">
+						<input type="text" id="precautions" name="precautions" class="form-control" style="width:200px"value="${p.PRECAUTIONS}">
 					</td>
 					</tr>
 					<tr>
 					<th>유통기한</th>
 					<td colspan="4">
-						<input type="date" id="expirationDate" name="expirationDate" class="form-control" style="width:200px" value="${p.expirationDate}">
+						<input type="date" id="expirationDate" name="expirationDate" class="form-control" style="width:200px" value="${p.EXPIRATIONDATE}">
 					</td>
 					</tr>
 					
@@ -173,55 +191,64 @@ function insert() {
 					<tr>
 					<th>구매제한</th>
 					<td colspan="4">
-						<input type="text" id="limit" name="limit" class="form-control" style="width:200px" value="${p.limit}">
+						<input type="text" id="limit" name="limit" class="form-control" style="width:200px" value="${p.LIMIT}">
 					</td>
 					</tr>
 					<tr>
 					<th>배송 방법</th>
 					<td colspan="4">
-						<input type="text" id="shippingMethod" name="shippingMethod" class="form-control" value="${p.shippingMethod}" >
+						<input type="text" id="shippingMethod" name="shippingMethod" class="form-control" value="${p.SHIPPINGMETHOD}" >
 					</td>
 					
 					<tr>
 					<th>배송 회사</th>
 					<td colspan="4">
-						<input type="text" id="shippingCompany" name="shippingCompany" class="form-control" value="${p.shippingCompany}">
+						<input type="text" id="shippingCompany" name="shippingCompany" class="form-control" value="${p.SHIPPINGCOMPANY}">
 					</td>
 					
 					</tr>
 					<tr>
 					<th>배송예상기간</th>
 					<td colspan="4">
-						<input type="text" id="shippingPeriod" name="shippingPeriod" class="form-control" value="${p.shippingPeriod}">
+						<input type="text" id="shippingPeriod" name="shippingPeriod" class="form-control" value="${p.SHIPPINGPERIOD}">
 					</td>
 					</tr>
 					
 					<tr>
 					<th>배송비</th>
 					<td colspan="4">
-						<input type="text" id="shippingFee" name="shippingFee" class="form-control" value="${p.shippingFee}">
+						<input type="text" id="shippingFee" name="shippingFee" class="form-control" value="${p.SHIPPINGFEE}">
 					</td>
 					</tr>
 					
 					<tr>
 						<th>썸네일 파일</th>
 						<td colspan="4"> 
-							<input type="file" id="productImage" name="productImg" accept=".png,.jpg,.jpeg" style="float:left">
+							<input type="file" id="productImage" name="productMainImg" accept=".png,.jpg,.jpeg" style="float:left">
 							<span style="float:right" class="float-right">권장크기 : 500x500</span>
 						</td>
 					</tr>
+						<tr id="productImgViewWrap">					
+					
+						<td colspan='5'><img id="productImgView" style="height: 50px;width: 50px;" src='/resources/upload/product/${p.FILEPATH }'><span id=productImageText> ${p.FILENAME } </span> <a href="javascript: void(0)" id=productImgCancle >x</a></td></tr>
 					<tr>
 						<th>상세보기 파일</th>
 						<td colspan="4">
-							<input type="file" id="productFile" name="productImg" accept=".png,.jpg,.jpeg"  style="float:left" multiple>
-							<span style="float:right" class="float-right">파일형식 : png,jpg,jpeg</span>
+							<input type="file" id="productFile" name="productDetailImg" accept=".png,.jpg,.jpeg"  style="float:left" multiple>
+							<span style="float:right" class="float-right">파일형식 : png,jpg,jpeg</span><input type="hidden" name="status" value="1">
 						</td>
 					</tr>
+					<c:forEach items="${p.oldpath }" var="opi" varStatus="i">
+					<tr id="oldproductImgViewWrap">
+						<td colspan='5'><img id="oldProductImgView${i }" style="height: 50px;width: 50px;" src='/resources/upload/product/${opi.filePath }'><span id="productImageText${i }"> ${opi.fileName } </span> <a href="javascript: void(0)" onclick='productImgCancle(this)' >x</a><input type="hidden" id="oldPathValue" name="oldPath" value=${opi.filePath } disabled> <input type="hidden" id="oldPathValue" name="oldPathNo" value=${opi.productImgNo } disabled></td></tr>
+						
+					</c:forEach>
 					
-				<tr>
+					
+					<tr id="detailWrapper">
 					<th>환불 주의사항</th>
 					<td colspan="4">
-						<input type="text" id="policyContent" name="policyContent" class="form-control" style="width:200px" value="${p.policyContent}">
+						<input type="text" id="policyContent" name="policyContent" class="form-control" style="width:200px" value="${p.POLICYCONTENT}">
 					</td>
 					</tr>
 
@@ -231,11 +258,11 @@ function insert() {
 						<td colspan="4">
 							<select class="form-control" id="retrunLength" name="retrunLength">
 							
-							<c:if test="${p.returnLenth == 0}">
-							<option value="${p.returnLenth}" selected>환불/교환 불가</option>
+							<c:if test="${p.RETURNLENTH == 0}">
+							<option value="${p.RETURNLENGTH}" selected>환불/교환 불가</option>
 							</c:if>
-							<c:if test="${p.returnLenth != 0}">
-							<option value="${p.returnLenth}" selected>${p.returnLenth}일이내</option>
+							<c:if test="${p.RETURNLENTH != 0}">returnLength
+							<option value="${p.RETURNLENGTH}" selected>${p.RETURNLENGTH}일이내</option>
 							</c:if>
 							
 								
@@ -257,11 +284,11 @@ function insert() {
 						<th>반품/교환 비용</th>
 						<td colspan="4">
 							<select class="form-control" id="returnShipping" name="returnShipping">
-								<c:if test="${p.returnShipping == 0}">
-							<option value="${p.returnShipping}" selected>환불/교환 불가</option>
+								<c:if test="${p.RETURNSHIPPING == 0}">
+							<option value="${p.RETURNSHIPPING}" selected>환불/교환 불가</option>
 							</c:if>
-							<c:if test="${p.returnShipping != 0}">
-							<option value="${p.returnShipping}" selected>${p.returnLenth}원</option>
+							<c:if test="${p.RETURNSHIPPING != 0}">
+							<option value="${p.RETURNSHIPPING}" selected>${p.RETURNSHIPPING}원</option>
 							</c:if>
 								<option value="0">환불/교환 무료(불가)</option>
 								<option value="2500">2500원</option>
@@ -283,6 +310,7 @@ function insert() {
 				<%--나중에 session으로 받아서 memberNo 추가로 보내주기 --%>
 				<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
 				<input type="hidden" name="productId" value=${sessionScope.m.memberId }>
+				<input type="hidden" name="photoStatus" id="photoStatus" value="1">
 			</form>
         	
         		
@@ -306,6 +334,100 @@ function insert() {
 	border : unset;
 		}
 </style>
+<script>
+
+$('#productImage').change(function() { 
+		var files = $(this)[0].files; // input type=file에서 선택한 파일을 배열로 가져옴
+		if (files.length != 0) { // 첨부파일이 있는 경우
+			var reader = new FileReader(); // 파일에 대한 정보를 읽어오는 객체
+			reader.readAsDataURL(files[0]); // 첫번째 파일 경로를 읽어옴
+			// 경로를 다 읽어오면 실행할 함수 설정
+			reader.onload = function(e) {
+				$("#productImgViewWrap").show();
+				$("#productImgView").attr("src", e.target.result); // 읽어온 경로를 img태그의 src속성에 설정
+				$('#productImageText').html(files[0].name);
+				console.log(files[0].name);
+
+			}
+		} else { // 첨부파일이 없는 경우
+			$("#productImgViewWrap").hide();
+			
+			
+		}
+	
+	});
+$("#productImgCancle").click(function(){
+	$("#productImage").val("");
+	$("#productImgViewWrap").hide();
+	$("#photoStatus").val(1);
+	
+	
+});
+$("#productImage").click(function(){
+	$("#photoStatus").val(0);
+})
+$("#productImage").change(function() {
+	$("#photoStatus").val(0);
+})
+/* var files; */
+ 
+var fileNames = new Array();
+$('#productFile').change(function() {
+	$(".detailPhoto").remove();
+	files = $(this)[0].files; // input type=file에서 선택한 파일을 배열로 가져옴
+	
+	if (files.length != 0) { // 첨부파일이 있는 경우
+		for(var i=0;i<files.length;i++){
+			fileNames.push(files[i].name);
+		}
+		for (var i = 0; i < files.length; i++) {			
+			
+			var reader = new FileReader(); // 파일에 대한 정보를 읽어오는 객체					
+			reader.readAsDataURL(files[i]); // 첫번째 파일 경로를 읽어옴
+						
+			// 경로를 다 읽어오면 실행할 함수 설정
+			reader.onload = function(e) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+				console.log(e);
+				console.log(files);
+				
+				var html = "";
+				
+				html += "<tr class='detailPhoto'>";
+				html += "<td colspan='5' class='detailPhoto' id=detailTd" + i + ">";
+				html += "<img style='height: 50px;width: 50px;' src= "+e.target.result+">";
+				html += "<span class='productDetailPhotoText' style='width:200px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display: inline-block'></span></td>";
+				html += "</tr>";
+
+				
+				$("#detailWrapper").before(html);
+				var spans = $(".productDetailPhotoText");
+				spans.eq(spans.length-1).html(fileNames[spans.length-1]);
+				/* if(spans.length==files.length){
+					for(var i=0;i<spans.length;i++){
+						spans.eq(i).html(fileNames[i]);
+					}
+				} */
+			}
+		}
+	} else { // 첨부파일이 없는 경우
+		$("#img-view").attr("src", "");
+	}
+});
+function getFilename(idx){
+	return files[idx].name;
+}
+
+
+function productImgCancle(obj){
+	$(obj).parent().parent().hide();
+	console.log($(obj));
+	$(obj).next().attr("disabled", false);
+	$(obj).next().next().attr("disabled", false);
+	$("[name=status]").val(2);
+	console.log(($(obj).next().val()));
+	console.log(($(obj).next().attr("disabled")));
+}
+</script>
 
       </body>
       </html>

@@ -155,11 +155,7 @@
         </div>
     </div> <!-- main content -->
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
-	<script>
-	function func(){
-		console.log(${list }+"test");
-	}
-	</script>
+
 <style>
 	.input{
 			height: 30px;
