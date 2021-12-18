@@ -3,6 +3,7 @@ package kr.or.seller.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -251,6 +252,23 @@ public class SellerService {
 		} else
 			return -2; // 배송정보 Update 실패
 
+	}
+	public boolean deleteChoiceProduct(String productNo, Member m) {
+		Product product = new Product();
+		product.setMemberNo(m.getMemberNo());
+		boolean result = true;
+		StringTokenizer sT1 = new StringTokenizer(productNo,"/");
+		while(sT1.hasMoreTokens()) {
+			product.setProductNo(Integer.parseInt(sT1.nextToken())); 
+			System.out.println(product);
+			int result1 = dao.deleteChoiceProduct(product); 
+			if(result1 == 0) {
+				result = false;
+				break;
+			}
+		
+	}
+		return result;
 	}
 }
 

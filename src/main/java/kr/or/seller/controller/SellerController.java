@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -442,10 +442,25 @@ private SellerService service;
 			model.addAttribute("msg","등록성공");
 		}		
 		model.addAttribute("loc","/productList.do?reqPage=1");
-		return "zipcoock/common/msg";
-		
+		return "zipcoock/common/msg";		
+	}
 	
+	@RequestMapping(value="/deleteChoiceProduct.do")
+	public String deleteProduct(Model model, String productNo ,Member m) {
 		
+		System.out.println(productNo);
+		boolean result = service.deleteChoiceProduct(productNo,m);
+		if(result) {
+			model.addAttribute("msg", "삭제완료");
+		}else {
+			model.addAttribute("msg", "삭제실패");
+		}
+		model.addAttribute("loc","/productList.do?reqPage=1");
+		return "zipcoock/common/msg";
+	}
+	@RequestMapping(value="/shippingInfomation.do")
+	public String shippingInfomation(){
+		return "zipcoock/seller/mypage/shippingInformation";
 	}
 
 }
