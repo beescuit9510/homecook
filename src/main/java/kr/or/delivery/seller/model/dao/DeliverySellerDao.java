@@ -136,4 +136,23 @@ public class DeliverySellerDao {
 		return sqlSession.insert("zcdseller.addMenuOption", addmenu);
 	}
 
+	public String selectBusinessNo(int memberNo) {
+		return sqlSession.selectOne("zcdseller.selectBusinessNo", memberNo);
+	}
+
+	public String selectSellerName(int memberNo) {
+		return sqlSession.selectOne("zcdseller.selectSellerName", memberNo);
+	}
+
+	public ArrayList<MenuGroup> selectGroupList(int storeNo) {
+		List<MenuGroup> list = sqlSession.selectList("zcdseller.selectGroupList", storeNo);
+		return (ArrayList<MenuGroup>) list;
+	}
+
+	public ArrayList<Menu> selectAllMenuList() {
+		List<Menu> list = sqlSession.selectList("zcdseller.selectAllMenuList");
+		return (ArrayList<Menu>) list;
+	}
+
+
 }

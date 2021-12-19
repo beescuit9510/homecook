@@ -561,9 +561,25 @@ public class DeliverySellerController {
 	}
 	
 	@RequestMapping(value="/marketView.do")
-	public String marketView(int storeNo, HttpSession session, Model model) {
+	public String marketView(int storeNo, int memberNo, HttpSession session, Model model) {
 		ZcdStore zs = service.selectOneMarket(storeNo);
+		String businessNo = service.selectBusinessNo(memberNo);
+		String sellerName = service.selectSellerName(memberNo);
+		ArrayList<MenuGroup> menuGrouplist = service.selectGroupList(storeNo);
+		ArrayList<Menu> menulist = service.selectAllMenuList();
+		/*
+		for (int i=0; i<menuGrouplist.size(); i++) {
+			int groupNo = menuGrouplist.get(i).getGroupNo();
+			System.out.println(groupNo);
+			ArrayList<Menu> menulist = service.selectMenuList(groupNo);
+		}
+		*/
+
 		model.addAttribute("zs", zs);
+		model.addAttribute("businessNo", businessNo);
+		model.addAttribute("sellerName", sellerName);
+		model.addAttribute("menuGrouplist", menuGrouplist);
+		model.addAttribute("menulist", menulist);
 		return "delivery/seller/marketView";
 	}
 	

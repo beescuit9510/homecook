@@ -217,4 +217,31 @@
 	margin-bottom: 5px;
 }
 
+.menu_div {
+	padding: 0.8rem 1.5rem;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.menu_div:last-child {
+	border-bottom: none;
+}
+.menu_div>div {
+	float: left;
+}
+.menu_name {
+	font-size: 17px;
+}
+.menuImg_div {
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	overflow: hidden;
+}
+.menu_img {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	left: 100%;
+	margin-left: -200%;
+	object-fit: cover;
+}
 

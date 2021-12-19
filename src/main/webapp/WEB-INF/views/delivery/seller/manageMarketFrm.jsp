@@ -57,6 +57,7 @@
 	        						<c:forEach items="${list }" var="zs">
 										<tr class="table_tr_height">
 											<td>
+												<input type="hidden" value="${zs.memberNo }">
 												<input type="hidden" value="${zs.storeNo }">
 												<div class="content_div_opt1 overflow-text marketView" style="color: #333">${zs.storeName }</div>
 											</td>
@@ -137,7 +138,8 @@
 			
 			$(".marketView").click(function() {
 				var storeNo = $(this).prev().val();
-				location.href="/marketView.do?storeNo=" + storeNo;
+				var memberNo = $(this).prev().prev().val();
+				location.href="/marketView.do?storeNo=" + storeNo + "&memberNo=" + memberNo;
 			});
 			
 		});

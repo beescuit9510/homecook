@@ -40,7 +40,7 @@
 	 
 	 <insert id="addMarket" parameterType="zs">
 	 	insert into zcd_store values(store_seq.nextval, #{memberNo}, #{storeName}, #{storeTime}, #{storePhone}, #{storeInfo}, #{storeNotice}, #{storeTip},
-	 		#{postcode}, #{address1}, #{address2}, #{minPrice}, default, #{originInfo}, #{category1}, #{category2})
+	 		#{postcode}, #{address1}, #{address2}, #{minPrice}, default, #{originInfo}, #{category1}, #{category2}, #{x}, #{y})
 	 	<!-- order: 수행 전/후 keyProperty: 어디에 넣을지 -->
   		<selectKey resultType="_int" order="AFTER" keyProperty="storeNo">
   			select max(store_no) from zcd_store
@@ -68,7 +68,9 @@
 			store_state as storeState,
 			origin_info as originInfo,
 			category1,
-			category2
+			category2,
+			x,
+			y
   		from zcd_store where member_no=#{memberNo}
   	</select>
 	 
@@ -104,6 +106,8 @@
   		<result column="origin_info" property="originInfo"/>
   		<result column="category1" property="category1"/>
   		<result column="category2" property="category2"/>
+  		<result column="x" property="x"/>
+  		<result column="y" property="y"/>
   		<collection property="list"
   					column="store_no"
   					javaType="java.util.ArrayList"
@@ -115,7 +119,7 @@
   	<update id="modifyMarket" parameterType="zs">
 		update zcd_store set store_name=#{storeName}, store_time=#{storeTime}, store_phone=#{storePhone}, store_info=#{storeInfo},
 			store_notice=#{storeNotice}, store_tip=#{storeTip}, postcode=#{postcode}, address1=#{address1}, address2=#{address2}, min_price=#{minPrice},
-			category1=#{category1}, category2=#{category2}, origin_info=#{originInfo}
+			category1=#{category1}, category2=#{category2}, origin_info=#{originInfo}, x=#{x}, y=#{y}
 		where store_no=#{storeNo}
 	</update>
 	
@@ -218,5 +222,37 @@
 	<insert id="addMenuOption" parameterType="addmenu">
 		insert into add_menu values(addmenu_seq.nextval, #{menuNo}, #{addmenuName}, #{addmenuPrice}, #{addmenuStatus})
 	</insert>
+	
+	<select id="selectBusinessNo" resultType="string">
+	 	select 
+			business_no as businessNo
+		from zcd_seller_info where member_no=#{memberNo}
+	</select>
+	
+	<select id="selectSellerName" resultType="string">
+		select 
+			member_name as memberName
+		from member where member_no=#{memberNo}
+	</select>
+	
+	<select id="selectGroupList" resultType="mg">
+		select
+			group_no as groupNo,
+			group_name as groupName
+		from menu_group where store_no=#{storeNo}
+	</select>
+	
+	<select id="selectAllMenuList" resultType="menu">
+		select
+			menu_no as menuNo,
+			group_no as groupNo,
+			menu_name as menuName,
+			menu_content as menuContent,
+			menu_price as menuPrice,
+			filename,
+  			filepath,
+  			menuadd_status
+  		from menu
+	</select>
 	
 </mapper>

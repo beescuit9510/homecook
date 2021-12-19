@@ -194,5 +194,25 @@ public class DeliverySellerService {
 		int result = dao.addMenuOption(addmenu);
 		return result;
 	}
+
+	public String selectBusinessNo(int memberNo) {
+		String businessNo = dao.selectBusinessNo(memberNo);
+		return businessNo;
+	}
+
+	public String selectSellerName(int memberNo) {
+		String sellerName = dao.selectSellerName(memberNo);
+		return sellerName;
+	}
+
+	public ArrayList<MenuGroup> selectGroupList(int storeNo) {
+		ArrayList<MenuGroup> list = dao.selectGroupList(storeNo);
+		return list;
+	}
+
+	public ArrayList<Menu> selectAllMenuList() {
+		ArrayList<Menu> list = dao.selectAllMenuList();
+		return list;
+	}
 	
 }
