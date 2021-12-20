@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -581,6 +583,13 @@ public class DeliverySellerController {
 		model.addAttribute("menuGrouplist", menuGrouplist);
 		model.addAttribute("menulist", menulist);
 		return "delivery/seller/marketView";
+	}
+	
+	@RequestMapping(value="/menuPopup.do", method = RequestMethod.GET)
+	public String popupGet(Model model, @RequestParam(value="menuNo", defaultValue="") int menuNo) throws Exception {
+		Menu menu = service.selectOneMenu(menuNo);
+		model.addAttribute("menu", menu);
+		return "delivery/seller/menuPopup";
 	}
 	
 }

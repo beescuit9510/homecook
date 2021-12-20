@@ -57,9 +57,10 @@
 											<c:if test="${not empty menulist }">
 												<c:forEach items="${menulist }" var="ml">
 													<c:if test="${mg.groupNo eq ml.groupNo }">
-														<div class="menu_div gjcLUR">
-															<div class="menuImg_div"><img class="menu_img" src='/resources/upload/zcdSeller/${ml.filename }'></div>
+														<div class="menu_div gjcLUR popupBtn">
 															
+															<div class="menuImg_div"><img class="menu_img" src='/resources/upload/zcdSeller/${ml.filename }'></div>
+															<input id="menuNo" type="hidden" value="${ml.menuNo }">
 															<div class="menu_name cQHmLv">
 																<div style="font-weight: 600;">${ml.menuName }</div>
 																<div><fmt:formatNumber value="${ml.menuPrice }" pattern="#,###" /> 원</div>															
@@ -146,7 +147,7 @@
 	        				<div class="cQHmLv"><span class="element"><fmt:formatNumber value="0" pattern="#,###" /> 원</span></div>
 	        			</div>
 		        		<div class="isPSSz">
-		        			<button class="KZVRS">♡<span>찜 하기</span></button>
+		        			<button class="KZVRS"><span class="likeButton">♡</span></button>
 		        			<button class="hYJzRO jdSXaC">장바구니 보기</button>
 		        		</div>
 	        		</section>
@@ -177,6 +178,22 @@
 			    position: new naver.maps.LatLng(x, y),
 			    map: map
 			});
+			
+			
+			$(".likeButton").click(function() {
+				var isLiked = $(".likeButton").hasClass("liked");
+				$(".likeButton").toggleClass("liked");
+
+			});
+			
+			
+			var formObj = $("form[role='form']");
+
+		    $('.popupBtn').on("click", function() {
+		        var menuNo = $(this).children().eq(1).val(); //화면의 파라미터 가져오기
+		  		window.open("/menuPopup.do?menuNo="+menuNo,"_blank","toolbar=yes,menubar=yes,left=700,top=200,width=400,height=600").focus();
+		    });
+		    
 		
 		});
 		

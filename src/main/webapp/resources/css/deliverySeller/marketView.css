@@ -121,11 +121,13 @@
     cursor: pointer;
 }
 .KZVRS>span {
+	/*
     font-size: 12px;
-    line-height: 15px;
+    */
+    line-height: 30px;
     letter-spacing: -0.5px;
     font-weight: 400;
-    color: rgb(51, 51, 51);
+    color: rgb(51, 51, 51);;
 }
 
 /* 장바구니 보기 */
@@ -243,5 +245,43 @@
 	left: 100%;
 	margin-left: -200%;
 	object-fit: cover;
+}
+
+
+.likeButton {
+	margin-top:24px;
+	margin-left:22px;
+	display: inline-block;
+	font-size: 20px;
+	color: #cca2a3;
+	cursor: pointer;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	-webkit-transition: all 0.1s ease-in-out;
+	        transition: all 0.1s ease-in-out;
+}
+
+.likeButton.liked {
+	font-size: 20px;
+}
+
+.likeButton:after {
+	display: inline-block;
+	content: "♥";
+	font-size: 1px;
+	color: #ff0004;
+	opacity: 0;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	-webkit-transition: all 0.2s ease-in-out;
+	        transition: all 0.2s ease-in-out;
+}
+
+.likeButton.liked:after {
+	font-size: 20px;
+	opacity: 1;
 }
 
