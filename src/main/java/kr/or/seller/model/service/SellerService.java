@@ -270,5 +270,19 @@ public class SellerService {
 	}
 		return result;
 	}
+	public ArrayList<Integer> selectShippingInfomation(Member member) {
+		ArrayList<Integer> shippingInfo = dao.selectShippingInfomation(member);
+		return shippingInfo;
+	}
+	public ArrayList<Integer> ajaxWeekSaleCount(Member member) {
+		ArrayList<Integer> weekSaleCount = dao.ajaxWeekSaleCount(member);
+		System.out.println(weekSaleCount);
+		System.out.println(member);
+		return weekSaleCount;
+	}
+	public ArrayList<Integer> ajaxWeekSalePriceCount(Member member) {
+		ArrayList<Integer> weekSalePriceCount = dao.ajaxWeekSalePriceCount(member);
+		return weekSalePriceCount;
+	}
 }
 

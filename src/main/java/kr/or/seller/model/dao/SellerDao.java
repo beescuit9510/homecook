@@ -111,6 +111,21 @@ public class SellerDao {
 		return sqlSession.delete("product.deleteChoiceProduct",p);
 	}
 
+	public ArrayList<Integer> selectShippingInfomation(Member member) {
+		List<Integer> list = sqlSession.selectList("shippingInfo.selectShippingInfomation",member);
+		return (ArrayList<Integer>)list ;
+	}
+
+	public ArrayList<Integer> ajaxWeekSaleCount(Member member) {
+		List<Integer> list = sqlSession.selectList("shippingInfo.selectWeekSaleCount",member);
+		return (ArrayList<Integer>)list;
+	}
+
+	public ArrayList<Integer> ajaxWeekSalePriceCount(Member member) {
+		List<Integer> list = sqlSession.selectList("shippingInfo.selectWeekSalePriceCount",member);
+		return (ArrayList<Integer>)list;
+	}
+
 	/*
 	 * public ArrayList<Product> selectProductList(Member m) { List<Product> list =
 	 * sqlSession.selectList("product.selectProductList",m); return
