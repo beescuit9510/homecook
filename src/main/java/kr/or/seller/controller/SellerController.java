@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -459,8 +460,34 @@ private SellerService service;
 		return "zipcoock/common/msg";
 	}
 	@RequestMapping(value="/shippingInfomation.do")
-	public String shippingInfomation(){
+	public String shippingInfomation(HttpSession session, Model model){
+		Member member = (Member)session.getAttribute("m");
+		ArrayList<Integer> shippingInfo = service.selectShippingInfomation(member);
+		model.addAttribute("shippingInfo",shippingInfo);
+		System.out.println(shippingInfo);
 		return "zipcoock/seller/mypage/shippingInformation";
+		
+	}
+	@RequestMapping(value="/ajaxWeekSaleCount.do")
+	@ResponseBody
+	public ArrayList<Integer> ajaxWeekSaleCount(Member member, Model model) {
+		
+		ArrayList<Integer> WeekSaleCount = service.ajaxWeekSaleCount(member);
+		
+			
+			return WeekSaleCount;
+			
+		}
+	@RequestMapping(value="/ajaxWeekSalePriceCount.do")
+	@ResponseBody
+	public ArrayList<Integer> ajaxWeekSalePriceCount(Member member, Model model) {
+		
+		ArrayList<Integer> WeekSaleCount = service.ajaxWeekSalePriceCount(member);
+		
+			
+			return WeekSaleCount;
+			
+		}	
+		
 	}
 
-}

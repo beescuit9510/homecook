@@ -10,6 +10,9 @@ set return_shipping = #{returnShipping},
 where product_no = #{productNo}
 </update>
 
+<insert id="insertReturnPolcy" parameterType="rp">
+insert into return_policy values(RETURN_POLICY_SEQ.NEXTVAL,#{productNo},#{returnShipping},#{polishContent},#{returnLength);
+</insert>
 </mapper>
  
  
