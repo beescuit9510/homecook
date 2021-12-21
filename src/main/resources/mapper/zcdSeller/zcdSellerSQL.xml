@@ -255,4 +255,24 @@
   		from menu
 	</select>
 	
+	<select id="selectAddMenuList1" resultType="addmenu">
+		select
+			addmenu_no as addmenuNo,
+			menu_no as menuNo,
+			addmenu_name as addmenuName,
+			addmenu_price as addmenuPrice,
+  			addmenu_status as addmenuStatus
+  		from add_menu where addmenu_status='필수' and menu_no=#{menuNo}
+	</select>
+	
+	<select id="selectAddMenuList2" resultType="addmenu">
+		select
+			addmenu_no as addmenuNo,
+			menu_no as menuNo,
+			addmenu_name as addmenuName,
+			addmenu_price as addmenuPrice,
+  			addmenu_status as addmenuStatus
+  		from add_menu where addmenu_status='추가' and menu_no=#{menuNo}
+	</select>
+	
 </mapper>

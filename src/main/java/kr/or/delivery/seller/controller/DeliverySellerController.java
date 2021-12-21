@@ -576,7 +576,6 @@ public class DeliverySellerController {
 			ArrayList<Menu> menulist = service.selectMenuList(groupNo);
 		}
 		*/
-
 		model.addAttribute("zs", zs);
 		model.addAttribute("businessNo", businessNo);
 		model.addAttribute("sellerName", sellerName);
@@ -588,7 +587,13 @@ public class DeliverySellerController {
 	@RequestMapping(value="/menuPopup.do", method = RequestMethod.GET)
 	public String popupGet(Model model, @RequestParam(value="menuNo", defaultValue="") int menuNo) throws Exception {
 		Menu menu = service.selectOneMenu(menuNo);
+		// 필수 선택
+		ArrayList<AddMenu> addMenu1 = service.selectAddMenuList1(menuNo);
+		// 추가 선택
+		ArrayList<AddMenu> addMenu2 = service.selectAddMenuList2(menuNo);
 		model.addAttribute("menu", menu);
+		model.addAttribute("addMenu1", addMenu1);
+		model.addAttribute("addMenu2", addMenu2);
 		return "delivery/seller/menuPopup";
 	}
 	

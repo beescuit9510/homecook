@@ -191,7 +191,7 @@
 
 		    $('.popupBtn').on("click", function() {
 		        var menuNo = $(this).children().eq(1).val(); //화면의 파라미터 가져오기
-		  		window.open("/menuPopup.do?menuNo="+menuNo,"_blank","toolbar=yes,menubar=yes,left=700,top=200,width=400,height=600").focus();
+		  		window.open("/menuPopup.do?menuNo="+menuNo,"_blank","scrollbars=yes,left=700,top=200,width=400,height=600").focus();
 		    });
 		    
 		

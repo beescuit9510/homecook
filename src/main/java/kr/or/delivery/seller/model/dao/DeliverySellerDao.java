@@ -154,5 +154,15 @@ public class DeliverySellerDao {
 		return (ArrayList<Menu>) list;
 	}
 
+	public ArrayList<AddMenu> selectAddMenuList1(int menuNo) {
+		List<AddMenu> list = sqlSession.selectList("zcdseller.selectAddMenuList1", menuNo);
+		return (ArrayList<AddMenu>) list;
+	}
+
+	public ArrayList<AddMenu> selectAdMenuList2(int menuNo) {
+		List<AddMenu> list = sqlSession.selectList("zcdseller.selectAddMenuList2", menuNo);
+		return (ArrayList<AddMenu>) list;
+	}
+
 
 }

@@ -103,7 +103,7 @@
         <div class="modal" id="modal1" style="margin-top: 200px;">
 		  	<div class="modal-dialog" role="document">
 		    	<div class="modal-content">
-		    	<form action="/addMenuOption.do" method="get">
+		    	<form action="/addMenuOption.do" method="post">
 			      	<div class="modal-header">
 			        	<h5 class="modal-title"><span class="add_menugroup_title">선택메뉴 추가</span></h5>
 			        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">

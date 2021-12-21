@@ -214,5 +214,15 @@ public class DeliverySellerService {
 		ArrayList<Menu> list = dao.selectAllMenuList();
 		return list;
 	}
+
+	public ArrayList<AddMenu> selectAddMenuList1(int menuNo) {
+		ArrayList<AddMenu> list = dao.selectAddMenuList1(menuNo);
+		return list;
+	}
+
+	public ArrayList<AddMenu> selectAddMenuList2(int menuNo) {
+		ArrayList<AddMenu> list = dao.selectAdMenuList2(menuNo);
+		return list;
+	}
 	
 }
