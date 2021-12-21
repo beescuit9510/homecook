@@ -174,4 +174,18 @@ policy_content = #{policyContent}
 where return_policy_no = #{returnPolicyNo}
 </update>
 
+<select id="main_ProductList" parameterType = "_int" resultType="p">
+select 
+product_no as productNo,
+product_name as productName, 
+price as price, 
+capacity as capacity
+from product 
+where 
+category_no = #{iCategory}
+</select>
+
+
+
+
 </mapper>

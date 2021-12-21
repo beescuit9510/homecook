@@ -14,6 +14,7 @@ import kr.or.table.model.vo.AdminQna;
 import kr.or.table.model.vo.AdminRefund;
 import kr.or.table.model.vo.HomecookDeal;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.Qna;
 import kr.or.zipcoock.admin.model.service.AdminService;
 
@@ -175,4 +176,11 @@ public class AdminController
 		return result;
 	}
 	
+	
+	@RequestMapping(value = "/get_ProductList.do")
+	@ResponseBody
+	public ArrayList<Product> get_ProductList(int iCategory)
+	{
+		return service.selectSomeProudct(iCategory);
+	}	
 }
