@@ -7,6 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.delivery.model.vo.AddMenu;
+import kr.or.delivery.model.vo.Menu;
+import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.table.model.vo.Member;
@@ -69,5 +72,97 @@ public class DeliverySellerDao {
 	public int deleteOneMarket(int storeNo) {
 		return sqlSession.delete("zcdseller.deleteOneMarket", storeNo);
 	}
+
+	public int addMenuGroup(MenuGroup mg) {
+		return sqlSession.insert("zcdseller.addMenuGroup", mg);
+	}
+
+	public ArrayList<MenuGroup> selectMenuGroupList(int storeNo) {
+		List<MenuGroup> list = sqlSession.selectList("zcdseller.selectMenuGroupList", storeNo);
+		return (ArrayList<MenuGroup>) list;
+	}
+
+	public int modifyMenuGroup(MenuGroup mg) {
+		return sqlSession.update("zcdseller.modifyMenuGroup", mg);
+	}
+
+	public int deleteMenuGroup(int groupNo) {
+		return sqlSession.delete("zcdseller.deleteMenuGroup", groupNo);
+	}
+
+	public ArrayList<Menu> selectMenuList(int groupNo) {
+		List<Menu> list = sqlSession.selectList("zcdseller.selectMenuList", groupNo);
+		return (ArrayList<Menu>) list;
+	}
+
+	public String selectOneMenuName(String menuName) {
+		return sqlSession.selectOne("zcdseller.selectOneMenuName", menuName);
+	}
+
+	public int addMenu(Menu menu) {
+		return sqlSession.insert("zcdseller.addMenu", menu);
+	}
+
+	public String selectGroupName(int groupNo) {
+		return sqlSession.selectOne("zcdseller.selectGroupName", groupNo);
+	}
+
+	public Menu selectOneMenu(int menuNo) {
+		return sqlSession.selectOne("zcdseller.selectOneMenu", menuNo);
+	}
+
+	public int modifyMenu(Menu menu) {
+		return sqlSession.update("zcdseller.modifyMenu", menu);
+	}
+
+	public int modifyMenu2(Menu menu) {
+		return sqlSession.update("zcdseller.modifyMenu2", menu);
+	}
+
+	public int deleteMenu(int menuNo) {
+		return sqlSession.delete("zcdseller.deleteMenu", menuNo);
+	}
+
+	public ArrayList<AddMenu> selectAddMenuList(int menuNo) {
+		List<AddMenu> list = sqlSession.selectList("zcdseller.selectAddMenuList", menuNo);
+		return (ArrayList<AddMenu>) list;
+	}
+
+	public int deleteOption(int addmenuNo) {
+		return sqlSession.delete("zcdseller.deleteOption", addmenuNo);
+	}
+
+	public int addMenuOption(AddMenu addmenu) {
+		return sqlSession.insert("zcdseller.addMenuOption", addmenu);
+	}
+
+	public String selectBusinessNo(int memberNo) {
+		return sqlSession.selectOne("zcdseller.selectBusinessNo", memberNo);
+	}
+
+	public String selectSellerName(int memberNo) {
+		return sqlSession.selectOne("zcdseller.selectSellerName", memberNo);
+	}
+
+	public ArrayList<MenuGroup> selectGroupList(int storeNo) {
+		List<MenuGroup> list = sqlSession.selectList("zcdseller.selectGroupList", storeNo);
+		return (ArrayList<MenuGroup>) list;
+	}
+
+	public ArrayList<Menu> selectAllMenuList() {
+		List<Menu> list = sqlSession.selectList("zcdseller.selectAllMenuList");
+		return (ArrayList<Menu>) list;
+	}
+
+	public ArrayList<AddMenu> selectAddMenuList1(int menuNo) {
+		List<AddMenu> list = sqlSession.selectList("zcdseller.selectAddMenuList1", menuNo);
+		return (ArrayList<AddMenu>) list;
+	}
+
+	public ArrayList<AddMenu> selectAdMenuList2(int menuNo) {
+		List<AddMenu> list = sqlSession.selectList("zcdseller.selectAddMenuList2", menuNo);
+		return (ArrayList<AddMenu>) list;
+	}
+
 
 }

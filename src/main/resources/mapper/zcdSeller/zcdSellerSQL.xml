@@ -40,7 +40,7 @@
 	 
 	 <insert id="addMarket" parameterType="zs">
 	 	insert into zcd_store values(store_seq.nextval, #{memberNo}, #{storeName}, #{storeTime}, #{storePhone}, #{storeInfo}, #{storeNotice}, #{storeTip},
-	 		#{postcode}, #{address1}, #{address2}, #{minPrice}, default, #{originInfo}, #{category1}, #{category2})
+	 		#{postcode}, #{address1}, #{address2}, #{minPrice}, default, #{originInfo}, #{category1}, #{category2}, #{x}, #{y})
 	 	<!-- order: 수행 전/후 keyProperty: 어디에 넣을지 -->
   		<selectKey resultType="_int" order="AFTER" keyProperty="storeNo">
   			select max(store_no) from zcd_store
@@ -68,7 +68,9 @@
 			store_state as storeState,
 			origin_info as originInfo,
 			category1,
-			category2
+			category2,
+			x,
+			y
   		from zcd_store where member_no=#{memberNo}
   	</select>
 	 
@@ -104,6 +106,8 @@
   		<result column="origin_info" property="originInfo"/>
   		<result column="category1" property="category1"/>
   		<result column="category2" property="category2"/>
+  		<result column="x" property="x"/>
+  		<result column="y" property="y"/>
   		<collection property="list"
   					column="store_no"
   					javaType="java.util.ArrayList"
@@ -115,7 +119,7 @@
   	<update id="modifyMarket" parameterType="zs">
 		update zcd_store set store_name=#{storeName}, store_time=#{storeTime}, store_phone=#{storePhone}, store_info=#{storeInfo},
 			store_notice=#{storeNotice}, store_tip=#{storeTip}, postcode=#{postcode}, address1=#{address1}, address2=#{address2}, min_price=#{minPrice},
-			category1=#{category1}, category2=#{category2}, origin_info=#{originInfo}
+			category1=#{category1}, category2=#{category2}, origin_info=#{originInfo}, x=#{x}, y=#{y}
 		where store_no=#{storeNo}
 	</update>
 	
@@ -126,5 +130,149 @@
 	<delete id="deleteOneMarket" parameterType="_int">
 		delete from zcd_store where store_no=#{storeNo}
 	</delete>
+
+	<select id="selectMenuGroupList" resultType="mg">
+		select
+			group_no as groupNo,
+			store_no as storeNo,
+			group_name as groupName
+		from menu_group where store_no=#{storeNo}
+	</select>
+	
+	<insert id="addMenuGroup" parameterType="mg">
+	 	insert into menu_group values(group_seq.nextval, #{storeNo}, #{groupName})
+	</insert>
+	
+	<update id="modifyMenuGroup" parameterType="mg">
+		update menu_group set group_name=#{groupName} where store_no=#{storeNo}
+	</update>
+	
+	<delete id="deleteMenuGroup" parameterType="_int">
+		delete from menu_group where group_no=#{groupNo}
+	</delete>
+	
+	<select id="selectMenuList" resultType="menu">
+		select
+			menu_no as menuNo,
+			group_no as groupNo,
+			menu_name as menuName,
+			menu_content as menuContent,
+			menu_price as menuPrice,
+			filename,
+  			filepath,
+  			menuadd_status
+  		from menu where group_no=#{groupNo}
+	</select>
+	
+	<select id="selectOneMenuName" resultType="string">
+		select
+			menu_name as menuName
+		from menu where menu_name=#{menuName}
+	</select>
+	
+	<insert id="addMenu" parameterType="menu">
+	 	insert into menu values(menu_seq.nextval, #{groupNo}, #{menuName}, #{menuContent}, #{menuPrice}, #{filename}, #{filepath}, default)
+	</insert>
+	
+	<select id="selectGroupName" resultType="string">
+		select
+			group_name as groupName
+		from menu_group where group_no=#{groupNo}
+	</select>
+	
+	<select id="selectOneMenu" resultType="menu">
+		select
+  			menu_no as menuNo,
+  			group_no as groupNo,
+  			menu_name as menuName,
+  			menu_content as menuContent,
+  			menu_price as menuPrice,  			
+  			filename,
+  			filepath,
+  			menuadd_status as menuaddStatus
+  		from menu where menu_no=#{menuNo}
+	</select>
+	
+	<update id="modifyMenu" parameterType="menu">
+		update menu set menu_name=#{menuName}, menu_content=#{menuContent}, menu_price=#{menuPrice} where menu_no=#{menuNo}
+	</update>
+	
+	<update id="modifyMenu2" parameterType="menu">
+		update menu set menu_name=#{menuName}, menu_content=#{menuContent}, menu_price=#{menuPrice}, filename=#{filename}, filepath=#{filepath} where menu_no=#{menuNo}
+	</update>
+	
+	<delete id="deleteMenu" parameterType="_int">
+		delete from menu where menu_no=#{menuNo}
+	</delete>
+	
+	<select id="selectAddMenuList" resultType="addmenu">
+		select
+			addmenu_no as addmenuNo,
+			menu_no as menuNo,
+			addmenu_name as addmenuName,
+			addmenu_price as addmenuPrice,
+  			addmenu_status as addmenuStatus
+  		from add_menu where menu_no=#{menuNo} order by addmenu_status
+	</select>
+	
+	<delete id="deleteOption" parameterType="_int">
+		delete from add_menu where addmenu_no=#{addmenuNo}
+	</delete>
+	
+	<insert id="addMenuOption" parameterType="addmenu">
+		insert into add_menu values(addmenu_seq.nextval, #{menuNo}, #{addmenuName}, #{addmenuPrice}, #{addmenuStatus})
+	</insert>
+	
+	<select id="selectBusinessNo" resultType="string">
+	 	select 
+			business_no as businessNo
+		from zcd_seller_info where member_no=#{memberNo}
+	</select>
+	
+	<select id="selectSellerName" resultType="string">
+		select 
+			member_name as memberName
+		from member where member_no=#{memberNo}
+	</select>
+	
+	<select id="selectGroupList" resultType="mg">
+		select
+			group_no as groupNo,
+			group_name as groupName
+		from menu_group where store_no=#{storeNo}
+	</select>
+	
+	<select id="selectAllMenuList" resultType="menu">
+		select
+			menu_no as menuNo,
+			group_no as groupNo,
+			menu_name as menuName,
+			menu_content as menuContent,
+			menu_price as menuPrice,
+			filename,
+  			filepath,
+  			menuadd_status
+  		from menu
+	</select>
+	
+	<select id="selectAddMenuList1" resultType="addmenu">
+		select
+			addmenu_no as addmenuNo,
+			menu_no as menuNo,
+			addmenu_name as addmenuName,
+			addmenu_price as addmenuPrice,
+  			addmenu_status as addmenuStatus
+  		from add_menu where addmenu_status='필수' and menu_no=#{menuNo}
+	</select>
+	
+	<select id="selectAddMenuList2" resultType="addmenu">
+		select
+			addmenu_no as addmenuNo,
+			menu_no as menuNo,
+			addmenu_name as addmenuName,
+			addmenu_price as addmenuPrice,
+  			addmenu_status as addmenuStatus
+  		from add_menu where addmenu_status='추가' and menu_no=#{menuNo}
+	</select>
 	
 </mapper>

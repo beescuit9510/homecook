@@ -158,25 +158,30 @@
     align-items: center;
     padding-left: 16px;
 }
-/* 상호명 */
+
+.nav-item-border {
+	border: 1px solid rgb(221, 221, 221);
+}
+
+/* 메뉴명 */
 .content_div_opt1 {
     width: 300px;
     text-align: center;
     color: rgb(136, 136, 136);
 }
-/* 매장 전화번호 */
+/* 메뉴가격 */
 .content_div_opt2 {
     width: 200px;
     text-align: center;
     color: rgb(136, 136, 136);
 }
-/* 관리 */
+/* 메뉴관리 */
 .content_div_opt3 {
     width: 180px;
     text-align: center;
     color: rgb(136, 136, 136);
 }
-/* 영업 상태 */
+/* 옵션관리 */
 .content_div_opt4 {
 	width: 100px;
     display: flex;
@@ -189,8 +194,8 @@
     text-align: center;
 }
 
-/* 매장 정보 등록하기 btn */
-.add_market_btn {
+/* 메뉴 추가하기 btn */
+.add_menu_btn {
     width: 100%;
     height: 60px;
     border: 1px solid rgb(221, 221, 221);
@@ -218,7 +223,7 @@
     height: 56px;
     padding: 0px 16px;
 }
-.add_market_btn:hover {
+.add_menu_btn:hover {
     filter: brightness(0.94);
 }
 
@@ -252,9 +257,42 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.deleteMarket {
+
+.add_menugroup_title {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+}
+.form_opt {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+}
+.form_opt_title {
+    color: rgb(136, 136, 136);
+    width: 64px;
+    min-width: 64px;
+    margin-right: 40px;
+    white-space: pre;
+}
+.btn-100 {
+	width: 100%;
+}
+.prev_tap {
+	font-weight: 500;
+	color: #bbb;
+}
+.deleteOption {
 	cursor: pointer;
 }
-.marketView {
-	cursor: pointer;
+/* input 위, 아래 간격 margin */
+.add_margin {
+	margin-bottom: 20px;
 }
