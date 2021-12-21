@@ -13,9 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.member.model.dao.MemberDao;
 import kr.or.seller.model.dao.SellerDao;
+import kr.or.seller.model.vo.OrderPageData;
 import kr.or.seller.model.vo.SellerProductPageData;
+import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PaymentInfo;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.ProductImg;
 import kr.or.table.model.vo.PwChangeVO;
@@ -283,6 +286,78 @@ public class SellerService {
 	public ArrayList<Integer> ajaxWeekSalePriceCount(Member member) {
 		ArrayList<Integer> weekSalePriceCount = dao.ajaxWeekSalePriceCount(member);
 		return weekSalePriceCount;
+	}
+	public OrderPageData selectOrderList(int reqPage, Member member, String paymentInfo) {
+
+		int numPerPage = 5;
+		int totalPage = 0;
+		int totalCount = 0;
+		int end = reqPage*numPerPage;
+		int start = end - numPerPage + 1;
+		Map<Object, Object> pagedata = new HashMap<Object, Object>();
+		pagedata.put("start", start);
+		pagedata.put("end", end);
+		pagedata.put("memberNo", member.getMemberNo());
+		pagedata.put("paymentInfo", paymentInfo);
+		System.out.println(paymentInfo);
+		System.out.println(pagedata);
+		ArrayList<SellerSaleManage> list = new ArrayList<SellerSaleManage>();
+		if(paymentInfo.equals("A")) { //전제
+			System.out.println(pagedata);
+			list = dao.selectOrderList(pagedata);
+			System.out.println(list+"첫페이지 접속시");
+			totalCount = dao.selectTotalCount(member);
+		}else {
+			list = dao.selectOrderSelectList(pagedata);
+			totalCount = dao.selectTotalCount(pagedata);
+		}
+		
+		System.out.println(list+"servicelist값");
+		
+		if(totalCount%numPerPage == 0) {
+			totalPage = totalCount/numPerPage;
+		}else {
+			totalPage = totalCount/numPerPage+1;
+		}
+		
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
+		String pageNavi = "<ul class='pagination pagination-sm'>";
+		//이전버튼
+		if(pageNo != 1) {
+			pageNavi += "<li class='previous'>";
+			pageNavi += "<a href='/saleManage?reqPage="+(pageNo-1)+"&memberNo="+member.getMemberNo()+"&orderStatus="+paymentInfo+"'>";
+			pageNavi += "&lt;</a></li>";
+		}
+		//페이지숫자
+		for(int i=0; i<pageNaviSize;i++) {
+			if(pageNo == reqPage) {
+				pageNavi += "<li class='active'>";
+				pageNavi += "<a href='/saleManage?reqPage="+pageNo+"&memberNo="+member.getMemberNo()+"&orderStatus="+paymentInfo+"'>";
+				pageNavi += pageNo+"</a></li>";
+			}else {
+				pageNavi += "<li>";
+				pageNavi += "<a href='/saleManage?reqPage="+pageNo+"&memberNo="+member.getMemberNo()+"&orderStatus="+paymentInfo+"'>";
+				pageNavi += pageNo+"</a></li>";
+			}
+			pageNo++;
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		//다음버튼
+		if(pageNo <= totalPage) {
+			pageNavi += "<li class='next'>";
+			pageNavi += "<a href='/saleManage?reqPage="+pageNo+"&memberNo="+member.getMemberNo()+"&orderStatus="+paymentInfo+"'>";
+			pageNavi += "&gt;</a></li>";
+		}
+		pageNavi += "</ul>";
+		
+		//게시물목록(ArrayList), 페이지네비(String), start(번호표시용)
+		OrderPageData opd = new OrderPageData(list, pageNavi,start);
+		
+		
+		return opd;		
 	}
 }
 

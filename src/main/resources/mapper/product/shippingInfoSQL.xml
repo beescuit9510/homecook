@@ -163,6 +163,32 @@ left join ordered_product using (payment_info_code)
 where order_date = TO_DATE(sysdate-6,'yy-mm-dd') and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
 </select>
 
+<select id="selectTotalCountsearch" parameterType="map" resultType="_int">
+select count(*) from payment_info
+JOIN PRODUCT USING(MEMBER_NO)
+where 
+IS_DELIVERED = #{paymentInfo}
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+</select>
+<select id="selectOrderList" parameterType="map" resultType="_int">
+select rownum as rnum, 
+n.* from(select * from payment_info JOIN PRODUCT USING(MEMBER_NO) where payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))order by order_date desc)n
+where (rownum between #{start} and #{end})
+</select>
+<select id="selectOrderSelectList" parameterType="map" resultType="_int">
+select rownum as rnum, 
+
+n.* from(
+select payment_info_code as paymnetInfoCode, 
+payment_method as paymentMethod,
+price,order_date as order_date,
+is_delivered as isDelivered from payment_info 
+JOIN PRODUCT USING(MEMBER_NO) 
+where IS_DELIVERED = #{paymentInfo} and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))order by order_date desc)n
+where (rownum between #{start} and #{end})
+</select>
+
+
 </mapper>
  
  

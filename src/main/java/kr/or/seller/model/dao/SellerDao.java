@@ -9,8 +9,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PaymentInfo;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.ProductImg;
 import kr.or.table.model.vo.ReturnPolicy;
@@ -125,6 +127,26 @@ public class SellerDao {
 		List<Integer> list = sqlSession.selectList("shippingInfo.selectWeekSalePriceCount",member);
 		return (ArrayList<Integer>)list;
 	}
+
+
+	public int selectTotalCount(Map<Object, Object> pagedata) {
+		int result = sqlSession.selectOne("shippingInfo.selectTotalCountsearch",pagedata);
+		return result;
+	}
+
+	public ArrayList<SellerSaleManage> selectOrderList(Map<Object, Object> pagedata) {
+		System.out.println(pagedata+"dao까지는 옴");
+		List<SellerSaleManage> list = sqlSession.selectList("shippingInfo.selectOrderList",pagedata);
+		return (ArrayList<SellerSaleManage>)list;
+	}
+
+	public ArrayList<SellerSaleManage> selectOrderSelectList(Map<Object, Object> pagedata) {
+		List<SellerSaleManage> list = sqlSession.selectList("shippingInfo.selectOrderSelectList",pagedata);
+		System.out.println(pagedata+"dao pagedata값");
+		System.out.println(list+"dao list값");
+		return (ArrayList<SellerSaleManage>)list;
+	}
+
 
 	/*
 	 * public ArrayList<Product> selectProductList(Member m) { List<Product> list =
