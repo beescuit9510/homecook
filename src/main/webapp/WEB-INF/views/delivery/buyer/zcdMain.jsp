@@ -46,6 +46,7 @@
 	<%@include file="/WEB-INF/views/common/deliveryHeader.jsp"%>
 	<div class="container">
 		<a href="zcdMypage.do">마이페이지</a>
+		<a href="zcdCart.do">장바구니</a>
 		<div class="eventImage"></div>
 		<div class="main-copy">
 			<img src="/resources/img/zcdBuyer/sofancoock.png">

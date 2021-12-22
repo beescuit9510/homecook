@@ -40,4 +40,15 @@ public class DeliveryBuyerController {
 	public String zcdFindResult() {
 		return "delivery/buyer/findResult";
 	}
+	
+	@RequestMapping(value="zcdCart.do")
+	public String zcdCart() {
+		return "delivery/buyer/zcdCart";
+	}
+	
+	@RequestMapping(value="zcdOrderList.do")
+	public String zcdOrderList() {
+		return "delivery/buyer/orderList";
+	}
+
 }
