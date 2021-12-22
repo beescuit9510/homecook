@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/deliveryBuyer/zcdCart.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="/resources/css/deliveryBuyer/zcdCart.css">
+<script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
@@ -15,138 +18,203 @@
 		<div class="purchasePage">
 			<div class="content_title">주문/결제</div>
 				<div class="purchase-content">
-					<fieldset>
-						<legend>구매자 정보</legend>
-				            <table>
-				            	<tr>
-				            		<td>이름</td>
-				            		<td>문수라</td>
-				            	</tr>
-				            	<tr>
-				            		<td>이메일</td>
-				            		<td>email@gmail.com</td>
-				            	</tr>
-				            	<tr>
-				            		<td>휴대폰 번호</td>
-				            		<td>
-				            			<input type="text" id="memberPhone" value="010-0000-0000"><button type="submit">수정</button><br>
-				            			<input type="text" id="checkCode"><button type="button" class="checkCode">인증완료</button>
-				            		</td>
-				            	</tr>
-				            </table>				
-					</fieldset>
-				
-					<fieldset>
-						<legend>받는 사람 정보</legend>
+					<div class="purchaseInfo">
+						<div class="table-title">구매 정보 <span>내일(목) 12/23 도착 보장</span></div>
+						<table class="purchaseInfo">
+							<tr>
+								<th>주문 정보</th>
+								<th>수량</th>
+								<th>금액</th>
+								<th>할인 적용 금액</th>
+								<th>결제 예정 금액</th>
+							</tr>
+			            	<tr>
+			            		<td>1번</td>
+			            		<td>1</td>
+			            		<td>10,000원</td>
+			            		<td rowspan="2">9,500원</td>
+			            		<td rowspan="2">28,500원</td>
+			            	</tr>
+			            	<tr>
+			            		<td>1번</td>
+			            		<td>1</td>
+			            		<td>10,000원</td>
+			            	</tr>
+			            </table>			            
+					</div>	
+					<div class="wrap-area">
+						<div class="deliveryInfo">
+							<div class="table-title">배달 정보</div>
 							<table>
 								<tr>
-									<td colspan="2">
-										<label><input type="radio" name="addr" value="서울시 영등포구" checked>기본 배송지</label>
-										<label><input type="radio" name="addr" value="서울시 관악구">1번</label>
-										<label><input type="radio" name="addr" value="5개까지">2번</label>
-										<button type="button">배송지 추가</button>
+									<td></td>
+									<td>
+										<div class="addrList">
+											<label><input type="radio" name="memberAddr" value="defaultAddr" checked>기본주소</label>
+											<label><input type="radio" name="memberAddr" value="additional1">추가주소1</label>
+											<label><input type="radio" name="memberAddr" value="additional2">추가주소2</label>
+											<button class="addrBtn" id="addAddr">추가</button>
+											<div id="addAddrFrm">
+												<form action="/addAddr.do" method="post" name="insertAddrFrm">
+													<div>배송지 추가</div>
+													<table>
+														<tr>
+															<td>배송지 별칭</td>
+															<td><input type="text" name="addrNick" id="addrNick"></td>
+														</tr>
+														<tr>
+															<td>주소 입력</td>
+															<td>
+																<input type="text" name="postcode" id="postcode" class="add_addr" readonly placeholder="우편번호">
+																<button type="button" id="findpostcode" style="width: 70px;">찾기</button>
+															</td>
+														</tr>
+														<tr>
+															<td></td>
+															<td><input type="text" name="address1" id="address1" class="add_addr" readonly placeholder="주소"></td>
+														</tr>
+														<tr>
+															<td></td>
+															<td><input type="text" name="address2" id="address2" class="add_addr" placeholder="상세주소" maxlength="40"></td>
+														</tr>
+														<tr>
+															<td></td>
+															<td id="addrBtn" style="text-align: center;"><button class="addAddrBtn">추가</button></td>
+														</tr>
+													</table>
+												</form>
+											</div>
+											<!-- 5개정도만 할 수 있게 -->
+										</div>
 									</td>
 								</tr>
-				            	<tr>
-				            		<td>이름</td>
-				            		<td>문수라</td>
-				            	</tr>
-				            	<tr>
-				            		<td>배송주소</td>
-				            		<td>서울시 영등포구</td>
-				            	</tr>
+								<tr>
+									<td>주소</td>
+									<td>서울시 영등포구 </td>
+								</tr>
 				            	<tr>
 				            		<td>연락처</td>
-				            		<td>
-				            			010-0000-0000
-				            		</td>
+				            		<td id="phone">010-0000-0000</td>
 				            	</tr>
+					           	<tr>
+					           		<td>배송 요청 사항</td>
+					           		<td><input type="text" id="order-request"></td>
+					           	</tr>
+							</table>
+						</div>
+						<div class="lastCheckInfo">
+							<div class="table-title">최종 결제 금액</div>
+					        <table>
+					           	<tr>
+					           		<td>합 계</td>
+					           		<td><span id="result">30620</span>원</td>
+					           	</tr>
+					           	<tr>
+					           		<td>주문 금액</td>
+					           		<td>30000원</td>
+					           	</tr>
+					           	<tr>
+					           		<td>할인 금액</td>
+					           		<td>2000원</td>
+					           	</tr>
 				            	<tr>
-				            		<td>배송 요청 사항</td>
-				            		<td>
-				            			<input type="text">
-				            		</td>
-				            	</tr>
-				            </table>
-					</fieldset>
-				
-					<fieldset>
-						<legend>구매 정보</legend>
-							<table>
-				            	<tr colspan="2">
-				            		<td>내일(목) 12/23 도착 보장</td>
-				            	</tr>
-				            	<tr>
-				            		<td>1번</td>
-				            		<td>수량 2개/무료배송</td>
-				            	</tr>
-				            	<tr>
-				            		<td>2번</td>
-				            		<td>수량 1개/무료배송</td>
-				            	</tr>
-				            </table>			            
-					</fieldset>
-					<fieldset>
-						<legend>결제 정보</legend>
-				            <table>
-				            	<tr>
-				            		<td>총 상품 가격</td>
-				            		<td>30,620원</td>
-				            	</tr>
-				            	<tr>
-				            		<td>배송비</td>
+				            		<td>배달 금액</td>
 				            		<td>0원</td>
 				            	</tr>
 				            	<tr>
-				            		<td>총 결제 금액</td>
-				            		<td>30,620원</td>
+				            		<td colspan="2" class="btn-area">
+										<button id="payment" type="button">결제하기</button>
+										<button id="no-payment" type="button">결제없이 진행</button>				            		
+				            		</td>
 				            	</tr>
 				            </table>
-					</fieldset>
-				<div class="btn-area">
-					<button id="payment" type="button">결제하기</button>
-					<button id="no-payment" type="button">결제없이 진행</button>
-				</div>
+						</div>
+					</div>
 			</div>
 		</div>
 		<div class="purchase-content">
-			결제 성공
+			<div class="content_title_1">주문이 완료되었습니다.</div>
+			<div class="linkArea">
+			<a href="/zcdMain.do">메인으로</a><a href="/zcdOrderDetail.do">주문내역확인</a>
+			</div>
 		</div>
 		<div class="purchase-content">
-			결제 실패
+			<div class="content_title_1">결제에 실패하였습니다.</div>
+			<div class="linkArea">
+			<a href="/zcdMain.do">메인으로</a><a href="/zcdCart.do">장바구니로</a>
+			</div>
 		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 	
 	<script>
-	$("#payment").click(function(){
-		var price = $("#result").html();
-		var d = new Date();
-		var date = d.getFullYear()+""+(d.getMonth()+1)+""+d.getDate()+""+d.getHours()+""+d.getMinutes()+""+d.getSeconds();
-		console.log(date);
-		console.log(price);
-		IMP.init("imp"); //가맹점 식별코드
-		IMP.request_pay({
-			merchant_uid : "ZIPcoock"+date, //거래아이디
-			name : "ZIPcoock"+date, //결제이름설정
-			amount : $("#result").html(), //결제금액
-			buyer_email : $("#email").val(), //구매자이메일
-			buyer_name : $("#name").val(),//이름
-			buyer_phone : $("#phone").val() //전화번호
-			
-		},function(rsp){
-			if(rsp.success){
-				$(".purchase-content")[0].display
-				console.log("카드승인번호 : "+rsp.apply_num);
-				$("#payForm").submit();
-			}else{
-				alert("결제실패");
-			}
+	$(function(){
+		$($(".purchase-content")[1]).css("display","none");
+		$($(".purchase-content")[2]).css("display","none");
+		$("#addAddrFrm").css("display","none");
+		
+		$("#changeAddr").click(function(){
+			alert("짠");
+		});
+		
+		$("#findpostcode").on("click", function() {
+			return findAddr();
+		});
+		
+		function findAddr() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					$("#postcode").val(data.zonecode);
+					if (data.userSelectedType === 'R') {
+						$("#address1").val(data.roadAddress);
+					} else {
+						$("#address1").val(data.jibunAddress);
+					}
+					$("#address2").focus();
+				}
+			}).open();
+		}
+		
+		$("#payment").click(function(){
+			var price = $("#result").html();
+			var d = new Date();
+			var date = d.getFullYear()+""+(d.getMonth()+1)+""+d.getDate()+""+d.getHours()+""+d.getMinutes()+""+d.getSeconds();
+			console.log(date);
+			console.log(price);
+			IMP.init("imp24716388"); //가맹점 식별코드
+			IMP.request_pay({
+				merchant_uid : "ZIPcoock"+date, //거래아이디
+				name : "ZIPcoock"+date, //결제이름설정
+				amount : $("#result").html(), //결제금액
+				buyer_phone : $("#phone").val() //전화번호
+				
+			},function(rsp){
+				if(rsp.success){
+					$($(".purchase-content")[0]).css("display","none");
+					$($(".purchase-content")[1]).css("display","block");
+					console.log("카드승인번호 : "+rsp.apply_num);
+					$("#payForm").submit();
+				}else{
+					$($(".purchase-content")[0]).css("display","none");
+					$($(".purchase-content")[2]).css("display","block");
+				}
+			});
+		});
+		$("#no-payment").click(function() {
+			$($(".purchase-content")[0]).css("display","none");
+			$($(".purchase-content")[1]).css("display","block");
+		});
+		
+		$("#addAddr").click(function() {
+			$("#addAddrFrm").css("display","block");
+		})
+		
+		$(".addAddrBtn").click(function(){
+			// 추가 성공 시
+			$("#addAddrFrm").css("display","none");
 		});
 	});
-	$("#no-payment").click(function() {
-		
-	});
+	
 	</script>
 </body>
 </html>
