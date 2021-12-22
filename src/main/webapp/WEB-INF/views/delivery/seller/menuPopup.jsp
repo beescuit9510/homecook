@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <style>
 	.menuImg_div {
-		width: 400px;
+		width: 460px;
 		height: 200px;
 		text-align: center;
 	}
@@ -53,9 +53,12 @@
 	}
 	.btn-100 {
 		width: 100%;
-		height: 50px;
+		height: 60px;
 		position:fixed; 
 		bottom:0px;
+	}
+	.div_gap {
+		height: 60px;
 	}
 	
 </style>
@@ -118,6 +121,7 @@
 		
 	
 	</div>
+	<div class="div_gap"></div>
 	<button type="submit" class="btn btn-primary btn-100" id="addcart">장바구니 담기</button>
 	
 	</form>
