@@ -21,9 +21,9 @@
          	<div class = "header-main-content">
          		<ul class = "header-first">
          			<li><a href = "/mainboard.do">전체상품</a></li>
-         			<li><a href = "/">집쿠욱 배송</a></li>
-         			<li><a href = "/">집쿠욱직구</a></li>
-         			<li><a href = "/">집쿠욱멤버할인</a></li>
+         			<li><a href = "/mainboard.do?b=전체%20상품&c=식품">집쿠욱 식품</a></li>
+         			<li><a href = "/mainboard.do?b=전체%20상품&c=생활용품">집쿠욱 생활</a></li>
+         			<li><a href = "/mainboard.do?b=전체%20상품&c=뷰티">집쿠욱 뷰티</a></li>
          		</ul>
          		<div>
          			<div>

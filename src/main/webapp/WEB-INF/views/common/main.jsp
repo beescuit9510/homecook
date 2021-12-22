@@ -10,7 +10,7 @@
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/resources/css/common/slick.css">
 <link rel="stylesheet" href="/resources/css/common/slick-theme.css">
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -203,118 +203,31 @@
         				<div class = "subtitle_content">
         					<div class = "content">
         						<div class = "subtitle_text">
-        							배달비품BEST
+        							사장님 BEST
         						</div>
-        						<button type = "button" class = "subtitle_more" onclick = "/" >더보기 ></button>     					
+        						<button type = "button" class = "subtitle_more" onclick = "location.href='/mainboard.do';" >더보기 ></button>     					
         					</div>
         				</div>	
-        			</div>				
-        			
-        			
-        				
+        			</div>	
 					<div class = "product_box">
-						<div class = "product_slider">
-							<div><div class = "slider-card">
-								<div class = "img_box">
-									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
-									<div class = "img_content">[1~2일내출고] ------------ 쩌는 랍스타</div>
-									<div class = "img_subcontent">개당 268원 / 200ea</div>
-									<div class = "img_price">53,500원</div>
-								</div>								
-							</div></div>
-							<div><div class = "slider-card">
-								<div class = "img_box">
-									<img src="/resources/img/common/test_product_01.jpg" class="slider_img">
-									<div class = "img_content">닭싸다.</div>
-								</div>								
-							</div></div>
-							<div><div class = "slider-card">
-								<div class = "img_box">
-									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
-									<div class = "img_content">게싸다.</div>
-								</div>								
-							</div></div>
-							<div><div class = "slider-card">
-								<div class = "img_box">
-									<img src="/resources/img/common/test_product_01.jpg" class="slider_img">
-									<div class = "img_content">닭싸다.</div>
-								</div>								
-							</div></div>
-							<div><div class = "slider-card">
-								<div class = "img_box">
-									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
-									<div class = "img_content">게싸다.</div>
-								</div>								
-							</div></div>
-							<div><div class = "slider-card">
-								<div class = "img_box">
-									<img src="/resources/img/common/test_product_01.jpg" class="slider_img">
-									<div class = "img_content">닭싸다.</div>
-								</div>								
-							</div></div>
-							<div><div class = "slider-card">
-								<div class = "img_box">
-									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
-									<div class = "img_content">게싸다.</div>
-								</div>								
-							</div></div>
-							<div><div class = "slider-card">
-								<div class = "img_box">
-									<img src="/resources/img/common/test_product_01.jpg" class="slider_img">
-									<div class = "img_content">닭싸다.</div>
-								</div>								
-							</div></div>
-							<div><div class = "slider-card">
-								<div class = "img_box">
-									<img src="/resources/img/common/test_product_00.jpg" class="slider_img">
-									<div class = "img_content">게싸다.</div>
-								</div>								
-							</div></div>
-							
-							
+						<div class = "product_slider" id = "bestSlider">	
 						</div>
 					</div>
-        
 					
-        			<div class = "dummy">dummy</div>
-        			<div class = "dummy">dummy</div>
-        			<div class = "dummy">dummy</div>
-        			<div class = "dummy">dummy</div>
-        			<div class = "dummy">dummy</div>
-        			<div class = "dummy">dummy</div>
-        			<div class = "dummy">dummy</div>
-        			<button type="button" class="btn btn-info disabled">Info</button>
-        
-				    <div class="test" style="width:100%; overflow-x: scroll;">
-  						<div class = "scrollMenu" style="width:0 auto;font-size: 20px;">
-  							<div class = "card">
-  								<a href="#Mark">Mark</a>
-  							</div>
-  							<div class = "card">
-  								<a href="#Johnny">Johnny</a>
-  							</div>
-  							<div class = "card">
-  								<a href="#WinWin">WinWin</a>
-  							</div>
-  							<div class = "card">
-  								<a href="#Haechan">Haechan</a>
-  							</div>
-  							<div class = "card">
-  								<a href="#Shotaro">Shotaro</a>
-  							</div>
-  							<div class = "card">
-  								<a href="#Doyoung">Doyoung</a>
-  							</div>  							
-  							<div class = "card">
-  								<a href="#Taeil">Taeil</a>
-  							</div>  							
-  							<div class = "card">
-  								<a href="#Xaojun">Xaojun</a>
-  							</div>
-  							<div class = "card">
-  								<a href="#Jaehyun">Jaehyun</a>
-  							</div>  			
-  						</div>
+					
+					<div class = "subtitle_box">
+        				<div class = "subtitle_content">
+        					<div class = "content">
+        						<div class = "subtitle_text">
+        							집쿠욱 초이스
+        						</div>
+        						<button type = "button" class = "subtitle_more" onclick = "location.href='/mainboard.do';" >더보기 ></button>     					
+        					</div>
+        				</div>	
+        			</div>		
+					<div class = "product_box">
+						<div class = "product_slider" id = "choiceSlider">
+						</div>
 					</div>
 					
         		</div> <!-- main_content_field -->
@@ -325,25 +238,7 @@
 </body>
 <script>
 $(document).ready(function()
-{ 	
-	var Obj = $(".scrollMenu");
-	var index = 0;
-	
-	
-	setInterval(function() 
-	{
-		if($('.scrollMenu').scrollLeft() >= 780)
-		{
-			$('.scrollMenu').animate( { scrollLeft: '-=800' }, 1000);
-			console.log($('.scrollMenu').scrollLeft());
-		}
-		else
-		{
-			$('.scrollMenu').animate( { scrollLeft: '+=100' }, 1000);
-			console.log($('.scrollMenu').scrollLeft());
-		}
-		}, 1000);
-	
+{	
 	$('#slider-div').slick({
 		slide: 'div',				//슬라이드 되어야 할 태그 ex) div, li 
 		infinite : true, 			//무한 반복 옵션	 
@@ -378,12 +273,125 @@ $(document).ready(function()
 		]
 	});
 	
-	$(".product_slider").slick({
+	/*$(".product_slider").slick({
 		slidesToShow : 5,			// 한 화면에 보여질 컨텐츠 개수
 		slidesToScroll : 5,			//스크롤 한번에 움직일 컨텐츠 개수		
 		prevArrow : "<button type='button' class='slick-prev slick-gray'>Previous</button>",		// 이전 화살표 모양 설정
 		nextArrow : "<button type='button' class='slick-next slick-gray'>Next</button>",		// 다음 화살표 모양 설정
+	});*/
+	
+	
+	var iBest = 3;
+	var iCount = 8;
+	var indexMax = 0;
+	
+	$.ajax({			
+		
+		url 	: 	"/get_ProductList.do", 	//서블릿을 요청할지 매핑값
+		type	: 	"post",					// method 설정
+		data 	:	
+		{	
+			iCategory : iBest
+		},
+		success	: function(data)		// 성공시와 에러시, 그리고 완료시
+		{			
+			var list  = data;
+			if(list != null)
+			{
+				if(list.length <= iCount)
+					indexMax = list.length;		
+				else
+					indexMax = iCount;
+				
+				var table = $("#bestSlider");
+				
+				console.log(list);
+				
+				for(var i = 0; i < indexMax; ++i)
+				{	
+					console.log(list[i].productName);
+					console.log(list[i].capacity);
+					console.log(list[i].price);
+					
+					
+					var html = "";
+					var card = "<div><div class = 'slider-card'>";
+					var imgbox = "<div class = 'img_box'>";
+					var img = "<img src='/resources/img/common/test_product_00.jpg' class='slider_img'>";
+					var product_name = "<div class = 'product_name'>"+list[i].productName+"</div>";
+					var img_sub = "<div class = 'img_subcontent'>"+list[i].capacity+"</div>";
+					var price = "<div class = 'img_price'>"+list[i].price+" 원</div>";
+					var end = "</div></div></div>";
+							
+					html += card + imgbox+ img+ product_name+ img_sub+ price+ end;
+					table.append(html);
+				}
+				
+				$("#bestSlider").slick({
+					slidesToShow : 5,			// 한 화면에 보여질 컨텐츠 개수
+					slidesToScroll : 5,			//스크롤 한번에 움직일 컨텐츠 개수		
+					prevArrow : "<button type='button' class='slick-prev slick-gray'>Previous</button>",		// 이전 화살표 모양 설정
+					nextArrow : "<button type='button' class='slick-next slick-gray'>Next</button>",		// 다음 화살표 모양 설정
+				});
+			}			
+		},
+		error	: function()
+		{
+			console.log("Fail get productList best...");
+		}	
 	});
+	
+	var iChoice = 5;
+	
+	$.ajax({			
+		
+		url 	: 	"/get_ProductList.do", 	//서블릿을 요청할지 매핑값
+		type	: 	"post",					// method 설정
+		data 	:	
+		{	
+			iCategory : iChoice
+		},
+		success	: function(data)		// 성공시와 에러시, 그리고 완료시
+		{			
+			var list  = data;
+			if(list != null)
+			{
+				if(list.length <= iCount)
+					indexMax = list.length;		
+				else
+					indexMax = iCount;
+				
+				var table = $("#choiceSlider");
+				
+				for(var i = 0; i < indexMax; ++i)
+				{	
+					var html = "";
+					var card = "<div><div class = 'slider-card'>";
+					var imgbox = "<div class = 'img_box'>";
+					var img = "<img src='/resources/img/common/test_product_00.jpg' class='slider_img'>";
+					var product_name = "<div class = 'product_name'>"+list[i].productName+"</div>";
+					var img_sub = "<div class = 'img_subcontent'>"+list[i].capacity+"</div>";
+					var price = "<div class = 'img_price'>"+list[i].price+" 원</div>";
+					var end = "</div></div></div>";
+							
+					html += card + imgbox+ img+ product_name+ img_sub+ price+ end;
+					table.append(html);
+				}
+				
+				$("#choiceSlider").slick({
+					slidesToShow : 5,			// 한 화면에 보여질 컨텐츠 개수
+					slidesToScroll : 5,			//스크롤 한번에 움직일 컨텐츠 개수		
+					prevArrow : "<button type='button' class='slick-prev slick-gray'>Previous</button>",		// 이전 화살표 모양 설정
+					nextArrow : "<button type='button' class='slick-next slick-gray'>Next</button>",		// 다음 화살표 모양 설정
+				});
+			}			
+		},
+		error	: function()
+		{
+			console.log("Fail get productList best...");
+		}	
+	});
+	
 	
 	
 });

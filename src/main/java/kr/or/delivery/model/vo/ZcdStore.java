@@ -26,6 +26,8 @@ public class ZcdStore {
 	private String originInfo;
 	private String category1;
 	private String category2;
+	private String x;
+	private String y;
 	
 	ArrayList<StoreLogo> list;
 	private String storeLogo;

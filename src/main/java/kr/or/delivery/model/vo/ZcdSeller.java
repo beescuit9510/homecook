@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ZcdSeller extends Member {
-	private int sellerNo;
-	private String sellerBusinessNumber;
+	private String businessNo;
 }

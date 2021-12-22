@@ -4154,7 +4154,7 @@ fieldset:disabled .btn {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding-left: 0;
-  margin-bottom: 0;
+  margin-bottom: 30px;
   list-style: none;
 }
 
@@ -4163,7 +4163,7 @@ fieldset:disabled .btn {
   font-size: 14px;
   padding: 0.5rem 1rem;
   padding: 14px 16px 15px;
-  width: 160px;
+  width: 220px;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -4180,9 +4180,6 @@ fieldset:disabled .btn {
   cursor: default;
 }
 
-.nav-tabs {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
 
 .nav-tabs .nav-link {
   margin-bottom: -1px;
@@ -4205,9 +4202,11 @@ fieldset:disabled .btn {
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
+  color: #9ac6e8;
   background-color: #fff;
-  border-color: rgba(0, 0, 0, 0.1);
+  border-bottom: none;
+  text-decoration: underline;
+  font-weight: 600;
 }
 
 .nav-tabs .dropdown-menu {
@@ -4852,6 +4851,7 @@ fieldset:disabled .btn {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0;
+  margin-bottom: 10px;
 }
 
 .card > hr {
@@ -4905,7 +4905,7 @@ fieldset:disabled .btn {
 }
 
 .card-header {
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
@@ -5856,11 +5856,13 @@ fieldset:disabled .btn {
   opacity: 1;
 }
 
+/*
 .btn-close:focus {
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(0, 140, 186, 0.25);
   opacity: 1;
 }
+*/
 
 .btn-close:disabled, .btn-close.disabled {
   pointer-events: none;
@@ -11593,7 +11595,7 @@ label,
 }
 
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
-  background-color: #f0f0f0;
+  background-color: #fff;
 }
 
 .nav-pills .active {

@@ -17,13 +17,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 
 import kr.or.seller.model.service.SellerService;
+import kr.or.seller.model.vo.OrderPageData;
 import kr.or.seller.model.vo.SellerProductPageData;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PaymentInfo;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.ProductImg;
 import kr.or.table.model.vo.PwChangeVO;
@@ -459,8 +462,42 @@ private SellerService service;
 		return "zipcoock/common/msg";
 	}
 	@RequestMapping(value="/shippingInfomation.do")
-	public String shippingInfomation(){
+	public String shippingInfomation(HttpSession session, Model model){
+		Member member = (Member)session.getAttribute("m");
+		ArrayList<Integer> shippingInfo = service.selectShippingInfomation(member);
+		model.addAttribute("shippingInfo",shippingInfo);
+		System.out.println(shippingInfo);
 		return "zipcoock/seller/mypage/shippingInformation";
+		
+	}
+	@RequestMapping(value="/ajaxWeekSaleCount.do")
+	@ResponseBody
+	public ArrayList<Integer> ajaxWeekSaleCount(Member member, Model model) {
+		
+		ArrayList<Integer> WeekSaleCount = service.ajaxWeekSaleCount(member);
+		
+			
+			return WeekSaleCount;
+			
+		}
+	@RequestMapping(value="/ajaxWeekSalePriceCount.do")
+	@ResponseBody
+	public ArrayList<Integer> ajaxWeekSalePriceCount(Member member, Model model) {
+		
+		ArrayList<Integer> WeekSaleCount = service.ajaxWeekSalePriceCount(member);
+		
+			
+			return WeekSaleCount;
+			
+		}
+	@RequestMapping(value="/searchOrder.do")
+	public String searchOrder(Member member, int reqPage, PaymentInfo PaymentInfo,Model model) {
+		String paymentInfo = PaymentInfo.getIsDelivered();
+		OrderPageData opd = new SellerService().selectOrderList(reqPage, member, paymentInfo);
+		
+		model.addAttribute("opd",opd);
+		return "zipcoock/seller/mypage/searchOrder";
+	}
+		
 	}
 
-}

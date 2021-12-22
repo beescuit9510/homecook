@@ -9,6 +9,7 @@ import kr.or.table.model.vo.AdminDeal;
 import kr.or.table.model.vo.AdminQna;
 import kr.or.table.model.vo.AdminRefund;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.Qna;
 import kr.or.zipcoock.admin.model.dao.AdminDao;
 
@@ -87,6 +88,11 @@ public class AdminService
 	public int updateOnePolicy(AdminRefund r) 
 	{
 		return dao.updateOnePolicy(r);
+	}
+
+	public ArrayList<Product> selectSomeProudct(int iCategory) 
+	{
+		return dao.selectSomeProudct(iCategory);
 	}
 	
 }

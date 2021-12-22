@@ -49,7 +49,7 @@
         					<div class="content_div_info">
         						<div class="content_div_opt1 overflow-text">상호명</div>
         						<div class="content_div_opt2">매장 전화번호</div>
-        						<div class="content_div_opt3">메뉴관리</div>
+        						<div class="content_div_opt3">메뉴편집</div>
         					</div>
         					<c:if test="${not empty list }">
         						<table class="content_div_table">
@@ -59,7 +59,7 @@
 											<td><div class="content_div_opt2" style="color: #333">${zs.storePhone }</div></td>
 											<td>
 												<div class="content_div_opt3">
-													<a href="/selectOneMarket.do?storeNo=${zs.storeNo }" style="color: #9ac6e8;">추가</a>
+													<a href="/addMenuGroupFrm.do?storeNo=${zs.storeNo }" style="color: #9ac6e8;">편집</a>
 													<input type="hidden" name="storeNo" value="${zs.storeNo }">
 												</div>
 											</td>

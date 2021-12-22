@@ -17,6 +17,8 @@
 
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a332b607a0069f2456286f6df7d82ed7&libraries=services"></script>
+
 </head>
 <body>
 <div class="s-wrapper">
@@ -133,6 +135,11 @@
 													</div>
 	        										<br>
 	        										
+													<input type="hidden" id="x" name="x" value="">
+													<input type="hidden" id="y" name="y" value="">
+													<div id="map" style="display: none;"></div>
+													<div id="coordXY" style="display: none;"></div>
+	        										
 													<div class="row">
 														<label for="originInfo" class="col-2 col-form-label">원산지 정보</label>
 														<div class="col-10">
@@ -187,7 +194,7 @@
 													</div>
 													<br>
 												
-	        										<br><br>
+	        										<br>
 	        										<span class="info_span">선택 정보</span>
 		        									<hr>
 	        										
@@ -262,6 +269,67 @@
     					$("#address2").focus();
     				}
     			}).open();
+    		}
+    		
+    		
+    		$("#address2").on("focus", function() {
+    			return addressChk();
+    		});
+    		
+    		
+    		var address = document.getElementById("address1");
+    		var mapContainer = document.getElementById("map");
+    		var coordXY = document.getElementById("coordXY");
+    		var mapOption;
+    		var map;
+    		var x,y = "";
+
+    		if (address.value == "") {
+				mapOption = {
+					center: new daum.maps.LatLng(37.5339937455272, 126.89698912697732), // 임의의 지도 중심좌표
+    		        level: 4 // 지도의 확대 레벨
+				};
+    		}
+
+    		map = new daum.maps.Map(mapContainer, mapOption); // 지도 생성
+
+    		function addressChk() {
+				var gap = address.value; // 주소검색어
+				if (gap == "") {
+					address.focus();
+		  			return;
+		 		}
+    		 
+				// 주소-좌표 변환 객체를 생성
+				var geocoder = new daum.maps.services.Geocoder();
+	
+				// 주소로 좌표를 검색
+	    		geocoder.addressSearch(gap, function(result, status) {
+	    		  
+		    		// 정상적으로 검색이 완료됐으면,
+		    		if (status == daum.maps.services.Status.OK) {
+		    		   var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+		    		   y = result[0].x;
+		    		   x = result[0].y;
+		
+		    		   // 결과값으로 받은 위치를 마커로 표시
+		    		   var marker = new daum.maps.Marker({
+		    			   map: map,
+		    			   position: coords
+		    		   });
+		   
+		    		   // 지도 중심을 이동
+		    		   map.setCenter(coords);
+		
+		    		   coordXY.innerHTML = "<br>X좌표 : " + x + "<br><br>Y좌표 : " + y;
+		    		   var x1 = $("#x");
+		    		   var y1 = $("#y");
+		    		   x1.val(x);
+		    		   y1.val(y);
+		    		   console.log(x);
+		    		   console.log(y);
+		    		}
+		    	});
     		}
     		
     		$("#category1").on("change", function() {
@@ -357,7 +425,7 @@
     		
     		$("#storeName").on("keyup", function() {
     			var storeName = $(this).val();
-    			var storeNameReg = /^[0-9a-zA-Z가-힣\s]{2,20}$/;
+    			var storeNameReg = /^[0-9a-zA-Z가-힣][0-9a-zA-Z가-힣\s]{1,20}$/;
     			if (storeNameReg.test(storeName)) {
     				$.ajax({
     					url : "/storeNameCheck.do",
