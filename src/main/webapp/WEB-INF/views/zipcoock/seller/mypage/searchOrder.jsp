@@ -140,7 +140,7 @@
           		</div>
           	</div>
           	<div class="well well-lg" style="background-color:white;">
-          		<form action="/saleManage?reqPage=1&memberNo=${sessionScope.m.memberNo }" method="post">
+          		<form action="/searchOrder.do?reqPage=1&memberNo=${sessionScope.m.memberNo }" method="post">
           		<table>
           			<tbody>
           				<tr>
@@ -149,11 +149,11 @@
           						<div>
           							<div>
           								<div class="dropdown">
-          									<select class="btn btn-default" name="orderStatus" style="background: white;color: black; border: 1px solid; vertical-align: middle; height: 35px;">
-          										<option selected value="4">전체</option>
-          										<option value="1">결제완료</option>
-          										<option value="2">발송</option>
-          										<option value="3">배송완료</option>
+          									<select class="btn btn-default" name="isDelivered" style="background: white;color: black; border: 1px solid; vertical-align: middle; height: 35px;">
+          										<option selected value="A">전체</option>
+          										<option value="N">결제완료</option>
+          										<option value="E">발송</option>
+          										<option value="Y">배송완료</option>
           									</select>
           								</div>
           							</div>
@@ -175,46 +175,40 @@
 						<th>구매자</th>
 						<th>결제방식</th>
 						<th>주문가격</th>
-						<th>배송비</th>
-						<th>사용포인트</th>
-						<th>결제금액</th>
 						<th>주문일자</th>
 						<th>주문상태</th>
 						<th>상세보기</th>
 					</tr>
-					<c:forEach items="${list }" var="o" varStatus="i">
+					<c:forEach items="${opd.list }" var="o" varStatus="i">
 						<tr class="table-light">
-							<td>${o.orderNo }</td>
-							<td>${o.memberName }</td>
+							<td>${o.paymentInfoCode }</td>
+							<td>${o.receiverName }</td>
 							<c:choose>
-								<c:when test="${o.paymentMethod eq 0 }">
-									<td>신용카드</td>
+								<c:when test="${o.paymentMethod eq '카드'}">
+									<td>카드</td>
 								</c:when>
-								<c:when test="${o.paymentMethod eq 1 }">
+								<c:when test="${o.paymentMethod eq '계좌이체' }">
 									<td>계좌이체</td>
 								</c:when>
 							</c:choose>
-							<td>${o.orderPrice }</td>
-							<td>${o.deliveryPrice }</td>
-							<td>${o.orderPoint }</td>
-							<td>${o.paymentPrice }</td>
+							<td>${o.price }</td>
 							<td>${o.orderDate }</td>
 							<c:choose>
-								<c:when test="${o.orderStatus eq N }">
-									<td>결재완료</td>
+								<c:when test="${o.isDelivered eq 'N' }">
+									<td>결제완료</td>
 								</c:when>
-								<c:when test="${o.orderStatus eq E }">
+								<c:when test="${o.isDelivered eq 'E' }">
 									<td>발송</td>
 								</c:when>
-								<c:when test="${o.orderStatus eq Y }">
+								<c:when test="${o.isDelivered eq 'Y' }">
 									<td>배송완료</td>
 								</c:when>
 							</c:choose>
-							<td><a href="/orderManage?orderNo=${o.orderNo }&memberNo=${sessionScope.m.memberNo }"><button class="btn btn-sm">이동</button></a></td>
+							<td><a href="/orderManage?orderNo=${o.paymentInfoCode }&memberNo=${sessionScope.m.memberNo }"><button class="btn btn-sm">이동</button></a></td>
 						</tr>
 					</c:forEach>
 				</table>
-				<div id="pageNavi">${pageNavi }</div>
+				<div id="pageNavi">${opd.pageNavi }</div>
           	</div>
           </div>
         </div>

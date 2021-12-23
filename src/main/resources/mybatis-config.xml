@@ -21,6 +21,7 @@
 		<typeAlias type="kr.or.zipcoock.board.vo.ProductCard" alias="card"/>	
 		<typeAlias type="kr.or.zipcoock.board.vo.SearchTool" alias="tool"/>	
 		<typeAlias type="kr.or.table.model.vo.BusinessSellerInfo" alias="bsi"/>
+		<typeAlias type="kr.or.seller.model.vo.SellerSaleManage" alias="ssm"/>		
 
 		<typeAlias type="kr.or.delivery.model.vo.ZcdStore" alias="zs"/>
 		<typeAlias type="kr.or.delivery.model.vo.StoreLogo" alias="sl"/>

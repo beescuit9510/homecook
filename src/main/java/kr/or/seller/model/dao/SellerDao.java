@@ -34,6 +34,7 @@ public class SellerDao {
 	}
 
 	public ArrayList<Product> selectProductList(Map<Object, Object> pagedata) {
+		System.out.println(pagedata+"dao");
 		List<Product> list = sqlSession.selectList("product.selectProductList", pagedata);
 		System.out.println(list + "셀렉트 리스트 결과");
 		return (ArrayList<Product>) list;
@@ -130,7 +131,7 @@ public class SellerDao {
 
 
 	public int selectTotalCount(Map<Object, Object> pagedata) {
-		int result = sqlSession.selectOne("shippingInfo.selectTotalCountsearch",pagedata);
+		int result = sqlSession.selectOne("shippingInfo.selectOrderTotalCountSearch",pagedata);
 		return result;
 	}
 
@@ -145,6 +146,28 @@ public class SellerDao {
 		System.out.println(pagedata+"dao pagedata값");
 		System.out.println(list+"dao list값");
 		return (ArrayList<SellerSaleManage>)list;
+	}
+
+	public int selectOrderTotalCount(Member member) {
+		return sqlSession.selectOne("shippingInfo.selectOrderTotalCount", member);
+		
+	}
+
+	
+
+	public PaymentInfo selectpaymentInfo(int paymentInfoCode) {
+		
+		return sqlSession.selectOne("paymentInfo.selectOnePaymentInfo", paymentInfoCode);
+	}
+
+	public ArrayList<Product> orderProductList(Map<Object, Object> productList) {
+		List<Product> list = sqlSession.selectList("orderedProduct.selectOderProductList");
+		return (ArrayList<Product>)list;
+	}
+
+	public int selectOrderCount(int paymentInfoCode) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
