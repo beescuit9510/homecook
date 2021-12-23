@@ -11,6 +11,7 @@ import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.StoreLogo;
+import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.table.model.vo.Member;
 
@@ -162,6 +163,14 @@ public class DeliverySellerDao {
 	public ArrayList<AddMenu> selectAdMenuList2(int menuNo) {
 		List<AddMenu> list = sqlSession.selectList("zcdseller.selectAddMenuList2", menuNo);
 		return (ArrayList<AddMenu>) list;
+	}
+
+	public int selectAddMenuPrice(AddMenu addmenu) {
+		return sqlSession.selectOne("zcdseller.selectAddMenuPrice", addmenu);
+	}
+
+	public int addCart(ZcdCart zc) {
+		return sqlSession.insert("zcdseller.addCart", zc);
 	}
 
 

@@ -5,11 +5,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.io.ResolverUtil.IsA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +27,7 @@ import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.StoreLogo;
+import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.seller.model.service.DeliverySellerService;
 import kr.or.table.model.vo.Member;
@@ -585,16 +590,64 @@ public class DeliverySellerController {
 	}
 	
 	@RequestMapping(value="/menuPopup.do", method = RequestMethod.GET)
-	public String popupGet(Model model, @RequestParam(value="menuNo", defaultValue="") int menuNo) throws Exception {
+	public String popupGet(Model model, int storeNo, @RequestParam(value="menuNo", defaultValue="") int menuNo) throws Exception {
 		Menu menu = service.selectOneMenu(menuNo);
 		// 필수 선택
 		ArrayList<AddMenu> addMenu1 = service.selectAddMenuList1(menuNo);
 		// 추가 선택
 		ArrayList<AddMenu> addMenu2 = service.selectAddMenuList2(menuNo);
 		model.addAttribute("menu", menu);
+		model.addAttribute("storeNo", storeNo);
 		model.addAttribute("addMenu1", addMenu1);
 		model.addAttribute("addMenu2", addMenu2);
 		return "delivery/seller/menuPopup";
 	}
+	
+	@RequestMapping(value="/addCart.do")
+	@ResponseBody
+	public int addCart(Member member, @RequestParam(defaultValue="") List<String> addmenuInfo2, String addmenu1Opt, ZcdCart zc, HttpSession session, Model model) {
+		Member m = (Member)session.getAttribute("m");
+		String addmenu2 = "";
+		AddMenu addmenu = new AddMenu();
+		addmenu.setMenuNo(zc.getMenuNo());
+		int addmenu2Price = 0;
+		
+		
+		for (int i=0; i<addmenuInfo2.size(); i++) {
+			String addmenuName = addmenuInfo2.get(i);
+			addmenu2 += addmenuName;
+			addmenu.setAddmenuName(addmenuName);
+			int addmenuPrice = service.selectAddMenuPrice(addmenu);
+			addmenu2Price = addmenu2Price + addmenuPrice;
+			
+			if(i != addmenuInfo2.size()-1) {
+				addmenu2 += ", ";
+			}
+		}			
+		
+		Menu menu = service.selectOneMenu(zc.getMenuNo());
+		int menuPrice = menu.getMenuPrice();
+		addmenu2Price = menuPrice + addmenu2Price;
+		System.out.println(addmenu1Opt);
+        System.out.println(addmenu2);
+        System.out.println(zc.getMenuNo());
+        System.out.println(addmenu2Price);
+        System.out.println(zc.getAmount());
+        
+        zc.setMemberNo(m.getMemberNo());
+        zc.setAddmenuInfo1(addmenu1Opt);
+        zc.setAddmenuInfo2(addmenu2);
+        zc.setMenuAllprice(addmenu2Price);
+        
+        int result = service.addCart(zc);
+        
+        if (result > 0) {
+        	return 0;
+		} else {
+			return 1;
+		}
+	}
+	
+	
 	
 }

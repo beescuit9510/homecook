@@ -16,6 +16,5 @@ public class Menu {
 	private int menuPrice;
 	private String filename;
 	private String filepath;
-	private String menuaddStatus;
 	
 }
