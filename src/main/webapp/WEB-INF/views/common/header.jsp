@@ -12,8 +12,25 @@
          			<li><a href = "/">집쿠욱 메인</a></li>    
          			<li><a href = "/">집쿠욱 배달 메인</a></li> 
          		</ul>
-	         	<ul>         			
-	         		<li><a href = "/call_AdminPage.do">로그인 정보(로그인 안하면 안보이게)</a></li> 
+	         	<ul>   
+	         		<!--<c:choose>      			
+		         		<c:when test = "${not empty sessionScope.m }">		         		
+		         			<li><a href = "/call_AdminPage.do">로그인 정보</a></li> 
+		         		</c:when>       		
+		         		
+	         		</c:choose>-->   
+  					
+  					<c:choose>
+						<c:when test="${sessionScope.m.memberLevel eq '관리자'}">
+							<li><a href = "/call_AdminPage.do">관리자 메뉴로 이동</a></li> 
+						</c:when>					
+								
+						<c:otherwise> 
+							<li><div class = "memberName">[${sessionScope.m.memberName}]님 환영 합니다.</div></li>
+						 </c:otherwise>						
+					</c:choose>
+
+
 	         	</ul>          	
          	</div> 
          </div>
@@ -21,20 +38,33 @@
          	<div class = "header-main-content">
          		<ul class = "header-first">
          			<li><a href = "/mainboard.do">전체상품</a></li>
-         			<li><a href = "/">집쿠욱 배송</a></li>
-         			<li><a href = "/">집쿠욱직구</a></li>
-         			<li><a href = "/">집쿠욱멤버할인</a></li>
+         			<li><a href = "/mainboard.do?b=전체%20상품&c=식품">집쿠욱 식품</a></li>
+         			<li><a href = "/mainboard.do?b=전체%20상품&c=생활용품">집쿠욱 생활</a></li>
+         			<li><a href = "/mainboard.do?b=전체%20상품&c=뷰티">집쿠욱 뷰티</a></li>
          		</ul>
          		<div>
          			<div>
-         				<img src="/resources/img/common/logo_00.png" class="sc-eWnToP fEDxD">			
+         				<img style ="height : 50px;" src="/resources/img/common/logo_00.png" class="sc-eWnToP fEDxD">			
          			</div>
          		</div>
-         		<ul class = "header-last">
-         			<li><a href = "/loginFrm.do"><i class="fas fa-sign-in-alt"></i>  로그인</a></li>
-         			<li><a href = "/joinFrm.do"><i class="fas fa-user-plus"></i>  회원 가입</a></li>
-         			<li><a href = "/"><i class="fas fa-book-reader"></i>  고객 센터</a></li>
-         		</ul>
+         		
+         		<c:choose>
+					<c:when test = "${empty sessionScope.m }">
+						<ul class = "header-last">
+		         			<li><a href = "/loginFrm.do"><i class="fas fa-sign-in-alt"></i>  로그인</a></li>
+		         			<li><a href = "/joinFrm.do"><i class="fas fa-user-plus"></i>  회원 가입</a></li>
+		         			<li><a href = "/"><i class="fas fa-book-reader"></i>  고객 센터</a></li>
+		         		</ul>	
+					</c:when>
+					<c:otherwise>
+						<ul class = "header-last">		
+		         			<li><a href = "/"><i class="fas fa-bookmark"></i>  마이 페이지</a></li>
+		         			<li><a href = "/"><i class="fas fa-book-reader"></i>  고객 센터</a></li>
+		         			<li><a href = "/loginFrm.do"><i class="fas fa-sign-in-alt"></i>  로그아웃</a></li>   
+		         		</ul>
+					</c:otherwise>
+				</c:choose>
+         		
          	</div>
          </div>         
         </header>

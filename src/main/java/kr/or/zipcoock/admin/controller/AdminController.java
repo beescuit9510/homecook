@@ -14,6 +14,7 @@ import kr.or.table.model.vo.AdminQna;
 import kr.or.table.model.vo.AdminRefund;
 import kr.or.table.model.vo.HomecookDeal;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.Qna;
 import kr.or.zipcoock.admin.model.service.AdminService;
 
@@ -153,9 +154,33 @@ public class AdminController
 		return result;
 	}
 	
-	//Fix_HomeDeal
+	@RequestMapping(value = "/admin_ReturnPolicy.do")
+	public String call_ReturnPolicy(int policyNo, Model model)
+	{		
+		AdminRefund r = service.selectOneReturnPolicyInfo(policyNo);		
+		model.addAttribute("r", r);				
+		return "admin/adminPolicyInfo";
+	}	
+	
+	@RequestMapping(value = "/Fix_RePolicyData.do")
+	@ResponseBody
+	public int fix_RePolicyData(int rePolicyNo, String returnShipping, String retrunLength, String policyContent)
+	{
+		AdminRefund r = new AdminRefund();
+		r.setReturnPolicyNo(rePolicyNo);
+		r.setReturnShipping(returnShipping);
+		r.setRetrunLength(retrunLength);
+		r.setPolicyContent(policyContent);	
+		
+		int result = service.updateOnePolicy(r);
+		return result;
+	}
 	
 	
-	
-	
+	@RequestMapping(value = "/get_ProductList.do")
+	@ResponseBody
+	public ArrayList<Product> get_ProductList(int iCategory)
+	{
+		return service.selectSomeProudct(iCategory);
+	}	
 }

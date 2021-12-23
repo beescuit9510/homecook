@@ -131,6 +131,16 @@ a{
     color: gray;
 }
 
+.header-last>li>div
+{
+	font-family: ns_bold;
+    font-size: 14px;
+    font-weight: 1000;
+    
+    color: gray;
+    margin-right: 10px;
+}
+
 .header-last>li>a
 {
 	font-family: ns_bold;

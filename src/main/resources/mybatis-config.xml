@@ -18,9 +18,6 @@
 		<typeAlias type="kr.or.table.model.vo.ProductImg" alias="pImg"/>
 		<typeAlias type="kr.or.table.model.vo.ShippingInfo" alias="si"/>
 		<typeAlias type="kr.or.table.model.vo.ReturnPolicy" alias="rp"/>
-		<typeAlias type="kr.or.zipcoock.mypage.vo.InsertObj" alias="insertObj"/>	
-		<typeAlias type="kr.or.zipcoock.mypage.vo.UpdateObj1" alias="updateObj"/>	
-		<typeAlias type="kr.or.zipcoock.mypage.vo.DeleteObj1" alias="deleteObj"/>	
 		<typeAlias type="kr.or.zipcoock.board.vo.ProductCard" alias="card"/>	
 		<typeAlias type="kr.or.zipcoock.board.vo.SearchTool" alias="tool"/>	
 		<typeAlias type="kr.or.table.model.vo.BusinessSellerInfo" alias="bsi"/>
@@ -29,5 +26,8 @@
 		<typeAlias type="kr.or.delivery.model.vo.StoreLogo" alias="sl"/>
 		<typeAlias type="kr.or.delivery.model.vo.ZcdEvent" alias="ze"/>
 		<typeAlias type="kr.or.delivery.model.vo.ZcdEventFile" alias="zef"/>
+		<typeAlias type="kr.or.delivery.model.vo.MenuGroup" alias="mg"/>
+		<typeAlias type="kr.or.delivery.model.vo.Menu" alias="menu"/>
+		<typeAlias type="kr.or.delivery.model.vo.AddMenu" alias="addmenu"/>
 </typeAliases>
 </configuration>

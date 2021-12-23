@@ -18,18 +18,14 @@
 <a href = "/insertProductFrm.do">판매자 상품등록 페이지</a>
 <a href = "/loginFrm.do">로그인</a>
 <a href = "/join.do">회원가입</a>
+<a href = "/shippingInfomation.do">배송정보</a>
+<a href = "/searchOrder.do?reqPage=1&isDelivered=N&memberNo=${m.memberNo }">판매 조회</a>
 </fieldset>
 <hr>
 <br>
 <a href = "/mainboard.do">집쿠욱메인보드</a>
 <a href = "/mainboardView.do?memberNo=1&productNo=1">메인상세</a>
-
-<a href = "/mypageHelpFrm.do">mypage</a>
 <a href = "/cart.do">cart</a>
-<a href = "/mypageReceiptView.do">receipt</a>
-<a href = "/mypageReviewView.do">review</a>
-<a href = "/mypageQnAView.do">qna</a>
-<a href = "/mypageHelpView.do">help</a>
 <hr>
 
 <h1>delivery</h1>

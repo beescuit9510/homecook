@@ -9,6 +9,26 @@ insert into product_img values(PRODUCT_IMG_SEQ.NEXTVAL,#{productNo},#{fileName},
 insert into product_img values(PRODUCT_IMG_SEQ.NEXTVAL,#{productNo},#{fileName},#{filePath},'N')
 </insert>
 
+<update id="updateProductMainImg" parameterType="pImg">
+update product_img
+set filename = #{fileName},
+    filepath = #{filePath}
+    where product_no = #{productNo} and main_img = 'Y'
+</update>
+<select id="selectProductImg" parameterType="pImg" resultType="pImg">
+select 
+product_img_no as productImgNo,
+product_no as productNo,
+fileName,
+filePath,
+main_img as mainImg
+from  product_img 
+where product_no = #{productNo} and main_img = 'N'
+</select>
+<delete id="deleteProductImg" parameterType="pImg">
+DELETE FROM Product_img WHERE product_Img_No = #{productImgNo}
+</delete>
+
 </mapper>
  
  

@@ -1,5 +1,7 @@
 package kr.or.delivery.model.vo;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,4 +26,9 @@ public class ZcdStore {
 	private String originInfo;
 	private String category1;
 	private String category2;
+	private String x;
+	private String y;
+	
+	ArrayList<StoreLogo> list;
+	private String storeLogo;
 }

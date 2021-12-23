@@ -71,9 +71,8 @@
 						class="side_nav_span side_nav_span">정보 확인/수정</span></a> <a
 						href="productList.do?reqPage=1" class="side_nav_div side_nav_div_selected">
 						<span class="side_nav_span_selected">상품 관리</span></a> 
-						<a href="productList.do" class="side_nav_div">
-						<span class="side_nav_span">즐겨찾기
-							목록</span></a> <a href="zcdMyReview.do" class="side_nav_div"><span
+						<a href="/shippingInfomation.do" class="side_nav_div">
+						<span class="side_nav_span">매출 정보</span></a> <a href="zcdMyReview.do" class="side_nav_div"><span
 						class="side_nav_span">리뷰내역</span></a> <a href="zcdMyQnA.do"
 						class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
 				</div>
@@ -87,10 +86,10 @@
         				<div id="title">
 						<h2>상품 조회</h2>
 						<div class="productTotal">
-							<span>판매중인 상품 </span><button style="float:right; margin-top:20px;">상품등록</button>
+							<span>판매중인 상품 </span><button onclick="location.href='insertProductFrm.do'" style="float:right; margin-top:20px; margin-bottom:20px;">상품등록</button>
 						</div>
 						<div>
-						<table class="table total-table">
+						<table class="table total-table" style="text-align: center;">
 		     		<tr style="text-align:center">
 		     		<th id="check"><input type="checkbox" id="checkAll"></th><th>상품이미지</th><th>상품명</th><th>가격</th><th>관리</th>
 		     		</tr>
@@ -99,11 +98,11 @@
 		     			<tr class="totalInfo">
 		     				<td><input type="checkbox" class="checkProduct" name="checkId" value=${p.productNo }></td>
 		     				<td><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1"><img src="resources/upload/product/${p.filepath }" width="100px" height="100px"></a></td>
-		     				<td><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1" style="color:black">${p.productName }</a></td>
-		     				<td class="priceTd">${p.price }</td>
+		     				<td style="vertical-align: middle;"><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1" style="color:black; ">${p.productName }</a></td>
+		     				<td class="priceTd" style="vertical-align: middle;">${p.price }</td>
 		     				
 		     				<td>
-			     					<form action="/updateProductInfoFrm">
+			     					<form action="/updateProductFrm.do">
 			     					<button class="btn updateBtn">상품수정 </button>
 			     					<input type="hidden" name="productNo" value=${p.productNo }>
 			     					<input type="hidden" name="memberNo" value=${p.memberNo }>
@@ -155,11 +154,7 @@
         </div>
     </div> <!-- main content -->
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
-	<script>
-	function func(){
-		console.log(${list }+"test");
-	}
-	</script>
+
 <style>
 	.input{
 			height: 30px;
@@ -170,6 +165,27 @@
 	border : unset;
 		}
 </style>
+<script>
+$(".selectDelBtn").click(function(){
+	var checkId = $(".checkProduct:checked");
+	var delId = new Array();
+	var memberNo = $("[name=memberNo]").val();
+	checkId.each(function(idx,item){
+		var productId = $(item).val();
+		delId.push(productId);
+	});
+	//선택상품이 없다면
+	if(checkId.length == 0){
+		alert("삭제할 상품을 선택해주세요");
+		return false;
+	}
+	if(confirm("상품을 삭제하시겠습니까?")){
+		location.href="/deleteChoiceProduct.do?productNo="+delId.join("/")+"&memberNo="+memberNo;
+	}
+	console.log(delId);
+})
+
+</script>
       </body>
       </html>
       

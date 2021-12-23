@@ -11,6 +11,7 @@ import kr.or.table.model.vo.AdminDeal;
 import kr.or.table.model.vo.AdminQna;
 import kr.or.table.model.vo.AdminRefund;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.Qna;
 
 @Repository
@@ -82,9 +83,23 @@ public class AdminDao
 
 	public int updateOneDeal(AdminDeal d) 
 	{	
-		System.out.println("admindao.point");
-		System.out.println(d);
 		return sqlSession.update("admin.update_OneDeal",d);
+	}
+
+	public AdminRefund selectOneReturnPolicyInfo(int policyNo) 
+	{		
+		return sqlSession.selectOne("admin.get_OneReturnPolicy",policyNo);
+	}
+
+	public int updateOnePolicy(AdminRefund r) 
+	{
+		return sqlSession.update("admin.update_OnePolicy",r);
+	}
+
+	public ArrayList<Product> selectSomeProudct(int iCategory) 
+	{		
+		List<Product> list =  sqlSession.selectList("admin.main_ProductList",iCategory);
+		return (ArrayList<Product>)list;
 	}
 
 }

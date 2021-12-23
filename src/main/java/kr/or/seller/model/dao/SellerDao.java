@@ -1,6 +1,7 @@
 package kr.or.seller.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,8 +9,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PaymentInfo;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.ProductImg;
 import kr.or.table.model.vo.ReturnPolicy;
@@ -46,6 +49,11 @@ public class SellerDao {
 
 		return sqlSession.insert("product.insertProduct", product);
 	}
+	public int updateProduct(Product product) {
+
+		return sqlSession.update("product.updateProduct", product);
+	}
+
 
 	public int insertShippingInfo(ShippingInfo si) {
 		return sqlSession.insert("shippingInfo.insertShippingInfo", si);
@@ -65,6 +73,80 @@ public class SellerDao {
 		System.out.println(returnPolicy);
 		return sqlSession.insert("returnPolicy.insertReturnPolicy", returnPolicy);
 	}
+
+	public HashMap<Object, Object> selectOneproductInfo(Product product) {
+		System.out.println(product);
+		return sqlSession.selectOne("product.selectOneProductInfo", product);
+	}
+
+	public int updateProductMainImg(ProductImg pi) {
+		return sqlSession.update("productImg.updateProductMainImg", pi);
+	}
+
+	public int updateProductImg(ProductImg fv) {
+		return sqlSession.update("productImg.updateProductImg", fv);
+		
+	}
+
+	public int updateShippingInfo(ShippingInfo shippingInfo) {
+		return sqlSession.update("shippingInfo.updateShippingInfo", shippingInfo);
+	}
+
+	public int updateReturnPolicy(ReturnPolicy returnPolicy) {
+		return sqlSession.update("returnPolicy.updateReturnPolicy", returnPolicy);
+		
+	}
+
+	public ArrayList<ProductImg> selectProductImg(ProductImg productImg) {
+		List<ProductImg> list= sqlSession.selectList("productImg.selectProductImg", productImg);
+		return (ArrayList<ProductImg>)list; 
+		
+	}
+
+	public int deleteProductImg(ProductImg pimg) {
+		
+		return sqlSession.delete("productImg.deleteProductImg",pimg);
+	}
+
+	public int deleteChoiceProduct(Product p) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("product.deleteChoiceProduct",p);
+	}
+
+	public ArrayList<Integer> selectShippingInfomation(Member member) {
+		List<Integer> list = sqlSession.selectList("shippingInfo.selectShippingInfomation",member);
+		return (ArrayList<Integer>)list ;
+	}
+
+	public ArrayList<Integer> ajaxWeekSaleCount(Member member) {
+		List<Integer> list = sqlSession.selectList("shippingInfo.selectWeekSaleCount",member);
+		return (ArrayList<Integer>)list;
+	}
+
+	public ArrayList<Integer> ajaxWeekSalePriceCount(Member member) {
+		List<Integer> list = sqlSession.selectList("shippingInfo.selectWeekSalePriceCount",member);
+		return (ArrayList<Integer>)list;
+	}
+
+
+	public int selectTotalCount(Map<Object, Object> pagedata) {
+		int result = sqlSession.selectOne("shippingInfo.selectTotalCountsearch",pagedata);
+		return result;
+	}
+
+	public ArrayList<SellerSaleManage> selectOrderList(Map<Object, Object> pagedata) {
+		System.out.println(pagedata+"dao까지는 옴");
+		List<SellerSaleManage> list = sqlSession.selectList("shippingInfo.selectOrderList",pagedata);
+		return (ArrayList<SellerSaleManage>)list;
+	}
+
+	public ArrayList<SellerSaleManage> selectOrderSelectList(Map<Object, Object> pagedata) {
+		List<SellerSaleManage> list = sqlSession.selectList("shippingInfo.selectOrderSelectList",pagedata);
+		System.out.println(pagedata+"dao pagedata값");
+		System.out.println(list+"dao list값");
+		return (ArrayList<SellerSaleManage>)list;
+	}
+
 
 	/*
 	 * public ArrayList<Product> selectProductList(Member m) { List<Product> list =

@@ -3,16 +3,22 @@ package kr.or.seller.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import kr.or.member.model.dao.MemberDao;
 import kr.or.seller.model.dao.SellerDao;
+import kr.or.seller.model.vo.OrderPageData;
 import kr.or.seller.model.vo.SellerProductPageData;
+import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PaymentInfo;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.ProductImg;
 import kr.or.table.model.vo.PwChangeVO;
@@ -54,7 +60,9 @@ public class SellerService {
 				int numPerPage = 10;
 				//시작 번호, 끝번호
 				int end = reqPage*numPerPage;
+				System.out.println(end+"end");
 				int start = end - numPerPage + 1;
+				System.out.println(start);
 				Map<Object, Object> pagedata = new HashMap<Object, Object>();
 				pagedata.put("start", start);
 				pagedata.put("end", end);
@@ -156,6 +164,200 @@ public class SellerService {
 		 
 		
 	}
+	public HashMap<Object, Object> selectOneProductInfo(Product product, ProductImg productImg) {
+		HashMap<Object, Object> p = dao.selectOneproductInfo(product);
+		productImg.setProductNo(product.getProductNo());
+		ArrayList<ProductImg> list = dao.selectProductImg(productImg);
+		p.put("oldpath", list);
+		return p;
 	}
 	
+	public int productUpdate(Product product, ShippingInfo shippingInfo, ArrayList<ProductImg> mainList,
+			ArrayList<ProductImg> detailList, ReturnPolicy returnPolicy, MultipartFile[] productImg, String[] oldPath,
+			int[] oldPathNo) {
+		int result1 = dao.updateProduct(product);
+		System.out.println(product + "업데이트할 프로덕트");
+		int result = 0; // FILE_TBL 테이블에 인서트 성공여부를 위한 INT값
+		// insertproduct 성공했을경우
+		if (result1 > 0) {
+			if (mainList.isEmpty()) {
+			} else {
+				ProductImg pi = new ProductImg();
+				pi = mainList.get(0);
+				pi.setProductNo(product.getProductNo());
+
+				result = dao.updateProductMainImg(pi);
+				// 가장 최근에 넣은 product값 MAX로 구하기for(int i=0; i<list.length; i++)//for(ProductImg
+				// fv : list )
+
+				for (ProductImg fv : detailList) { // ArrayList에 들어간 여러개의 파일 불러오기
+					fv.setProductNo(product.getProductNo()); // db에 insert하기위해 필요한 boardNo
+					System.out.println(fv);
+					result += dao.updateProductMainImg(fv);// db에 file_tbl에 insert한 횟수만큼 추가하여 result에 대입
+				}
+			}
+		}
+		if (result1 > 0) {
+			if (detailList.isEmpty()) {
+
+			} else {
+				ProductImg pi = new ProductImg();
+				pi = detailList.get(0);
+				pi.setProductNo(product.getProductNo());
+
+				result = dao.updateProductMainImg(pi);
+				// 가장 최근에 넣은 product값 MAX로 구하기for(int i=0; i<list.length; i++)//for(ProductImg
+				// fv : list )
+
+				for (ProductImg fv : detailList) { // ArrayList에 들어간 여러개의 파일 불러오기
+					fv.setProductNo(product.getProductNo()); // db에 insert하기위해 필요한 boardNo
+					System.out.println(fv);
+					result += dao.insertProductImg(fv);// db에 file_tbl에 insert한 횟수만큼 추가하여 result에 대입
+
+				}
+			}
+		}
+		shippingInfo.setProductNo(product.getProductNo());
+		System.out.println(product.getProductNo() + "셀렉트키확인");
+		System.out.println(shippingInfo + "프로덕트 no 넣은 값");
+
+		int result2 = dao.updateShippingInfo(shippingInfo);
+
+		if (result2 > 0) {
+			returnPolicy.setProductNo(product.getProductNo());
+			System.out.println("shippinginfo update 성공여부" + result2);
+			int result3 = dao.updateReturnPolicy(returnPolicy);
+			if (result3 > 0) {
+				System.out.println("returnPolicy update 성공여부" + result3);
+
+				ProductImg pimg = new ProductImg();
+				int result4 = 0;
+				if (oldPathNo != null) {
+
+					for (int i = 0; i < oldPathNo.length; i++) {
+						pimg.setProductImgNo(oldPathNo[i]);
+						result4 += dao.deleteProductImg(pimg);
+					}
+
+					if (result4 == oldPathNo.length) {
+						System.out.println("파일삭제 성공");
+						return result;
+
+					} else
+						return -5; // productImg delete실패
+
+				} else
+					return result; // 삭제할파일 없음
+
+			} else
+				return -3;// 환불정책 Update 실패}
+
+		} else
+			return -2; // 배송정보 Update 실패
+
+	}
+	public boolean deleteChoiceProduct(String productNo, Member m) {
+		Product product = new Product();
+		product.setMemberNo(m.getMemberNo());
+		boolean result = true;
+		StringTokenizer sT1 = new StringTokenizer(productNo,"/");
+		while(sT1.hasMoreTokens()) {
+			product.setProductNo(Integer.parseInt(sT1.nextToken())); 
+			System.out.println(product);
+			int result1 = dao.deleteChoiceProduct(product); 
+			if(result1 == 0) {
+				result = false;
+				break;
+			}
+		
+	}
+		return result;
+	}
+	public ArrayList<Integer> selectShippingInfomation(Member member) {
+		ArrayList<Integer> shippingInfo = dao.selectShippingInfomation(member);
+		return shippingInfo;
+	}
+	public ArrayList<Integer> ajaxWeekSaleCount(Member member) {
+		ArrayList<Integer> weekSaleCount = dao.ajaxWeekSaleCount(member);
+		System.out.println(weekSaleCount);
+		System.out.println(member);
+		return weekSaleCount;
+	}
+	public ArrayList<Integer> ajaxWeekSalePriceCount(Member member) {
+		ArrayList<Integer> weekSalePriceCount = dao.ajaxWeekSalePriceCount(member);
+		return weekSalePriceCount;
+	}
+	public OrderPageData selectOrderList(int reqPage, Member member, String paymentInfo) {
+
+		int numPerPage = 5;
+		int totalPage = 0;
+		int totalCount = 0;
+		int end = reqPage*numPerPage;
+		int start = end - numPerPage + 1;
+		Map<Object, Object> pagedata = new HashMap<Object, Object>();
+		pagedata.put("start", start);
+		pagedata.put("end", end);
+		pagedata.put("memberNo", member.getMemberNo());
+		pagedata.put("paymentInfo", paymentInfo);
+		System.out.println(paymentInfo);
+		System.out.println(pagedata);
+		ArrayList<SellerSaleManage> list = new ArrayList<SellerSaleManage>();
+		if(paymentInfo.equals("A")) { //전제
+			System.out.println(pagedata);
+			list = dao.selectOrderList(pagedata);
+			System.out.println(list+"첫페이지 접속시");
+			totalCount = dao.selectTotalCount(member);
+		}else {
+			list = dao.selectOrderSelectList(pagedata);
+			totalCount = dao.selectTotalCount(pagedata);
+		}
+		
+		System.out.println(list+"servicelist값");
+		
+		if(totalCount%numPerPage == 0) {
+			totalPage = totalCount/numPerPage;
+		}else {
+			totalPage = totalCount/numPerPage+1;
+		}
+		
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
+		String pageNavi = "<ul class='pagination pagination-sm'>";
+		//이전버튼
+		if(pageNo != 1) {
+			pageNavi += "<li class='previous'>";
+			pageNavi += "<a href='/saleManage?reqPage="+(pageNo-1)+"&memberNo="+member.getMemberNo()+"&orderStatus="+paymentInfo+"'>";
+			pageNavi += "&lt;</a></li>";
+		}
+		//페이지숫자
+		for(int i=0; i<pageNaviSize;i++) {
+			if(pageNo == reqPage) {
+				pageNavi += "<li class='active'>";
+				pageNavi += "<a href='/saleManage?reqPage="+pageNo+"&memberNo="+member.getMemberNo()+"&orderStatus="+paymentInfo+"'>";
+				pageNavi += pageNo+"</a></li>";
+			}else {
+				pageNavi += "<li>";
+				pageNavi += "<a href='/saleManage?reqPage="+pageNo+"&memberNo="+member.getMemberNo()+"&orderStatus="+paymentInfo+"'>";
+				pageNavi += pageNo+"</a></li>";
+			}
+			pageNo++;
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		//다음버튼
+		if(pageNo <= totalPage) {
+			pageNavi += "<li class='next'>";
+			pageNavi += "<a href='/saleManage?reqPage="+pageNo+"&memberNo="+member.getMemberNo()+"&orderStatus="+paymentInfo+"'>";
+			pageNavi += "&gt;</a></li>";
+		}
+		pageNavi += "</ul>";
+		
+		//게시물목록(ArrayList), 페이지네비(String), start(번호표시용)
+		OrderPageData opd = new OrderPageData(list, pageNavi,start);
+		
+		
+		return opd;		
+	}
+}
 

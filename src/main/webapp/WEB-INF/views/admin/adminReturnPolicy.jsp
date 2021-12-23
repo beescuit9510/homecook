@@ -87,7 +87,7 @@
         			<div class = "amdin_main_content">
         				<div class = "pageTtile">
         					<div class = "pageTtitle_box">
-        						환불 상태 전체 조회
+        						환불 정책 전체 조회
         					</div>        					
         				</div>
         				<table class = "memberTabel" id = "memberList" style = "width:100%;">
@@ -158,7 +158,7 @@
 		function() 
 		{
 			if($(this).children(1).html() != '해당 자료 없음')
-			console.log($(this).children(1).html());
+				window.location.href = '/admin_ReturnPolicy.do?policyNo='+$(this).children(1).html();		
 		});
 	});
 </script>

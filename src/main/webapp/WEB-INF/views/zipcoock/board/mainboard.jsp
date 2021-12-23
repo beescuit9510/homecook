@@ -191,7 +191,7 @@
 			<div class="card">
 						
 				<c:if test="${ not empty sessionScopse.m.memberNo }">
-				<a href="/mainboardView.do?memberNo=${sessionScopse.m.memberNo }&productNo=${c.productNo }"><img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" /></a>
+				<a href="/mainboardView.do?memberNo=${sessionScope.m.memberNo }&productNo=${c.productNo }"><img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" /></a>
 				</c:if>
 				<c:if test="${ empty sessionScopse.m.memberNo }">
 				<a href="/mainboardView.do?memberNo=0&productNo=${c.productNo }"><img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" /></a>
@@ -201,7 +201,7 @@
 -->		
 				<div class="card-body">
 					<c:if test="${ not empty sessionScopse.m.memberNo }">
-					<a href="/mainboardView.do?memberNo=${sessionScopse.m.memberNo }&productNo=${c.productNo }"><p class="h6 goods_name product-name"><small class="text-muted">${c.tradeName }</small></br>${c.productName}</p></a>
+					<a href="/mainboardView.do?memberNo=${sessionScope.m.memberNo }&productNo=${c.productNo }"><p class="h6 goods_name product-name"><small class="text-muted">${c.tradeName }</small></br>${c.productName}</p></a>
 					</c:if>
 					<c:if test="${ empty sessionScopse.m.memberNo }">
 					<a href="/mainboardView.do?memberNo=0&productNo=${c.productNo }"><p class="h6 goods_name product-name"><small class="text-muted">${c.tradeName }</small></br>${c.productName}</p></a>
@@ -224,7 +224,7 @@
 					<p class="m-0 discount_price product-price"><span class="present_price">${c.price }원</span></p>
 					</c:if>
 					<c:if test="${c.price ne c.orderPrice}">
-					<p class="m-0 discount_price product-price"><span class="goods_detail lowest-price">최저가</span>${c.discountedPrice }원<span class="original_price">${c.price }원</span></p>
+					<p class="m-0 discount_price product-price"><span class="goods_detail lowest-price">${c.discountRate }% off</span><span class="goods_detail lowest-price"></span>${c.discountedPrice }원<span class="original_price">${c.price }원</span></p>
 					</c:if>
 				</div>
 				<div class="card-footer p-0">
@@ -380,8 +380,7 @@
 		    $("<a href='"+url+"'></a>")[0].click();
 	    	
 	    })
-
-
+	    
 
   })
 </script>
@@ -476,8 +475,33 @@
 	margin-left:0px;
     box-sizing: border-box;
 }
+
+/*
 .active{
-   background: #9ac6e8;
+   background: #9ac6e8 !important;
  }
+ 
+ 	.page-link {
+  	 	color: #9ac6e8;
+	   border:#c4ddf1 !important;
+	}
+	.page-link:hover{
+  	 	color: #9ac6e8;
+	   border:#c4ddf1 !important;
+	}
+	li.active > *{
+		color:fff;
+	   background-color: #c4ddf1 !important;
+	   border:#c4ddf1 !important;
+	}
+	a{
+  	 	color: #9ac6e8;
+	}
+	
+	.btn-primary {
+	   border:#c4ddf1 !important;
+	   background-color: #c4ddf1 !important;
+	}	
+*/ 
 </style>
 </html>

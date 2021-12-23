@@ -6,6 +6,189 @@
 insert into shipping_info values(SHIPPING_INFO_SEQ.NEXTVAL,#{productNo},#{shippingMethod},#{shippingCompany},#{shippingFee},#{shippingPeriod})
 </insert>
 
+<update id="updateShippingInfo" parameterType="si">
+update shipping_info 
+set shipping_method = #{shippingMethod},
+	shipping_company = #{shippingCompany},
+	shipping_fee = #{shippingFee},
+	shipping_period = #{shippingPeriod}
+	where product_no = #{productNo} 
+</update>
+
+<select id="selectShippingInfomation" parameterType="m" resultType="_int">
+select count(*) AS 통계 from 
+payment_info 
+where 
+<!-- 오늘 주문건 -->
+to_char(order_date,'yyyy-mm-dd') =  to_char(sysdate,'yyyy-mm-dd')
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+<!-- 오늘 매출건 -->
+union all
+select sum(price*quantity) as sales from payment_info
+left join product using (member_no)
+left join ordered_product using (payment_info_code)
+where payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+<!--결제 완료건 -->
+union all
+select count(*) from payment_info
+where payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+<!--배송전 건 -->
+union all
+select count(*) from payment_info
+where 
+IS_DELIVERED = 'N' 
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo})) 
+
+<!-- 배송중 건 -->
+union all
+select count(*) from payment_info
+where 
+IS_DELIVERED = 'S' 
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo})) 
+
+<!-- 배송완료 건 -->
+union all
+select count(*) from payment_info
+where 
+IS_DELIVERED = 'Y' 
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo})) 
+</select>
+
+<select id="selectWeekSaleCount" parameterType="m" resultType="_int">
+select count(*) AS 통계 from 
+payment_info 
+where 
+to_char(order_date,'yyyy-mm-dd') =  to_char(sysdate-6,'yyyy-mm-dd')
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+union all
+
+select count(*) AS 통계 from 
+payment_info 
+where 
+to_char(order_date,'yyyy-mm-dd') =  to_char(sysdate-5,'yyyy-mm-dd')
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+union all
+
+select count(*) AS 통계 from 
+payment_info 
+where 
+to_char(order_date,'yyyy-mm-dd') =  to_char(sysdate-4,'yyyy-mm-dd')
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+union all
+
+select count(*) AS 통계 from 
+payment_info 
+where 
+to_char(order_date,'yyyy-mm-dd') =  to_char(sysdate-3,'yyyy-mm-dd')
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+union all
+
+select count(*) AS 통계 from 
+payment_info 
+where 
+to_char(order_date,'yyyy-mm-dd') =  to_char(sysdate-2,'yyyy-mm-dd')
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+union all
+
+select count(*) AS 통계 from 
+payment_info 
+where 
+to_char(order_date,'yyyy-mm-dd') =  to_char(sysdate-1,'yyyy-mm-dd')
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+union all
+
+select count(*) AS 통계 from 
+payment_info 
+where 
+to_char(order_date,'yyyy-mm-dd') =  to_char(sysdate,'yyyy-mm-dd')
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+</select>
+
+<select id="selectWeekSalePriceCount" parameterType="m" resultType="_int">
+select NVL(sum(price*quantity),'0')AS WEEKSALE from payment_info
+left join product using (member_no)
+left join ordered_product using (payment_info_code)
+where order_date = TO_DATE(sysdate,'yy-mm-dd') and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+UNION ALL
+
+select NVL(sum(price*quantity),'0')AS WEEKSALE from payment_info
+left join product using (member_no)
+left join ordered_product using (payment_info_code)
+where order_date = TO_DATE(sysdate-1,'yy-mm-dd') and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+UNION ALL
+
+select NVL(sum(price*quantity),'0')AS WEEKSALE from payment_info
+left join product using (member_no)
+left join ordered_product using (payment_info_code)
+where order_date = TO_DATE(sysdate-2,'yy-mm-dd') and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+UNION ALL
+
+select NVL(sum(price*quantity),'0')AS WEEKSALE from payment_info
+left join product using (member_no)
+left join ordered_product using (payment_info_code)
+where order_date = TO_DATE(sysdate-3,'yy-mm-dd') and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+UNION ALL
+
+select NVL(sum(price*quantity),'0')AS WEEKSALE from payment_info
+left join product using (member_no)
+left join ordered_product using (payment_info_code)
+where order_date = TO_DATE(sysdate-4,'yy-mm-dd') and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+UNION ALL
+
+select NVL(sum(price*quantity),'0')AS WEEKSALE from payment_info
+left join product using (member_no)
+left join ordered_product using (payment_info_code)
+where order_date = TO_DATE(sysdate-5,'yy-mm-dd') and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+
+UNION ALL
+
+select NVL(sum(price*quantity),'0')AS WEEKSALE from payment_info
+left join product using (member_no)
+left join ordered_product using (payment_info_code)
+where order_date = TO_DATE(sysdate-6,'yy-mm-dd') and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+</select>
+
+<select id="selectTotalCountsearch" parameterType="map" resultType="_int">
+select count(*) from payment_info
+JOIN PRODUCT USING(MEMBER_NO)
+where 
+IS_DELIVERED = #{paymentInfo}
+and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+</select>
+<select id="selectOrderList" parameterType="map" resultType="_int">
+select rownum as rnum, 
+n.* from(select * from payment_info JOIN PRODUCT USING(MEMBER_NO) where payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))order by order_date desc)n
+where (rownum between #{start} and #{end})
+</select>
+<select id="selectOrderSelectList" parameterType="map" resultType="_int">
+select rownum as rnum, 
+
+n.* from(
+select payment_info_code as paymnetInfoCode, 
+payment_method as paymentMethod,
+price,order_date as order_date,
+is_delivered as isDelivered from payment_info 
+JOIN PRODUCT USING(MEMBER_NO) 
+where IS_DELIVERED = #{paymentInfo} and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))order by order_date desc)n
+where (rownum between #{start} and #{end})
+</select>
+
+
 </mapper>
  
  
