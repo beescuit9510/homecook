@@ -12,8 +12,25 @@
          			<li><a href = "/">집쿠욱 메인</a></li>    
          			<li><a href = "/">집쿠욱 배달 메인</a></li> 
          		</ul>
-	         	<ul>         			
-	         		<li><a href = "/call_AdminPage.do">로그인 정보(로그인 안하면 안보이게)</a></li> 
+	         	<ul>   
+	         		<!--<c:choose>      			
+		         		<c:when test = "${not empty sessionScope.m }">		         		
+		         			<li><a href = "/call_AdminPage.do">로그인 정보</a></li> 
+		         		</c:when>       		
+		         		
+	         		</c:choose>-->   
+  					
+  					<c:choose>
+						<c:when test="${sessionScope.m.memberLevel eq '관리자'}">
+							<li><a href = "/call_AdminPage.do">관리자 메뉴로 이동</a></li> 
+						</c:when>					
+								
+						<c:otherwise> 
+							<li><div class = "memberName">[${sessionScope.m.memberName}]님 환영 합니다.</div></li>
+						 </c:otherwise>						
+					</c:choose>
+
+
 	         	</ul>          	
          	</div> 
          </div>
@@ -30,11 +47,24 @@
          				<img style ="height : 50px;" src="/resources/img/common/logo_00.png" class="sc-eWnToP fEDxD">			
          			</div>
          		</div>
-         		<ul class = "header-last">
-         			<li><a href = "/loginFrm.do"><i class="fas fa-sign-in-alt"></i>  로그인</a></li>
-         			<li><a href = "/joinFrm.do"><i class="fas fa-user-plus"></i>  회원 가입</a></li>
-         			<li><a href = "/"><i class="fas fa-book-reader"></i>  고객 센터</a></li>
-         		</ul>
+         		
+         		<c:choose>
+					<c:when test = "${empty sessionScope.m }">
+						<ul class = "header-last">
+		         			<li><a href = "/loginFrm.do"><i class="fas fa-sign-in-alt"></i>  로그인</a></li>
+		         			<li><a href = "/joinFrm.do"><i class="fas fa-user-plus"></i>  회원 가입</a></li>
+		         			<li><a href = "/"><i class="fas fa-book-reader"></i>  고객 센터</a></li>
+		         		</ul>	
+					</c:when>
+					<c:otherwise>
+						<ul class = "header-last">		
+		         			<li><a href = "/"><i class="fas fa-bookmark"></i>  마이 페이지</a></li>
+		         			<li><a href = "/"><i class="fas fa-book-reader"></i>  고객 센터</a></li>
+		         			<li><a href = "/loginFrm.do"><i class="fas fa-sign-in-alt"></i>  로그아웃</a></li>   
+		         		</ul>
+					</c:otherwise>
+				</c:choose>
+         		
          	</div>
          </div>         
         </header>

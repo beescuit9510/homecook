@@ -5,6 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.eventWriteWrapper{
+		width: 100%;
+		background: #fff;
+		border-collapse: collapse;
+		border-top: 1px solid #e6e6e6;
+		border-right: 1px solid #e6e6e6;		
+	}
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/deliveryHeader.jsp"%>
@@ -15,14 +24,14 @@
 	<link rel="stylesheet" href="/summernote/summernote-lite.css">
 	<div class="container" style="width: 1080px;">
 		<form action="/eventUpdate" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="eventNo" value="${e.eventNo }">
+			<input type="hidden" name="eventNo" value="${ze.eventNo }">
 			<h3>이벤트 수정</h3>
 			<div class="eventWriteWrapper">
 				<div class="ew-title">
 					제목
 				</div>
 				<div class="ew-content">
-					<input type="text" name="eventTitle" value="${e.eventTitle }">
+					<input type="text" name="eventName" value="${ze.eventName }">
 				</div>
 				<div class="ew-title">
 					썸네일 첨부파일
@@ -30,15 +39,15 @@
 				<div class="ew-content">
 					<input type="hidden" name="status" value="1">
 							<c:choose>
-								<c:when test="${not empty e.mainEvent }">
+								<c:when test="${not empty ze.list }">
 								<img src="/img/file.png" width="16px" class="delFile">
-								<span class="delFile">${e.mainEvent }</span>
+								<span class="delFile">${ze.list }</span>
 								<button type="button" id="delBtn" class="delFile">
 								삭제
 								</button>
 								<input type="file" name="upfile" style="display:none;" id="uploadImg" onchange="loadImg(this);">
-								<input type="hidden" name="oldFilename" value="${e.mainEvent }">
-								<input type="hidden" name="oldFilepath" value="${e.mainEvent }">
+								<input type="hidden" name="oldFilename" value="${ze.list.get(2).toString() }">
+								<input type="hidden" name="oldFilepath" value="${ze.list.get(3).toString() }">
 								</c:when>
 								<c:otherwise>
 								<input type="file" name="upfile" id="uploadImg" onchange="loadImg(this);">
@@ -57,13 +66,13 @@
 					게시기간
 				</div>
 				<div class="ew-content">
-					<input name="eventFinishDate" value="${e.eventFinishDate }" id="datepicker">
+					<input name="eventFinishDate" value="${ze.eventFinishDate }" id="datepicker">
 				</div>
 				<div class="ew-title">
 					내용
 				</div>
 				<div class="ew-content">
-					<textarea id="eventContent" name="eventContent" class="form-control">${e.eventContent }</textarea>
+					<textarea id="eventContent" name="eventContent" class="form-control">${ze.eventContent }</textarea>
 				</div>
 				<div>
 					<button type="submit" class="buy_btn">수정하기</button>
@@ -137,7 +146,7 @@
 			data = new FormData();
 			data.append("file",file);
 			$.ajax({
-				url : "/eventUploadImage",
+				url : "/eventUploadImage.do",
 				type : "post",
 				data : data,
 				enctype : 'multipart/form-data',
