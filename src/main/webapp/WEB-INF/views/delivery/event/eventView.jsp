@@ -87,7 +87,7 @@
 	<script>
 	function deleteEvent(obj,eventNo){
 		if(confirm("글을 삭제하시겠습니까?")){
-			location.href="/eventDelete?eventNo="+eventNo;
+			location.href="/eventDelete.do?eventNo="+eventNo;
 		}
 	}
 	function updateEvent(obj,eventNo){

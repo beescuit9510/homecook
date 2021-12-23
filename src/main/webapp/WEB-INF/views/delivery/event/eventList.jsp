@@ -116,7 +116,7 @@
 				</a>
 			</div>
 		</div>
-		<a class="buy_btn" style="margin-top: 16px; text-align: right;" href="/eventWrite.do">글쓰기(관리자만 보이게)</a>
+		<a class="buy_btn" style="margin-top: 16px; text-align: right;" href="/eventWriteFrm.do">글쓰기(관리자만 보이게)</a>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
