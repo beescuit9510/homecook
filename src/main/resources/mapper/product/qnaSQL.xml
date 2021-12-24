@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="q">
+
+<select id="selectOneQna" parameterType="qna" resultType="qna">
+SELECT 
+qna_no as  qnaNo,
+member_no as memberNo,
+product_ref_no as productRefNo,
+qna_Level as qnaLevel,
+qna_Title as qnaTitle,
+qna_Content as qnaContent,
+to_char(write_Date, 'yyyy-mm-dd') as writeDate
+from qna where qna_no = #{qnaNo}
+</select>
+</mapper>
+ 
+ 

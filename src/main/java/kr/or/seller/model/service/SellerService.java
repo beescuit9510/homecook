@@ -17,6 +17,7 @@ import kr.or.seller.model.vo.InquiryPageData;
 import kr.or.seller.model.vo.OrderPageData;
 import kr.or.seller.model.vo.OrderViewData;
 import kr.or.seller.model.vo.OrderedProduct;
+import kr.or.seller.model.vo.QnaList;
 import kr.or.seller.model.vo.SellerProductPageData;
 import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
@@ -432,19 +433,19 @@ public class SellerService {
 		int result = dao.updateIsDelivered(paymentInfo);
 		return result;
 	}
-	public InquiryPageData selectInquiryList(int reqPage, Qna qna) {
+	public InquiryPageData selectInquiryList(int reqPage, QnaList ql) {
 		
 		int numPerPage = 10;
 		int totalPage = 0;
 		int totalCount = 0;
 		int end = reqPage*numPerPage;
 		int start = end - numPerPage + 1;
-		int memberNo = qna.getMemberNo();
+		int memberNo = ql.getMemberNo();
 		Map<Object, Object> qnaList = new HashMap<Object, Object>();
 		qnaList.put("start", start);
 		qnaList.put("end", end);
 		qnaList.put("memberNo", memberNo);
-		ArrayList<Qna> list = dao.selectInquiryList(qnaList);
+		ArrayList<QnaList> list = dao.selectInquiryList(qnaList);
 		totalCount = dao.selectInquiryCount(memberNo);
 		
 		if(totalCount%numPerPage == 0) {
@@ -492,6 +493,12 @@ public class SellerService {
 		
 		return ipd;
 		
+	}
+	public Qna selectOneQna(Qna qna) {
+		
+		Qna q = dao.selectOneQna(qna);
+		System.out.println(q+"service");
+		return q;
 	}
 
 	}

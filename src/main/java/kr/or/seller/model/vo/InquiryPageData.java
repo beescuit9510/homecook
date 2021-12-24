@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class InquiryPageData {
 
-	private ArrayList<Qna> list;
+	private ArrayList<QnaList> list;
 	private String pageNavi;
 	private int start;
 	

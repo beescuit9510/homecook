@@ -50,6 +50,23 @@
 	height : 80px;
 	border : unset;
 		}
+	.container{
+	margin-top: 100px;
+	margin-bottom: 50px;	
+}
+ul {
+ 	padding-left: 0;
+	list-style: none;
+}
+.btn{
+	background-color:#5F755A; 
+	color:#ffffff;
+}
+.btn:hover{
+	color: #fff;
+	background-color: #ADC2A9;
+}	
+	
 </style>
 </head>
 <body>
@@ -92,41 +109,68 @@
         		<div class = "content_div_content" style="background: white; padding: 20px 20px; border: 1px solid rgb(221, 221, 221);">
         				<div id="title">
 						   <h1 style="border-left:2px solid #5f755a;">상품 문의</h1>
-                        <br>
-                         <fieldset>
-			<table class="table table-hover" style="width:100%;">
-				<tr class="table-primary">
-					<th>문의번호</th><th>제목</th><th>작성일</th><th>답변여부</th>
+                        <br>         
+          <div class="content">
+        	<fieldset class="well well-lg" style="background-color:white;">
+			<table class="table" id="inquiryView" style="width:100%;">
+				<tr>
+					<th>제목</th>
+					<th>${q.qnaTitle }</th>
+					<th>작성일</th>
+					<th>${q.writeDate }</th>
 				</tr>
-				<c:forEach items="${ipd.list }" var="i">
-					<tr class="table-light">
-						
-							<td>${i.qnaNo }</td>
-							<td style="text-align:left;width:50%;"><a href='/sellerQnaView.do?qnaNo=${i.qnaNo }'>${i.qnaTitle }</a></td>
-							<td>${i.writeDate }</td>
-							
-						
-							<c:choose>
-								<c:when test="${i.qnaAnswer == null }">
-									<td style="color:red;">미완료</td>
-								</c:when>
-								<c:when test="${i.qnaAnswer != null }">
-									<td style="color:#5F755A;">완료</td>
-								</c:when>
-							</c:choose>					
-						
-					</tr>
-				</c:forEach>
+				<tr>
+					<th style="width:15%;">상품번호</th>
+					<th style="width:35%;">${q.productRefNo }</th>
+					<th>답변일</th>
+					<th>${q.writeDate }</th>
+					
+				</tr>
+				<tr>
+					<th style="height:100px;">내용</th>
+					<th colspan="3">
+						${q.qnaContent }
+					</th>
+				</tr>
+				<tr>
+					<th style="height:100px;">답변</th>
+					<th colspan="3">
+						${q.qnaContent }
+					</th>
+				</tr>
 			</table>
-			<div id="pageNavi">${ipd.pageNavi }</div>
-		</fieldset>
+			</fieldset>
+			<br>
+			<div class="well well-lg" style="background-color:white;"">
+				<h4>답변 작성</h4>
+				<form action="/insertAnswer" method="post">
+					<ul>
+						<li>
+							<input type="hidden" name="pqWriter" value="15">
+							<input type="hidden" name="productNo" value="${pq.productNo }">
+							<input type="hidden" name="pqRef" value="${pq.pqNo }">
+							<input type="hidden" name="pqStatus" value="${pq.pqStatus }">
+							<textarea name="pqContent" class="form-control"></textarea>
+						</li>
+						<li>
+							<c:if test="${pq.pqStatus eq 1 }">
+								<button type="submit" class="btn btn-block">등록</button>
+							</c:if>
+							<c:if test="${pq.pqStatus eq 2 }">
+								<button type="submit" class="btn btn-block">수정</button>
+							</c:if>
+						</li>
+					</ul>
+				</form>
+			</div>
+          </div>
+        </div>
                     </div>
 					</div>
         		</div>	
         	</div>
         </div>
         	</div>
-        </div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
 
