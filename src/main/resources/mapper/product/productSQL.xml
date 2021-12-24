@@ -88,6 +88,30 @@ set product_name = #{productNo},
 <delete id="deleteChoiceProduct" parameterType="p">
 DELETE FROM product WHERE member_No=#{memberNo} and product_No=#{productNo}
 </delete>
+
+<select id="selectInquiryList" parameterType="map" resultType="qna">
+select
+n. * from(
+SELECT rownum as rnum, 
+	q.qna_No as qnaNo,
+    q.MEMBER_NO as memberNo,
+    q.product_ref_no as productRefNo, 
+    qna_ref_no as qnaRefNo, 
+    qna_level as qnaLevel, 
+    qna_title as qnaTitle, 
+    qna_content as qnaContent, 
+    to_char(write_date, 'yyyy-mm-dd') as writeDate 
+FROM PRODUCT p
+JOIN QNA q ON(p.product_No = q.product_ref_no) 
+where p.member_No = #{memberNo}  and q.QNA_LEVEL = 1 order by rnum desc)n
+where (rnum between #{start} and #{end})
+</select>
+
+<select id="selectInquiryCount" parameterType="map" resultType="_int">
+SELECT count(*) from product p
+JOIN QNA q ON(p.product_No = q.product_ref_no) 
+where p.member_No = #{memberNo}  and q.QNA_LEVEL = 1
+</select>
 </mapper>
  
  

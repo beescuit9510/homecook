@@ -196,15 +196,16 @@ where (rnum between #{start} and #{end})
 select
 n.* from(
 select rownum as rnum, 
-payment_info_code as paymentInfoCode, 
-payment_method as paymentMethod, 
-price,
-TO_CHAR(order_date, 'yyyy-mm-dd') as orderDate,
-is_delivered as isDelivered, 
-receiver_name as receiverName 
-from payment_info
-JOIN PRODUCT USING(MEMBER_NO) 
-where IS_DELIVERED = #{paymentInfo} and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))order by rnum desc)n
+    pi.payment_info_code as paymentInfoCode, 
+    pi.payment_method as paymentMethod, 
+    p.price,
+    TO_CHAR(pi.order_date, 'yyyy-mm-dd') as orderDate,
+    pi.is_delivered as isDelivered, 
+    pi.receiver_name as receiverName 
+from payment_info pi
+left join ordered_product op on(pi.payment_info_code = op.payment_info_code)
+left join product p on(p.product_no = op.product_no)
+where pi.member_no=#{memberNo} and pi.is_delivered=#{paymentInfo} order by rnum desc)n
 where (rnum between #{start} and #{end})
 </select>
 

@@ -127,9 +127,9 @@
 							class="side_nav_span side_nav_span_selected">정보 확인/수정</span></a> <a
 							href="/productList.do?reqPage=1" class="side_nav_div"><span
 							class="side_nav_span">상품 관리</span></a> <a
-							href="/searchOrder.do?reqPage=1&isDelivered=A&memberNo=${m.memberNo } "
+							href="/shippingInfomation.do "
 							class="side_nav_div"><span class="side_nav_span">매출 정보</span></a>
-						<a href="zcdMyReview.do" class="side_nav_div"><span
+						<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span
 							class="side_nav_span">리뷰내역</span></a> <a href="zcdMyQnA.do"
 							class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
 					</div>
@@ -242,39 +242,35 @@
 											</c:when>
 										</c:choose>
 									</tr>
-									<tr id="deliveryView">
-										<c:choose>
-											<c:when test="${ ovd.pi.isDelivered eq 'Y' }">
-												<td>
-													<button class="btn btn-primary btn-block" disabled>배송 완료</button>
-												</td>
-											</c:when>
-
-										</c:choose>
-
-									</tr>
+							
+									
 								</table>
+								<c:if test="${ovd.pi.isDelivered eq 'E' }">
+									<form action="/updateIsDelivered.do" method="post">
+										<input type="hidden" name="paymentInfoCode"	value="${ovd.pi.paymentInfoCode }"> 
+										<input type="hidden" name="isDelivered" value="Y"> 
+										<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
+										<button type="submit" style="border : none;" class="btn btn-primary btn-block">배송 완료 </button>
+									</form>
+								</c:if>
 								<c:if test="${ovd.pi.isDelivered eq 'N' }">
 									<form action="/updateIsDelivered.do" method="post">
 										<input type="hidden" name="paymentInfoCode"	value="${ovd.pi.paymentInfoCode }"> 
 										<input type="hidden" name="isDelivered" value="E"> 
 										<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
-										<button type="submit" class="btn btn-primary btn-block">배송
-											시작</button>
-
+										<button type="submit" style="border : none;" class="btn btn-primary btn-block">배송	시작</button>
+									</form>
+								</c:if>
+								<c:if test="${ovd.pi.isDelivered eq 'Y' }">
+									<form action="/updateIsDelivered.do" method="post">
+										<input type="hidden" name="paymentInfoCode"	value="${ovd.pi.paymentInfoCode }"> 
+										<input type="hidden" name="isDelivered" value="E"> 
+										<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
+										<button type="submit" style="background-color:gray; border : none;" class="btn btn-primary btn-block" disabled>배송	완료</button>
 									</form>
 								</c:if>
 							</div>
-							<c:if test="${ovd.pi.isDelivered eq 'E' }">
-								<div>
-									<form action="/updateIsDelivered.do" method="post">
-										<input type="hidden" name="paymentInfoCode"	value="${ovd.pi.paymentInfoCode }"> 
-										<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
-										<input type="hidden" name="isDelivered" value="Y"> 
-										<button class="btn btn-block">배송 완료 하기</button>
-									</form>
-								</div>
-							</c:if>
+						
 						</div>
 
 
