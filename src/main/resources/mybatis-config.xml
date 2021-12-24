@@ -31,5 +31,7 @@
 		<typeAlias type="kr.or.delivery.model.vo.MenuGroup" alias="mg"/>
 		<typeAlias type="kr.or.delivery.model.vo.Menu" alias="menu"/>
 		<typeAlias type="kr.or.delivery.model.vo.AddMenu" alias="addmenu"/>
+		<typeAlias type="kr.or.delivery.model.vo.ZcdCart" alias="zc"/>
+		
 </typeAliases>
 </configuration>

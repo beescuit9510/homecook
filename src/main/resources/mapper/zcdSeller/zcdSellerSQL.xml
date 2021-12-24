@@ -159,8 +159,7 @@
 			menu_content as menuContent,
 			menu_price as menuPrice,
 			filename,
-  			filepath,
-  			menuadd_status
+  			filepath
   		from menu where group_no=#{groupNo}
 	</select>
 	
@@ -171,7 +170,7 @@
 	</select>
 	
 	<insert id="addMenu" parameterType="menu">
-	 	insert into menu values(menu_seq.nextval, #{groupNo}, #{menuName}, #{menuContent}, #{menuPrice}, #{filename}, #{filepath}, default)
+	 	insert into menu values(menu_seq.nextval, #{groupNo}, #{menuName}, #{menuContent}, #{menuPrice}, #{filename}, #{filepath})
 	</insert>
 	
 	<select id="selectGroupName" resultType="string">
@@ -188,8 +187,7 @@
   			menu_content as menuContent,
   			menu_price as menuPrice,  			
   			filename,
-  			filepath,
-  			menuadd_status as menuaddStatus
+  			filepath
   		from menu where menu_no=#{menuNo}
 	</select>
 	
@@ -250,8 +248,7 @@
 			menu_content as menuContent,
 			menu_price as menuPrice,
 			filename,
-  			filepath,
-  			menuadd_status
+  			filepath
   		from menu
 	</select>
 	
@@ -274,5 +271,15 @@
   			addmenu_status as addmenuStatus
   		from add_menu where addmenu_status='추가' and menu_no=#{menuNo}
 	</select>
+	
+	<select id="selectAddMenuPrice" resultType="_int">
+		select 
+			addmenu_price as addmenuPrice
+		from add_menu where menu_no=#{menuNo} and addmenu_name=#{addmenuName}
+	</select>
+	
+	<insert id="addCart" parameterType="zc">
+		insert into zcd_cart values(zcdcart_seq.nextval, #{memberNo}, #{storeNo}, #{menuNo}, #{menuAllprice}, #{amount}, #{addmenuInfo1}, #{addmenuInfo2})
+	</insert>
 	
 </mapper>

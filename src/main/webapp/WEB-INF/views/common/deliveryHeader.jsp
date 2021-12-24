@@ -42,13 +42,13 @@
 						<ul class = "header-last">
 		         			<li><a href = "/loginFrm.do"><i class="fas fa-sign-in-alt"></i>  로그인</a></li>
 		         			<li><a href = "/joinFrm.do"><i class="fas fa-user-plus"></i>  회원 가입</a></li>
-		         		</ul>	
+		         		</ul>
 					</c:when>
 					<c:otherwise>
 						<ul class = "header-last">		
 		         			<li><a href = "/zcdMypage.do"><i class="fas fa-bookmark"></i>  마이 페이지</a></li>
 		         			<li><a href = "/zcdCart.do"><i class="fas fa-shopping-cart"></i> 장바구니</a></li>
-		         			<li><a href = "#"><i class="fas fa-sign-in-alt"></i> 로그아웃</a></li>
+		         			<li><a href = "/logout.do"><i class="fas fa-sign-in-alt"></i> 로그아웃</a></li>
 		         		</ul>
 					</c:otherwise>
 				</c:choose>

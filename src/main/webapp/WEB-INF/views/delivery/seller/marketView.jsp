@@ -20,6 +20,9 @@
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=j1crffrgk5"></script>
 <meta charset="UTF-8">
 
+<script	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx00134e08007f4fcbabe5706db62ea793"></script>
+
 </head>
 <body>
 <div class="s-wrapper">
@@ -61,6 +64,7 @@
 															
 															<div class="menuImg_div"><img class="menu_img" src='/resources/upload/zcdSeller/${ml.filename }'></div>
 															<input id="menuNo" type="hidden" value="${ml.menuNo }">
+															<input id="storeNo" type="hidden" value="${zs.storeNo }">
 															<div class="menu_name cQHmLv">
 																<div style="font-weight: 600;">${ml.menuName }</div>
 																<div><fmt:formatNumber value="${ml.menuPrice }" pattern="#,###" /> 원</div>															
@@ -142,12 +146,14 @@
 	        			</div>
         			</section>
 	        		<section class="bMCyww">
+	        			<!-- 
 	        			<div class="gjcLUR">
 	        				<span class="hwbCCJ">총 주문금액</span>
 	        				<div class="cQHmLv"><span class="element"><fmt:formatNumber value="0" pattern="#,###" /> 원</span></div>
 	        			</div>
+	        			-->
 		        		<div class="isPSSz">
-		        			<button class="KZVRS"><span class="likeButton">♡</span></button>
+		        			<!-- <button class="KZVRS"><span class="likeButton">♡</span></button> -->
 		        			<button class="hYJzRO jdSXaC">장바구니 보기</button>
 		        		</div>
 	        		</section>
@@ -156,7 +162,7 @@
         		
         	</div> <!-- main content -->
         </div> <!-- main field -->
-				
+		
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	<script>
 		$(function() {
@@ -191,7 +197,8 @@
 
 		    $('.popupBtn').on("click", function() {
 		        var menuNo = $(this).children().eq(1).val(); //화면의 파라미터 가져오기
-		  		window.open("/menuPopup.do?menuNo="+menuNo,"_blank","scrollbars=yes,left=700,top=200,width=400,height=600").focus();
+		        var storeNo = $(this).children().eq(2).val();
+		  		window.open("/menuPopup.do?menuNo="+menuNo+"&storeNo="+storeNo,"_blank","scrollbars=yes,left=700,top=200,width=460,height=600").focus();
 		    });
 		    
 		
