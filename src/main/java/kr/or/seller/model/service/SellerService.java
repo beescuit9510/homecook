@@ -15,6 +15,7 @@ import kr.or.member.model.dao.MemberDao;
 import kr.or.seller.model.dao.SellerDao;
 import kr.or.seller.model.vo.OrderPageData;
 import kr.or.seller.model.vo.OrderViewData;
+import kr.or.seller.model.vo.OrderedProduct;
 import kr.or.seller.model.vo.SellerProductPageData;
 import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
@@ -363,20 +364,22 @@ public class SellerService {
 	}
 	public OrderViewData orderManage(Member member, PaymentInfo paymentInfo) {
 		// TODO Auto-generated method stub
-				int numPerPage = 10;
+				int numPerPage = 5;
 				int totalPage = 0;
 				int totalCount = 0;
 				int reqPage = 1;
 				int end = reqPage*numPerPage;
 				int start = end - numPerPage + 1;
-				SellerDao dao = new SellerDao();
+				int paymentInfoCode = paymentInfo.getPaymentInfoCode();
 				Map<Object, Object> productList = new HashMap<Object, Object>();
 				productList.put("start", start);
 				productList.put("end", end);
-				productList.put("paymentInfo", paymentInfo);
-				PaymentInfo pi = dao.selectpaymentInfo(paymentInfo.getPaymentInfoCode());
-				ArrayList<Product> list = dao.orderProductList(productList);
-				totalCount = dao.selectOrderCount(paymentInfo.getPaymentInfoCode());
+				productList.put("paymentInfoCode", paymentInfoCode);
+				System.out.println(productList+"productList값");
+				PaymentInfo pi = dao.selectpaymentInfo(paymentInfoCode);
+				ArrayList<OrderedProduct> list = dao.orderProductList(productList);
+				
+				totalCount = dao.selectOrderCount(paymentInfoCode);
 				
 				if(totalCount%numPerPage == 0) {
 					totalPage = totalCount/numPerPage;
@@ -423,6 +426,10 @@ public class SellerService {
 
 				return ovd;
 			}
+	public int updateIsDelivered(PaymentInfo paymentInfo) {
+		int result = dao.updateIsDelivered(paymentInfo);
+		return result;
+	}
 
 	}
 

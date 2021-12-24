@@ -104,14 +104,12 @@
 				</div>
 				
 				<div class="side_nav_content">
-					<a href="/zipsellerMypage.do" class="side_nav_div"><span
-						class="side_nav_span side_nav_span">정보 확인/수정</span></a> <a
-						href="productList.do?reqPage=1" class="side_nav_div side_nav_div">
-						<span class="side_nav_span">상품 관리</span></a> 
-						<a href="/shippingInfomation.do" class="side_nav_div side_nav_div_selected"><span class="side_nav_span_selected">매출 정보</span></a> 
+						<a href="/zipsellerMypage.do" class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected">정보 확인/수정</span></a> 
+						<a href="/productList.do?reqPage=1" class="side_nav_div"><span	class="side_nav_span">상품 관리</span></a>
+						<a href="/searchOrder.do?reqPage=1&isDelivered=A&memberNo=${m.memberNo } "class="side_nav_div"><span class="side_nav_span">매출 정보</span></a> 
 						<a href="zcdMyReview.do" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
 						<a href="zcdMyQnA.do" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
-				</div>
+					</div>
 			</div>
 
 
@@ -204,7 +202,7 @@
 									<td>배송완료</td>
 								</c:when>
 							</c:choose>
-							<td><a href="/orderManage?orderNo=${o.paymentInfoCode }&memberNo=${sessionScope.m.memberNo }"><button class="btn btn-sm">이동</button></a></td>
+							<td><a href="/orderManage.do?paymentInfoCode=${o.paymentInfoCode }&reqPage=1"><button class="btn btn-sm">이동</button></a></td>
 						</tr>
 					</c:forEach>
 				</table>

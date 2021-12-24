@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.or.delivery.model.vo.Payment;
 import kr.or.seller.model.service.SellerService;
 import kr.or.seller.model.vo.OrderPageData;
 import kr.or.seller.model.vo.OrderViewData;
@@ -495,18 +496,34 @@ public class SellerController {
 	@RequestMapping(value = "/searchOrder.do")
 	public String searchOrder(Member member, int reqPage, PaymentInfo PaymentInfo, Model model) {
 		String paymentInfo = PaymentInfo.getIsDelivered();
+		System.out.println(paymentInfo);
 		OrderPageData opd = service.selectOrderList(reqPage, member, paymentInfo);
 		System.out.println(opd);
 		model.addAttribute("opd", opd);
 		return "zipcoock/seller/mypage/searchOrder";
 	}
 	@RequestMapping(value="/orderManage.do") 
-	public String orderManage(Member member,PaymentInfo paymentInfo) {
+	public String orderManage(Member member,PaymentInfo paymentInfo, Model model) {
 		OrderViewData ovd = service.orderManage(member,paymentInfo);
+		System.out.println(ovd+"ovd값");
+		model.addAttribute("ovd", ovd);
+		
 		return "zipcoock/seller/mypage/OrderManage";
 	}
 	
-	
+	@RequestMapping(value="/updateIsDelivered.do") 
+	public String updateIsDelivered(PaymentInfo paymentInfo,Model model) {
+		int result = service.updateIsDelivered(paymentInfo);
+		int memberNo = paymentInfo.getMemberNo();
+		if(result != 0) {
+			
+			return "zipcoock/seller/mypage/searchOrder?reqPage=1&isDelivered=A&memberNo="+memberNo;
+		}else {
+			model.addAttribute("msg", "수정 실패");
+			model.addAttribute("loc", "zipcoock/seller/mypage/searchOrder?reqPage=1&isDelivered=A&memberNo="+memberNo);
+			return "zipcoock/common/msg";
+		}
+	}
 	
 
 }

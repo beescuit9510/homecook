@@ -19,7 +19,8 @@
 <a href = "/loginFrm.do">로그인</a>
 <a href = "/join.do">회원가입</a>
 <a href = "/shippingInfomation.do">배송정보</a>
-<a href = "/searchOrder.do?reqPage=1&isDelivered=A&memberNo=${m.memberNo }">판매 조회</a>
+<a href = "/searchOrder.do?reqPage=1&isDelivered=A&memberNo=${m.memberNo }">판매 조회</a> 
+<a href = "/orderManage.do?reqPage=1&paymentInfoCode=9">배송정보</a>
 </fieldset>
 <hr>
 <br>

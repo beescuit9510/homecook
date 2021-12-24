@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.seller.model.vo.OrderedProduct;
 import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
@@ -160,15 +161,25 @@ public class SellerDao {
 		return sqlSession.selectOne("paymentInfo.selectOnePaymentInfo", paymentInfoCode);
 	}
 
-	public ArrayList<Product> orderProductList(Map<Object, Object> productList) {
-		List<Product> list = sqlSession.selectList("orderedProduct.selectOderProductList");
-		return (ArrayList<Product>)list;
+	public ArrayList<OrderedProduct> orderProductList(Map<Object, Object> productList) {
+		System.out.println(productList+"daoProductList값");
+		List<OrderedProduct> list = sqlSession.selectList("paymentInfo.selectOderProductList",productList);
+		System.out.println("dao에서 출력된 list"+list);
+		return (ArrayList<OrderedProduct>)list;
 	}
 
 	public int selectOrderCount(int paymentInfoCode) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = sqlSession.selectOne("paymentInfo.selectOderProductListTotalCount",paymentInfoCode);
+		System.out.println(result);
+		return result;
 	}
+
+	public int updateIsDelivered(PaymentInfo paymentInfo) {
+		return sqlSession.update("paymentInfo.updateIsDelivered",paymentInfo);
+		
+	}
+
+
 
 
 	/*

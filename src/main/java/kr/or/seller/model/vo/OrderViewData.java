@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class OrderViewData {
 
 	private PaymentInfo pi;
-	private ArrayList<Product> list;
+	private ArrayList<OrderedProduct> list;
 	private String pageNavi;
 	private int start;
 	
