@@ -15,13 +15,15 @@
 		<typeAlias type="kr.or.table.model.vo.HomepageQna" alias="homepageQna"/>		
 		<typeAlias type="kr.or.table.model.vo.ProductLike" alias="like"/>
 		<typeAlias type="kr.or.table.model.vo.Product" alias="p"/>
+		<typeAlias type="kr.or.table.model.vo.PaymentInfo" alias="pi"/>
 		<typeAlias type="kr.or.table.model.vo.ProductImg" alias="pImg"/>
 		<typeAlias type="kr.or.table.model.vo.ShippingInfo" alias="si"/>
 		<typeAlias type="kr.or.table.model.vo.ReturnPolicy" alias="rp"/>
 		<typeAlias type="kr.or.zipcoock.board.vo.ProductCard" alias="card"/>	
 		<typeAlias type="kr.or.zipcoock.board.vo.SearchTool" alias="tool"/>	
 		<typeAlias type="kr.or.table.model.vo.BusinessSellerInfo" alias="bsi"/>
-
+		<typeAlias type="kr.or.seller.model.vo.SellerSaleManage" alias="ssm"/>		
+		<typeAlias type="kr.or.seller.model.vo.OrderedProduct" alias="op"/>	
 		<typeAlias type="kr.or.delivery.model.vo.ZcdStore" alias="zs"/>
 		<typeAlias type="kr.or.delivery.model.vo.StoreLogo" alias="sl"/>
 		<typeAlias type="kr.or.delivery.model.vo.ZcdEvent" alias="ze"/>

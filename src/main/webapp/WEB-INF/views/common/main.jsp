@@ -169,6 +169,70 @@
 	
 }
 
+/* cate_ head 관련 */
+
+.textbox_sub
+{
+	font-family: "ns_medium";
+	color: gray;
+}
+
+.back_color_gray
+{
+	background-color: rgb(238, 238, 238);
+}
+
+.cate_head
+{
+	width: 100%;
+	height: 0 auot;
+	display : flex;
+	justify-content: space-around;
+	
+}
+
+.cate_head_box
+{
+	width: 90%;		
+	
+	padding: 32px 64px 28px 46px;	
+	border-radius: 8px;	
+	
+	display : flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cate_head_iconbox
+{
+	display: flex;	
+}
+
+.cate_head_imgcard
+{
+	width: 68px;	
+	margin-right: 20px;	
+	margin-top: 10px;
+}
+
+.cate_head_imgcard>.imgcard_img
+{
+	width: 100%;
+	height: 68px;	
+	
+	border-radius: 100%;
+    overflow: hidden;	
+}
+
+.cate_head_imgcard>.imgcard_text
+{
+	margin-top: 8px;
+	text-align: center;
+	font-family: "ns_regular";
+	font-size:small;	
+}
+
 
 
 </style>
@@ -213,7 +277,49 @@
 						<div class = "product_slider" id = "bestSlider">	
 						</div>
 					</div>
-					
+					<div class = "cate_head back_color_gray">
+						<div class = "cate_head_box">
+							<div class = "cate_head_textbox">
+								<div class = "textbox_main"><h2>집쿠욱만의 특별한 상품!</h2></div>
+								<div class = "textbox_sub">배민상회만의 특별함을 경험해보세요</div> 
+							</div>
+							<div class = "cate_head_iconbox">
+								<div class = "cate_head_imgcard">
+									<div class = "imgcard_img">
+										<img src="/resources/img/common/cate_head_img00.png" class="slider_img">	
+									</div>
+									<div class = "imgcard_text">
+										듬직한배송
+									</div>
+								</div>	
+								<div class = "cate_head_imgcard">
+									<div class = "imgcard_img">
+										<img src="/resources/img/common/cate_head_img01.png" class="slider_img">	
+									</div>
+									<div class = "imgcard_text">
+										친환경제품
+									</div>
+								</div>	
+								<div class = "cate_head_imgcard">
+									<div class = "imgcard_img">
+										<img src="/resources/img/common/cate_head_img02.jpg" class="slider_img">	
+									</div>
+									<div class = "imgcard_text">
+										직접생산
+									</div>
+								</div>	
+								<div class = "cate_head_imgcard">
+									<div class = "imgcard_img">
+										<img src="/resources/img/common/cate_head_img03.png" class="slider_img">	
+									</div>
+									<div class = "imgcard_text">
+										기획전
+									</div>
+								</div>						
+							</div>
+						</div>
+						
+					</div>
 					
 					<div class = "subtitle_box">
         				<div class = "subtitle_content">

@@ -96,19 +96,19 @@
 		     		<%--판매자 상품 리스트 띄우는 for문 --%>
 		     	 	<c:forEach items="${pList }" var="p">
 		     			<tr class="totalInfo">
-		     				<td><input type="checkbox" class="checkProduct" name="checkId" value=${p.productNo }></td>
+		     				<td style="line-height: 80px;"><input type="checkbox" class="checkProduct" name="checkId" value=${p.productNo }></td>
 		     				<td><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1"><img src="resources/upload/product/${p.filepath }" width="100px" height="100px"></a></td>
 		     				<td style="vertical-align: middle;"><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1" style="color:black; ">${p.productName }</a></td>
 		     				<td class="priceTd" style="vertical-align: middle;">${p.price }</td>
 		     				
 		     				<td>
-			     					<form action="/updateProductFrm.do">
-			     					<button class="btn updateBtn">상품수정 </button>
+			     					<form action="/updateProductFrm.do" style="line-height: 80px; background-color:"#007bff">
+			     					<button class="btn updateBtn" style="background-color: #9ac6e8; color:white">상품수정 </button>
 			     					<input type="hidden" name="productNo" value=${p.productNo }>
 			     					<input type="hidden" name="memberNo" value=${p.memberNo }>
 			     					</form>
-			     					<br>
-			     					<button class="btn inventory" value=${p.productNo } data-toggle="modal" data-target="#myModal">재고확인</button>
+			     					
+			     					
 		     				</td>
 		     			</tr>
 		     		</c:forEach> 
@@ -182,7 +182,6 @@ $(".selectDelBtn").click(function(){
 	if(confirm("상품을 삭제하시겠습니까?")){
 		location.href="/deleteChoiceProduct.do?productNo="+delId.join("/")+"&memberNo="+memberNo;
 	}
-	console.log(delId);
 })
 
 </script>
