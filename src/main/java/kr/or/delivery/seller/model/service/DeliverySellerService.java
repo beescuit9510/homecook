@@ -10,6 +10,7 @@ import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.StoreLogo;
+import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.seller.model.dao.DeliverySellerDao;
 import kr.or.table.model.vo.Member;
@@ -223,6 +224,18 @@ public class DeliverySellerService {
 	public ArrayList<AddMenu> selectAddMenuList2(int menuNo) {
 		ArrayList<AddMenu> list = dao.selectAdMenuList2(menuNo);
 		return list;
+	}
+	
+	// 추가 선택 메뉴 가격 조회
+	public int selectAddMenuPrice(AddMenu addmenu) {
+		int addMenuPrice = dao.selectAddMenuPrice(addmenu);
+		return addMenuPrice;
+	}
+
+	@Transactional
+	public int addCart(ZcdCart zc) {
+		int result = dao.addCart(zc);
+		return result;
 	}
 	
 }

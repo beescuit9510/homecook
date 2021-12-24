@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.seller.model.vo.OrderedProduct;
 import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
@@ -34,6 +35,7 @@ public class SellerDao {
 	}
 
 	public ArrayList<Product> selectProductList(Map<Object, Object> pagedata) {
+		System.out.println(pagedata+"dao");
 		List<Product> list = sqlSession.selectList("product.selectProductList", pagedata);
 		System.out.println(list + "셀렉트 리스트 결과");
 		return (ArrayList<Product>) list;
@@ -130,7 +132,7 @@ public class SellerDao {
 
 
 	public int selectTotalCount(Map<Object, Object> pagedata) {
-		int result = sqlSession.selectOne("shippingInfo.selectTotalCountsearch",pagedata);
+		int result = sqlSession.selectOne("shippingInfo.selectOrderTotalCountSearch",pagedata);
 		return result;
 	}
 
@@ -146,6 +148,38 @@ public class SellerDao {
 		System.out.println(list+"dao list값");
 		return (ArrayList<SellerSaleManage>)list;
 	}
+
+	public int selectOrderTotalCount(Member member) {
+		return sqlSession.selectOne("shippingInfo.selectOrderTotalCount", member);
+		
+	}
+
+	
+
+	public PaymentInfo selectpaymentInfo(int paymentInfoCode) {
+		
+		return sqlSession.selectOne("paymentInfo.selectOnePaymentInfo", paymentInfoCode);
+	}
+
+	public ArrayList<OrderedProduct> orderProductList(Map<Object, Object> productList) {
+		System.out.println(productList+"daoProductList값");
+		List<OrderedProduct> list = sqlSession.selectList("paymentInfo.selectOderProductList",productList);
+		System.out.println("dao에서 출력된 list"+list);
+		return (ArrayList<OrderedProduct>)list;
+	}
+
+	public int selectOrderCount(int paymentInfoCode) {
+		int result = sqlSession.selectOne("paymentInfo.selectOderProductListTotalCount",paymentInfoCode);
+		System.out.println(result);
+		return result;
+	}
+
+	public int updateIsDelivered(PaymentInfo paymentInfo) {
+		return sqlSession.update("paymentInfo.updateIsDelivered",paymentInfo);
+		
+	}
+
+
 
 
 	/*

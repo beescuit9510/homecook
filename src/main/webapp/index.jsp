@@ -19,7 +19,8 @@
 <a href = "/loginFrm.do">로그인</a>
 <a href = "/join.do">회원가입</a>
 <a href = "/shippingInfomation.do">배송정보</a>
-<a href = "/searchOrder.do?reqPage=1&isDelivered=N&memberNo=${m.memberNo }">판매 조회</a>
+<a href = "/searchOrder.do?reqPage=1&isDelivered=A&memberNo=${m.memberNo }">판매 조회</a> 
+<a href = "/orderManage.do?reqPage=1&paymentInfoCode=9">배송정보</a>
 </fieldset>
 <hr>
 <br>
@@ -31,7 +32,7 @@
 <h1>delivery</h1>
 <a href="/zcdMain.do">딜리버리 메인페이지</a>
 
-<a href = "/zcdSellerloginFrm.do">딜리버리 매장관리</a>
+<a href = "/manageMarketFrm.do">딜리버리 매장관리(판매자 로그인)</a>
 
 <hr>
 <a href="/eventList.do">이벤트 페이지</a>

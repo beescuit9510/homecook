@@ -115,15 +115,15 @@
                         <table class="table">
                                <tr>
                                 <th>배송전　</th>
-                                <td><span>${shippingInfo[3] }</span><span>건</span></td>
+                                <td><a href = "/searchOrder.do?reqPage=1&isDelivered=N&memberNo=${m.memberNo }"><span>${shippingInfo[3] }</span><span>건</span></a></td>
                             </tr>
                             <tr>
                                 <th>배송중　</th>
-                                <td><span>${shippingInfo[4] }</span><span>건</span></td>
+                                <td><a href = "/searchOrder.do?reqPage=1&isDelivered=E&memberNo=${m.memberNo }"><span>${shippingInfo[4] }</span><span>건</span></a></td>
                             </tr>
                             <tr>
                                 <th>배송완료</th>
-                                <td><span>${shippingInfo[5] }</span><span>건</span></td>
+                                <td><a href = "/searchOrder.do?reqPage=1&isDelivered=Y&memberNo=${m.memberNo }"><span>${shippingInfo[5] }</span><span>건</span></a></td>
                             </tr>
                         </table>
                         
@@ -216,7 +216,7 @@ $(".selectDelBtn").click(function(){
 	    	        labels: [d.getDate()-6+"일", d.getDate()-5+"일", d.getDate()-4+"일", d.getDate()-3+"일", d.getDate()-2+"일", d.getDate()-1+"일", d.getDate()+"일"],
 	    	        datasets: [{
 	    	            label: '판매 건',
-	    	            backgroundColor: '#ADC2A9',
+	    	            backgroundColor: '#9ac6e8',
 	    	            borderColor: '#5F755A',
 	    	            data: [data[0], data[1], data[2], data[3], data[4], data[5], data[6]]
 	    	        }]
@@ -255,8 +255,8 @@ $(".selectDelBtn").click(function(){
 	    	        labels: [d.getDate()-6+"일", d.getDate()-5+"일", d.getDate()-4+"일", d.getDate()-3+"일", d.getDate()-2+"일", d.getDate()-1+"일", d.getDate()+"일"],
 	    	        datasets: [{
 	    	            label: '판매 건',
-	    	            backgroundColor: '#ADC2A9',
-	    	            borderColor: '#5F755A',
+	    	            backgroundColor: '#9ac6e8',
+	    	            borderColor: '#5ca3da',
 	    	            data: [data[0], data[1], data[2], data[3], data[4], data[5], data[6]]
 	    	        }]
 	    	    },
@@ -292,8 +292,8 @@ $(".selectDelBtn").click(function(){
 	    	        labels: [d.getDate()-6+"일", d.getDate()-5+"일", d.getDate()-4+"일", d.getDate()-3+"일", d.getDate()-2+"일", d.getDate()-1+"일", d.getDate()+"일"],
 	    	        datasets: [{
 	    	            label: '판매 금액',
-	    	            backgroundColor: '#ADC2A9',
-	    	            borderColor: '#5F755A',
+	    	            backgroundColor: '#9ac6e8',
+	    	            borderColor: '#5ca3da',
 	    	            data: [data[0], data[1], data[2], data[3], data[4], data[5], data[6]]
 	    	        }]
 	    	    },
