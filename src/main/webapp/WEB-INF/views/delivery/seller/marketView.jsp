@@ -146,12 +146,14 @@
 	        			</div>
         			</section>
 	        		<section class="bMCyww">
+	        			<!-- 
 	        			<div class="gjcLUR">
 	        				<span class="hwbCCJ">총 주문금액</span>
 	        				<div class="cQHmLv"><span class="element"><fmt:formatNumber value="0" pattern="#,###" /> 원</span></div>
 	        			</div>
+	        			-->
 		        		<div class="isPSSz">
-		        			<button class="KZVRS"><span class="likeButton">♡</span></button>
+		        			<!-- <button class="KZVRS"><span class="likeButton">♡</span></button> -->
 		        			<button class="hYJzRO jdSXaC">장바구니 보기</button>
 		        		</div>
 	        		</section>

@@ -76,7 +76,7 @@
 <body>
 	<div class="menuImg_div"><img class="menu_img" src='/resources/upload/zcdSeller/${menu.filename }'></div>
 	
-	<form action="/addCart.do" method="post" id="addCartForm">
+	<form method="post" id="addCartForm">
 	
 		<div class="card">
 			<div class="card-header" style="font-weight: 600;">${menu.menuName }</div>
@@ -139,7 +139,7 @@
 		<input type="hidden" name="storeNo" value="${storeNo }">
 		</div>
 		<div class="div_gap" ></div>
-		<button type="submit" class="btn btn-primary btn-100" id="addcart">장바구니 담기</button>
+		<button type="button" class="btn btn-primary btn-100" id="addcart">장바구니 담기</button>
 		<!-- (주문금액 <span style="color: #fff;"><fmt:formatNumber value="${menu.menuPrice }" pattern="#,###" /></span> 원) -->
 	</form>
 	
@@ -175,25 +175,6 @@
 				addCartChk = true;
 			});
 			
-			$("#addcart").on("click", function() {
-				return checkAddCart();
-			});
-			
-			function checkAddCart() {
-				
-				var addmenu1Opt = $("input[name=addmenu1Opt]").val();
-				console.log(addmenu1Opt);
-				
-				
-				if (addmenu1Opt == "") {
-	    			return true;
-	    		} else if (addCartChk == false) {
-    				alert("필수 선택을 확인하세요.");
-    				return false;
-    			} else {
- 					return true;
-    			}
-			}
 			
 			$("input[name=addmenu1Opt]").on("click", function() {
 				var addmenu1Opt = $(this).parent().parent().parent().parent().next().next().val();
@@ -216,24 +197,49 @@
 			});
 			*/
 			
+			
 			$("#addcart").on("click", function() {
-				var params = $("#addCartForm").serialize();
-				$.ajax({
-					url : "/addCart.do",
-					data : params,
-					type : "post",
-					success : function(data) {
-						if (data == 0) {
-							alert("장바구니 등록 완료");
-							window.close();
-						} else if (data == 1) {
-							alert("장바구니 등록 실패");
-							window.close();
+				var addmenu1Opt = $("input[name=addmenu1Opt]").val();
+				if (addmenu1Opt == "") {
+					var params = $("#addCartForm").serialize();
+					$.ajax({
+						url : "/addCart.do",
+						data : params,
+						type : "post",
+						success : function(data) {
+							if (data == 0) {
+								alert("장바구니 등록 완료");
+								self.close();
+							} else if (data == 1) {
+								alert("장바구니 등록 실패");
+								self.close();
+							}
 						}
-					}
-				});
+					});
+	    			return true;
+	    		} else if (addCartChk == false) {
+    				alert("필수 선택을 확인하세요.");
+    				return false;
+    			} else {
+    				var params = $("#addCartForm").serialize();
+    				$.ajax({
+    					url : "/addCart.do",
+    					data : params,
+    					type : "post",
+    					success : function(data) {
+    						if (data == 0) {
+    							alert("장바구니 등록 완료");
+    							self.close();
+    						} else if (data == 1) {
+    							alert("장바구니 등록 실패");
+    							self.close();
+    						}
+    					}
+    				});
+ 					return true;
+    			}
 			});
-		
+			
 			
 		});
 	</script>
