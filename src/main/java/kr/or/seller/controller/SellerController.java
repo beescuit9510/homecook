@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.delivery.model.vo.Payment;
 import kr.or.seller.model.service.SellerService;
+import kr.or.seller.model.vo.InquiryPageData;
 import kr.or.seller.model.vo.OrderPageData;
 import kr.or.seller.model.vo.OrderViewData;
 import kr.or.seller.model.vo.SellerProductPageData;
@@ -31,6 +32,7 @@ import kr.or.table.model.vo.PaymentInfo;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.ProductImg;
 import kr.or.table.model.vo.PwChangeVO;
+import kr.or.table.model.vo.Qna;
 import kr.or.table.model.vo.ReturnPolicy;
 import kr.or.table.model.vo.ShippingInfo;
 
@@ -54,10 +56,7 @@ public class SellerController {
 		return "zipcoock/seller/sellerInfo";
 	}
 
-	@RequestMapping(value = "sellerQNA.do")
-	public String sellerQNA() {
-		return "zipcoock/seller/sellerQNA";
-	}
+
 
 	@RequestMapping(value = "statistics.do")
 	public String statistics() {
@@ -232,8 +231,7 @@ public class SellerController {
 			model.addAttribute("msg", "등록성공");
 
 		}
-		model.addAttribute("reqPage", 1);
-		model.addAttribute("loc", "/productList.do");
+		model.addAttribute("loc", "/productList.do?reqPage=1");
 		return "zipcoock/common/msg";
 
 	}
@@ -515,15 +513,26 @@ public class SellerController {
 	public String updateIsDelivered(PaymentInfo paymentInfo,Model model) {
 		int result = service.updateIsDelivered(paymentInfo);
 		int memberNo = paymentInfo.getMemberNo();
+		System.out.println(result+"/"+memberNo+"/"+paymentInfo);
 		if(result != 0) {
-			
-			return "zipcoock/seller/mypage/searchOrder?reqPage=1&isDelivered=A&memberNo="+memberNo;
+			model.addAttribute("msg", "수정 성공");
+			model.addAttribute("loc", "/searchOrder.do?reqPage=1&isDelivered=A&memberNo="+memberNo);
+			return "zipcoock/common/msg";
 		}else {
 			model.addAttribute("msg", "수정 실패");
-			model.addAttribute("loc", "zipcoock/seller/mypage/searchOrder?reqPage=1&isDelivered=A&memberNo="+memberNo);
+			model.addAttribute("loc", "/searchOrder.do?reqPage=1&isDelivered=A&memberNo="+memberNo);
 			return "zipcoock/common/msg";
 		}
 	}
-	
 
+	@RequestMapping(value = "/sellerQNA.do")
+	public String sellerQNA(int reqPage, Qna qna, HttpSession session, Model model) {
+		Member m = (Member)session.getAttribute("m");
+		qna.setMemberNo(m.getMemberNo());
+		InquiryPageData ipd = service.selectInquiryList(reqPage, qna);
+		
+		model.addAttribute("ipd", ipd);
+		System.out.println("ipd값"+ipd);
+		return "zipcoock/seller/mypage/sellerQNA";
+	}
 }

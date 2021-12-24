@@ -16,6 +16,7 @@ import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.PaymentInfo;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.ProductImg;
+import kr.or.table.model.vo.Qna;
 import kr.or.table.model.vo.ReturnPolicy;
 import kr.or.table.model.vo.ShippingInfo;
 
@@ -177,6 +178,17 @@ public class SellerDao {
 	public int updateIsDelivered(PaymentInfo paymentInfo) {
 		return sqlSession.update("paymentInfo.updateIsDelivered",paymentInfo);
 		
+	}
+
+	public ArrayList<Qna> selectInquiryList(Map<Object, Object> qnaList) {
+		List<Qna> list = sqlSession.selectList("product.selectInquiryList",qnaList);
+		return (ArrayList<Qna>)list;
+	}
+
+	public int selectInquiryCount(int memberNo) {
+		// TODO Auto-generated method stub
+		System.out.println(memberNo);
+		return sqlSession.selectOne("product.selectInquiryCount",memberNo);
 	}
 
 

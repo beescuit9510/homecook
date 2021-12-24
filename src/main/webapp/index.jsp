@@ -21,6 +21,7 @@
 <a href = "/shippingInfomation.do">배송정보</a>
 <a href = "/searchOrder.do?reqPage=1&isDelivered=A&memberNo=${m.memberNo }">판매 조회</a> 
 <a href = "/orderManage.do?reqPage=1&paymentInfoCode=9">배송정보</a>
+<a href = "/zipcoockSellerQNA.do"></a>
 </fieldset>
 <hr>
 <br>
