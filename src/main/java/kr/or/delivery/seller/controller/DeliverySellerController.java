@@ -5,15 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.io.ResolverUtil.IsA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,27 +34,6 @@ public class DeliverySellerController {
 
 	@Autowired
 	private DeliverySellerService service;
-	
-	@RequestMapping(value="/zcdSellerloginFrm.do")
-	public String zcdSellerloginFrm() {
-		return "delivery/seller/zcdSellerLoginFrm";
-	}
-	
-	/* 딜리버리 판매자 임시 로그인 */
-	@RequestMapping(value="/zcdSellerlogin.do")
-	public String zcdSellerlogin(Member member, HttpSession session, Model model) {
-		Member m = service.selectOneMember(member);
-		if(m != null) {
-			session.setAttribute("m", m);
-			ArrayList<ZcdStore> list = service.selectZcdStoreList(m.getMemberNo());
-			model.addAttribute("list", list);
-			return "delivery/seller/manageMarketFrm";
-		} else {
-			model.addAttribute("msg","아이디 또는 비밀번호를 확인하세요");
-			model.addAttribute("loc", "/");
-			return "zipcoock/common/msg";
-		}
-	}
 	
 	@RequestMapping(value="/manageMarketFrm.do")
 	public String manageMarketFrm(Member member, HttpSession session, Model model) {
