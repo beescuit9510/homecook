@@ -1,6 +1,8 @@
 package kr.or.delivery.seller.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
+import kr.or.delivery.model.vo.MenuOrder;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
+import kr.or.delivery.model.vo.ZcdOrderPage;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.seller.model.dao.DeliverySellerDao;
 import kr.or.table.model.vo.Member;
@@ -236,6 +240,67 @@ public class DeliverySellerService {
 	public int addCart(ZcdCart zc) {
 		int result = dao.addCart(zc);
 		return result;
+	}
+
+	public ZcdOrderPage selectOrderList(int reqPage, int storeNo, String orderState) {
+		int numPerPage = 5;
+		int totalPage = 0;
+		int totalCount = 0;
+		int end = reqPage * numPerPage;
+		int start = end - numPerPage + 1;
+		Map<Object, Object> pagedata = new HashMap<Object, Object>();
+		pagedata.put("start", start);
+		pagedata.put("end", end);
+		pagedata.put("storeNo", storeNo);
+		pagedata.put("orderState", orderState);
+		ArrayList<MenuOrder> list = new ArrayList<MenuOrder>();
+		
+		list = dao.selectOrderList(pagedata);
+		totalCount = dao.selectOrderTotalCount(pagedata);
+		
+		if (totalCount % numPerPage == 0) {
+			totalPage = totalCount / numPerPage;
+		}else {
+			totalPage = totalCount / numPerPage + 1;
+		}
+		
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1) / pageNaviSize) * pageNaviSize + 1;
+		String pageNavi = "<ul class='pagination pagination-sm' style='display: inline-flex;'>";
+		//이전버튼
+		if(pageNo != 1) {
+			pageNavi += "<li class='previous page-item'>";
+			pageNavi += "<a href='/manageZcdOrder.do?reqPage="+(pageNo-1)+"&storeNo="+storeNo+"&orderState="+orderState+"'>";
+			pageNavi += "&lt;</a></li>";
+		}
+		//페이지숫자
+		for(int i=0; i<pageNaviSize;i++) {
+			if(pageNo == reqPage) {
+				pageNavi += "<li class='active page-item'>";
+				pageNavi += "<a style='color:black; text-align: center; padding:5px;' href='manageZcdOrder.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderState="+orderState+"'>";
+				pageNavi += pageNo+"</a></li>";
+			}else {
+				pageNavi += "<li class='page-item'>";
+				pageNavi += "<a style='color:black; text-align: center; padding:5px;' href='/manageZcdOrder.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderState="+orderState+"'>";
+				pageNavi += pageNo+"</a></li>";
+			}
+			pageNo++;
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		//다음버튼
+		if(pageNo <= totalPage) {
+			pageNavi += "<li class='next'>";
+			pageNavi += "<a href='/manageZcdOrder.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderStatus="+orderState+"'>";
+			pageNavi += "&gt;</a></li>";
+		}
+		pageNavi += "</ul>";
+		
+		//게시물목록(ArrayList), 페이지네비(String), start(번호표시용)
+		ZcdOrderPage zop = new ZcdOrderPage(list, pageNavi, start);
+		
+		return zop;
 	}
 	
 }

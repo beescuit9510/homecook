@@ -23,11 +23,15 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
+import kr.or.delivery.model.vo.MenuOrder;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
+import kr.or.delivery.model.vo.ZcdOrderPage;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.seller.model.service.DeliverySellerService;
+import kr.or.seller.model.vo.OrderPageData;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PaymentInfo;
 
 @Controller
 public class DeliverySellerController {
@@ -624,6 +628,24 @@ public class DeliverySellerController {
 		}
 	}
 	
+	@RequestMapping(value="/manageZcdOrderFrm.do")
+	public String manageZcdOrderFrm(Member member, HttpSession session, Model model) {
+		Member m = (Member)session.getAttribute("m");
+		ArrayList<ZcdStore> list = service.selectZcdStoreList(m.getMemberNo());
+		model.addAttribute("list", list);
+		return "delivery/seller/manageZcdOrderFrm";
+	}
 	
+	@RequestMapping(value = "/manageZcdOrder.do")
+	public String searchOrder(Member member, HttpSession session, int reqPage, int storeNo, String orderState, Model model) {
+		Member m = (Member)session.getAttribute("m");
+		ZcdOrderPage zop = service.selectOrderList(reqPage, storeNo, orderState);
+		System.out.println(reqPage);
+		System.out.println(storeNo);
+		System.out.println(orderState);
+		model.addAttribute("zop", zop);
+		System.out.println(zop);
+		return "delivery/seller/manageZcdOrder";
+	}
 	
 }

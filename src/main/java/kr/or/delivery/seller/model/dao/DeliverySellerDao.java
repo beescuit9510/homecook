@@ -2,6 +2,7 @@ package kr.or.delivery.seller.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,11 @@ import org.springframework.stereotype.Repository;
 import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
+import kr.or.delivery.model.vo.MenuOrder;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdStore;
+import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.Member;
 
 @Repository
@@ -173,5 +176,15 @@ public class DeliverySellerDao {
 		return sqlSession.insert("zcdseller.addCart", zc);
 	}
 
+	public ArrayList<MenuOrder> selectOrderList(Map<Object, Object> pagedata) {
+		List<MenuOrder> list = sqlSession.selectList("zcdseller.selectOrderList", pagedata);
+		return (ArrayList<MenuOrder>)list;
+	}
+
+	public int selectOrderTotalCount(Map<Object, Object> pagedata) {
+		int result = sqlSession.selectOne("zcdseller.selectOrderTotalCount",pagedata);
+		return result;
+	}
+	
 
 }
