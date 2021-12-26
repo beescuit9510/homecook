@@ -1,8 +1,12 @@
 package kr.or.delivery.model.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ZcdCart {
 
 	private int cartNo;
@@ -13,5 +17,5 @@ public class ZcdCart {
 	private int amount;
 	private String addmenuInfo1;
 	private String addmenuInfo2;
-	
+
 }

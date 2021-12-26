@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/deliverySeller/manageZcdOrder.css">
+<link rel="stylesheet" href="/resources/css/deliverySeller/manageZcdOrderFrm.css">
 
 <!-- bootstrap css -->
 <link rel="stylesheet" href="/resources/css/deliverySeller/bootstrap.css">

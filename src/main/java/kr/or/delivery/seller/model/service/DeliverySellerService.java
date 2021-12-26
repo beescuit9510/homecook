@@ -266,41 +266,67 @@ public class DeliverySellerService {
 		
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1) / pageNaviSize) * pageNaviSize + 1;
-		String pageNavi = "<ul class='pagination pagination-sm' style='display: inline-flex;'>";
-		//이전버튼
-		if(pageNo != 1) {
-			pageNavi += "<li class='previous page-item'>";
-			pageNavi += "<a href='/manageZcdOrder.do?reqPage="+(pageNo-1)+"&storeNo="+storeNo+"&orderState="+orderState+"'>";
+		String pageNavi = "<ul class='pagination'>";
+		
+		if (pageNo != 1) {
+			pageNavi += "<li class='page-item disabled'>";
+			pageNavi += "<a class='page-link' href='/manageZcdOrder.do?reqPage="+(pageNo-1)+"&storeNo="+storeNo+"&orderState="+orderState+"'>";
 			pageNavi += "&lt;</a></li>";
 		}
-		//페이지숫자
-		for(int i=0; i<pageNaviSize;i++) {
-			if(pageNo == reqPage) {
-				pageNavi += "<li class='active page-item'>";
-				pageNavi += "<a style='color:black; text-align: center; padding:5px;' href='manageZcdOrder.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderState="+orderState+"'>";
+		
+		for (int i=0; i<pageNaviSize;i++) {
+			if (pageNo == reqPage) {
+				pageNavi += "<li class='page-item active'>";
+				pageNavi += "<a class='page-link' style='color:#fff;' href='manageZcdOrder.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderState="+orderState+"'>";
 				pageNavi += pageNo+"</a></li>";
-			}else {
+			} else {
 				pageNavi += "<li class='page-item'>";
-				pageNavi += "<a style='color:black; text-align: center; padding:5px;' href='/manageZcdOrder.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderState="+orderState+"'>";
+				pageNavi += "<a class='page-link' href='/manageZcdOrder.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderState="+orderState+"'>";
 				pageNavi += pageNo+"</a></li>";
 			}
 			pageNo++;
-			if(pageNo>totalPage) {
+			if (pageNo>totalPage) {
 				break;
 			}
 		}
-		//다음버튼
-		if(pageNo <= totalPage) {
-			pageNavi += "<li class='next'>";
-			pageNavi += "<a href='/manageZcdOrder.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderStatus="+orderState+"'>";
+		
+		if (pageNo <= totalPage) {
+			pageNavi += "<li class='page-item next'>";
+			pageNavi += "<a class='page-link' href='/manageZcdOrder.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderStatus="+orderState+"'>";
 			pageNavi += "&gt;</a></li>";
 		}
 		pageNavi += "</ul>";
 		
-		//게시물목록(ArrayList), 페이지네비(String), start(번호표시용)
 		ZcdOrderPage zop = new ZcdOrderPage(list, pageNavi, start);
 		
 		return zop;
+	}
+
+	public MenuOrder selectMenuOrder(int orderNo) {
+		MenuOrder mo = dao.selectMenuOrder(orderNo);
+		return mo;
+	}
+
+	public String selectMemberPhone(int memberNo) {
+		String memberPhone = dao.selectMemberPhone(memberNo);
+		return memberPhone;
+	}
+
+	public ArrayList<ZcdCart> selectZcdCartList(MenuOrder mo) {
+		ArrayList<ZcdCart> list = dao.selectZcdCartList(mo);
+		return list;
+	}
+
+	@Transactional
+	public int zcdOrderX(int orderNo) {
+		int result = dao.zcdOrderX(orderNo);
+		return result;
+	}
+
+	@Transactional
+	public int zcdOrderO(int orderNo) {
+		int result = dao.zcdOrderO(orderNo);
+		return result;
 	}
 	
 }

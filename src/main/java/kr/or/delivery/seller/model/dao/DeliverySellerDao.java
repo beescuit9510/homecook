@@ -15,7 +15,6 @@ import kr.or.delivery.model.vo.MenuOrder;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdStore;
-import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.Member;
 
 @Repository
@@ -184,6 +183,27 @@ public class DeliverySellerDao {
 	public int selectOrderTotalCount(Map<Object, Object> pagedata) {
 		int result = sqlSession.selectOne("zcdseller.selectOrderTotalCount",pagedata);
 		return result;
+	}
+
+	public MenuOrder selectMenuOrder(int orderNo) {
+		return sqlSession.selectOne("zcdseller.selectMenuOrder", orderNo);
+	}
+
+	public String selectMemberPhone(int memberNo) {
+		return sqlSession.selectOne("zcdseller.selectMemberPhone", memberNo);
+	}
+
+	public ArrayList<ZcdCart> selectZcdCartList(MenuOrder mo) {
+		List<ZcdCart> list = sqlSession.selectList("zcdseller.selectZcdCartList", mo);
+		return (ArrayList<ZcdCart>)list;
+	}
+
+	public int zcdOrderX(int orderNo) {
+		return sqlSession.delete("zcdseller.zcdOrderX", orderNo);
+	}
+
+	public int zcdOrderO(int orderNo) {
+		return sqlSession.update("zcdseller.zcdOrderO", orderNo);
 	}
 	
 

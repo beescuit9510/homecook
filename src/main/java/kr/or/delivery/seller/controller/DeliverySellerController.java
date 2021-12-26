@@ -29,9 +29,7 @@ import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdOrderPage;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.seller.model.service.DeliverySellerService;
-import kr.or.seller.model.vo.OrderPageData;
 import kr.or.table.model.vo.Member;
-import kr.or.table.model.vo.PaymentInfo;
 
 @Controller
 public class DeliverySellerController {
@@ -644,8 +642,66 @@ public class DeliverySellerController {
 		System.out.println(storeNo);
 		System.out.println(orderState);
 		model.addAttribute("zop", zop);
+		model.addAttribute("storeNo", storeNo);
+		model.addAttribute("orderState", orderState);
 		System.out.println(zop);
 		return "delivery/seller/manageZcdOrder";
+	}
+	
+	@RequestMapping(value="/orderReceipt.do")
+	public String orderReceipt(Member member, HttpSession session, Model model, int orderNo) {
+		Member m = (Member)session.getAttribute("m");
+		MenuOrder mo = service.selectMenuOrder(orderNo);
+		String memberPhone = service.selectMemberPhone(mo.getMemberNo());
+		ArrayList<ZcdCart> list = service.selectZcdCartList(mo);
+		model.addAttribute("mo", mo);
+		model.addAttribute("memberPhone", memberPhone);
+		model.addAttribute("list", list);
+		System.out.println(mo.getMemberNo());
+		System.out.println(mo.getStoreNo());
+		return "delivery/seller/orderReceipt";
+	}
+	
+	@RequestMapping(value="/zcdOrderX.do")
+	public String zcdOrderX(int orderNo, Model model) {
+		MenuOrder mo = service.selectMenuOrder(orderNo);
+		int result = service.zcdOrderX(mo.getOrderNo());
+		if (result > 0) {
+			model.addAttribute("msg","주문이 취소되었습니다.");
+			model.addAttribute("loc", "/manageZcdOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
+		} else {
+			model.addAttribute("msg","주문이 취소되지 않았습니다.");
+			model.addAttribute("loc", "/manageZcdOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
+		}
+		return "zipcoock/common/msg";
+	}
+	
+	@RequestMapping(value="/zcdOrderO.do")
+	public String zcdOrderO(int orderNo, Model model) {
+		MenuOrder mo = service.selectMenuOrder(orderNo);
+		int result = service.zcdOrderO(mo.getOrderNo());
+		if (result > 0) {
+			model.addAttribute("msg","주문접수가 완료되었습니다.");
+			model.addAttribute("loc", "/manageZcdOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
+		} else {
+			model.addAttribute("msg","주문접수가 완료되지 않았습니다.");
+			model.addAttribute("loc", "/manageZcdOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
+		}
+		return "zipcoock/common/msg";
+	}
+	
+	@RequestMapping(value="/deliveryReceipt.do")
+	public String deliveryReceipt(Member member, HttpSession session, Model model, int orderNo) {
+		Member m = (Member)session.getAttribute("m");
+		MenuOrder mo = service.selectMenuOrder(orderNo);
+		String memberPhone = service.selectMemberPhone(mo.getMemberNo());
+		ZcdStore zs = service.selectOneMarket(mo.getStoreNo());
+		ArrayList<ZcdCart> list = service.selectZcdCartList(mo);
+		model.addAttribute("mo", mo);
+		model.addAttribute("memberPhone", memberPhone);
+		model.addAttribute("list", list);
+		model.addAttribute("zs", zs);
+		return "delivery/seller/deliveryReceipt";
 	}
 	
 }

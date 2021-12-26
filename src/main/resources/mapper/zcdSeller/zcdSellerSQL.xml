@@ -303,4 +303,42 @@
 		select count(*) as cnt from menu_order where store_no=#{storeNo} and order_state=#{orderState}
 	</select>
 	
+	<select id="selectMenuOrder" resultType="mo">
+		select
+			order_no as orderNo,
+		    member_no as memberNo,
+		    store_no as storeNo,
+		    order_request as orderRequest,
+		    order_state as orderState,
+		    TO_CHAR(order_time, 'mm-dd(dy) hh24:mi:ss') as orderTime,
+		    order_address as orderAddress, 
+		    order_address2 as orderAddress2 
+		from menu_order where order_no=#{orderNo}
+	</select>
+	
+	<select id="selectMemberPhone" resultType="string">
+		select member_phone as memberPhone from member where member_no=#{memberNo}
+	</select>
+	
+	<select id="selectZcdCartList" resultType="zc">
+		select
+			cart_no as cartNo,
+			member_no as memberNo,
+			store_no as storeNo,
+			menu_no as menuNo,
+			menu_allprice as menuAllprice,
+  			amount,
+  			addmenu_info1 as addmenuInfo1, 
+  			addmenu_info2 as addmenuInfo2
+  		from zcd_cart where member_no=#{memberNo} and store_no=#{storeNo} order by cart_no
+	</select>
+	
+	<delete id="zcdOrderX" parameterType="_int">
+		delete from menu_order where order_no=#{orderNo}
+	</delete>
+	
+	<update id="zcdOrderO" parameterType="_int">
+		update menu_order set order_state='처리중' where order_no=#{orderNo}
+	</update>
+	
 </mapper>
