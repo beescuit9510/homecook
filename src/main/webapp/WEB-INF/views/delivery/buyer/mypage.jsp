@@ -49,7 +49,7 @@
 	        			<div class = "user_div">
 	        				<div class = "user_div_div">
 	        					<div class= "user_div_content">
-	        						<span class = "user_div_name">신동훈<span class = "user_div_nim">님</span></span>
+	        						<span class = "user_div_name">${sessionScope.m.memberName }<span class = "user_div_nim">님</span></span>
 	        					</div>
 	        				</div>
 	        			</div>
@@ -66,31 +66,27 @@
         	<div class = "content_div_area">
         		<div class = "content_div_content">
         			<div class = "content_div_info">
-        				<div class = "content_div_opt1">집쿠욱 레벨</div>
-        				<div class = "content_div_opt2">집쿠욱 포인트</div>
+        				<div class = "content_div_opt1">배달 주소</div>
+        				<div class = "content_div_opt2">집쿠욱 레벨</div>
         				<div class = "content_div_opt3">주문내역</div>
         			</div>
         			<div class = "content_div_info">
-        				<div class = "content_div_opt1" id="text-emp">집쿡초보</div>
-        				<div class = "content_div_opt2" id="text-emp">555</div>
+        				<div class = "content_div_opt1"><a href="#" id="text-emp">보러가기</a></div>
+        				<div class = "content_div_opt2" id="text-emp">${sessionScope.m.deliveryLevel }</div>
         				<div class = "content_div_opt3"><a href="#" id="text-emp">보러가기</a></div>
         			</div>
         			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">정보 확인/수정</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">이름</div>
-	        			<div class="content_div_opt2" id="text-emp">문수라</div>
-	        		</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">주소</div>
-	        			<div class="content_div_opt2"><input type="text" class="input"></div>
+	        			<div class="content_div_opt2" id="text-emp">${sessionScope.m.deliveryLevel }</div>
 	        		</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">전화번호</div>
-	        			<div class="content_div_opt2"><input type="text" class="input"></div>
+	        			<div class="content_div_opt2"><input type="text" class="input" value=${sessionScope.m.memberPhone }></div>
 	        		</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">현재 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" class="input"></div>
+	        			<div class="content_div_opt2"><input type="password" class="input" value=${sessionScope.m.memberPw }></div>
 	        		</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">새로운 비밀번호</div>
