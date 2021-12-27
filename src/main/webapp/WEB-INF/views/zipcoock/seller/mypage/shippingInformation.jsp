@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="/resources/css/deliveryBuyer/buyerDefault.css">
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'>
+<link rel="stylesheet" href="/resources/css/sellerMypage/pageNavi.css">
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <style>
@@ -73,8 +75,7 @@
 						href="productList.do?reqPage=1" class="side_nav_div side_nav_div">
 						<span class="side_nav_span">상품 관리</span></a> 
 						<a href="/shippingInfomation.do" class="side_nav_div side_nav_div_selected"><span class="side_nav_span_selected">매출 정보</span></a> 
-						<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
-						<a href="zcdMyQnA.do" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
+						<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
 				</div>
 			</div>
 
@@ -96,15 +97,15 @@
                         <table class="table">
                             <tr>
                                 <th style="width:50%;">오늘 주문</th>
-                                <td style="width:50%;"><span>${shippingInfo[0] }</span><span>건</span></td>
+                                <td style="width:50%;"><span>${shippingInfo[0] }</span><span> 건</span></td>
                             </tr>
                             <tr>
                                 <th style="width:50%;">오늘 매출</th>
-                                <td style="width:50%;"><span>${shippingInfo[1] }</span><span>원</span></td>
+                                <td style="width:50%;"><span>${shippingInfo[1] }</span><span> 원</span></td>
                             </tr>
                              <tr>
-                                <th style="width:50%;">결제완료</th>
-                                <td style="width:50%;"><span>${shippingInfo[2] }</span><span>원</span></td>
+                                <th style="width:50%;">결제 완료</th>
+                                <td style="width:50%;"><span>${shippingInfo[2] }</span><span> 건</span></td>
                             </tr>
                         </table>
                     </div>
@@ -115,15 +116,15 @@
                         <table class="table">
                                <tr>
                                 <th>배송전　</th>
-                                <td><a href = "/searchOrder.do?reqPage=1&isDelivered=N&memberNo=${m.memberNo }"><span>${shippingInfo[3] }</span><span>건</span></a></td>
+                                <td><a href = "/searchOrder.do?reqPage=1&isDelivered=N&memberNo=${m.memberNo }"><span>${shippingInfo[3] }</span><span> 건</span></a></td>
                             </tr>
                             <tr>
                                 <th>배송중　</th>
-                                <td><a href = "/searchOrder.do?reqPage=1&isDelivered=E&memberNo=${m.memberNo }"><span>${shippingInfo[4] }</span><span>건</span></a></td>
+                                <td><a href = "/searchOrder.do?reqPage=1&isDelivered=E&memberNo=${m.memberNo }"><span>${shippingInfo[4] }</span><span> 건</span></a></td>
                             </tr>
                             <tr>
                                 <th>배송완료</th>
-                                <td><a href = "/searchOrder.do?reqPage=1&isDelivered=Y&memberNo=${m.memberNo }"><span>${shippingInfo[5] }</span><span>건</span></a></td>
+                                <td><a href = "/searchOrder.do?reqPage=1&isDelivered=Y&memberNo=${m.memberNo }"><span>${shippingInfo[5] }</span><span> 건</span></a></td>
                             </tr>
                         </table>
                         

@@ -296,3 +296,6 @@
 .add_margin {
 	margin-bottom: 20px;
 }
+.deleteMenu {
+	cursor: pointer;
+}

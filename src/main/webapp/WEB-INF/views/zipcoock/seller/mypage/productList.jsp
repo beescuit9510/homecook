@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/resources/css/deliveryBuyer/buyerDefault.css">
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'>
+<link rel="stylesheet" href="/resources/css/sellerMypage/pageNavi.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
 	.content_div_info:first-child{
@@ -69,9 +70,8 @@
 				<div class="side_nav_content">
 					<a href="/zipsellerMypage.do" class="side_nav_div"><span class="side_nav_span side_nav_span">정보 확인/수정</span></a>
 					<a href="/productList.do?reqPage=1" class="side_nav_div side_nav_div_selected"> <span class="side_nav_span_selected">상품 관리</span></a>
-					<a href="/shippingInfomation.do" class="side_nav_div"><span class="side_nav_span">매출 정보</span></a> 
-					<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
-					<a href="zcdMyQnA.do" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
+					<a href="/shippingInfomation.do" class="side_nav_div"><span class="side_nav_span">매출 정보</span></a>  
+					<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
 				</div>
 			</div>
 
@@ -83,7 +83,7 @@
         				<div id="title">
 						<h2>상품 조회</h2>
 						<div class="productTotal">
-							<span>판매중인 상품 </span><button onclick="location.href='insertProductFrm.do'" style="float:right; margin-top:20px; margin-bottom:20px;">상품등록</button>
+							<span>판매중인 상품 </span><button class="btn" onclick="location.href='insertProductFrm.do'" style="float:right; margin-top:20px; margin-bottom:20px; background-color: #9ac6e8; color:white">상품등록</button>
 						</div>
 						<div>
 						<table class="table total-table" style="text-align: center;">
@@ -94,8 +94,8 @@
 		     	 	<c:forEach items="${pList }" var="p">
 		     			<tr class="totalInfo">
 		     				<td style="line-height: 80px;"><input type="checkbox" class="checkProduct" name="checkId" value=${p.productNo }></td>
-		     				<td><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1"><img src="resources/upload/product/${p.filepath }" width="100px" height="100px"></a></td>
-		     				<td style="vertical-align: middle;"><a href="/productView?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1" style="color:black; ">${p.productName }</a></td>
+		     				<td><a href="/mainboardView.do?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1"><img src="resources/upload/product/${p.filepath }" width="100px" height="100px"></a></td>
+		     				<td style="vertical-align: middle;"><a href="/mainboardView.do?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1" style="color:black; ">${p.productName }</a></td>
 		     				<td class="priceTd" style="vertical-align: middle;">${p.price }</td>
 		     				
 		     				<td>
@@ -117,12 +117,10 @@
 								<tr class="totalInfo" style="text-align: center;">
 									<td><input type="checkbox" class="checkProduct"
 										name="checkId" value=${p.productNo }></td>
-									<td><a
-										href="/productView?id=${p.productNo }&seller=${p.matufacturer }&reqPage=1"><img
-											src="/resources/upload/product/${p.filepath }" width="100px"
-											height="100px"></a></td>
+									<td><a href="/mainboardView.do?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1"><img
+											src="/resources/upload/product/${p.filepath }" width="100px" height="100px"></a></td>
 									<td style="vertical-align: middle;"><a
-										href="/productView?id=${p.productNo }&seller=${p.matufacturer }&reqPage=1"
+										href="/mainboardView.do?memberNo=${p.memberNo }&productNo=${p.productNo }&reqPage=1"
 										style="color: black">상품명</a></td>
 									<td class="priceTd" style="vertical-align: middle;">${p.productNo }</td>
 									
@@ -139,7 +137,7 @@
 
 
 
-							<button class="btn selectDelBtn" onclick=func();>선택삭제</button>
+							<button class="btn selectDelBtn" style="border : 1px solid #9ac6e8;" onclick=func();><span style="color:#9ac6e8">선택삭제</span></button>
 							<div id="pageNavi" style="text-align: center;">${sppd.pageNavi}</div>
 
 						</div>

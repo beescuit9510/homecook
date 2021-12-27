@@ -52,7 +52,7 @@ Main_img as mainImg,
 return_policy_no as returnPolicyNo,
 return_shipping as returnShipping,
 policy_content as policyContent,
-return_length as returnLength,
+NVL(return_length, 0) as returnLength,
 shipping_info_no as shippingInfoNo,
 shipping_method as shippingMethod,
 shipping_company as shippingCompany,
@@ -89,21 +89,22 @@ set product_name = #{productNo},
 DELETE FROM product WHERE member_No=#{memberNo} and product_No=#{productNo}
 </delete>
 
-<select id="selectInquiryList" parameterType="map" resultType="qna">
-select
+<select id="selectInquiryList" parameterType="map" resultType="ql">
+SELECT  
 n. * from(
 SELECT rownum as rnum, 
 	q.qna_No as qnaNo,
     q.MEMBER_NO as memberNo,
     q.product_ref_no as productRefNo, 
-    qna_ref_no as qnaRefNo, 
-    qna_level as qnaLevel, 
-    qna_title as qnaTitle, 
-    qna_content as qnaContent, 
-    to_char(write_date, 'yyyy-mm-dd') as writeDate 
+    q2.qna_ref_no as qnaAnswer,
+    q.qna_level as qnaLevel, 
+    q.qna_title as qnaTitle, 
+    q.qna_content as qnaContent, 
+    to_char(q.write_date, 'yyyy-mm-dd') as writeDate 
 FROM PRODUCT p
-JOIN QNA q ON(p.product_No = q.product_ref_no) 
-where p.member_No = #{memberNo}  and q.QNA_LEVEL = 1 order by rnum desc)n
+left JOIN QNA q ON(p.product_No = q.product_ref_no) 
+left JOIN QNA q2 ON(p.product_No = q2.product_ref_no) 
+where p.member_No = #{memberNo}  and q.QNA_LEVEL = 1 and q2.QNA_LEVEL = 2 order by rnum desc)n
 where (rnum between #{start} and #{end})
 </select>
 

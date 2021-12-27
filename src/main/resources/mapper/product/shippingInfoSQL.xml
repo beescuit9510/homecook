@@ -25,10 +25,11 @@ and payment_info_code in (select payment_info_code from ordered_product where pr
 
 <!-- 오늘 매출건 -->
 union all
-select sum(price*quantity) as sales from payment_info
+select NVL(sum(price*quantity),0) as sales  
+from payment_info
 left join product using (member_no)
 left join ordered_product using (payment_info_code)
-where payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
+where order_date = to_date(sysdate,'yy/mm/dd') and payment_info_code in (select payment_info_code from ordered_product where product_no in (select product_no from product where member_no=#{memberNo}))
 
 <!--결제 완료건 -->
 union all

@@ -55,68 +55,35 @@
 		</div>
 		<div class="containerMain">
 			<h2>이벤트</h2>
-			<div class="goodsWrap">
+			<div class="goodsWrap" id="start">
 				<a class="goodsLink" href="/eventView.do">
 					<div class="goods">
 						<img src="/resources/img/event/이벤트테스트.jpg">
 					</div>
-					<button class="goodsTime">오늘 종료</button>
 				</a>
 				<a class="goodsLink" href="/eventView.do">
 					<div class="goods">
 						<img src="/resources/img/event/이벤트테스트.jpg">
 					</div>
-					<button class="goodsTime">오늘 종료</button>
 				</a>
 				<a class="goodsLink" href="/eventView.do">
 					<div class="goods">
 						<img src="/resources/img/event/이벤트테스트.jpg">
 					</div>
-					<button class="goodsTime">오늘 종료</button>
 				</a>
 			</div>
 			<div class="goodsWrap">
-				<a class="goodsLink" href="/eventView.do">
-					<div class="goods">
-						<img src="/resources/img/event/이벤트테스트.jpg">
-					</div>
-					<button class="goodsTime">오늘 종료</button>
-				</a>
-				<a class="goodsLink" href="/eventView.do">
-					<div class="goods">
-						<img src="/resources/img/event/이벤트테스트.jpg">
-					</div>
-					<button class="goodsTime">오늘 종료</button>
-				</a>
-				<a class="goodsLink" href="/eventView.do">
-					<div class="goods">
-						<img src="/resources/img/event/이벤트테스트.jpg">
-					</div>
-					<button class="goodsTime">오늘 종료</button>
-				</a>
+				<c:forEach items="${list }" var="map" varStatus="status">
+					<a class="goodsLink" href="eventView.do?${map.eventNo }">
+						<div class="goods">
+							<img src="/resources/img/event/${map.filename }">
+						</div>
+					</a>
+				</c:forEach>
 			</div>
-			<div class="goodsWrap">
-				<a class="goodsLink" href="/eventView.do">
-					<div class="goods">
-						<img src="/resources/img/event/이벤트테스트.jpg">
-					</div>
-					<button class="goodsTime">오늘 종료</button>
-				</a>
-				<a class="goodsLink" href="/eventView.do">
-					<div class="goods">
-						<img src="/resources/img/event/이벤트테스트.jpg">
-					</div>
-					<button class="goodsTime">오늘 종료</button>
-				</a>
-				<a class="goodsLink" href="/eventView.do">
-					<div class="goods">
-						<img src="/resources/img/event/이벤트테스트.jpg">
-					</div>
-					<button class="goodsTime">오늘 종료</button>
-				</a>
-			</div>
-		</div>
+		<c:if test="${sessionScopem.memberLevel eq '관리자'}">
 		<a class="buy_btn" style="margin-top: 16px; text-align: right;" href="/eventWriteFrm.do">글쓰기(관리자만 보이게)</a>
+		</c:if>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

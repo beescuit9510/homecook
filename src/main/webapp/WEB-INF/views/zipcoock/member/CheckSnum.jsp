@@ -11,6 +11,9 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/common/header.jsp" %>
+
+	<div class="container">
+
     <div id="SjoinInfo">
         <div id="SjoinInfo_title"> 
         <h2>사업자 번호 조회 및 가입 여부 확인</h2> 
@@ -38,7 +41,7 @@
         </div>
 
     </div>
-	
+	</div>
 	
 <script>
 	

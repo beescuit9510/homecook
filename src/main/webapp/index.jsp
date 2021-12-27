@@ -17,7 +17,7 @@
 <a href = "/productList.do?reqPage=1">판매자 상품 리스트 페이지</a>
 <a href = "/insertProductFrm.do">판매자 상품등록 페이지</a>
 <a href = "/loginFrm.do">로그인</a>
-<a href = "/join.do">회원가입</a>
+<a href = "/joinFrm.do">회원가입</a>
 <a href = "/shippingInfomation.do">배송정보</a>
 <a href = "/searchOrder.do?reqPage=1&isDelivered=A&memberNo=${m.memberNo }">판매 조회</a> 
 <a href = "/orderManage.do?reqPage=1&paymentInfoCode=9">배송정보</a>
@@ -39,6 +39,9 @@
 <a href="/eventList.do">이벤트 페이지</a>
 <a href="/coupon.do">쿠폰관리</a>
 <a href="/zcdStatistics.do">통계</a>
+
+
+
 
 
 

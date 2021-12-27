@@ -25,6 +25,7 @@ import kr.or.seller.model.service.SellerService;
 import kr.or.seller.model.vo.InquiryPageData;
 import kr.or.seller.model.vo.OrderPageData;
 import kr.or.seller.model.vo.OrderViewData;
+import kr.or.seller.model.vo.QnaList;
 import kr.or.seller.model.vo.SellerProductPageData;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
@@ -526,13 +527,21 @@ public class SellerController {
 	}
 
 	@RequestMapping(value = "/sellerQNA.do")
-	public String sellerQNA(int reqPage, Qna qna, HttpSession session, Model model) {
+	public String sellerQNA(int reqPage, QnaList qnaList, HttpSession session, Model model) {
 		Member m = (Member)session.getAttribute("m");
-		qna.setMemberNo(m.getMemberNo());
-		InquiryPageData ipd = service.selectInquiryList(reqPage, qna);
+		qnaList.setMemberNo(m.getMemberNo());
+		InquiryPageData ipd = service.selectInquiryList(reqPage, qnaList);
 		
 		model.addAttribute("ipd", ipd);
 		System.out.println("ipd값"+ipd);
 		return "zipcoock/seller/mypage/sellerQNA";
+	}
+	@RequestMapping(value = "/sellerQnaView.do")
+	public String sellerQnaView(QnaList qnaList, HttpSession session, Model model) {
+		System.out.println(qnaList);
+		QnaList ql = service.selectOneQna(qnaList); 
+		model.addAttribute("q",ql);
+		System.out.println(ql);
+		return "zipcoock/seller/mypage/sellerQnaView";
 	}
 }
