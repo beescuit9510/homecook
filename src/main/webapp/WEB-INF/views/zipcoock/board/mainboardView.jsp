@@ -85,14 +85,14 @@
 
 
 				<div class="col-md-12 mb-4">
-					<img alt="" class="img-thumbnail p-0 border-0" src="https://media.istockphoto.com/photos/ginger-cat-sitting-on-floor-in-living-room-and-looking-at-camera-pet-picture-id1149347768" />
+					<img alt="" class="img-thumbnail p-0 border-0" src="/resources/upload/product/${pp.filepath }" />
 <!-- 
 					<img alt="" class="img-thumbnail p-0 border-0" src="${pp.filepath }" />
  -->
 				</div>
 				<c:forEach items="${pi }" var="v">
 				<div class="col-md-3 mb-4">
-					<img alt="" class="img-thumbnail p-0 border-0" src="https://media.istockphoto.com/photos/ginger-cat-sitting-on-floor-in-living-room-and-looking-at-camera-pet-picture-id1149347768" />
+					<img alt="" class="img-thumbnail p-0 border-0" src="/resources/upload/product/${v.filepath }" />
 				<!-- 
 					<img alt="" class="img-thumbnail p-0 border-0" src="${v.filepath }" />
 				 -->
@@ -314,8 +314,10 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="tab-pane pt-4" role="tabpanel" id="tabQnA">					
+				<div class="tab-pane pt-4" role="tabpanel" id="tabQnA">
+				<c:if test="${not empty sessionScope.m }">
 					<button class="top_btn insert-qna-btn">Q 작성하러 가기</button>
+				</c:if>					
 					<div class="card" id="qna-wrap">
 						<div class="card-header">상품관련 Q&A를 볼 수 있습니다. </div>
 						
@@ -482,8 +484,9 @@ $("#addToCart").click(function(){
 		url:"/addToCart.do",		
 		data:{quantity:quantity,productNo:productNo},
 		contentType : "application/json;charset=UTF-8",
-		success:function(){			
-			alert("장바구니 담기 완료!");
+		success:function(data){			
+			alert(data);
+			console.log(data);
 		}
 	})
 	
@@ -606,7 +609,7 @@ $("#review-btn").on("click",function(){
 
 
 function reviewUpdate(no) {
-    $("<a href='/reviewPage.do?reviewNo="+no+"'></a>")[0].click();
+    $("<a href='/updateMyReview.do?reviewNo="+no+"'></a>")[0].click();
 };
 function qnaUpdate(no) {
     $("<a href='/qnaPage.do?qnaNo="+no+"'></a>")[0].click();

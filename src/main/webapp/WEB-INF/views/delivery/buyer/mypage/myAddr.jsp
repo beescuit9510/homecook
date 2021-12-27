@@ -95,7 +95,7 @@
 									<a href="#" id="text-emp">${a.addr }</a>
 								</div>
 								<div class="content_div_opt3">
-									<a href="updateAddr.do?addrNo=${a.addrNo }" class="default_Btn">수정</a>
+									<button id="updateAddr" class="default_Btn">수정</button>
 									<button class="default_Btn" id="deleteAddr">삭제</button>
 								</div>
 							</div>
@@ -104,7 +104,7 @@
 							<a class="add_market_btn" id="addAddr">+ 배송지 등록하기</a>
 						</div>
 						<div id="addAddrFrm">
-							<form action="/addAddr.do" method="post" name="insertAddrFrm">
+							<form action="/addAddr.do" onSubmit="return false;" method="post" name="insertAddrFrm">
 								<div>배송지 추가</div>
 								<table style="width: 100%;">
 									<tr>
@@ -148,19 +148,94 @@
 }
 </style>
 	<script>
+	    var memberNo = "${sessionScope.m.memberNo}"
+		var url = "/myAddrList.do";
+
+		
 		$(function() {
 			$("#addAddrFrm").css("display","none");
+		
+			
+			//제가 작성한 부분
+			$("#addrBtn").click(function() {
+			    //수라님 작성해주세요!
+				var title = "타이틀";
+				var receiverName ="이름";
+				var receiverPhone ="폰";
+				var addr = "주소";
+			    //수라님 작성해주세요!
+
+				var newForm = $('<form></form>'); 
+				newForm.attr("name","newForm"); 
+				newForm.attr("method","post"); 
+				newForm.attr("action","/insert.do");
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.memberNo', value:memberNo})); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.receiverName', value:receiverName})); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.receiverPhone', value:receiverPhone})); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.addr', value:addr })); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.title', value:title })); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'url', value:url })); 
+				newForm.appendTo('body');
+				newForm.submit();
+
+			});		
+
+			$("#updateAddr").click(function() {
+				
+			    //수라님 작성해주세요!
+				var addrNo = 11;
+				var title = "타이틀";
+				var receiverName ="이름";
+				var receiverPhone ="폰";
+				var addr = "주소";
+			    //수라님 작성해주세요!
+
+				var newForm = $('<form></form>'); 
+				newForm.attr("name","newForm"); 
+				newForm.attr("method","post"); 
+				newForm.attr("action","/update.do");
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.memberNo', value:memberNo})); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.addrNo', value:addrNo })); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.receiverName', value:receiverName})); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.receiverPhone', value:receiverPhone})); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.addr', value:addr })); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'addr.title', value:title })); 
+				newForm.append($('<input/>', {type: 'hidden', name: 'url', value:url })); 
+				newForm.appendTo('body');
+				newForm.submit();
+
+			});
+			//제가 작성한 부분
 			
 			$("#deleteAddr").click(function() {
 				var del_cf = confirm("해당 배송지 정보를 삭제하시겠습니까?");
 				var addrNo = $("#addrNo").val();
 				if (del_cf == true) {
-					location.href = "/deleteOneAddr.do?addrNo=" + addrNo;
+					
+					//제가 작성한 부분
+				    //수라님 작성해주세요!
+				    var addrNo = "수라님이 이거 넣어주세요!"				    
+				    //수라님 작성해주세요!
+				    
+					var newForm = $('<form></form>'); 
+					newForm.attr("name","newForm"); 
+					newForm.attr("method","post"); 
+					newForm.attr("action","/delete.do");
+					newForm.append($('<input/>', {type: 'hidden', name: 'addr.memberNo', value:memberNo})); 
+					newForm.append($('<input/>', {type: 'hidden', name: 'addr.addrNo', value:addrNo })); 
+					newForm.append($('<input/>', {type: 'hidden', name: 'url', value:url })); 
+					newForm.appendTo('body');
+					newForm.submit();
+					//제가 작성한 부분
 				}
 			});
 
 			$("#addAddr").click(function(){
 				$("#addAddrFrm").css("display","block");
+				
+		
+				
+				
 			});
 			
 			$("#findpostcode").on("click", function() {
@@ -182,3 +257,10 @@
 			}
 		});
 	</script>
+	<script>
+
+$("a[href='myAddrList.do']").toggleClass("side_nav_div_selected");
+$("a[href='myAddrList.do']").find("span").toggleClass("side_nav_span_selected");
+
+</script>
+	

@@ -33,4 +33,26 @@
 		from address
 		where member_no = #{value}
 	</select>
+	<insert id="insertPaymentInfo" parameterType="kr.or.zipcoock.cart.vo.Cart">
+		insert into payment_info values(
+		#{paymentInfoCode},
+		#{memberNo},
+		#{addr.receiverName},
+		#{addr.receiverPhone},
+		#{addr.addr},
+		sysdate,
+		'N',
+		#{bank}
+		)
+	</insert>
+	<insert id="insertOrderedProduct" parameterType="hashmap">
+		insert into ordered_product 
+		values(
+		orderd_product_seq.nextval,
+		#{productNo},
+		#{paymentInfoCode},
+		#{quantity}
+		)
+		
+	</insert>
 </mapper>
