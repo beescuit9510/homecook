@@ -65,6 +65,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>${tool.c }</h2>
+						<!-- 
 						<ol class="breadcrumb p-0 m-0 bg-transparent">
 							<li class="breadcrumb-item"><a href="#">${tool.b }</a></li>
 							<li class="breadcrumb-item"><a href="#">${tool.c }</a></li>
@@ -72,6 +73,7 @@
 							<li class="breadcrumb-item active">${tool.k }</li>
 							</c:if>
 						</ol>
+						 -->
 					</div>
 				</div>
 			</div>
@@ -191,10 +193,10 @@
 			<div class="card">
 						
 				<c:if test="${ not empty sessionScopse.m.memberNo }">
-				<a href="/mainboardView.do?memberNo=${sessionScope.m.memberNo }&productNo=${c.productNo }"><img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" /></a>
+				<a href="/mainboardView.do?memberNo=${sessionScope.m.memberNo }&productNo=${c.productNo }"><img class="card-img-top" src="/resources/upload/product/${c.filepath }"  alt="" /></a>
 				</c:if>
 				<c:if test="${ empty sessionScopse.m.memberNo }">
-				<a href="/mainboardView.do?memberNo=0&productNo=${c.productNo }"><img class="card-img-top" src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="" /></a>
+				<a href="/mainboardView.do?memberNo=0&productNo=${c.productNo }"><img class="card-img-top" src="/resources/upload/product/${c.filepath }" alt="" /></a>
 				</c:if>
 <!--  
 		<img class="card-img-top" src=${c.filepath } alt="" />
