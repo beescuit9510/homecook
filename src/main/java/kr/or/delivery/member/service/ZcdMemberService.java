@@ -12,7 +12,7 @@ public class ZcdMemberService {
 	@Autowired
 	private ZcdMemberDao dao;
 
-	public int insertMember(Member member, String businessNo) {
+	public int insertMemberEnc(Member member, String businessNo) {
 		int result = dao.insertMember(member);
 		if(result>0) {
 			result = dao.insertMember2(businessNo);
@@ -22,7 +22,7 @@ public class ZcdMemberService {
 		return result;
 	}
 
-	public int insertDeliveryMember(Member member) {
+	public int insertDeliveryMemberEnc(Member member) {
 		return dao.insertDeliveryMember(member);
 	}
 }

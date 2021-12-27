@@ -74,15 +74,15 @@
 			</div>
 			<div class="goodsWrap">
 				<c:forEach items="${list }" var="map" varStatus="status">
-					<a class="goodsLink" href="eventView.do?${map.eventNo }">
+					<a class="goodsLink" href="eventView.do?eventNo=${map.eventNo }">
 						<div class="goods">
 							<img src="/resources/img/event/${map.filename }">
 						</div>
 					</a>
 				</c:forEach>
 			</div>
-		<c:if test="${sessionScopem.memberLevel eq '관리자'}">
-		<a class="buy_btn" style="margin-top: 16px; text-align: right;" href="/eventWriteFrm.do">글쓰기(관리자만 보이게)</a>
+		<c:if test="${sessionScope.m.memberLevel eq '관리자'}">
+		<a class="buy_btn" style="margin-top: 16px; text-align: right;" href="/eventWriteFrm.do">글쓰기</a>
 		</c:if>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>

@@ -32,7 +32,7 @@ public class ZcdMemberController {
 	
 	@RequestMapping(value = "/zcdSellerJoin.do")
 	public String zcdSellerJoin(Member member, String businessNo, Model model) {
-		int result = service.insertMember(member, businessNo);
+		int result = service.insertMemberEnc(member, businessNo);
 		if(result>0) {
 			model.addAttribute("msg", "회원가입 성공");
 			model.addAttribute("loc", "/");
@@ -45,7 +45,7 @@ public class ZcdMemberController {
 	
 	@RequestMapping(value = "/deliveryJoin.do")
 	public String deliveryJoin(Member member, Model model) {
-		int result = service.insertDeliveryMember(member);
+		int result = service.insertDeliveryMemberEnc(member);
 		if(result>0) {
 			model.addAttribute("msg", "회원가입 성공");
 			model.addAttribute("loc", "/");
