@@ -75,5 +75,7 @@
 	<context:component-scan base-package="kr.or.delivery.zcdStatistics"/>
 	<context:component-scan base-package="kr.or.delivery.purchase"/>
 	<context:component-scan base-package="kr.or.delivery.seller" />
+	<context:component-scan base-package="kr.or.delivery.admin" />
+	<context:component-scan base-package="kr.or.delivery.member" />
 	<context:component-scan base-package="kr.or.member" />
 </beans:beans>
