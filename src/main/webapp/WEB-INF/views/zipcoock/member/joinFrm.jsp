@@ -36,8 +36,8 @@
         </div>
         <div class="sellerjoinbtn_wrap">
             <div class="sellerjoinbtn "><p class="sellerjointext">집쿡 판매자 가입하기</p><br><a style="background-color: #9ac6e8; color: white;" href="CheckSnum.do">가입하기</a></div>
-            <div class="sellerjoinbtn "><p class="sellerjointext">딜리버리 판매자 가입하기</p><br><a style="background-color: #9ac6e8; color: white;" href="#">가입하기</a></div>
-            <div class="sellerjoinbtn "><p class="sellerjointext">딜리버리 라이더 가입하기</p><br><a style="background-color: #9ac6e8; color: white;" href="#">가입하기</a></div>
+            <div class="sellerjoinbtn "><p class="sellerjointext">딜리버리 판매자 가입하기</p><br><a style="background-color: #9ac6e8; color: white;" href="/checkZcdSeller.do">가입하기</a></div>
+            <div class="sellerjoinbtn "><p class="sellerjointext">딜리버리 라이더 가입하기</p><br><a style="background-color: #9ac6e8; color: white;" href="deliveryJoinFrm.do">가입하기</a></div>
         </div>
     </div>
     

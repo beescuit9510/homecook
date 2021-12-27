@@ -24,22 +24,16 @@
 							<tr>
 								<th>주문 정보</th>
 								<th>수량</th>
-								<th>금액</th>
-								<th>할인 적용 금액</th>
 								<th>결제 예정 금액</th>
 							</tr>
+							<c:forEach items="${zcv }" var="z">
 			            	<tr>
-			            		<td>1번</td>
-			            		<td>1</td>
-			            		<td>10,000원</td>
-			            		<td rowspan="2">9,500원</td>
-			            		<td rowspan="2">28,500원</td>
+			            		<td>${z.storeName }</td>
+			            		<td>${z.amount }</td>
+			            		<td>${z.menuAllprice }</td>
+			            		<td rowspan="2">총합</td>
 			            	</tr>
-			            	<tr>
-			            		<td>1번</td>
-			            		<td>1</td>
-			            		<td>10,000원</td>
-			            	</tr>
+			            	</c:forEach>
 			            </table>			            
 					</div>	
 					<div class="wrap-area">
@@ -50,9 +44,9 @@
 									<td></td>
 									<td>
 										<div class="addrList">
-											<label><input type="radio" name="memberAddr" value="defaultAddr" checked>기본주소</label>
-											<label><input type="radio" name="memberAddr" value="additional1">추가주소1</label>
-											<label><input type="radio" name="memberAddr" value="additional2">추가주소2</label>
+											<c:forEach items="${addr }" var="a" varStatus="status">
+												<label><input type="radio" name="memberAddr" id="memberAddr" value="${a.addrNo }" checked>기본주소</label>
+											</c:forEach>
 											<button class="addrBtn" id="addAddr">추가</button>
 											<div id="addAddrFrm">
 												<form action="/addAddr.do" method="post" name="insertAddrFrm">
@@ -60,7 +54,7 @@
 													<table>
 														<tr>
 															<td>배송지 별칭</td>
-															<td><input type="text" name="addrNick" id="addrNick"></td>
+															<td><input type="text" id="title"></td>
 														</tr>
 														<tr>
 															<td>주소 입력</td>
@@ -200,9 +194,15 @@
 				}
 			});
 		});
+		
 		$("#no-payment").click(function() {
 			$($(".purchase-content")[0]).css("display","none");
 			$($(".purchase-content")[1]).css("display","block");
+		});
+		
+		$("input[name=memberAddr]").click(function(){
+			var checkAddr=$("input[name=memberAddr]:checked").val();
+			console.log(checkAddr);
 		});
 		
 		$("#addAddr").click(function() {

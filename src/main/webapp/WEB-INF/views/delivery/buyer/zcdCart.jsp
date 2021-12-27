@@ -24,8 +24,8 @@
 	                <div class="divRow head">
 	                    <div class="subdiv">
 	                        <div class="check"><input type="checkbox" name="checkAll" id="checkAll" checked=""></div>
-	                        <div class="img">이미지</div>
-	                        <div class="pname">상품명</div>
+	                        <div class="img">상호명</div>
+	                        <div class="pname">메뉴</div>
 	                    </div>
 	                    <div class="subdiv">
 	                        <div class="cartprice">가격</div>
@@ -37,84 +37,42 @@
 	                    </div>
 	                    <div class="split"></div>
 	                </div>
-	        
+	        		<c:forEach items="${zcv }" var="z" varStatus="status">
 	                <div class="divRow data">
 	                    <div class="subdiv">
 	                        <div class="check"><input type="checkbox" name="buy" class="checkBox" value="260" checked="">&nbsp;</div>
-	                        <div class="img img-content"><img src="" width="60"></div>
+	                        <div class="img img-content">${z.storeName }</div>
 	                        <div class="pname pname-content">
-	                            <span>1번</span>
+	                            <div>${z.menuName }</div>
+	                            <c:if test="${not empty z.addmenuInfo1 || not empty z.addmenuInfo2}">
+		                            <div><small>- ${z.addmenuInfo1 }</small></div>
+		                            <div><small>- ${z.addmenuInfo2 }</small></div>
+	                            </c:if>
 	                        </div>
 	                    </div>
 	                    <div class="subdiv">
-	                        <div class="cartprice"><input type="hidden" name="p_price" id="p_price1" class="p_price" value="20000">20,000원</div>
+	                        <div class="cartprice"><input type="hidden" name="p_price" id="p_price1" class="p_price" value="${z.menuAllprice }">${z.menuAllprice }원</div>
 	                        <div class="num">
 	                            <div class="updown">
-	                                <span class="down" onclick="changePNum(1);"><i class="fas fas fa-minus-circle"></i></span>
-	                                <input type="text" name="p_num1" id="p_num1" size="2" maxlength="4" class="p_num" value="2" onkeyup="changePNum(1);">
-	                                <span class="up" onclick="changePNum(1);"><i class="fas fa-plus-circle"></i></span>
+	                                <span class="down" onclick="changePNum(${status.count});"><i class="fas fas fa-minus-circle"></i></span>
+	                                <input type="text" name="p_num1" id="${z.menuName }" size="2" maxlength="4" class="p_num" value="${z.amount }" readonly>
+	                                <span class="up" onclick="changePNum(${status.count});"><i class="fas fa-plus-circle"></i></span>
 	                            </div>
 	                        </div>
-	                        <div class="sum">40,000원</div>
+	                        <div class="sum">${z.menuAllprice }원</div>
 	                    </div>
 	                    <div class="subdiv">
-	                        <div class="cartcmd"><button class="abutton deleteBtn">삭제</button></div>
+	                        <div class="cartcmd"><button class="abutton deleteBtn" onclick="delBtn(${z.menuNo})">삭제</button></div>
 	                    </div>
 	                </div>
-	                <div class="divRow data">
-	                    <div class="subdiv">
-	                        <div class="check"><input type="checkbox" name="buy" class="checkBox" value="261" checked="">&nbsp;</div>
-	                        <div class="img img-content"><img src="" width="60"></div>
-	                        <div class="pname  pname-content">
-	                            <span>2번</span>
-	                        </div>
-	                    </div>
-	                    <div class="subdiv">
-	                        <div class="cartprice"><input type="hidden" name="p_price" id="p_price2" class="p_price" value="19000">19,000원</div>
-	                        <div class="num">
-	                            <div class="updown">
-	                                <span class="down" onclick="changePNum(2);"><i class="fas fas fa-minus-circle"></i></span>
-	                                <input type="text" name="p_num2" id="p_num2" size="2" maxlength="4" class="p_num" value="1" onkeyup="changePNum(2);">
-	                                <span class="up" onclick="changePNum(2);"><i class="fas fa-plus-circle"></i></span>
-	                            </div>
-	                        </div>
-	                        <div class="sum">19,000원</div>
-	                    </div>
-	                    <div class="subdiv">
-	                        <div class="cartcmd"><button class="abutton deleteBtn">삭제</button></div>
-	                    </div>
-	                </div>
-	                <div class="divRow data">
-	                    <div class="subdiv">
-	                        <div class="check"><input type="checkbox" name="buy" class="checkBox" value="262" checked="">&nbsp;</div>
-	                        <div class="img img-content"><img src="" width="60"></div>
-	                        <div class="pnam  pname-content">
-	                            <span>3번</span>
-	                        </div>
-	                    </div>
-	                    <div class="subdiv">
-	                        <div class="cartprice"><input type="hidden" name="p_price" id="p_price3" class="p_price" value="15200">15,200원</div>
-	                        <div class="num">
-	                            <div class="updown">
-	                                <span class="down" onclick="changePNum(3);"><i class="fas fas fa-minus-circle"></i></span>
-	                                <input type="text" name="p_num3" id="p_num3" size="2" maxlength="4" class="p_num" value="1" onkeyup="changePNum(3);">
-	                                <span class="up" onclick="changePNum(3);"><i class="fas fa-plus-circle"></i></span>
-	                            </div>
-	                        </div>
-	                        <div class="sum">15,200원</div>
-	                    </div>
-	                    <div class="subdiv">
-	                        <div class="cartcmd"><button class="abutton deleteBtn">삭제</button></div>
-	                    </div>
-	                </div>
-	            </div>
-	
-	            <div class="bigtext right-align box summoney">결제 예정 금액 <span class="blue" id="sum_p_price">74,200 원</span></div>
+				</c:forEach>
+				</div>                
+	            <div class="bigtext right-align box summoney">결제 예정 금액 <span class="blue" id="sum_p_price"> 원</span></div>
 	    
 	            <div id="goorder" class="">
 	                <div class="clear"></div>
 	                <div class="buttongroup center-align cmd">
-	                    <a id="orderList">선택한 상품 주문</a>
+	                    <a id="orderList" href="/zcdOrderList.do">선택한 상품 주문</a>
 	                </div>
 	            </div>
             
@@ -158,14 +116,6 @@
 			updateUI();
 		});
 		
-		$(".deleteBtn").click(function(){
-			$(event.target).parent().parent().parent().remove();
-			// ajax 전송
-			// 성공 시 
-			reCalc();
-			updateUI();
-		});
-		
 		// 장바구니 비우기
 		$(".deleteAll").click(function(){
 			$(".divRow.data").each(function(index,item){
@@ -178,15 +128,37 @@
 			reCalc();
 			updateUI();
 		});
-		
+		/*		
 		// 선택한 상품 주문 (ajax)
 		$("#orderList").click(function(){
-			// 필요한 정보 변수 설정
-			// ajax로 정보 전송 후 
-			// 성공시 페이지 이동
-			location.href="/zcdOrderList.do";
+			var cartNo=$("#cartNo").val();
+			$.ajax({
+				type:"get",
+				url:"/zcdOrderList.do"
+			})
 		});
-	});
+		*/
+		/*
+		// 수량 변경
+		$('.updown').forEach(function(el, idx){
+			//수량 입력 필드 값 변경
+			$(item).$('input').keyup(function(){
+			changePNum(idx+1);
+		});
+
+			//수량 증가 화살표 클릭
+			$(event.target).closest("span").hasClass("up").click(function(){
+				changePNum(idx+1);
+			});
+
+			//수량 감소 화살표 클릭
+			$(event.target).closest("span").hasClass("down").click(function(){
+				changePNum(idx+1);
+			});
+		}
+	);
+		*/
+});
 	
 	// 개별 수량 변경
 	function changePNum(obj){
@@ -217,6 +189,26 @@
         updateUI();
 	};
 	
+	/*
+	function up(menuName){
+		var input=$("#"+menuName);
+		var amount=input.val();
+		input.val(Number(amount)+1);
+		if(input.val()<1){
+			input.val(1);
+		}else if(input.val()>99){
+			input.val(max);
+		}
+		
+		$.ajax({
+			type:"get",
+			url:"/zcdUp.do",
+			data:{amount:input.val(),menuName,menuName}
+		})
+		reCalc();
+		updateUI();
+	}
+	*/
 	
 	// 재계산
 	function reCalc(){
@@ -234,7 +226,7 @@
 		// ajax 전송
         
         // 성공 시
-        reCalc();
+        //reCalc();
         updateUI();
 	};
 	
@@ -242,6 +234,18 @@
 	function updateUI(){
 		$("#sum_p_price").text(totalPrice.formatNumber()+" 원");
 	}
+
+	// 행 삭제
+	function delBtn(menuNo){
+		$(event.target).parent().parent().parent().remove();
+		$.ajax({
+			type:"get",
+			url:"/zcdDeleteOne.do",
+			data:{menuNo,menuNo}
+		})
+		reCalc();
+		updateUI();
+	});
 	
 	// 숫자 3자리 콤마찍기
 	Number.prototype.formatNumber = function(){
@@ -251,6 +255,7 @@
 	    while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
 	    return nstr;
 	};
+	
 	</script>
 </body>
 </html>
