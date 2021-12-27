@@ -28,7 +28,6 @@ public class CartController {
 	public String callCartFrm(HttpSession session, Model model) {
 		ArrayList<ItemInCart> cart = (ArrayList<ItemInCart>) session.getAttribute("cart");
 		Member m = (Member) session.getAttribute("m");
-
 		model.addAttribute("map", service.selectItems(cart));
 		model.addAttribute("addr", service.selectAddress(m.getMemberNo()));
 		return "zipcoock/cart/cartFrm";
