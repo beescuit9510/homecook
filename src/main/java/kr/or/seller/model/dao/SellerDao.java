@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.seller.model.vo.OrderedProduct;
+import kr.or.seller.model.vo.QnaList;
 import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
 import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.PaymentInfo;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.ProductImg;
+import kr.or.table.model.vo.Qna;
 import kr.or.table.model.vo.ReturnPolicy;
 import kr.or.table.model.vo.ShippingInfo;
 
@@ -177,6 +179,22 @@ public class SellerDao {
 	public int updateIsDelivered(PaymentInfo paymentInfo) {
 		return sqlSession.update("paymentInfo.updateIsDelivered",paymentInfo);
 		
+	}
+
+	public ArrayList<QnaList> selectInquiryList(Map<Object, Object> qnaList) {
+		List<QnaList> list = sqlSession.selectList("product.selectInquiryList",qnaList);
+		return (ArrayList<QnaList>)list;
+	}
+
+	public int selectInquiryCount(int memberNo) {
+		// TODO Auto-generated method stub
+		System.out.println(memberNo);
+		return sqlSession.selectOne("product.selectInquiryCount",memberNo);
+	}
+
+	public QnaList selectOneQna(QnaList qnaList) {
+		
+		return sqlSession.selectOne("q.selectOneQna",qnaList);
 	}
 
 

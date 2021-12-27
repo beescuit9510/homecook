@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zcdBuyer">
+
+	<select id="selectOneMember" resultType="m">
+		 select 
+			member_no as memberNo,
+			member_name as memberName,
+			member_id as memberId,
+			member_pw as memberPw,
+			member_phone as memberPhone,
+			member_level as memberLevel,
+			delivery_level as deliveryLevel
+		 from member where member_id=#{memberId} and member_pw=#{memberPw}
+	 </select>
+
+	<update id="updatePwMember" parameterType="m">
+		update member set member_pw=#{memberPw} where member_id=#{memberId}
+	</update>
+
+	<update id="updatePhone" parameterType="m">
+		update member set member_phone=#{memberPhone} where member_id=#{memberId}
+	</update>
+	
+	<select id="selectOneCart" resultType="zcv">
+		select 
+			zc.cart_no as cartNo, 
+			zc.member_no as memberNo, 
+			zs.store_name as storeName, 
+			zc.menu_no as menuNo, 
+			zc.menu_allPrice as menuAllPrice,
+			zc.amount, 
+			zc.addmenu_info1 as addmenuInfo1, 
+			zc.addmenu_info2 as addmenuInfo2 
+		from zcd_cart zc JOIN zcd_store zs 
+		using (store_no)  
+		where zc.member_no=#{memberNo}
+	</select>
+	
+</mapper>

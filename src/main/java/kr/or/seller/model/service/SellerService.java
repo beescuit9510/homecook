@@ -13,9 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.member.model.dao.MemberDao;
 import kr.or.seller.model.dao.SellerDao;
+import kr.or.seller.model.vo.InquiryPageData;
 import kr.or.seller.model.vo.OrderPageData;
 import kr.or.seller.model.vo.OrderViewData;
 import kr.or.seller.model.vo.OrderedProduct;
+import kr.or.seller.model.vo.QnaList;
 import kr.or.seller.model.vo.SellerProductPageData;
 import kr.or.seller.model.vo.SellerSaleManage;
 import kr.or.table.model.vo.BusinessSellerInfo;
@@ -24,6 +26,7 @@ import kr.or.table.model.vo.PaymentInfo;
 import kr.or.table.model.vo.Product;
 import kr.or.table.model.vo.ProductImg;
 import kr.or.table.model.vo.PwChangeVO;
+import kr.or.table.model.vo.Qna;
 import kr.or.table.model.vo.ReturnPolicy;
 import kr.or.table.model.vo.ShippingInfo;
 
@@ -429,6 +432,73 @@ public class SellerService {
 	public int updateIsDelivered(PaymentInfo paymentInfo) {
 		int result = dao.updateIsDelivered(paymentInfo);
 		return result;
+	}
+	public InquiryPageData selectInquiryList(int reqPage, QnaList ql) {
+		
+		int numPerPage = 10;
+		int totalPage = 0;
+		int totalCount = 0;
+		int end = reqPage*numPerPage;
+		int start = end - numPerPage + 1;
+		int memberNo = ql.getMemberNo();
+		Map<Object, Object> qnaList = new HashMap<Object, Object>();
+		qnaList.put("start", start);
+		qnaList.put("end", end);
+		qnaList.put("memberNo", memberNo);
+		ArrayList<QnaList> list = dao.selectInquiryList(qnaList);
+		totalCount = dao.selectInquiryCount(memberNo);
+		
+		if(totalCount%numPerPage == 0) {
+			totalPage = totalCount/numPerPage;
+		}else {
+			totalPage = totalCount/numPerPage+1;
+		}
+		
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize + 1;
+		String pageNavi = "<ul class='pagination pagination-sm'>";
+		//이전버튼
+		if(pageNo != 1) {
+			pageNavi += "<li class='previous'>";
+			pageNavi += "<a href='/productInquiryList?reqPage="+(pageNo-1)+"&memberNo="+memberNo+"'>";
+			pageNavi += "&lt;</a></li>";
+		}
+		//페이지숫자
+		for(int i=0; i<pageNaviSize;i++) {
+			if(pageNo == reqPage) {
+				pageNavi += "<li class='active'>";
+				pageNavi += "<a href='/productInquiryList?reqPage="+pageNo+"&memberNo="+memberNo+"'>";
+				pageNavi += pageNo+"</a></li>";
+			}else {
+				pageNavi += "<li>";
+				pageNavi += "<a href='/productInquiryList?reqPage="+pageNo+"&memberNo="+memberNo+"'>";
+				pageNavi += pageNo+"</a></li>";
+			}
+			pageNo++;
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		//다음버튼
+		if(pageNo <= totalPage) {
+			pageNavi += "<li class='next'>";
+			pageNavi += "<a href='/productInquiryList?reqPage="+pageNo+"&memberNo="+memberNo+"'>";
+			pageNavi += "&gt;</a></li>";
+		}
+		pageNavi += "</ul>";
+		
+		//게시물목록(ArrayList), 페이지네비(String), start(번호표시용)
+		InquiryPageData ipd = new InquiryPageData(list, pageNavi,start);
+		
+		
+		return ipd;
+		
+	}
+	public QnaList selectOneQna(QnaList qnaList) {
+		
+		QnaList q = dao.selectOneQna(qnaList);
+		System.out.println(q+"service");
+		return q;
 	}
 
 	}

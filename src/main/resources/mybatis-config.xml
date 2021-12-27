@@ -23,7 +23,8 @@
 		<typeAlias type="kr.or.zipcoock.board.vo.SearchTool" alias="tool"/>	
 		<typeAlias type="kr.or.table.model.vo.BusinessSellerInfo" alias="bsi"/>
 		<typeAlias type="kr.or.seller.model.vo.SellerSaleManage" alias="ssm"/>		
-		<typeAlias type="kr.or.seller.model.vo.OrderedProduct" alias="op"/>	
+		<typeAlias type="kr.or.seller.model.vo.OrderedProduct" alias="op"/>
+		<typeAlias type="kr.or.seller.model.vo.QnaList" alias="ql"/>	
 		<typeAlias type="kr.or.delivery.model.vo.ZcdStore" alias="zs"/>
 		<typeAlias type="kr.or.delivery.model.vo.StoreLogo" alias="sl"/>
 		<typeAlias type="kr.or.delivery.model.vo.ZcdEvent" alias="ze"/>
@@ -34,5 +35,7 @@
 		<typeAlias type="kr.or.delivery.model.vo.ZcdCart" alias="zc"/>
 		<typeAlias type="kr.or.delivery.model.vo.ZcdSeller" alias="zseller"/>
 		<typeAlias type="kr.or.delivery.model.vo.ZcdDelivery" alias="zd"/>
+		<typeAlias type="kr.or.delivery.model.vo.MenuOrder" alias="mo"/>
+		<typeAlias type="kr.or.delivery.model.vo.ZcdCartVo" alias="zcv"/>
 </typeAliases>
 </configuration>

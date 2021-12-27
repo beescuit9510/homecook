@@ -13,7 +13,6 @@
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <style>
 	.content_div_info:first-child{
 		margin-bottom: 0;
@@ -107,8 +106,8 @@
 						<a href="/zipsellerMypage.do" class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected">정보 확인/수정</span></a> 
 						<a href="/productList.do?reqPage=1" class="side_nav_div"><span	class="side_nav_span">상품 관리</span></a>
 						<a href="/searchOrder.do?reqPage=1&isDelivered=A&memberNo=${m.memberNo } "class="side_nav_div"><span class="side_nav_span">매출 정보</span></a> 
-						<a href="zcdMyReview.do" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
-						<a href="zcdMyQnA.do" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
+						<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
+						<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
 					</div>
 			</div>
 

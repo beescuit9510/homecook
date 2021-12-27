@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 
+
 <script>
 function insert() {
 	var memberContact = $("#managerContact1").val() + $("#managerContact2").val() + $("#managerContact3").val();
@@ -52,6 +53,8 @@ function insert() {
 <link rel="stylesheet" href="/resources/css/deliveryBuyer/buyerDefault.css">
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'>
+<link rel="stylesheet" href="/resources/css/sellerMypage/pageNavi.css">
+
 
 </head>
 <body>
@@ -82,8 +85,8 @@ function insert() {
 					<a href="/zipsellerMypage.do" class="side_nav_div side_nav_div"> <span class="side_nav_span side_nav_span">정보 확인/수정</span></a> 
 					<a href="/productList.do?reqPage=1" class="side_nav_div_selected side_nav_div"><span class="side_nav_span side_nav_span_selected">상품 관리</span></a> 
 					<a href="/shippingInfomation.do" class="side_nav_div"><span class="side_nav_span">매출 정보</span></a>  
-					<a href="/zcdMyReview.do" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
-					<a href="/zcdMyQnA.do" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
+					<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
+					<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
 				</div>
 			</div>
 

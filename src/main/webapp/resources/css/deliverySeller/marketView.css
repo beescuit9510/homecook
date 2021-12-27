@@ -285,3 +285,6 @@
 	opacity: 1;
 }
 
+.popupBtn {
+	cursor: pointer;
+}
