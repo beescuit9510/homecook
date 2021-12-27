@@ -15,6 +15,7 @@ import kr.or.member.model.service.MemberService;
 import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.ProductLike;
 import kr.or.table.model.vo.PwChangeVO;
+import kr.or.zipcoock.cart.service.CartService;
 import kr.or.zipcoock.mypage.service.MypageService;
 import kr.or.zipcoock.mypage.vo.DeleteObj1;
 import kr.or.zipcoock.mypage.vo.HQnaPage;
@@ -29,6 +30,8 @@ public class MypageController {
 	MypageService service;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	CartService cartService;
 
 	
 //	addr / qna / hp /r / like
@@ -122,7 +125,22 @@ public class MypageController {
 	public String zcdMyQnA() {
 		return "zipcoock/mypage2/mypage/myQnA";
 	}
+	@RequestMapping(value="myAddrList.do")
+	public String myAddrList(HttpSession session,Model model) {
+		Member m = (Member)session.getAttribute("m");		
+		model.addAttribute("addr", cartService.selectAddress(m.getMemberNo()));
 
+		return "zipcoock/mypage2/mypage/myAddr";
+	}
+
+	@RequestMapping(value="zcdMyAddr.do")
+	public String myAddrList2(HttpSession session,Model model) {
+		Member m = (Member)session.getAttribute("m");		
+		model.addAttribute("addr", cartService.selectAddress(m.getMemberNo()));
+		
+		return "delivery/buyer/mypage/myAddr";
+	}
+	
 	
 	@RequestMapping(value="/myLikeList.do")
 	public String myLikeList(SearchTool tool, HttpSession session, Model model) {

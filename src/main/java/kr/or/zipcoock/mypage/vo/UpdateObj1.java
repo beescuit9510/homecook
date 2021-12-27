@@ -2,7 +2,7 @@ package kr.or.zipcoock.mypage.vo;
 
 
 
-import kr.or.table.model.vo.Address;
+import kr.or.zipcoock.cart.vo.Address;
 import kr.or.table.model.vo.HomepageQna;
 import kr.or.table.model.vo.Member;
 import kr.or.table.model.vo.ProductLike;
