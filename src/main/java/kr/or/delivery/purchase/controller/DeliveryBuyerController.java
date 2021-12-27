@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdCartVo;
+import kr.or.delivery.model.vo.ZcdMain;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.model.vo.updatePw;
 import kr.or.delivery.purchase.service.DeliveryBuyerService;
@@ -27,8 +28,8 @@ public class DeliveryBuyerController {
 	public String zcdMain(HttpSession session, Model model) {
 		Member m=(Member)session.getAttribute("m");
 		//ArrayList<Address> addr=service.selectAddrList(m.getMemberNo());
-		ArrayList<ZcdStore> store=service.selectStoreList();
-		model.addAttribute("store",store);
+		ArrayList<ZcdMain> main=service.selectMainList();
+		model.addAttribute("main",main);
 		//model.addAttribute("addr",addr);
 		return "delivery/buyer/zcdMain";
 	}

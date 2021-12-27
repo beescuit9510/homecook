@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.delivery.model.vo.ZcdCartVo;
+import kr.or.delivery.model.vo.ZcdMain;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.model.vo.updatePw;
 import kr.or.delivery.purchase.dao.DeliveryBuyerDao;
@@ -49,5 +50,9 @@ public class DeliveryBuyerService {
 
 	public ArrayList<Address> selectAddrList(int memberNo) {
 		return dao.selectAddrList(memberNo);
+	}
+
+	public ArrayList<ZcdMain> selectMainList() {
+		return dao.selectMainList();
 	}
 }

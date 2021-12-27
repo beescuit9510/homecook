@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.delivery.model.vo.ZcdCartVo;
+import kr.or.delivery.model.vo.ZcdMain;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.table.model.vo.Address;
 import kr.or.table.model.vo.Member;
@@ -47,6 +48,11 @@ public class DeliveryBuyerDao {
 	public ArrayList<Address> selectAddrList(int memberNo) {
 		List<Address> list=sqlSession.selectList("zcdBuyer.selectAddrList");
 		return (ArrayList<Address>) list;
+	}
+
+	public ArrayList<ZcdMain> selectMainList() {
+		List<ZcdMain> list=sqlSession.selectList("zcdBuyer.selectMainList");
+		return (ArrayList<ZcdMain>) list;
 	}
 	
 	

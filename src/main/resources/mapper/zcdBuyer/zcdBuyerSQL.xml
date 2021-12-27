@@ -78,4 +78,14 @@
 		where member_no = #{memberNo}
 	</select>
 	
+	<select id="selectMainList" resultType="kr.or.delivery.model.vo.ZcdMain" parameterType="_int">	
+		select
+		    store_no as storeNo,
+		    zs.store_name as storeName,
+		    sl.filename,
+		    sl.filepath
+		from zcd_store zs
+		join store_logo sl using (store_no)
+	</select>
+	
 </mapper>
