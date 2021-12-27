@@ -33,6 +33,7 @@
 		<typeAlias type="kr.or.delivery.model.vo.Menu" alias="menu"/>
 		<typeAlias type="kr.or.delivery.model.vo.AddMenu" alias="addmenu"/>
 		<typeAlias type="kr.or.delivery.model.vo.ZcdCart" alias="zc"/>
-		
+		<typeAlias type="kr.or.delivery.model.vo.MenuOrder" alias="mo"/>
+		<typeAlias type="kr.or.delivery.model.vo.ZcdCartVo" alias="zcv"/>
 </typeAliases>
 </configuration>

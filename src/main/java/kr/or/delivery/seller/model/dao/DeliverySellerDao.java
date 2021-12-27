@@ -2,6 +2,7 @@ package kr.or.delivery.seller.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
+import kr.or.delivery.model.vo.MenuOrder;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdStore;
@@ -173,5 +175,36 @@ public class DeliverySellerDao {
 		return sqlSession.insert("zcdseller.addCart", zc);
 	}
 
+	public ArrayList<MenuOrder> selectOrderList(Map<Object, Object> pagedata) {
+		List<MenuOrder> list = sqlSession.selectList("zcdseller.selectOrderList", pagedata);
+		return (ArrayList<MenuOrder>)list;
+	}
+
+	public int selectOrderTotalCount(Map<Object, Object> pagedata) {
+		int result = sqlSession.selectOne("zcdseller.selectOrderTotalCount",pagedata);
+		return result;
+	}
+
+	public MenuOrder selectMenuOrder(int orderNo) {
+		return sqlSession.selectOne("zcdseller.selectMenuOrder", orderNo);
+	}
+
+	public String selectMemberPhone(int memberNo) {
+		return sqlSession.selectOne("zcdseller.selectMemberPhone", memberNo);
+	}
+
+	public ArrayList<ZcdCart> selectZcdCartList(MenuOrder mo) {
+		List<ZcdCart> list = sqlSession.selectList("zcdseller.selectZcdCartList", mo);
+		return (ArrayList<ZcdCart>)list;
+	}
+
+	public int zcdOrderX(int orderNo) {
+		return sqlSession.delete("zcdseller.zcdOrderX", orderNo);
+	}
+
+	public int zcdOrderO(int orderNo) {
+		return sqlSession.update("zcdseller.zcdOrderO", orderNo);
+	}
+	
 
 }

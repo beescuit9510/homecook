@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ZcdCart {
+public class MenuOrder {
 
-	private int cartNo;
+	private int orderNo;
 	private int memberNo;
 	private int storeNo;
-	private int menuNo;
-	private int menuAllprice;
-	private int amount;
-	private String addmenuInfo1;
-	private String addmenuInfo2;
-
+	private String orderRequest;
+	private String orderState;
+	private String orderTime;
+	private String orderAddress;
+	private String orderAddress2;
+	
 }
