@@ -14,6 +14,7 @@ import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.MenuOrder;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
+import kr.or.delivery.model.vo.ZcdReview;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.table.model.vo.Member;
 
@@ -204,6 +205,16 @@ public class DeliverySellerDao {
 
 	public int zcdOrderO(int orderNo) {
 		return sqlSession.update("zcdseller.zcdOrderO", orderNo);
+	}
+
+	public ArrayList<ZcdReview> selectReviewList(Map<Object, Object> pagedata) {
+		List<ZcdReview> list = sqlSession.selectList("zcdseller.selectReviewList", pagedata);
+		return (ArrayList<ZcdReview>)list;
+	}
+
+	public int selectReviewTotalCount(Map<Object, Object> pagedata) {
+		int result = sqlSession.selectOne("zcdseller.selectReviewTotalCount",pagedata);
+		return result;
 	}
 	
 

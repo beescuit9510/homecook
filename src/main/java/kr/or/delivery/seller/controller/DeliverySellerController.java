@@ -27,6 +27,8 @@ import kr.or.delivery.model.vo.MenuOrder;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdOrderPage;
+import kr.or.delivery.model.vo.ZcdReview;
+import kr.or.delivery.model.vo.ZcdReviewPage;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.seller.model.service.DeliverySellerService;
 import kr.or.table.model.vo.Member;
@@ -718,5 +720,44 @@ public class DeliverySellerController {
 		return "zipcoock/common/msg";
 	}
 	
+	@RequestMapping(value="manageZcdReviewFrm.do")
+	public String manageZcdReviewFrm(Member member, HttpSession session, Model model) {
+		Member m = (Member)session.getAttribute("m");
+		ArrayList<ZcdStore> list = service.selectZcdStoreList(m.getMemberNo());
+		model.addAttribute("list", list);
+		return "delivery/seller/manageZcdReviewFrm";
+	}
+	
+	@RequestMapping(value = "/manageZcdReview.do")
+	public String manageZcdReview(Member member, HttpSession session, int reqPage, int storeNo, String reviewState, Model model) {
+		Member m = (Member)session.getAttribute("m");
+		ZcdReviewPage zrp = service.selectReviewList(reqPage, storeNo, reviewState);
+		System.out.println(reqPage);
+		System.out.println(storeNo);
+		System.out.println(reviewState);
+		model.addAttribute("zrp", zrp);
+		model.addAttribute("storeNo", storeNo);
+		model.addAttribute("reviewState", reviewState);
+		System.out.println(zrp);
+		return "delivery/seller/manageZcdReview";
+	}
+	
+	
+	
+	
+	
+	@RequestMapping(value="/reviewView.do")
+	public String reviewView(Member member, HttpSession session, Model model, int orderNo) {
+		Member m = (Member)session.getAttribute("m");
+		MenuOrder mo = service.selectMenuOrder(orderNo);
+		String memberPhone = service.selectMemberPhone(mo.getMemberNo());
+		ArrayList<ZcdCart> list = service.selectZcdCartList(mo);
+		model.addAttribute("mo", mo);
+		model.addAttribute("memberPhone", memberPhone);
+		model.addAttribute("list", list);
+		System.out.println(mo.getMemberNo());
+		System.out.println(mo.getStoreNo());
+		return "delivery/seller/orderReceipt";
+	}
 	
 }

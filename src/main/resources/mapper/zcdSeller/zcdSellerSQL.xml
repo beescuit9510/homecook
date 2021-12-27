@@ -341,4 +341,24 @@
 		update menu_order set order_state='처리중' where order_no=#{orderNo}
 	</update>
 	
+	<select id="selectReviewList" parameterType="map" resultType="zr">
+		select * from
+		(select rownum as rnum, n.* from
+		(select
+		    review_no as reviewNo,
+		    store_no as storeNo,
+		    member_no as memberNo,
+		    order_no as orderNo,
+		    TO_CHAR(review_date, 'mm-dd(dy) hh24:mi:ss') as reviewDate,
+		    review_content as reviewContent,
+		    review_state as reviewState
+		from zcd_review
+		where store_no=#{storeNo} and review_state=#{reviewState} order by review_no desc) n)
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="selectReviewTotalCount" parameterType="map" resultType="_int">
+		select count(*) as cnt from zcd_review where store_no=#{storeNo} and review_state=#{reviewState}
+	</select>
+	
 </mapper>

@@ -7,14 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ZcdReview {
+public class ReviewComment {
 	
+	private int commentNo;
 	private int reviewNo;
-	private int storeNo;
 	private int memberNo;
-	private int orderNo;
-	private String reviewDate;
-	private String reviewContent;
-	private String reviewState;
+	private String commentDate;
+	private String commentContent;
 	
 }

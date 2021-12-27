@@ -37,19 +37,19 @@
         			<div class="side_nav_content">
 	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMarketFrm.do">매장관리</a></span></div>
 	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMenuFrm.do">메뉴관리</a></span></div>
-	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageZcdOrderFrm.do">주문접수</a></span></div>
-	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageZcdReviewFrm.do">리뷰관리</a></span></div>       			
+	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageZcdOrderFrm.do">주문접수</a></span></div>
+	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageZcdReviewFrm.do">리뷰관리</a></span></div>       			
         			</div>
         		</div>
         		
         		<div class="content_div">
-        			<div class="content_title">주문접수</div>
+        			<div class="content_title">리뷰관리</div>
         			<div class="content_div_area">
         				<div class="content_div_content">
         					<div class="content_div_info">
         						<div class="content_div_opt1 overflow-text">상호명</div>
         						<div class="content_div_opt2">매장 전화번호</div>
-        						<div class="content_div_opt3">주문관리</div>
+        						<div class="content_div_opt3">리뷰관리</div>
         					</div>
         					<c:if test="${not empty list }">
         						<table class="content_div_table">
@@ -59,7 +59,7 @@
 											<td><div class="content_div_opt2" style="color: #333">${zs.storePhone }</div></td>
 											<td>
 												<div class="content_div_opt3">
-													<a href="/manageZcdOrder.do?reqPage=1&storeNo=${zs.storeNo }&orderState=접수대기" style="color: #9ac6e8;">관리</a>
+													<a href="/manageZcdReview.do?reqPage=1&storeNo=${zs.storeNo }&reviewState=미답변" style="color: #9ac6e8;">관리</a>
 													<input type="hidden" name="storeNo" value="${zs.storeNo }">
 												</div>
 											</td>
