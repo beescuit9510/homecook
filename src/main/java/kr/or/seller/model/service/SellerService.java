@@ -494,9 +494,9 @@ public class SellerService {
 		return ipd;
 		
 	}
-	public Qna selectOneQna(Qna qna) {
+	public QnaList selectOneQna(QnaList qnaList) {
 		
-		Qna q = dao.selectOneQna(qna);
+		QnaList q = dao.selectOneQna(qnaList);
 		System.out.println(q+"service");
 		return q;
 	}

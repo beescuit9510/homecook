@@ -537,11 +537,11 @@ public class SellerController {
 		return "zipcoock/seller/mypage/sellerQNA";
 	}
 	@RequestMapping(value = "/sellerQnaView.do")
-	public String sellerQnaView(Qna qna, HttpSession session, Model model) {
-		System.out.println(qna);
-		Qna q = service.selectOneQna(qna); 
-		model.addAttribute("q",q);
-		System.out.println(q);
+	public String sellerQnaView(QnaList qnaList, HttpSession session, Model model) {
+		System.out.println(qnaList);
+		QnaList ql = service.selectOneQna(qnaList); 
+		model.addAttribute("q",ql);
+		System.out.println(ql);
 		return "zipcoock/seller/mypage/sellerQnaView";
 	}
 }

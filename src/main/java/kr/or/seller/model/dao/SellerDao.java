@@ -192,9 +192,9 @@ public class SellerDao {
 		return sqlSession.selectOne("product.selectInquiryCount",memberNo);
 	}
 
-	public Qna selectOneQna(Qna qna) {
+	public QnaList selectOneQna(QnaList qnaList) {
 		
-		return sqlSession.selectOne("q.selectOneQna",qna);
+		return sqlSession.selectOne("q.selectOneQna",qnaList);
 	}
 
 

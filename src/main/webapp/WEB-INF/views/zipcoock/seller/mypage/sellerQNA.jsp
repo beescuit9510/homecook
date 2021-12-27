@@ -91,7 +91,7 @@
         		
         		<div class = "content_div_content" style="background: white; padding: 20px 20px; border: 1px solid rgb(221, 221, 221);">
         				<div id="title">
-						   <h1 style="border-left:2px solid #5f755a;">상품 문의</h1>
+						   <h1 style="border-left:2px solid #9ac6e8;">상품 문의</h1>
                         <br>
                          <fieldset>
 			<table class="table table-hover" style="width:100%;">
@@ -107,11 +107,11 @@
 							
 						
 							<c:choose>
-								<c:when test="${i.qnaAnswer == null }">
+								<c:when test="${i.qnaAnswerer == null }">
 									<td style="color:red;">미완료</td>
 								</c:when>
-								<c:when test="${i.qnaAnswer != null }">
-									<td style="color:#5F755A;">완료</td>
+								<c:when test="${i.qnaAnswerer != null }">
+									<td style="color:#9ac6e8;">완료</td>
 								</c:when>
 							</c:choose>					
 						

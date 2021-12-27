@@ -2,16 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="q">
 
-<select id="selectOneQna" parameterType="qna" resultType="qna">
+<select id="selectOneQna" parameterType="ql" resultType="ql">
 SELECT 
-qna_no as  qnaNo,
-member_no as memberNo,
-product_ref_no as productRefNo,
-qna_Level as qnaLevel,
-qna_Title as qnaTitle,
-qna_Content as qnaContent,
-to_char(write_Date, 'yyyy-mm-dd') as writeDate
-from qna where qna_no = #{qnaNo}
+	q1.qna_No as qnaNo,
+    q1.MEMBER_NO as memberNo,
+    q1.product_ref_no as productRefNo, 
+    q1.qna_level as qnaLevel, 
+    q1.qna_title as qnaTitle, 
+    q1.qna_content as qnaContent, 
+    to_char(q1.write_date, 'yyyy-mm-dd') as writeDate ,
+    (select q2.member_No from qna q2 where q2.qna_ref_no = #{qnaNo}) as qnaAnswerer,
+    (select q2.qna_title from qna q2 where q2.qna_ref_no = #{qnaNo}) as qnaAnswerTitle,
+    (select q2.qna_content from qna q2 where q2.qna_ref_no = #{qnaNo}) as qnaAnswerContent,
+    (select to_char(q2.write_date, 'yyyy-mm-dd') from qna q2 where q2.qna_ref_no = #{qnaNo}) as writeAnswerdate
+FROM qna q1
+where q1.qna_no = #{qnaNo} 
+
 </select>
 </mapper>
  

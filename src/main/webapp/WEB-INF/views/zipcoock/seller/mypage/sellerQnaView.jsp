@@ -59,12 +59,12 @@ ul {
 	list-style: none;
 }
 .btn{
-	background-color:#5F755A; 
+	background-color:#9ac6e8; 
 	color:#ffffff;
 }
 .btn:hover{
 	color: #fff;
-	background-color: #ADC2A9;
+	background-color: #7abaff;
 }	
 	
 </style>
@@ -123,7 +123,7 @@ ul {
 					<th style="width:15%;">상품번호</th>
 					<th style="width:35%;">${q.productRefNo }</th>
 					<th>답변일</th>
-					<th>${q.writeDate }</th>
+					<th>${q.writeAnswerDate }</th>
 					
 				</tr>
 				<tr>
@@ -135,7 +135,7 @@ ul {
 				<tr>
 					<th style="height:100px;">답변</th>
 					<th colspan="3">
-						${q.qnaContent }
+						${q.qnaAnswerTitle }
 					</th>
 				</tr>
 			</table>
@@ -143,20 +143,23 @@ ul {
 			<br>
 			<div class="well well-lg" style="background-color:white;"">
 				<h4>답변 작성</h4>
-				<form action="/insertAnswer" method="post">
+				<form action="/insertAnswer.do" method="post">
 					<ul>
 						<li>
 							<input type="hidden" name="pqWriter" value="15">
-							<input type="hidden" name="productNo" value="${pq.productNo }">
-							<input type="hidden" name="pqRef" value="${pq.pqNo }">
-							<input type="hidden" name="pqStatus" value="${pq.pqStatus }">
-							<textarea name="pqContent" class="form-control"></textarea>
+							<input type="hidden" name="qnaRefNo" value="${pq.qnaNo }">
+							<input type="hidden" name="productRefNo" value="${q.productRefNo }">
+							<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
+							<input type="text" name="qnaTitle" class="form-control" placeholder="제목" style="margin-bottom: 10px;">
+							<textarea name="qnaContent" class="form-control"placeholder="내용" style="margin-bottom: 10px;"></textarea>
 						</li>
 						<li>
-							<c:if test="${pq.pqStatus eq 1 }">
+							<c:if test="${q.qnaAnswerer == null  }">
+								<input type="hidden" name="answerStatus" value="1">
 								<button type="submit" class="btn btn-block">등록</button>
 							</c:if>
-							<c:if test="${pq.pqStatus eq 2 }">
+							<c:if test="${q.qnaAnswerer != null  }">
+								<input type="hidden" name="answerStatus" value="2">
 								<button type="submit" class="btn btn-block">수정</button>
 							</c:if>
 						</li>
