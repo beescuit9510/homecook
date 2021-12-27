@@ -194,9 +194,15 @@
 				}
 			});
 		});
+		
 		$("#no-payment").click(function() {
 			$($(".purchase-content")[0]).css("display","none");
 			$($(".purchase-content")[1]).css("display","block");
+		});
+		
+		$("input[name=memberAddr]").click(function(){
+			var checkAddr=$("input[name=memberAddr]:checked").val();
+			console.log(checkAddr);
 		});
 		
 		$("#addAddr").click(function() {

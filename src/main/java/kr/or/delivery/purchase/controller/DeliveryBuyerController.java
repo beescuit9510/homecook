@@ -26,10 +26,10 @@ public class DeliveryBuyerController {
 	@RequestMapping(value="zcdMain.do")
 	public String zcdMain(HttpSession session, Model model) {
 		Member m=(Member)session.getAttribute("m");
-		ArrayList<Address> addr=service.selectAddrList(m.getMemberNo());
+		//ArrayList<Address> addr=service.selectAddrList(m.getMemberNo());
 		ArrayList<ZcdStore> store=service.selectStoreList();
 		model.addAttribute("store",store);
-		model.addAttribute("addr",addr);
+		//model.addAttribute("addr",addr);
 		return "delivery/buyer/zcdMain";
 	}
 	
@@ -56,6 +56,14 @@ public class DeliveryBuyerController {
 	@RequestMapping(value="zcdMyQnA.do")
 	public String zcdMyQnA() {
 		return "delivery/buyer/mypage/myQnA";
+	}
+	
+	@RequestMapping(value="addrList.do")
+	public String addrList(HttpSession session, Model model) {
+		Member m=(Member)session.getAttribute("m");
+		ArrayList<Address> addr=service.selectAddrList(m.getMemberNo());
+		model.addAttribute("addr",addr);
+		return "delivery/buyer/mypage/myAddr";
 	}
 	
 	@RequestMapping(value="zcdFindResult.do")

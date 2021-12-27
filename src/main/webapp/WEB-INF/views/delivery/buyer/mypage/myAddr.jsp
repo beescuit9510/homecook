@@ -62,47 +62,25 @@
         			</div>
         		</div>
         <div class = "content_div">
-        	<div class = "content_title">나의 집쿠욱</div>
+        	<div class = "content_title">배송지 목록</div>
         	<div class = "content_div_area">
         		<div class = "content_div_content">
         			<div class = "content_div_info">
-        				<div class = "content_div_opt1">집쿠욱 레벨</div>
-        				<div class = "content_div_opt2">배달 주소</div>
-        				<div class = "content_div_opt3">주문내역</div>
+        				<div class = "content_div_opt1">배송지명</div>
+        				<div class = "content_div_opt2">주소</div>
+        				<div class = "content_div_opt3">수정/삭제</div>
         			</div>
+        			<c:forEach items="${addr }" var="a" varStatus="status">
         			<div class = "content_div_info">
-        				<div class = "content_div_opt2" id="text-emp">${sessionScope.m.deliveryLevel }</div>
-        				<div class = "content_div_opt1"><a href="/addrList.do" id="text-emp">보러가기</a></div>
-        				<div class = "content_div_opt3"><a href="#" id="text-emp">보러가기</a></div>
+        				<input type="hidden" value="${a.addrNo }" id="addrNo">
+        				<div class = "content_div_opt1" id="text-emp">${a.title}</div>
+        				<div class = "content_div_opt2"><a href="#" id="text-emp">${a.addr }</a></div>
+        				<div class = "content_div_opt3"><a href="updateAddr.do?addrNo=${a.addrNo }" class="default_Btn" >수정</a><button class="default_Btn" id="deleteAddr">삭제</button></div>
         			</div>
-        			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">정보 확인/수정</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">이름</div>
-	        			<div class="content_div_opt2" id="text-emp" style="text-align: left; margin-left: 20px;">${sessionScope.m.memberName }</div>
-	        			<div class="content_div_opt3"></div>
+        			</c:forEach>
+	        		<div class="btn-area">
+	        			<a class="add_market_btn" href="addAddr.do">+ 배송지 등록하기</a>
 	        		</div>
-        			<form action="/updatePhone.do" method="post">
-		        		<div class = "content_div_info">
-			        			<div class="content_div_opt1">전화번호</div>
-			        			<input type="hidden" name="memberId" value="${sessionScope.m.memberId }">
-			        			<div class="content_div_opt2"><input type="text" name="memberPhone" class="input" value=${sessionScope.m.memberPhone }></div>
-			        			<div class="content_div_opt3"><input type="submit" class="default_Btn" value="전화번호 변경"></div>
-		        		</div>
-        			</form>
-	        		<form action="/updatePw.do" method="post">
-		        		<div class = "content_div_info">
-		        			<div class="content_div_opt1">현재 비밀번호</div>
-		        			<div class="content_div_opt2">
-		        				<input type="hidden" name="memberId" value="${sessionScope.m.memberId }">
-		        				<input type="password" class="input" name="oldPw">
-		        			</div>
-		        		</div>
-		        		<div class = "content_div_info">
-		        			<div class="content_div_opt1">새로운 비밀번호</div>
-		        			<div class="content_div_opt2"><input type="password" class="input" name="newPw"></div>
-		        			<div class="content_div_opt3"><input type="submit" class="default_Btn" value="비밀번호 변경"></div>
-		        		</div>
-	        		</form>
         		</div>	
         	</div>
         </div>
@@ -114,4 +92,16 @@
 			height: 24px;
 		}
 	</style>
-      
+     <script>
+     	$(function(){
+     		
+     		$("#deleteAddr").click(function(){
+     			var del_cf = confirm("해당 배송지 정보를 삭제하시겠습니까?");
+				var addrNo = $("#addrNo").val();
+				if (del_cf == true) {
+					location.href="/deleteOneAddr.do?addrNo="+addrNo;			
+				}
+     		});
+     		
+     	});
+     </script>
