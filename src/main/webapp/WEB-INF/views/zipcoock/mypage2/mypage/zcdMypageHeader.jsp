@@ -47,6 +47,6 @@
 	        			<a href="myReviewList.do" class = "side_nav_div"><span class = "side_nav_span">리뷰내역</span></a>
 	        			<a href="myQnaList.do" class = "side_nav_div"><span class = "side_nav_span">Q&A 내역</span></a>
 	        			<a href="myHQnaList.do" class = "side_nav_div"><span class = "side_nav_span">문의내역</span></a>
-	        			<a href="zcdMyQnA1.do" class = "side_nav_div"><span class = "side_nav_span">배송지 관리</span></a>
+	        			<a href="myAddrList.do" class = "side_nav_div"><span class = "side_nav_span">배송지 관리</span></a>
         			</div>
         		</div>

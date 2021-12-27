@@ -6,7 +6,7 @@
 		insert into
 
 	    <if test="addr != null">
-			address values(#{addr.memberNo},address_seq.nextval,#{addr.receiverName},#{addr.receiverPhone},#{addr.addr}
+			address values(#{addr.memberNo},address_seq.nextval,#{addr.receiverName},#{addr.receiverPhone},#{addr.addr},#{addr.title} 
 	    </if>
 	    <if test="q != null">
 			qna values(qna_seq.nextval,#{q.memberNo},#{q.productRefNo},null,1,#{q.qnaTitle},#{q.qnaContent},sysdate
@@ -49,7 +49,7 @@
 
 		<!-- 배송지 수정 -->
 		<if test="addr != null">
-			address set receiver_name= #{addr.receiverName}, receiver_phone = #{addr.receiverPhone}, addr = #{addr.addr}
+			address set receiver_name= #{addr.receiverName}, receiver_phone = #{addr.receiverPhone}, addr = #{addr.addr}, title = #{addr.title}
 			where addr_no = #{addr.addrNo} and member_no = #{addr.memberNo}
 	    </if>
 
