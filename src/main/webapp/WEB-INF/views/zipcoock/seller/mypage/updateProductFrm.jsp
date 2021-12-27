@@ -19,9 +19,170 @@ function insert() {
 		$("#productImage").attr("id", 'NoId');
 	}else{
 		
-	}
-	return true;
+	}	
+	//카테고리에 값을 입력했을경우 1
+	if ($("#categoryNo").val() != '0') {
+		
+		//상품명을 입력했을경우 2
+		if ($("#productName").val() != '') {
+			//판매가 입력했을 경우3
+				if ($("#Price").val() != '') {
+				
+				//재고 입력 했을경우4
+					if ($("#stock").val() != '') {
+					
+					//제조일자 공백아닌경우5
+						if($("#manufactureDate").val() !=''){
+		
+						//제조국 공백 아닌경우6
+							if ($("#origin").val() != '') {
+								
+								//제조자 공백 아닌경우7
+								if ($("#manufacturer").val() != '') {									
+									//담당자 연락처 공백 아닌경우8
+									if ($("#managerContact2").val() && $("#managerContact3").val() != '') {	
+										//상품 설명 공백 아닌경우9
+										if ($("#productDetail").val() != '') {
+											//주의사항 공백인 경우10
+											if ($("#precautions").val() != '') {
+												//유통기한 입력한경우11
+												if($("#expirationDate").val() != ''){
+													//구매제한 입력한경우12
+													if($("#limit").val() != ''){
+														//배송방법 입력한경우13
+														if($("#shippingMethod").val() != ''){
+															//배송회사 입력한경우14
+															if($("#shippingCompany").val() != ''){
+																//상품이미지 입력한경우15
+																if($("#productImage").val() != ''){
+																	//상품상세이미지 입력한경우16
+																	if($("#productFile").val() != ''){
+																		
+																		//환불정책 입력한경우 17
+																		if($("#policyContent").val() != ''){
+																			
+																			//상품등록 확인버튼 취소했을경우18
+																			if (confirm("상품등록 하시겠습니까?")) {
+																				alert("상품등록이 완료되었습니다.");
+																				
+																				return true;
+																			} else {
+																				return false;
+																		}
+																			//환불정책 입력한경우 17
+																		}else{
+																			alert("환불 주의사항을 확인해주세요!");
+																			$("#productFile").focus();
+																			return false;
+																		}		
+																			//상품상세이미지 입력한경우16
+																	}else{
+																		alert("상품  이미지를 확인해주세요!");
+																		$("#productFile").focus();
+																		return false;
+																	}
+																	
+																	//상품이미지 입력한경우15
+																}else{
+																	alert("상품 이미지를 확인해주세요!");
+																	$("#productImage").focus();
+																	return false;
+																}
+															
+																//배송회사 입력한경우14
+															}else{
+																alert("배송회사를 확인해주세요!");
+																$("#shippingCompany").focus();
+																return false;
+															}
+															//배송방법 입력한경우13
+														}else{
+															alert("배송방법을 확인해주세요!");
+															$("#shippingMethod").focus();
+															return false;
+														}
+														//구매제한 입력한경우12
+													}else {
+														alert("구매제한을 확인해주세요!");
+														$("#limit").focus();
+														return false;
+													}
+													//유통기한 입력한경우11
+												}else{
+													alert("유통기한을 확인해주세요!");
+													$("#expirationDate").focus();
+													return false;
+												}
+											
+												//주의사항 공백인 경우10
+										
+											}else{
+												alert("주의사항을 확인해주세요!");
+												$("#precautions").focus();
+												return false;
+											}
+											
+											//상품 상세설명 입력 안한경구9
+										} else {
+											alert("상세설명을 확인해주세요!");
+											$("#productDetail").focus();
+											return false;
+										}
+										//상세주소 입력안했을경우8
+									} else {
+										alert("담당자 연락처를 확인해 주세요!!");
+										$("#managerContact2").focus();
+										return false;
+
+									}
+									//제조자 공백인경우7
+								} else {
+									alert("제조자를 확인해주세요!");
+									$("#manufacturer").focus();
+									return false;
+
+								}
+							
+							//제조국 공백인경우경우6
+						} else {
+							alert("제조국 확인해주세요!");
+							$("#origin").focus();
+							return false;
+						}
+						//제조일자 공백인경우5
+					} else {
+						alert("제조일자를 확인해주세요!");
+						$("#manufactureDate").focus();
+						return false;
+						}
+						//재고 입력 안했을 경우4
+				} else {
+						alert("재고값을 확인해주세요!");
+						$("#stock").focus();
+						return false;
+					}
+					//상품 가격 입력 안했을 경우3
+				} else {
+					alert("상품 가격을 확인해주세요!");
+					$("#Price").focus();
+					return false;
+				}
+				//아이디값 중복이거나 null일 경우2
+			} else {
+				alert("상품 이름을 확인해주세요!");
+				$("#productName").focus();
+				return false;
+			}
+
+			//이용약관 체크안했을경우1
+		} else {
+			alert("카테고리을 확인해 주세요!");
+			$("#categoryNo").focus();
+			return false;
+		}
 }
+	
+
 
 
 
@@ -53,7 +214,7 @@ function insert() {
 <link rel="stylesheet" href="/resources/css/deliveryBuyer/buyerDefault.css">
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'>
-<link rel="stylesheet" href="/resources/css/sellerMypage/pageNavi.css">
+
 
 
 </head>
@@ -84,8 +245,7 @@ function insert() {
 				<div class="side_nav_content">
 					<a href="/zipsellerMypage.do" class="side_nav_div side_nav_div"> <span class="side_nav_span side_nav_span">정보 확인/수정</span></a> 
 					<a href="/productList.do?reqPage=1" class="side_nav_div_selected side_nav_div"><span class="side_nav_span side_nav_span_selected">상품 관리</span></a> 
-					<a href="/shippingInfomation.do" class="side_nav_div"><span class="side_nav_span">매출 정보</span></a>  
-					<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
+					<a href="/shippingInfomation.do" class="side_nav_div"><span class="side_nav_span">매출 정보</span></a>   
 					<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
 				</div>
 			</div>
@@ -260,15 +420,13 @@ function insert() {
 						<th>환불 가능 기간</th>
 						<td colspan="4">
 							<select class="form-control" id="retrunLength" name="retrunLength">
-							
-							<c:if test="${p.RETURNLENTH == 0}">
+							<c:if test="${p.RETURNLENGTH == 0 }">
 							<option value="${p.RETURNLENGTH}" selected>환불/교환 불가</option>
 							</c:if>
-							<c:if test="${p.RETURNLENTH != 0}">returnLength
+							<c:if test="${p.RETURNLENGTH != 0}">returnLength
 							<option value="${p.RETURNLENGTH}" selected>${p.RETURNLENGTH}일이내</option>
 							</c:if>
 							
-								
 								<option value="0">환불/교환 불가</option>
 								<option value="1">1일 이내</option>
 								<option value="2">2일 이내</option>
