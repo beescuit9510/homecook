@@ -704,4 +704,19 @@ public class DeliverySellerController {
 		return "delivery/seller/deliveryReceipt";
 	}
 	
+	@RequestMapping(value="/deliveryStart.do")
+	public String deliveryStart(int orderNo, int time, Model model) {
+		MenuOrder mo = service.selectMenuOrder(orderNo);
+		int result = service.zcdOrderO(mo.getOrderNo());
+		if (result > 0) {
+			model.addAttribute("msg","주문접수가 완료되었습니다.");
+			model.addAttribute("loc", "/manageZcdOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
+		} else {
+			model.addAttribute("msg","주문접수가 완료되지 않았습니다.");
+			model.addAttribute("loc", "/manageZcdOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
+		}
+		return "zipcoock/common/msg";
+	}
+	
+	
 }

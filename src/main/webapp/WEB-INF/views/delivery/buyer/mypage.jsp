@@ -66,13 +66,13 @@
         	<div class = "content_div_area">
         		<div class = "content_div_content">
         			<div class = "content_div_info">
-        				<div class = "content_div_opt2">집쿠욱 레벨</div>
-        				<div class = "content_div_opt1">배달 주소</div>
+        				<div class = "content_div_opt1">집쿠욱 레벨</div>
+        				<div class = "content_div_opt2">배달 주소</div>
         				<div class = "content_div_opt3">주문내역</div>
         			</div>
         			<div class = "content_div_info">
         				<div class = "content_div_opt2" id="text-emp">${sessionScope.m.deliveryLevel }</div>
-        				<div class = "content_div_opt1"><a href="#" id="text-emp">보러가기</a></div>
+        				<div class = "content_div_opt1"><a href="/addrList.do" id="text-emp">보러가기</a></div>
         				<div class = "content_div_opt3"><a href="#" id="text-emp">보러가기</a></div>
         			</div>
         			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">정보 확인/수정</div>

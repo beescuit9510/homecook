@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.zipcoock.cart.dao.CartDao;
 import kr.or.zipcoock.cart.vo.Address;
+import kr.or.zipcoock.cart.vo.Cart;
 import kr.or.zipcoock.cart.vo.ItemInCart;
 import kr.or.zipcoock.cart.vo.Product;
 
@@ -58,4 +59,12 @@ public class CartService {
 		return dao.selectAddress(memberNo);
 	}
 
+	public int insertCart(Cart cart) {
+		if(dao.insertPaymentInfo(cart) > 0) {			
+			return dao.insertOrderedProduct(cart);
+		};
+		return -1;
+	}
+
+	
 }

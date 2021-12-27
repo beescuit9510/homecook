@@ -75,7 +75,6 @@
 						href="productList.do?reqPage=1" class="side_nav_div side_nav_div">
 						<span class="side_nav_span">상품 관리</span></a> 
 						<a href="/shippingInfomation.do" class="side_nav_div side_nav_div_selected"><span class="side_nav_span_selected">매출 정보</span></a> 
-						<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
 						<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
 				</div>
 			</div>

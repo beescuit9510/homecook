@@ -6,15 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	.card_info {
-		font-size: 15px;
-		margin-bottom: 5px;
-	}
-	#result {
-		margin-top: 10px;
-	}
-</style>
 <link rel="stylesheet" href="/resources/css/deliverySeller/enrollMenu.css">
 
 <!-- bootstrap css -->
@@ -26,11 +17,23 @@
 
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a332b607a0069f2456286f6df7d82ed7&libraries=services"></script>
+
 <script	src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx00134e08007f4fcbabe5706db62ea793"></script>
 
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+<style>
+	.card_info {
+		font-size: 15px;
+		margin-bottom: 5px;
+	}
+	#result {
+		margin-top: 10px;
+	}
+</style>
 </head>
-<body onload="initTmap();">
+<body onload="initMap();">
 <div class="s-wrapper">
 	<jsp:include page="/WEB-INF/views/common/deliveryHeader.jsp" />
 	<div class="main_field">
@@ -118,9 +121,10 @@
 										
 										 <br><br>
 										 <div class="row">
-        									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/zcdDeliveryX.do?orderNo=${mo.orderNo }">배달 취소</a>
+        									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/manageZcdOrder.do?reqPage=1&storeNo=${mo.storeNo }&orderState=처리중">취소</a>
         									<div class="col-md-auto"> </div>
-        									<a class="buy_btn" style="font-weight: 400; margin-right:200px;" href="/zcdDeliveryO.do?orderNo=${mo.orderNo }">배달 접수</a>								
+        									<button type="button" id="deliveryStart" class="buy_btn" style="font-weight: 400; margin-right:200px;">배달 접수</button>
+        									<input type="hidden" id="orderNo" value="${mo.orderNo }">								
        									</div>
 										 <br>
         								<div class="content_div_end"></div>
@@ -151,33 +155,40 @@
 			var storeX = $("#storeX").val();
 			var storeY = $("#storeY").val();
 			var memberAddr = $("#memberAddr").val();
-			var memberX = "";
-			var memberY = "";
+			var memberX;
+			var memberY;
 			
-			var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
-		    mapOption = {
-		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
-		    };  
-
-			// 지도를 생성합니다    
-			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			var time;
+			
+			function initMap() {
+				
+				var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };  
 	
-			// 주소-좌표 변환 객체를 생성합니다
-			var geocoder = new kakao.maps.services.Geocoder();
-	
-			// 주소로 좌표를 검색합니다
-			geocoder.addressSearch(memberAddr, function(result, status) {
-	
-			    // 정상적으로 검색이 완료됐으면 
-			     if (status === kakao.maps.services.Status.OK) {
-	
-			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-					memberX = result[0].x;
-			        memberY = result[0].y;
-					
-			    } 
-			});    
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
+		
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch(memberAddr, function(result, status) {
+		
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+		
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+						memberX = result[0].x;
+				        memberY = result[0].y;
+						console.log(memberX);
+						console.log(memberY);
+						return initTmap();
+				    } 
+				});    
+			}
 	
 			
 			function initTmap() {
@@ -240,6 +251,8 @@
 								
 									var tDistance = $("<div class='card_info'>총 거리 : " + (resultData[0].properties.totalDistance / 1000).toFixed(1) + "km" + "</div>");
 									var tTime = $("<div class='card_info'> 배달 소요 시간 : " + (resultData[0].properties.totalTime / 60).toFixed(0) + "분" + "</div>");
+									
+									time = (resultData[0].properties.totalTime / 60).toFixed(0);
 									
 									$("#result").append(tDistance);
 									$("#result").append(tTime);
@@ -548,6 +561,21 @@
 				}
 		
 			}
+			
+			
+			$("#deliveryStart").on("click", function() {
+				console.log(time);
+				var orderNo = $(this).next().val();
+				
+				$.ajax({
+					url : "/deliveryStart.do",
+					data : {time : time, orderNo : orderNo},
+					type : "post",
+					success : function() {
+						
+					}
+				});
+			});
 			
 			
 	</script>

@@ -97,7 +97,6 @@ ul {
 					<a href="/zipsellerMypage.do" class="side_nav_div"><span class="side_nav_span side_nav_span">정보 확인/수정</span></a>
 					<a href="productList.do?reqPage=1" class="side_nav_div"> <span class="side_nav_span">상품 관리</span></a>
 					<a href="/shippingInfomation.do" class="side_nav_div"><span class="side_nav_span">매출 정보</span></a> 
-					<a href="/sellerQNA.do?reqPage=1" class="side_nav_div"><span	class="side_nav_span">리뷰내역</span></a> 
 					<a href="/sellerQNA.do?reqPage=1" class="side_nav_div side_nav_div_selected"><span class="side_nav_span_selected">문의내역</span></a>
 				</div>
 			</div>
@@ -111,13 +110,13 @@ ul {
 						   <h1 style="border-left:2px solid #5f755a;">상품 문의</h1>
                         <br>         
           <div class="content">
-        	<fieldset class="well well-lg" style="background-color:white;">
+        	<fieldset class="well well-lg" style="background-color:white;border: 1px solid rgb(221, 221, 221); padding : 20px;">
 			<table class="table" id="inquiryView" style="width:100%;">
 				<tr>
-					<th>제목</th>
-					<th>${q.qnaTitle }</th>
-					<th>작성일</th>
-					<th>${q.writeDate }</th>
+					<th style=" border-top: none;">제목</th>
+					<th style=" border-top: none;">${q.qnaTitle }</th>
+					<th style=" border-top: none;">작성일</th>
+					<th style=" border-top: none;">${q.writeDate }</th>
 				</tr>
 				<tr>
 					<th style="width:15%;">상품번호</th>
