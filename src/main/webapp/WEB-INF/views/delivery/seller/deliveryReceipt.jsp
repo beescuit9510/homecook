@@ -95,8 +95,7 @@
 												<div class="ft_select_wrap">
 													<div class="ft_select" style="display: none;">
 														<select id="selectLevel">
-															<option value="0" selected="selected">교통최적+추천</option>
-															
+															<option value="12" selected="selected">이륜차도로우선</option>
 														</select> <select id="year">
 															<option value="N" selected="selected">교통정보 표출 옵션</option>
 															
@@ -197,7 +196,7 @@
 					center : new Tmapv2.LatLng(storeX, storeY),
 					width : "100%",
 					height : "400px",
-					zoom : 14,
+					zoom : 13,
 					zoomControl : true,
 					scrollwheel : true
 				});
