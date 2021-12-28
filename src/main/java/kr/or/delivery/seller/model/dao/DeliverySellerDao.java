@@ -12,8 +12,10 @@ import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.MenuOrder;
+import kr.or.delivery.model.vo.ReviewComment;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
+import kr.or.delivery.model.vo.ZcdReview;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.table.model.vo.Member;
 
@@ -204,6 +206,32 @@ public class DeliverySellerDao {
 
 	public int zcdOrderO(int orderNo) {
 		return sqlSession.update("zcdseller.zcdOrderO", orderNo);
+	}
+
+	public ArrayList<ZcdReview> selectReviewList(Map<Object, Object> pagedata) {
+		List<ZcdReview> list = sqlSession.selectList("zcdseller.selectReviewList", pagedata);
+		return (ArrayList<ZcdReview>)list;
+	}
+
+	public int selectReviewTotalCount(Map<Object, Object> pagedata) {
+		int result = sqlSession.selectOne("zcdseller.selectReviewTotalCount",pagedata);
+		return result;
+	}
+
+	public ZcdReview selectOneReview(int reviewNo) {
+		return sqlSession.selectOne("zcdseller.selectOneReview", reviewNo);
+	}
+
+	public String selectMemberId(int memberNo) {
+		return sqlSession.selectOne("zcdseller.selectMemberId", memberNo);
+	}
+
+	public int reviewWrite(ReviewComment rc) {
+		return sqlSession.insert("zcdseller.reviewWrite", rc);
+	}
+
+	public int updateReviewState(int reviewNo) {
+		return sqlSession.update("zcdseller.updateReviewState", reviewNo);
 	}
 	
 

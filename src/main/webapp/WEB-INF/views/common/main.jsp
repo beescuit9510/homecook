@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="resources/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="resources/js/admin/jquery-3.3.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
@@ -689,13 +689,13 @@ $(document).ready(function()
 					
 					
 					var html = "";
-					var card = "<div><div class = 'slider-card'>";
+					var card = "<a href = '/mainboardView.do?memberNo=0&productNo="+list[i].productNo +"'><div class = 'slider-card'>";
 					var imgbox = "<div class = 'img_box'>";
 					var img = "<img src='/resources/img/common/test_product_00.jpg' class='slider_img'>";
 					var product_name = "<div class = 'product_name'>"+list[i].productName+"</div>";
 					var img_sub = "<div class = 'img_subcontent'>"+list[i].capacity+"</div>";
 					var price = "<div class = 'img_price'>"+list[i].price+" 원</div>";
-					var end = "</div></div></div>";
+					var end = "</div></div></a>";
 							
 					html += card + imgbox+ img+ product_name+ img_sub+ price+ end;
 					table.append(html);

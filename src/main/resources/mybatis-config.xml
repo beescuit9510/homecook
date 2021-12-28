@@ -38,5 +38,7 @@
 		<typeAlias type="kr.or.delivery.model.vo.ZcdDelivery" alias="zd"/>
 		<typeAlias type="kr.or.delivery.model.vo.MenuOrder" alias="mo"/>
 		<typeAlias type="kr.or.delivery.model.vo.ZcdCartVo" alias="zcv"/>
+		<typeAlias type="kr.or.delivery.model.vo.ZcdReview" alias="zr"/>
+		<typeAlias type="kr.or.delivery.model.vo.ReviewComment" alias="rc"/>
 </typeAliases>
 </configuration>

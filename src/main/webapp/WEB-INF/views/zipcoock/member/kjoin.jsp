@@ -123,7 +123,7 @@
 							<label for="privacyAgreement">개인정보 수집 및 이용에 동의 <span
 								class="fcBlue">(필수)</span></label>
 							<div class="agreeContent">
-								<ul>
+								<ul style="list-style: none;padding: 10px;;">
 									<li>수집항목 : 이름, 휴대전화번호, 생년월일, 비밀번호</li>
 									<li>수집·이용목적 : 회원제 서비스 제공</li>
 									<li>보유 및 이용기간 : 회원탈퇴 시 까지</li>

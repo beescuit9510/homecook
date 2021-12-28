@@ -166,27 +166,7 @@
 	border : unset;
 		}
 </style>
-<script>
-$(".selectDelBtn").click(function(){
-	var checkId = $(".checkProduct:checked");
-	var delId = new Array();
-	var memberNo = $("[name=memberNo]").val();
-	checkId.each(function(idx,item){
-		var productId = $(item).val();
-		delId.push(productId);
-	});
-	//선택상품이 없다면
-	if(checkId.length == 0){
-		alert("삭제할 상품을 선택해주세요");
-		return false;
-	}
-	if(confirm("상품을 삭제하시겠습니까?")){
-		location.href="/deleteChoiceProduct.do?productNo="+delId.join("/")+"&memberNo="+memberNo;
-	}
-	console.log(delId);
-})
 
-</script>
 
 
 

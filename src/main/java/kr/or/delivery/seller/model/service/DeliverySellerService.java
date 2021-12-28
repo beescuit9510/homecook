@@ -12,9 +12,12 @@ import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.MenuOrder;
+import kr.or.delivery.model.vo.ReviewComment;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdOrderPage;
+import kr.or.delivery.model.vo.ZcdReview;
+import kr.or.delivery.model.vo.ZcdReviewPage;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.seller.model.dao.DeliverySellerDao;
 import kr.or.table.model.vo.Member;
@@ -326,6 +329,88 @@ public class DeliverySellerService {
 	@Transactional
 	public int zcdOrderO(int orderNo) {
 		int result = dao.zcdOrderO(orderNo);
+		return result;
+	}
+
+	public ZcdReviewPage selectReviewList(int reqPage, int storeNo, String reviewState) {
+		int numPerPage = 5;
+		int totalPage = 0;
+		int totalCount = 0;
+		int end = reqPage * numPerPage;
+		int start = end - numPerPage + 1;
+		Map<Object, Object> pagedata = new HashMap<Object, Object>();
+		pagedata.put("start", start);
+		pagedata.put("end", end);
+		pagedata.put("storeNo", storeNo);
+		pagedata.put("reviewState", reviewState);
+		ArrayList<ZcdReview> list = new ArrayList<ZcdReview>();
+		
+		list = dao.selectReviewList(pagedata);
+		totalCount = dao.selectReviewTotalCount(pagedata);
+		
+		if (totalCount % numPerPage == 0) {
+			totalPage = totalCount / numPerPage;
+		}else {
+			totalPage = totalCount / numPerPage + 1;
+		}
+		
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1) / pageNaviSize) * pageNaviSize + 1;
+		String pageNavi = "<ul class='pagination'>";
+		
+		if (pageNo != 1) {
+			pageNavi += "<li class='page-item disabled'>";
+			pageNavi += "<a class='page-link' href='/manageZcdReview.do?reqPage="+(pageNo-1)+"&storeNo="+storeNo+"&orderState="+reviewState+"'>";
+			pageNavi += "&lt;</a></li>";
+		}
+		
+		for (int i=0; i<pageNaviSize;i++) {
+			if (pageNo == reqPage) {
+				pageNavi += "<li class='page-item active'>";
+				pageNavi += "<a class='page-link' style='color:#fff;' href='manageZcdReview.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderState="+reviewState+"'>";
+				pageNavi += pageNo+"</a></li>";
+			} else {
+				pageNavi += "<li class='page-item'>";
+				pageNavi += "<a class='page-link' href='/manageZcdReview.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderState="+reviewState+"'>";
+				pageNavi += pageNo+"</a></li>";
+			}
+			pageNo++;
+			if (pageNo>totalPage) {
+				break;
+			}
+		}
+		
+		if (pageNo <= totalPage) {
+			pageNavi += "<li class='page-item next'>";
+			pageNavi += "<a class='page-link' href='/manageZcdReview.do?reqPage="+pageNo+"&storeNo="+storeNo+"&orderStatus="+reviewState+"'>";
+			pageNavi += "&gt;</a></li>";
+		}
+		pageNavi += "</ul>";
+		
+		ZcdReviewPage zrp = new ZcdReviewPage(list, pageNavi, start);
+		
+		return zrp;
+	}
+
+	public ZcdReview selectOneReview(int reviewNo) {
+		ZcdReview zr = dao.selectOneReview(reviewNo);
+		return zr;
+	}
+	
+	public String selectMemberId(int memberNo) {
+		String memberId = dao.selectMemberId(memberNo);
+		return memberId;
+	}
+
+	@Transactional
+	public int reviewWrite(ReviewComment rc) {
+		int result = dao.reviewWrite(rc);
+		return result;
+	}
+
+	@Transactional
+	public int updateReviewState(int reviewNo) {
+		int result = dao.updateReviewState(reviewNo);
 		return result;
 	}
 	
