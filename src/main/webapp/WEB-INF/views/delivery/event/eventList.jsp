@@ -64,9 +64,11 @@
 					</a>
 				</c:forEach>
 			</div>
+		<div style="text-align: center; margin: 0 auto; padding-bottom: 16px;">
 		<c:if test="${sessionScope.m.memberLevel eq '관리자'}">
-		<a class="buy_btn" style="margin-top: 16px; text-align: right;" href="/eventWriteFrm.do">글쓰기</a>
+		<a class="buy_btn" style="margin-top: 16px; text-align: right; margin: 0 auto;" href="/eventWriteFrm.do">글쓰기</a>
 		</c:if>
+		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
