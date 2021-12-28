@@ -341,6 +341,10 @@
 		update menu_order set order_state='처리중' where order_no=#{orderNo}
 	</update>
 	
+	<update id="zcdOrderO2" parameterType="_int">
+		update menu_order set order_state='배달중' where order_no=#{orderNo}
+	</update>
+	
 	<select id="selectReviewList" parameterType="map" resultType="zr">
 		select * from
 		(select rownum as rnum, n.* from
@@ -422,5 +426,36 @@
 		    comment_content as commentContent
 		from review_comment where member_no=#{memberNo}
 	</select>
+	
+	<select id="selectZcdStoreList2" resultType="zs">
+  		select 
+			store_no as storeNo,
+			member_no as memberNo,
+			store_name as storeName,
+			store_time as storeTime,
+			store_phone as storePhone,
+			store_info as storeInfo,
+			store_notice as storeNotice,
+			store_tip as storeTip,
+			postcode,
+			address1,
+			address2,
+			min_price as minPrice,
+			store_state as storeState,
+			origin_info as originInfo,
+			category1,
+			category2,
+			x,
+			y
+  		from zcd_store
+  	</select>
+  	
+  	<update id="zcdOrderStart" parameterType="_int">
+  		update menu_order set order_state='배달중' where order_no=#{orderNo}
+  	</update>
+  	
+	<update id="zcdOrderEnd" parameterType="_int">
+  		update menu_order set order_state='완료' where order_no=#{orderNo}
+  	</update>
 	
 </mapper>

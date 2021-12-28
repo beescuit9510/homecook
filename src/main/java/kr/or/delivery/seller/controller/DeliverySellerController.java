@@ -712,17 +712,12 @@ public class DeliverySellerController {
 	}
 	
 	@RequestMapping(value="/deliveryStart.do")
-	public String deliveryStart(int orderNo, int time, Model model) {
+	@ResponseBody
+	public int deliveryStart(int orderNo, Model model) {
 		MenuOrder mo = service.selectMenuOrder(orderNo);
-		int result = service.zcdOrderO(mo.getOrderNo());
-		if (result > 0) {
-			model.addAttribute("msg","주문접수가 완료되었습니다.");
-			model.addAttribute("loc", "/manageZcdOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
-		} else {
-			model.addAttribute("msg","주문접수가 완료되지 않았습니다.");
-			model.addAttribute("loc", "/manageZcdOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
-		}
-		return "zipcoock/common/msg";
+		int result = service.zcdOrderO2(mo.getOrderNo());
+		System.out.println(result);
+		return result;
 	}
 	
 	@RequestMapping(value="manageZcdReviewFrm.do")
@@ -793,6 +788,66 @@ public class DeliverySellerController {
 		} else {
 			model.addAttribute("msg","리뷰답변 수정이 완료되지 않았습니다.");
 			model.addAttribute("loc", "/manageZcdReview.do?reqPage=1&storeNo=" + storeNo + "&reviewState=미답변");
+		}
+		return "zipcoock/common/msg";
+	}
+	
+	// 지역 구분 제한으로 인해 임시 구현
+	@RequestMapping(value="/manageDeliveryFrm.do")
+	public String manageDeliveryFrm(HttpSession session, Model model) {
+		ArrayList<ZcdStore> list = service.selectZcdStoreList2();
+		model.addAttribute("list", list);
+		return "delivery/seller/manageDeliveryFrm";
+	}
+	
+	@RequestMapping(value = "/manageDeliveryOrder.do")
+	public String deliveryOrder(Member member, HttpSession session, int reqPage, int storeNo, String orderState, Model model) {
+		Member m = (Member)session.getAttribute("m");
+		ZcdOrderPage zop = service.selectOrderList2(reqPage, storeNo, orderState);
+		System.out.println(reqPage);
+		System.out.println(storeNo);
+		System.out.println(orderState);
+		model.addAttribute("zop", zop);
+		model.addAttribute("storeNo", storeNo);
+		model.addAttribute("orderState", orderState);
+		System.out.println(zop);
+		return "delivery/seller/manageDeliveryOrder";
+	}
+	
+	@RequestMapping(value="/deliveryAccept.do")
+	public String deliveryAccept(Member member, HttpSession session, Model model, int orderNo) {
+		Member m = (Member)session.getAttribute("m");
+		MenuOrder mo = service.selectMenuOrder(orderNo);
+		String memberPhone = service.selectMemberPhone(mo.getMemberNo());
+		ZcdStore zs = service.selectOneMarket(mo.getStoreNo());
+		ArrayList<ZcdCart> list = service.selectZcdCartList(mo);
+		model.addAttribute("mo", mo);
+		model.addAttribute("memberPhone", memberPhone);
+		model.addAttribute("list", list);
+		model.addAttribute("zs", zs);
+		return "delivery/seller/deliveryAccept";
+	}
+	
+	@RequestMapping(value="/deliveryStart2.do")
+	@ResponseBody
+	public int deliveryStart2(int orderNo, Model model) {
+		MenuOrder mo = service.selectMenuOrder(orderNo);
+		int result = service.zcdOrderO2(mo.getOrderNo());
+		System.out.println(result);
+		return result;
+	}
+	
+	@RequestMapping(value="/deliveryEnd.do")
+	public String deliveryEnd(int orderNo, Model model) {
+		System.out.println(orderNo);
+		MenuOrder mo = service.selectMenuOrder(orderNo);
+		int result = service.zcdOrderEnd(mo.getOrderNo());
+		if (result > 0) {
+			model.addAttribute("msg","배달이 완료되었습니다.");
+			model.addAttribute("loc", "/manageDeliveryOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
+		} else {
+			model.addAttribute("msg","배달이 완료되지 않았습니다.");
+			model.addAttribute("loc", "/manageDeliveryOrder.do?reqPage=1&storeNo=" + mo.getStoreNo() + "&orderState=" + mo.getOrderState());
 		}
 		return "zipcoock/common/msg";
 	}

@@ -52,10 +52,7 @@
 	        			</div>
 	        		</div>
         			<div class="side_nav_content">
-	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMarketFrm.do">매장관리</a></span></div>
-	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageMenuFrm.do">메뉴관리</a></span></div>
-	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageZcdOrderFrm.do">주문접수</a></span></div>
-	        			<div class="side_nav_div"><span class="side_nav_span"><a href="/manageZcdReviewFrm.do">리뷰관리</a></span></div>       			
+	        			<div class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected"><a href="/manageDeliveryFrm.do">배달관리</a></span></div>     			
         			</div>
         		</div>
         		
@@ -120,9 +117,9 @@
 										
 										 <br><br>
 										 <div class="row">
-        									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/manageZcdOrder.do?reqPage=1&storeNo=${mo.storeNo }&orderState=처리중">취소</a>
+        									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/manageDeliveryOrder.do?reqPage=1&storeNo=${mo.storeNo }&orderState=배달대기">취소</a>
         									<div class="col-md-auto"> </div>
-        									<button type="button" id="deliveryStart" class="buy_btn" style="font-weight: 400; margin-right:200px;">배달 접수</button>
+        									<button type="button" id="deliveryStart2" class="buy_btn" style="font-weight: 400; margin-right:200px;">배달 접수</button>
         									<input type="hidden" id="orderNo" value="${mo.orderNo }">
         									<input type="hidden" id="storeNo" value="${mo.storeNo }">							
        									</div>
@@ -563,21 +560,21 @@
 			}
 			
 			
-			$("#deliveryStart").on("click", function() {
+			$("#deliveryStart2").on("click", function() {
 				var orderNo = $(this).next().val();
 				var storeNo = $(this).next().next().val();
 				
 				$.ajax({
-					url : "/deliveryStart.do",
-					data : {orderNo : orderNo},
+					url : "/deliveryStart2.do",
+					data : {orderNo : orderNo, storeNo : storeNo},
 					type : "post",
 					success : function(data) {
 						if (data == 1) {
 							alert("배달접수가 완료되었습니다.");
-							location.href = "/manageZcdOrder.do?reqPage=1&storeNo=" + storeNo + "&orderState=처리중";
+							location.href = "/manageDeliveryOrder.do?reqPage=1&storeNo=" + storeNo + "&orderState=배달중";
 						} else {
 							alert("배달접수가 완료되지 않았습니다.");
-							location.href = "/manageZcdOrder.do?reqPage=1&storeNo=" + storeNo + "&orderState=처리중";
+							location.href = "/manageDeliveryOrder.do?reqPage=1&storeNo=" + storeNo + "&orderState=배달중";
 						}
 					}
 				});
