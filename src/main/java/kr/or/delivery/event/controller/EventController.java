@@ -5,21 +5,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import com.google.gson.JsonObject;
 
 import kr.or.delivery.event.model.service.EventService;
 import kr.or.delivery.model.vo.ZcdEvent;
@@ -55,7 +56,7 @@ public class EventController {
 			// 반복문을 이용해서 파일처리(파일업로드)
 			for (MultipartFile file : thumbnail) {
 				String filename = file.getOriginalFilename();
-				System.out.println("filename : "+filename);
+				System.out.println("filename : " + filename);
 				String onlyFilename = filename.substring(0, filename.indexOf("."));
 				String extention = filename.substring(filename.indexOf("."));
 				// 실제 업로드할 파일명을 저장할 변수
@@ -118,7 +119,8 @@ public class EventController {
 	}
 
 	@RequestMapping(value = "/eventUpdate.do")
-	public String eventUpdate(ZcdEvent ze, int status, MultipartFile[] upfile,HttpServletRequest request, Model model) {
+	public String eventUpdate(ZcdEvent ze, int status, MultipartFile[] upfile, HttpServletRequest request,
+			Model model) {
 		ArrayList<ZcdEventFile> list = new ArrayList<ZcdEventFile>();
 		if (upfile[0].isEmpty()) {
 			// 첨부파일이 없는경우
@@ -127,7 +129,7 @@ public class EventController {
 			// 반복문을 이용해서 파일처리(파일업로드)
 			for (MultipartFile file : upfile) {
 				String filename = file.getOriginalFilename();
-				System.out.println("filename : "+filename);
+				System.out.println("filename : " + filename);
 				String onlyFilename = filename.substring(0, filename.indexOf("."));
 				String extention = filename.substring(filename.indexOf("."));
 				// 실제 업로드할 파일명을 저장할 변수
@@ -165,17 +167,17 @@ public class EventController {
 			}
 		}
 		int result = 0;
-		if (status==1) {
+		if (status == 1) {
 			result = service.updateEvent2(ze);
-		} else if(status ==2) {
+		} else if (status == 2) {
 			result = service.updateEvent(ze, list);
 		}
-		if(result == -1) {
+		if (result == -1) {
 			model.addAttribute("msg", "이벤트 수정 실패");
-			model.addAttribute("loc", "/eventUpdateFrm.do?eventNo="+ze.getEventNo());
-		}else {
+			model.addAttribute("loc", "/eventUpdateFrm.do?eventNo=" + ze.getEventNo());
+		} else {
 			model.addAttribute("msg", "이벤트 수정 성공");
-			model.addAttribute("loc", "/eventView.do?eventNo="+ze.getEventNo());
+			model.addAttribute("loc", "/eventView.do?eventNo=" + ze.getEventNo());
 		}
 		return "common/msg";
 	}
@@ -202,22 +204,26 @@ public class EventController {
 		return "common/msg";
 	}
 
-	@RequestMapping(value = "eventUploadImage.do")
+	@RequestMapping(value = "eventUploadImage.do", produces = "application/json")
 	@ResponseBody
-	public void eventUploadImage(HttpServletRequest request,HttpServletResponse response) {
-		String root = request.getSession().getServletContext().getRealPath("/resources/upload/delivery/event/");
-		int maxSize = 10*1024*1024;
-		MultipartRequest multi = null;
-		try {
-			multi = new MultipartRequest(request, root, maxSize, "utf-8", new DefaultFileRenamePolicy());
-			String filepath = multi.getFilesystemName("thumbnail");
-			System.out.println(filepath);
-			response.setCharacterEncoding("utf-8");
-			PrintWriter out = response.getWriter();
-			out.print(root+filepath);
-		} catch(IOException e) {
-			System.out.println("업로드오류");
+	public String eventUploadImage(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
+		JsonObject jsonObject = new JsonObject();
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/delivery/event/");
+		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		File targetFile = new File(savePath + savedFileName);	
+			try {
+				InputStream fileStream = multipartFile.getInputStream();
+				FileUtils.copyInputStreamToFile(fileStream, targetFile);
+				jsonObject.addProperty("url", "/resources/upload/delivery/event/"+savedFileName);
+				jsonObject.addProperty("responseCode", "success");
+			} catch (IOException e) {
+				FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+				jsonObject.addProperty("responseCode", "error");
+				e.printStackTrace();
+			}
+			String a = jsonObject.toString();
+			return a;
 		}
-		
 	}
-}

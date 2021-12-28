@@ -134,7 +134,7 @@
 				processData : false,
 				contentType : false,
 				success : function(data){
-					$(editor).summernote("insertImage",data);
+					$(editor).summernote("editor.insertImage",data.url);
 				}
 			});
 		}
