@@ -182,7 +182,7 @@ public class SellerDao {
 	}
 
 	public ArrayList<QnaList> selectInquiryList(Map<Object, Object> qnaList) {
-		List<QnaList> list = sqlSession.selectList("product.selectInquiryList",qnaList);
+		List<QnaList> list = sqlSession.selectList("q.selectInquiryList",qnaList);
 		return (ArrayList<QnaList>)list;
 	}
 

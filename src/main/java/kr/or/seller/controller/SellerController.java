@@ -451,7 +451,7 @@ public class SellerController {
 	@RequestMapping(value = "/deleteChoiceProduct.do")
 	public String deleteProduct(Model model, String productNo, Member m) {
 
-		System.out.println(productNo);
+		System.out.println(productNo+"체크해서 보낸 productNo");
 		boolean result = service.deleteChoiceProduct(productNo, m);
 		if (result) {
 			model.addAttribute("msg", "삭제완료");
