@@ -69,13 +69,9 @@
 					</div>
 				</div>
 				<div class="side_nav_content">
-					<a href="zcdMypage.do" class="side_nav_div side_nav_div_selected"><span
-						class="side_nav_span side_nav_span_selected">정보 확인/수정</span></a> <a
-						href="zcdMyCoupon.do" class="side_nav_div"><span
-						class="side_nav_span">쿠폰함</span></a> <a href="zcdMyReview.do"
-						class="side_nav_div"><span class="side_nav_span">리뷰내역</span></a> <a
-						href="zcdMyQnA.do" class="side_nav_div"><span
-						class="side_nav_span">문의내역</span></a>
+					<a href="zcdMypage.do" class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected">정보 확인/수정</span></a> 
+					<a href="zcdMyReview.do" class="side_nav_div"><span class="side_nav_span">리뷰내역</span></a>
+					<a href="zcdMyQnA.do" class="side_nav_div"><span class="side_nav_span">문의내역</span></a>
 				</div>
 			</div>
 			<div class="content_div">

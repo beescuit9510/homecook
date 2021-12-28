@@ -18,7 +18,6 @@
 	            <input type="hidden" name="cmd" value="order">
 	            <div class="cartBtn">
 	               	<button class="abutton">선택상품 삭제</button>
-	               	<button class="abutton deleteAll">장바구니 비우기</button>
 	            </div>
 	            <div class="cartdiv" id="cart">
 	                <div class="divRow head">
@@ -33,14 +32,15 @@
 	                        <div class="sum">합계</div>
 	                    </div>
 	                    <div class="subdiv">
-	                        <div class="cartcmd">삭제</div>
+	                        <div class="cartcmd">배달비</div>
 	                    </div>
 	                    <div class="split"></div>
 	                </div>
+	                <c:set var="sum" value="0"/>
 	        		<c:forEach items="${zcv }" var="z" varStatus="status">
 	                <div class="divRow data">
 	                    <div class="subdiv">
-	                        <div class="check"><input type="checkbox" name="buy" class="checkBox" value="260" checked="">&nbsp;</div>
+	                        <div class="check"><input type="checkbox" name="buy" class="checkBox" value="260" checked="" data-menuNo="${z.menuNo }">&nbsp;</div>
 	                        <div class="img img-content">${z.storeName }</div>
 	                        <div class="pname pname-content">
 	                            <div>${z.menuName }</div>
@@ -55,6 +55,7 @@
 	                        <div class="num">
 	                            <div class="updown">
 	                                <span class="down" onclick="changePNum(${status.count});"><i class="fas fas fa-minus-circle"></i></span>
+	                                <input type="hidden" id="menuNo" value="${z.menuNo }">
 	                                <input type="text" name="p_num1" id="${z.menuName }" size="2" maxlength="4" class="p_num" value="${z.amount }" readonly>
 	                                <span class="up" onclick="changePNum(${status.count});"><i class="fas fa-plus-circle"></i></span>
 	                            </div>
@@ -62,12 +63,13 @@
 	                        <div class="sum">${z.menuAllprice }원</div>
 	                    </div>
 	                    <div class="subdiv">
-	                        <div class="cartcmd"><button class="abutton deleteBtn" onclick="delBtn(${z.menuNo})">삭제</button></div>
+	                        <div class="cartcmd">${deliFee }원</div>
 	                    </div>
 	                </div>
+	                <c:set var="sum" value="${sum + (z.menuAllprice * z.amount)}"/>
 				</c:forEach>
 				</div>                
-	            <div class="bigtext right-align box summoney">결제 예정 금액 <span class="blue" id="sum_p_price"> 원</span></div>
+	            <div class="bigtext right-align box summoney">결제 예정 금액 <span class="blue" id="sum_p_price">${sum }</span>원 + 배달비 <span class="blue">${deliFee }</span>원 = <span class="blue">${finalPrice }</span>원</div>
 	    
 	            <div id="goorder" class="">
 	                <div class="clear"></div>
@@ -107,42 +109,49 @@
 
 		// 선택 상품 삭제
 		$(".abutton").eq(0).click(function(){
-			$("input[name=buy]:checked").each(function(index,item){
-				item.parentElement.parentElement.parentElement.remove();
-			});
-			// ajax 전송
-			// 성공 시 
-			reCalc();
-			updateUI();
+			var confirm_val=confirm("선택 상품을 장바구니에서 삭제하시겠습니까?");
+			
+			if(confirm_val){
+				var checkArr=new Array();
+				$("input[name=buy]:checked").each(function(index,item){
+					item.parentElement.parentElement.parentElement.remove();
+					checkArr.push($(this).attr("data-menuNo"));
+				});
+				
+				$.ajax({
+					url:"/zcdDeleteCart.do",
+					type:"post",
+					data:{chkbox:checkArr},
+					success: function(result){
+						if(result==1){
+							location.href="/zcdCart.do";							
+						}else{
+							alert("장바구니 삭제에 실패하였습니다.");
+						}
+					}
+				});
+			}
 		});
 		
-		// 장바구니 비우기
-		$(".deleteAll").click(function(){
-			$(".divRow.data").each(function(index,item){
-				item.remove();		
-			});
-			// ajax 전송
-			// 성공 시 
-			totalCount=0;
-			totalPrice=0;
-			reCalc();
-			updateUI();
-		});
-		/*		
 		// 선택한 상품 주문 (ajax)
 		$("#orderList").click(function(){
 			var cartNo=$("#cartNo").val();
+			var checkArr=new Array();
+			$("input[name=buy]:checked").each(function(index,item){
+				checkArr.push($(this).attr("data-menuNo"));
+			});
+			$("#chk").val(checkArr);
 			$.ajax({
-				type:"get",
-				url:"/zcdOrderList.do"
+				url:"/zcdOrder.do",
+				type:"post",
+				data:{chkbox:checkArr}
 			})
 		});
-		*/
-		/*
+		
 		// 수량 변경
-		$('.updown').forEach(function(el, idx){
+		$('.updown').each(function(el, idx){
 			//수량 입력 필드 값 변경
-			$(item).$('input').keyup(function(){
+			item.$('input').keyup(function(){
 			changePNum(idx+1);
 		});
 
@@ -157,11 +166,12 @@
 			});
 		}
 	);
-		*/
 });
 	
 	// 개별 수량 변경
 	function changePNum(obj){
+		var menuNo=$("#menuNo").val();
+		console.log(menuNo);
 		var item=$("input[name=p_num"+obj+"]").val();
 		var p_num=parseInt(item);
 		var newval= 1;
@@ -183,32 +193,20 @@
         
         $("input[name=p_num"+obj+"]").parent().parent().next().text((newval * price).formatNumber()+"원");
         // ajax 전송
-        
-        // 성공 시
-        reCalc();
-        updateUI();
+        $.ajax({
+			url:"/zcdChangeNum.do",
+			type:"post",
+			data:{amount:p_num, menuNo:menuNo},
+			success: function(result){
+				if(result==1){
+					location.href="/zcdCart.do";
+					reCalc();
+				}else{
+					alert("수량 변경에 실패하였습니다.");
+				}
+			}
+		});
 	};
-	
-	/*
-	function up(menuName){
-		var input=$("#"+menuName);
-		var amount=input.val();
-		input.val(Number(amount)+1);
-		if(input.val()<1){
-			input.val(1);
-		}else if(input.val()>99){
-			input.val(max);
-		}
-		
-		$.ajax({
-			type:"get",
-			url:"/zcdUp.do",
-			data:{amount:input.val(),menuName,menuName}
-		})
-		reCalc();
-		updateUI();
-	}
-	*/
 	
 	// 재계산
 	function reCalc(){
@@ -234,18 +232,6 @@
 	function updateUI(){
 		$("#sum_p_price").text(totalPrice.formatNumber()+" 원");
 	}
-
-	// 행 삭제
-	function delBtn(menuNo){
-		$(event.target).parent().parent().parent().remove();
-		$.ajax({
-			type:"get",
-			url:"/zcdDeleteOne.do",
-			data:{menuNo,menuNo}
-		})
-		reCalc();
-		updateUI();
-	});
 	
 	// 숫자 3자리 콤마찍기
 	Number.prototype.formatNumber = function(){

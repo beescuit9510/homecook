@@ -112,6 +112,18 @@
 										<td><input type="text" id="title"></td>
 									</tr>
 									<tr>
+										<td>이름 입력</td>
+										<td><input type="text" id="memberName">
+											<button type="button" id="findpostcode" style="width: 70px;">찾기</button>
+										</td>
+									</tr>
+									<tr>
+										<td>전화번호 입력</td>
+										<td><input type="text" id="memberPhone">
+											<button type="button" id="findpostcode" style="width: 70px;">찾기</button>
+										</td>
+									</tr>
+									<tr>
 										<td>주소 입력</td>
 										<td><input type="text" name="postcode" id="postcode"
 											class="add_addr" readonly placeholder="우편번호">
