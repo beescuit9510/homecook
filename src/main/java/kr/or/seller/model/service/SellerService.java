@@ -268,7 +268,7 @@ public class SellerService {
 		StringTokenizer sT1 = new StringTokenizer(productNo,"/");
 		while(sT1.hasMoreTokens()) {
 			product.setProductNo(Integer.parseInt(sT1.nextToken())); 
-			System.out.println(product);
+			System.out.println("aaaaaaaaaaaa : "+product);
 			int result1 = dao.deleteChoiceProduct(product); 
 			if(result1 == 0) {
 				result = false;

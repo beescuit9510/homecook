@@ -138,7 +138,7 @@
 
 
 
-							<button class="btn selectDelBtn" style="border : 1px solid #9ac6e8;" onclick=func();><span style="color:#9ac6e8">선택삭제</span></button>
+							<button class="btn selectDelBtn" style="border : 1px solid #9ac6e8;" type="button"><span style="color:#9ac6e8">선택삭제</span></button>
 							<div id="pageNavi" style="text-align: center;">${sppd.pageNavi}</div>
 
 						</div>
@@ -182,5 +182,6 @@ $(".selectDelBtn").click(function(){
 
 </script>
       </body>
+      
       </html>
       
