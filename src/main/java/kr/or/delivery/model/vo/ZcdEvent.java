@@ -17,8 +17,5 @@ public class ZcdEvent extends Member {
 	private String eventContent;
 	private String regDate;
 	private String eventFinishdate;
-	private int fileNo;
-	private String filename;
-	private String filepath;
 	private ArrayList<ZcdEventFile> list;
 }

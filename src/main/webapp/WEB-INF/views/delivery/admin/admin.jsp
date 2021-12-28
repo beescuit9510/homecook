@@ -35,9 +35,6 @@
 	.side_nav_content a{
 		text-decoration: none;
 	}
-	.input{
-			height: 24px;
-		}
 </style>
 </head>
 <body>
@@ -52,14 +49,14 @@
 	        			<div class = "user_div">
 	        				<div class = "user_div_div">
 	        					<div class= "user_div_content">
-	        						<span class = "user_div_name">${sessionScope.m.memberName}<span class = "user_div_nim">님</span></span>
+	        						<span class = "user_div_name">${sessionScope.m.memberName }<span class = "user_div_nim">님</span></span>
 	        					</div>
 	        				</div>
 	        			</div>
 	        		</div>
         			<div class = "side_nav_content">
 	        			<a href="/admin.do" class = "side_nav_div side_nav_div_selected"><span class = "side_nav_span side_nav_span_selected">정보 확인/수정</span></a>
-	        			<a href="/zcdStatistics.do" class = "side_nav_div"><span class = "side_nav_span">통계</span></a>
+						<a href="/zcdStatistics.do" class="side_nav_div"><span class="side_nav_span">통계</span></a>
         			</div>
         		</div>
         <div class = "content_div">
@@ -68,47 +65,51 @@
         		<div class = "content_div_content">
         			<div class = "content_div_info">
         				<div class = "content_div_opt1">집쿠욱 레벨</div>
-        				<div class = "content_div_opt2">집쿠욱 포인트</div>
+        				<div class = "content_div_opt2">배달 주소</div>
         				<div class = "content_div_opt3">주문내역</div>
         			</div>
         			<div class = "content_div_info">
-        				<div class = "content_div_opt1" id="text-emp">관리자</div>
-        				<div class = "content_div_opt2" id="text-emp">-</div>
+        				<div class = "content_div_opt2" id="text-emp">${sessionScope.m.deliveryLevel }</div>
+        				<div class = "content_div_opt1"><a href="/addrList.do" id="text-emp">-</a></div>
         				<div class = "content_div_opt3"><a href="#" id="text-emp">-</a></div>
         			</div>
         			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">정보 확인/수정</div>
 	        		<div class = "content_div_info">
 	        			<div class="content_div_opt1">이름</div>
-	        			<div class="content_div_opt2" id="text-emp">관리자</div>
+	        			<div class="content_div_opt2" id="text-emp" style="text-align: left; margin-left: 20px;">${sessionScope.m.memberName }</div>
+	        			<div class="content_div_opt3"></div>
 	        		</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">주소</div>
-	        			<div class="content_div_opt2"><input type="text" class="input" value="${sessionScope.m.memberAddress}"></div>
-	        		</div>
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">전화번호</div>
-	        			<div class="content_div_opt2"><input type="text" class="input" value=${sessionScope.m.memberPhone }></div>
-	        		</div>
-	        		<form action="PwChange.do" id="PwChgFrm">
-	        		<div class = "content_div_info">
-	        			<div class="content_div_opt1">현재 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" class="input" name="oldPassword"></div>
-	        		</div>
-	        		<div class = "content_div_info" style="border-bottom: 1px solid gray; margin-bottom: 50px;">
-	        			<div class="content_div_opt1">새로운 비밀번호</div>
-	        			<div class="content_div_opt2"><input type="password" class="input" name="newPassword"></div>
-	        			<input type="hidden"name="memberId" value="${requestScope.bsi.memberId }">
-	        		<button onclick="document.getElementById('PwChgFrm').submit()" class="buy_btn" style="width: 200px; height: 30px; margin-left: 40px; border-radius: 10px; padding: 5px;">비밀번호 수정</button>
-	        		</div>
+        			<form action="/updatePhone.do" method="post">
+		        		<div class = "content_div_info">
+			        			<div class="content_div_opt1">전화번호</div>
+			        			<input type="hidden" name="memberId" value="${sessionScope.m.memberId }">
+			        			<div class="content_div_opt2"><input type="text" name="memberPhone" class="input" value=${sessionScope.m.memberPhone }></div>
+			        			<div class="content_div_opt3"><input type="submit" class="default_Btn" value="전화번호 변경"></div>
+		        		</div>
+        			</form>
+	        		<form action="/zcdAdminChangePw.do" method="post">
+		        		<div class = "content_div_info">
+		        			<div class="content_div_opt1">현재 비밀번호</div>
+		        			<div class="content_div_opt2">
+		        				<input type="hidden" name="memberId" value="${sessionScope.m.memberId }">
+		        				<input type="password" class="input" name="oldPassword">
+		        			</div>
+		        		</div>
+		        		<div class = "content_div_info">
+		        			<div class="content_div_opt1">새로운 비밀번호</div>
+		        			<div class="content_div_opt2"><input type="password" class="input" name="newPassword"></div>
+		        			<div class="content_div_opt3"><input type="submit" class="default_Btn" value="비밀번호 변경"></div>
+		        		</div>
 	        		</form>
-	        		<div class="btn-area" style="padding-top: 30px">
-		        		<button type="button" class="buy_btn" onclick="document.getElementById('bsiFrm').submit();">변경</button>
-		        		<button type="reset" class="cart_btn">취소</button>	        		
-	        		</div>
         		</div>	
         	</div>
         </div>
   </div> <!-- main field -->
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </div>
+	<style>
+		.input{
+			height: 24px;
+		}
+	</style>
       

@@ -10,6 +10,7 @@ import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import kr.or.delivery.event.model.dao.EventDao;
 import kr.or.delivery.model.vo.ZcdEvent;
 import kr.or.delivery.model.vo.ZcdEventFile;
+import kr.or.delivery.model.vo.ZcdEventVO;
 
 @Service
 public class EventService {
@@ -17,8 +18,8 @@ public class EventService {
 	@Autowired
 	private EventDao dao;
 
-	public ArrayList<ZcdEvent> selectEventList() {
-		ArrayList<ZcdEvent> list = dao.selectEventList();
+	public ArrayList<ZcdEventVO> selectEventList() {
+		ArrayList<ZcdEventVO> list = dao.selectEventList();
 		return list;
 	}
 
@@ -29,12 +30,18 @@ public class EventService {
 			int eventNo = dao.selectEventNo();
 			for(ZcdEventFile zef : list) {
 				zef.setEventNo(eventNo);
+				System.out.println(list);
 				result += dao.insertFile(zef);
+				System.out.println(result);
 			}
 		}else {
 			return -1;
 		}
 		return result;
+	}
+	
+	public ZcdEventVO updateOneEvent(int eventNo) {
+		return dao.updateOneEvent(eventNo);
 	}
 
 	public ZcdEvent selectOneEvent(int eventNo) {
@@ -48,7 +55,7 @@ public class EventService {
 	public int updateEvent(ZcdEvent ze, ArrayList<ZcdEventFile> list) {
 		int result1 = dao.updateEvent(ze);
 		int result = 0;
-		if(result>0) {
+		if(result1>0) {
 			int eventNo = dao.selectEventNo();
 			for(ZcdEventFile zef : list) {
 				zef.setEventNo(eventNo);
