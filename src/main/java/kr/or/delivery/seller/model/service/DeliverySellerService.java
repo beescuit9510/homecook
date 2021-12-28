@@ -424,5 +424,15 @@ public class DeliverySellerService {
 		int result = dao.commentModify(rc);
 		return result;
 	}
+
+	public ArrayList<ZcdReview> selectZcdReviewList(int storeNo) {
+		ArrayList<ZcdReview> zrlist = dao.selectZcdReviewList(storeNo);
+		return zrlist;
+	}
+
+	public ArrayList<ReviewComment> selectReviewCommentList(int memberNo) {
+		ArrayList<ReviewComment> rclist = dao.selectReviewCommentList(memberNo);
+		return rclist;
+	}
 	
 }

@@ -70,10 +70,8 @@
 																<div><fmt:formatNumber value="${ml.menuPrice }" pattern="#,###" /> 원</div>															
 															</div>
 															
-															
 														</div>
 													</c:if>
-												
 												</c:forEach>
 											</c:if> 
 									</div>
@@ -82,7 +80,28 @@
 						    <p></p>
 						  </div>
 						  <div class="tab-pane fade" id="review">
-						    <p>리뷰</p>
+						    
+						    <c:if test="${not empty zrlist }">
+												<c:forEach items="${zrlist }" var="zr">
+													<div class="card">
+														<h6 class="card-header" style="font-weight: 600;">작성자 : *** <span style="font-size: 14px; font-weight: 500;"> ${zr.reviewDate }</span></h6>
+														
+														<div class="card-body">
+															<div class="card_info">${zr.reviewContent }</div>
+														</div>
+															
+														<c:forEach items="${rclist }" var="rc">
+															<c:if test="${zr.reviewNo eq rc.reviewNo}">
+																<div style="padding: 0.8rem 1rem; margin: 10px; border: 1px solid #ccc;">
+																		<div style="font-weight: 600;">사장님 <span style="font-size: 14px; font-weight: 500;"> ${rc.commentDate }</span></div><br>
+																		<div class="card_info">${rc.commentContent }</div>																		
+																</div>
+															</c:if>		
+														</c:forEach>
+													</div>
+												</c:forEach>
+											</c:if> 
+						    
 						  </div>
 						  
 						  <div class="tab-pane fade" id="info">

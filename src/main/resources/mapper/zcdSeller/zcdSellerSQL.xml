@@ -401,4 +401,26 @@
 		update review_comment set comment_content=#{commentContent} where review_no=#{reviewNo}
 	</update>
 	
+	<select id="selectZcdReviewList" resultType="zr">
+		select
+			review_no as reviewNo,
+		    store_no as storeNo,
+		    member_no as memberNo,
+		    order_no as orderNo,
+		    TO_CHAR(review_date, 'mm-dd(dy) hh24:mi:ss') as reviewDate,
+		    review_content as reviewContent,
+		    review_state as reviewState
+		from zcd_review where store_no=#{storeNo} order by review_no desc
+	</select>
+	
+	<select id="selectReviewCommentList" resultType="rc">
+		select
+			comment_no as commentNo,
+		    review_no as reviewNo,
+		    member_no as memberNo,
+		    TO_CHAR(comment_date, 'mm-dd(dy) hh24:mi:ss') as commentDate,
+		    comment_content as commentContent
+		from review_comment where member_no=#{memberNo}
+	</select>
+	
 </mapper>

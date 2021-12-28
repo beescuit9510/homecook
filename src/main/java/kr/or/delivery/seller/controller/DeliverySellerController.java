@@ -555,6 +555,7 @@ public class DeliverySellerController {
 		String sellerName = service.selectSellerName(memberNo);
 		ArrayList<MenuGroup> menuGrouplist = service.selectGroupList(storeNo);
 		ArrayList<Menu> menulist = service.selectAllMenuList();
+		ArrayList<ReviewComment> rclist = service.selectReviewCommentList(memberNo);
 		/*
 		for (int i=0; i<menuGrouplist.size(); i++) {
 			int groupNo = menuGrouplist.get(i).getGroupNo();
@@ -562,11 +563,14 @@ public class DeliverySellerController {
 			ArrayList<Menu> menulist = service.selectMenuList(groupNo);
 		}
 		*/
+		ArrayList<ZcdReview> zrlist = service.selectZcdReviewList(storeNo);
 		model.addAttribute("zs", zs);
 		model.addAttribute("businessNo", businessNo);
 		model.addAttribute("sellerName", sellerName);
 		model.addAttribute("menuGrouplist", menuGrouplist);
 		model.addAttribute("menulist", menulist);
+		model.addAttribute("zrlist", zrlist);
+		model.addAttribute("rclist", rclist);
 		return "delivery/seller/marketView";
 	}
 	

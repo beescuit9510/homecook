@@ -242,4 +242,14 @@ public class DeliverySellerDao {
 		return sqlSession.update("zcdseller.commentModify", rc);
 	}
 
+	public ArrayList<ZcdReview> selectZcdReviewList(int storeNo) {
+		List<ZcdReview> list = sqlSession.selectList("zcdseller.selectZcdReviewList", storeNo);
+		return (ArrayList<ZcdReview>)list;
+	}
+
+	public ArrayList<ReviewComment> selectReviewCommentList(int memberNo) {
+		List<ReviewComment> list = sqlSession.selectList("zcdseller.selectReviewCommentList", memberNo);
+		return (ArrayList<ReviewComment>)list;
+	}
+
 }
