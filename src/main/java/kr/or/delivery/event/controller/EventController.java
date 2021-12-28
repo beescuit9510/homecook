@@ -5,16 +5,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 
 import kr.or.delivery.event.model.service.EventService;
 import kr.or.delivery.model.vo.ZcdEvent;
@@ -198,8 +203,21 @@ public class EventController {
 	}
 
 	@RequestMapping(value = "eventUploadImage.do")
-	public void eventUploadImage(HttpServletRequest request) {
+	@ResponseBody
+	public void eventUploadImage(HttpServletRequest request,HttpServletResponse response) {
 		String root = request.getSession().getServletContext().getRealPath("/resources/upload/delivery/event/");
-
+		int maxSize = 10*1024*1024;
+		MultipartRequest multi = null;
+		try {
+			multi = new MultipartRequest(request, root, maxSize, "utf-8", new DefaultFileRenamePolicy());
+			String filepath = multi.getFilesystemName("thumbnail");
+			System.out.println(filepath);
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
+			out.print(root+filepath);
+		} catch(IOException e) {
+			System.out.println("업로드오류");
+		}
+		
 	}
 }

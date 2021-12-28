@@ -19,22 +19,32 @@
 			<div class="content_title">주문/결제</div>
 				<div class="purchase-content">
 					<div class="purchaseInfo">
-						<div class="table-title">구매 정보 <span>내일(목) 12/23 도착 보장</span></div>
+						<div class="table-title">구매 정보</div>
 						<table class="purchaseInfo">
 							<tr>
+								<th>상호명</th>
 								<th>주문 정보</th>
 								<th>수량</th>
 								<th>결제 예정 금액</th>
 							</tr>
+							<c:set var="sum" value="0"/>
 							<c:forEach items="${zcv }" var="z">
 			            	<tr>
 			            		<td>${z.storeName }</td>
+			            		<td>
+			            			<div>${z.menuName }</div>
+		                            <c:if test="${not empty z.addmenuInfo1 || not empty z.addmenuInfo2}">
+			                            <div><small>- ${z.addmenuInfo1 }</small></div>
+			                            <div><small>- ${z.addmenuInfo2 }</small></div>
+	        	                    </c:if>
+	        	                </td>
 			            		<td>${z.amount }</td>
-			            		<td>${z.menuAllprice }</td>
-			            		<td rowspan="2">총합</td>
+			            		<td>${z.menuAllprice }원</td>
 			            	</tr>
+			            	<c:set var="sum" value="${sum + (z.menuAllprice * z.amount)}"/>
 			            	</c:forEach>
-			            </table>			            
+			            </table>
+			           	   
 					</div>	
 					<div class="wrap-area">
 						<div class="deliveryInfo">
@@ -47,6 +57,7 @@
 											<c:forEach items="${addr }" var="a" varStatus="status">
 												<label><input type="radio" name="memberAddr" id="memberAddr" value="${a.addrNo }" checked>기본주소</label>
 											</c:forEach>
+											<!-- 
 											<button class="addrBtn" id="addAddr">추가</button>
 											<div id="addAddrFrm">
 												<form action="/addAddr.do" method="post" name="insertAddrFrm">
@@ -78,6 +89,7 @@
 													</table>
 												</form>
 											</div>
+											 -->
 											<!-- 5개정도만 할 수 있게 -->
 										</div>
 									</td>
@@ -88,7 +100,7 @@
 								</tr>
 				            	<tr>
 				            		<td>연락처</td>
-				            		<td id="phone">010-0000-0000</td>
+				            		<td id="phone">${sessionScope.m.memberPhone }</td>
 				            	</tr>
 					           	<tr>
 					           		<td>배송 요청 사항</td>
@@ -101,19 +113,15 @@
 					        <table>
 					           	<tr>
 					           		<td>합 계</td>
-					           		<td><span id="result">30620</span>원</td>
+					           		<td><span id="result">${finalPrice }</span>원</td>
 					           	</tr>
 					           	<tr>
 					           		<td>주문 금액</td>
-					           		<td>30000원</td>
-					           	</tr>
-					           	<tr>
-					           		<td>할인 금액</td>
-					           		<td>2000원</td>
+					           		<td>${sum }원</td>
 					           	</tr>
 				            	<tr>
 				            		<td>배달 금액</td>
-				            		<td>0원</td>
+				            		<td>${deliFee }원</td>
 				            	</tr>
 				            	<tr>
 				            		<td colspan="2" class="btn-area">

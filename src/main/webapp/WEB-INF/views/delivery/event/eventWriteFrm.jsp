@@ -125,6 +125,7 @@
 		function uploadImage(file,editor){
 			data = new FormData();
 			data.append("file",file);
+			console.log(data);
 			$.ajax({
 				url : "/eventUploadImage.do",
 				type : "post",

@@ -48,6 +48,7 @@
 		<a href="zcdMypage.do">마이페이지</a>
 		<a href="zcdCart.do">장바구니</a>
 		<a href="/admin.do">관리자마이페이지</a>
+		<a href="/eventList.do">이벤트</a>
 		<div class="eventImage"></div>
 		<div class="main-copy">
 			<img src="/resources/img/zcdBuyer/sofancoock.png">
@@ -58,7 +59,7 @@
 					<a href="#"><img src="" class="img-thumbnail p-0 border-0"></a>
 				</div>
 				<div class="col-md-6">
-					<form action="zcdFindResult.do" method="post">
+					<form action="/zcdFindResult.do" method="post">
 						<div class="input-group input-group-lg">
 							<input type="text" id="keyword" name="keyword" class="form-control" placeholder="음식을 검색해보세요" />
 							<div class="input-group-append">
@@ -73,224 +74,32 @@
 			<h3>집쿡 맛집을 찾고 있다면</h3>
 			<div class="store-wrap">
 				<div class="row category-img">
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/dbe.png">1인분</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/bingsu.png">한식</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/dbe.png">분식</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/bingsu.png">카페<br>디저트</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/dbe.png">돈까스<br>회·일식</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/bingsu.png">치킨</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/dbe.png">양식</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/bingsu.png">아시안</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/dbe.png">중국집</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/bingsu.png">족발보쌈</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/dbe.png">야식</a></div>
-				  <div class="col-md-1"><a href="#"><img src="/resources/img/zcdBuyer/icon/bingsu.png">브랜드</a></div>				
+				  	<div class="col-md-2"><a href="/searchCg?category1="><img src="/resources/img/zcdBuyer/icon/1.png"></a></div>
+				  	<div class="col-md-2"><a href="/searchCg?category1="><img src="/resources/img/zcdBuyer/icon/2.png"></a></div>
+				  	<div class="col-md-2"><a href="/searchCg?category1="><img src="/resources/img/zcdBuyer/icon/3.png"></a></div>
+				  	<div class="col-md-2"><a href="/searchCg?category1="><img src="/resources/img/zcdBuyer/icon/4.png"></a></div>
+				  	<div class="col-md-2"><a href="/searchCg?category1="><img src="/resources/img/zcdBuyer/icon/5.png"></a></div>
+				  	<div class="col-md-2"><a href="/searchCg?category1="><img src="/resources/img/zcdBuyer/icon/6.png"></a></div>
+				 	
 				</div>
 			</div>
 		</div>
 		<div class="sub-container">
-			<h3>오늘 Hot한 음식점</h3>
+			<h3>전체 음식점</h3>
 			<div class="store-wrap">
 				<div class="row">
+				<c:forEach items="${main }" var="m">
 					<div class="col-md-2 mb-4">
 						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
+							<img class="card-img-top" src="/resources/upload/zcdSeller/${m.filename }" alt="" />
 							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
+								<a class="h6 goods_name product-name" href="/storeView.do?storeNo=${m.storeNo }">${m.storeName }</a>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
 					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
+				</c:forEach>
 				</div>
-			</div>
-		</div>
-		<div class="sub-container">
-			<h3>자주 시킨 음식점</h3>
-			<div class="store-wrap">
-				<div class="store-wrap">
-				<div class="row">
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-		<div class="sub-container">
-			<h3>New Face 음식점</h3>
-			<div class="store-wrap">
-				<div class="store-wrap">
-				<div class="row">
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-					<div class="col-md-2 mb-4">
-						<div class="card">
-							<img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-							<div class="card-body">
-								<p class="h6 goods_name product-name"><small class="text-muted">Apple</small><br>다우니 초고농축섬유유연제aaaaaaaa aaaa aa a aa aaa aaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-								<p class="m-0"><small><span class="star">★</span> 4.5(612) · 18-28분</small></p>
-							</div>
-						<div class="card-footer p-0"></div>
-						</div>
-					</div>
-				</div>
-			</div>
 			</div>
 		</div>
 	</div>
