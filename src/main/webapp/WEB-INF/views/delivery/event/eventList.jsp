@@ -55,23 +55,6 @@
 		</div>
 		<div class="containerMain">
 			<h2>이벤트</h2>
-			<div class="goodsWrap" id="start">
-				<a class="goodsLink" href="/eventView.do">
-					<div class="goods">
-						<img src="/resources/img/event/이벤트테스트.jpg">
-					</div>
-				</a>
-				<a class="goodsLink" href="/eventView.do">
-					<div class="goods">
-						<img src="/resources/img/event/이벤트테스트.jpg">
-					</div>
-				</a>
-				<a class="goodsLink" href="/eventView.do">
-					<div class="goods">
-						<img src="/resources/img/event/이벤트테스트.jpg">
-					</div>
-				</a>
-			</div>
 			<div class="goodsWrap">
 				<c:forEach items="${list }" var="map" varStatus="status">
 					<a class="goodsLink" href="eventView.do?eventNo=${map.eventNo }">
