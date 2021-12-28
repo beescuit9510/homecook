@@ -12,6 +12,7 @@ import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.MenuOrder;
+import kr.or.delivery.model.vo.ReviewComment;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdOrderPage;
@@ -389,6 +390,28 @@ public class DeliverySellerService {
 		ZcdReviewPage zrp = new ZcdReviewPage(list, pageNavi, start);
 		
 		return zrp;
+	}
+
+	public ZcdReview selectOneReview(int reviewNo) {
+		ZcdReview zr = dao.selectOneReview(reviewNo);
+		return zr;
+	}
+	
+	public String selectMemberId(int memberNo) {
+		String memberId = dao.selectMemberId(memberNo);
+		return memberId;
+	}
+
+	@Transactional
+	public int reviewWrite(ReviewComment rc) {
+		int result = dao.reviewWrite(rc);
+		return result;
+	}
+
+	@Transactional
+	public int updateReviewState(int reviewNo) {
+		int result = dao.updateReviewState(reviewNo);
+		return result;
 	}
 	
 }

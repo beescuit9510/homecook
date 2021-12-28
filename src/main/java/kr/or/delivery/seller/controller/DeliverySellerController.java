@@ -24,6 +24,7 @@ import kr.or.delivery.model.vo.AddMenu;
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.MenuOrder;
+import kr.or.delivery.model.vo.ReviewComment;
 import kr.or.delivery.model.vo.StoreLogo;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdOrderPage;
@@ -729,8 +730,7 @@ public class DeliverySellerController {
 	}
 	
 	@RequestMapping(value = "/manageZcdReview.do")
-	public String manageZcdReview(Member member, HttpSession session, int reqPage, int storeNo, String reviewState, Model model) {
-		Member m = (Member)session.getAttribute("m");
+	public String manageZcdReview(HttpSession session, int reqPage, int storeNo, String reviewState, Model model) {
 		ZcdReviewPage zrp = service.selectReviewList(reqPage, storeNo, reviewState);
 		System.out.println(reqPage);
 		System.out.println(storeNo);
@@ -742,22 +742,29 @@ public class DeliverySellerController {
 		return "delivery/seller/manageZcdReview";
 	}
 	
-	
-	
-	
-	
 	@RequestMapping(value="/reviewView.do")
-	public String reviewView(Member member, HttpSession session, Model model, int orderNo) {
+	public String reviewView(HttpSession session, Model model, int reviewNo) {
+		ZcdReview zr = service.selectOneReview(reviewNo);
+		String memberId = service.selectMemberId(zr.getMemberNo());
+		model.addAttribute("zr", zr);
+		model.addAttribute("memberId", memberId);
+		return "delivery/seller/reviewView";
+	}
+
+	@RequestMapping(value="/reviewWrite.do")
+	public String reviewWrite(Member member, HttpSession session, Model model, ReviewComment rc, int storeNo) {
 		Member m = (Member)session.getAttribute("m");
-		MenuOrder mo = service.selectMenuOrder(orderNo);
-		String memberPhone = service.selectMemberPhone(mo.getMemberNo());
-		ArrayList<ZcdCart> list = service.selectZcdCartList(mo);
-		model.addAttribute("mo", mo);
-		model.addAttribute("memberPhone", memberPhone);
-		model.addAttribute("list", list);
-		System.out.println(mo.getMemberNo());
-		System.out.println(mo.getStoreNo());
-		return "delivery/seller/orderReceipt";
+		rc.setMemberNo(m.getMemberNo());
+		int result = service.reviewWrite(rc);
+		if (result > 0) {
+			int result2 = service.updateReviewState(rc.getReviewNo());
+			model.addAttribute("msg","리뷰 작성이 완료되었습니다.");
+			model.addAttribute("loc", "/manageZcdReview.do?reqPage=1&storeNo=" + storeNo + "&reviewState=답변완료");
+		} else {
+			model.addAttribute("msg","리뷰 작성이 완료되지 않았습니다.");
+			model.addAttribute("loc", "/manageZcdReview.do?reqPage=1&storeNo=" + storeNo + "&reviewState=미답변");
+		}
+		return "zipcoock/common/msg";
 	}
 	
 }
