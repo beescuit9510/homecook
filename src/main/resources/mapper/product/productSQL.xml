@@ -96,7 +96,7 @@ SELECT rownum as rnum,
 	q.qna_No as qnaNo,
     q.MEMBER_NO as memberNo,
     q.product_ref_no as productRefNo, 
-    q2.qna_ref_no as qnaAnswer,
+    q2.qna_ref_no as qnaRefNo,
     q.qna_level as qnaLevel, 
     q.qna_title as qnaTitle, 
     q.qna_content as qnaContent, 
@@ -104,7 +104,7 @@ SELECT rownum as rnum,
 FROM PRODUCT p
 left JOIN QNA q ON(p.product_No = q.product_ref_no) 
 left JOIN QNA q2 ON(p.product_No = q2.product_ref_no) 
-where p.member_No = #{memberNo}  and q.QNA_LEVEL = 1 and q2.QNA_LEVEL = 2 order by rnum desc)n
+where p.member_No = #{memberNo}  and q.QNA_LEVEL = 1 order by rnum desc)n
 where (rnum between #{start} and #{end})
 </select>
 

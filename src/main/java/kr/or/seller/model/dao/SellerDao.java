@@ -197,6 +197,16 @@ public class SellerDao {
 		return sqlSession.selectOne("q.selectOneQna",qnaList);
 	}
 
+	public int insertQna(QnaList qnaList) {
+		
+		return sqlSession.insert("q.insertOneQna",qnaList);
+	}
+
+	public int updateQna(QnaList qnaList) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("q.updateOneQna",qnaList);
+	}
+
 
 
 

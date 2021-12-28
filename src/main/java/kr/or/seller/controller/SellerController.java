@@ -544,4 +544,22 @@ public class SellerController {
 		System.out.println(ql);
 		return "zipcoock/seller/mypage/sellerQnaView";
 	}
+	@RequestMapping(value = "/insertAnswer.do")
+	public String insertAnswer(QnaList qnaList,int answerStatus,Model model) {
+		int result = service.answerINU(qnaList,answerStatus);
+		System.out.println(qnaList);
+		System.out.println(answerStatus);
+		if (result == 1) {
+			model.addAttribute("msg", "등록 성공");
+			model.addAttribute("loc", "/sellerQNA.do?reqPage=1");
+		}else if(result == 2) {
+			model.addAttribute("msg", "수정 성공");
+			model.addAttribute("loc", "/sellerQNA.do?reqPage=1");
+		}else {
+			model.addAttribute("msg", "실패");
+			model.addAttribute("loc", "/sellerQNA.do?reqPage=1");
+		}
+		return "zipcoock/common/msg";
+	}
+	
 }

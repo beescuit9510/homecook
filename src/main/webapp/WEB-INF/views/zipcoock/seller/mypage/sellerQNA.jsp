@@ -106,10 +106,10 @@
 							
 						
 							<c:choose>
-								<c:when test="${i.qnaAnswerer == null }">
+								<c:when test="${i.qnaRefNo == 0 }">
 									<td style="color:red;">미완료</td>
 								</c:when>
-								<c:when test="${i.qnaAnswerer != null }">
+								<c:when test="${i.qnaRefNo != 0 }">
 									<td style="color:#9ac6e8;">완료</td>
 								</c:when>
 							</c:choose>					

@@ -445,6 +445,9 @@ public class SellerService {
 		qnaList.put("start", start);
 		qnaList.put("end", end);
 		qnaList.put("memberNo", memberNo);
+		System.out.println("start1 : "+start);
+		System.out.println("start2 : "+end);
+		System.out.println("start3 : "+memberNo);
 		ArrayList<QnaList> list = dao.selectInquiryList(qnaList);
 		totalCount = dao.selectInquiryCount(memberNo);
 		
@@ -460,18 +463,18 @@ public class SellerService {
 		//이전버튼
 		if(pageNo != 1) {
 			pageNavi += "<li class='previous'>";
-			pageNavi += "<a href='/productInquiryList?reqPage="+(pageNo-1)+"&memberNo="+memberNo+"'>";
+			pageNavi += "<a href='/sellerQNA.do?reqPage="+(pageNo-1)+"&memberNo="+memberNo+"'>";
 			pageNavi += "&lt;</a></li>";
 		}
 		//페이지숫자
 		for(int i=0; i<pageNaviSize;i++) {
 			if(pageNo == reqPage) {
 				pageNavi += "<li class='active'>";
-				pageNavi += "<a href='/productInquiryList?reqPage="+pageNo+"&memberNo="+memberNo+"'>";
+				pageNavi += "<a href='/sellerQNA.do?reqPage="+pageNo+"&memberNo="+memberNo+"'>";
 				pageNavi += pageNo+"</a></li>";
 			}else {
 				pageNavi += "<li>";
-				pageNavi += "<a href='/productInquiryList?reqPage="+pageNo+"&memberNo="+memberNo+"'>";
+				pageNavi += "<a href='/sellerQNA.do?reqPage="+pageNo+"&memberNo="+memberNo+"'>";
 				pageNavi += pageNo+"</a></li>";
 			}
 			pageNo++;
@@ -482,7 +485,7 @@ public class SellerService {
 		//다음버튼
 		if(pageNo <= totalPage) {
 			pageNavi += "<li class='next'>";
-			pageNavi += "<a href='/productInquiryList?reqPage="+pageNo+"&memberNo="+memberNo+"'>";
+			pageNavi += "<a href='/sellerQNA.do?reqPage="+pageNo+"&memberNo="+memberNo+"'>";
 			pageNavi += "&gt;</a></li>";
 		}
 		pageNavi += "</ul>";
@@ -499,6 +502,17 @@ public class SellerService {
 		QnaList q = dao.selectOneQna(qnaList);
 		System.out.println(q+"service");
 		return q;
+	}
+	public int answerINU(QnaList qnaList, int answerStatus) {
+		int result = 0;
+		if(answerStatus == 1) {
+		 result = dao.insertQna(qnaList);	
+		}else if(answerStatus == 2) {
+		 result = dao.updateQna(qnaList);
+		}
+		
+		
+		return result;
 	}
 
 	}

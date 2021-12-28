@@ -16,6 +16,7 @@ public class QnaList {
 	private String qnaContent;
 	private String writeDate;
 	private int qnaAnswerer;
+	private int qnaAnswerNo;
 	private String qnaAnswerTitle;
 	private String qnaAnswerContent;
 	private String writeAnswerDate;
