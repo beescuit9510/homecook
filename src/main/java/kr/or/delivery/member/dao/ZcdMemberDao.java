@@ -24,4 +24,12 @@ public class ZcdMemberDao {
 		return sessoin.insert("zcdMember.insertDeliveryMember",member);
 	}
 
+	public Member selectOneAdmin(Member member) {
+		return (Member)sessoin.selectOne("zcdMember.selectOneAdmin",member);
+	}
+
+	public int updateAdminPw(Member m) {
+		return sessoin.update("zcdMember.updateAdminPw",m);
+	}
+
 }

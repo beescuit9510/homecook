@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="zcdevent">
 	
-	<select id="eventList" resultType="ze">
+	<select id="eventList" resultType="zev">
 		select
 			event_no as eventNo,
 			member_no as memberNo,
@@ -16,8 +16,22 @@
 		from zcd_event
 		join zcd_event_file using (event_no)
 	</select>
+	<select id="updateOneEvent" resultType="zev">
+		select
+			event_no as eventNo,
+			member_no as memberNo,
+			event_name as eventName,
+			event_content as eventContent,
+			reg_date as regDate,
+			event_finishdate as eventFinishdate,
+			file_no as fileNo,
+			filename,
+			filepath
+		from zcd_event
+		join zcd_event_file using (event_no) where event_no=#{eventNo}
+	</select>
 	<insert id="insertEvent" parameterType="ze">
-		insert into zcd_event values(zcd_event_seq.nextval,#{memberNo},#{eventName},#{eventContent},to_char(sysdate,yyyy-mm-dd),#{eventFinishdate})
+		insert into zcd_event values(zcd_event_seq.nextval,#{memberNo},#{eventName},#{eventContent},to_char(sysdate,'yyyy-mm-dd'),#{eventFinishdate})
 		<selectKey resultType="_int" order="AFTER" keyProperty="eventNo">
 			select max(event_no) from zcd_event
 		</selectKey>
@@ -26,7 +40,7 @@
 		select max(event_no) from zcd_event
 	</select>
 	<insert id="insertFile" parameterType="zef">
-		insert into zcd_event_file values(zcd_event_file_zeq.nextval,#{eventNo},#{filename},#{filepaht})
+		insert into zcd_event_file values(zcd_event_file_seq.nextval,#{eventNo},#{filename},#{filepath})
 	</insert>
 	<select id="selectOneEvent" parameterType="_int" resultMap="event">
 		select * from zcd_event where event_no=#{eventNo}
@@ -41,7 +55,6 @@
 	</select>
 	<resultMap type="ze" id="event">
 		<result column="event_no" property="eventNo"/>
-		<result column="coupon_no" property="couponNo"/>
 		<result column="member_no" property="memberNo"/>
 		<result column="event_name" property="eventName"/>
 		<result column="event_content" property="eventContent"/>
@@ -49,7 +62,7 @@
 		<result column="event_finishdate" property="eventFinishdate"/>
 		<collection property="list" column="event_no" javaType="java.util.ArrayList" ofType="f" select="selectFileList"/>
 	</resultMap>
-	<delete id="deleteEvent" parameterType="string">
+	<delete id="deleteEvent" parameterType="ze">
 		delete from zcd_event where event_no=#{eventNo}
 	</delete>
 	<update id="updateEvent" parameterType="ze">

@@ -64,7 +64,7 @@
 										
 										(function kjoin() {
 											//form 태그 생성
-											var form = $("<form action='/kjoinFrm' method='post'></form>");
+											var form = $("<form action='/kjoin.do' method='post'></form>");
 											//form 태그 추가
 											form.append($("<input type='hidden' name='id' value='"+data1.id+"'>"));
 											//전송할 form태그를 현재 페이지에 추가

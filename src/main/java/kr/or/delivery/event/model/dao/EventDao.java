@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.delivery.model.vo.ZcdEvent;
 import kr.or.delivery.model.vo.ZcdEventFile;
+import kr.or.delivery.model.vo.ZcdEventVO;
 
 @Repository
 public class EventDao {
@@ -16,9 +17,9 @@ public class EventDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public ArrayList<ZcdEvent> selectEventList() {
-		List<ZcdEvent> list = sqlSession.selectList("zcdevent.eventList");
-		return (ArrayList<ZcdEvent>)list;
+	public ArrayList<ZcdEventVO> selectEventList() {
+		List<ZcdEventVO> list = sqlSession.selectList("zcdevent.eventList");
+		return (ArrayList<ZcdEventVO>)list;
 	}
 
 	public int insertEvent(ZcdEvent ze) {
@@ -32,9 +33,13 @@ public class EventDao {
 	public int insertFile(ZcdEventFile zef) {
 		return sqlSession.insert("zcdevent.insertFile",zef);
 	}
-
+	/*
 	public ZcdEvent selectOneEvent(int eventNo) {
 		return sqlSession.selectOne("zcdevent.selectOneEvent",eventNo);
+	}
+*/
+	public ZcdEventVO selectOneEvent(int eventNo) {
+		return sqlSession.selectOne("zcdevent.updateOneEvent",eventNo);
 	}
 
 	public int deleteEvent(int eventNo) {
@@ -48,4 +53,5 @@ public class EventDao {
 	public int updateFile(ZcdEventFile zef) {
 		return sqlSession.update("zcdevent.updateFile",zef);
 	}
+
 }

@@ -36,7 +36,7 @@
           <p> - 없이 10자리 숫자를 입력해주세요</p>
             <label for="no">사업자 등록 번호 </label>
             <input type="text" id="no">
-            <button id="searchBtn">사업자 등록번호 인증</button>
+            <button class="btn btn-block" id="searchBtn">사업자 등록번호 인증</button>
             <div id="result"></div>
         </div>
 

@@ -179,14 +179,8 @@
 						<tr class="table-light">
 							<td>${o.paymentInfoCode }</td>
 							<td>${o.receiverName }</td>
-							<c:choose>
-								<c:when test="${o.paymentMethod eq '카드'}">
-									<td>카드</td>
-								</c:when>
-								<c:when test="${o.paymentMethod eq '계좌이체' }">
-									<td>계좌이체</td>
-								</c:when>
-							</c:choose>
+							
+									<td>${o.paymentMethod}</td>
 							<td>${o.price }</td>
 							<td>${o.orderDate }</td>
 							<c:choose>

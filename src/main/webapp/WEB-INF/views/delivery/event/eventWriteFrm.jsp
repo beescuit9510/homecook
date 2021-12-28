@@ -18,6 +18,7 @@
 		<form action="/eventWrite.do" method="post" enctype="multipart/form-data">
 			<div class="eventWriteWrapper">
 				<table class="eventWrite_table">
+				<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
 					<tr>
 						<th class="ew-title">
 							제목
@@ -31,7 +32,7 @@
 						썸네일 첨부파일
 					</th>
 					<td class="ew-content">
-						<input type="file" id="uploadImg" name="files" onchange="loadImg(this);" accept=".jpg,.png,.jpeg,.gif">
+						<input type="file" id="uploadImg" name="thumbnail" onchange="loadImg(this);" accept=".jpg,.png,.jpeg,.gif" multiple>
 					</td>
 				</tr>
 				<tr>
@@ -49,7 +50,7 @@
 						게시기간
 					</th>
 					<td class="ew-content">
-						<input name="eventFinishDate" id="datepicker" style="vertical-align: middle;">
+						<input name="eventFinishdate" id="datepicker" style="vertical-align: middle;">
 					</td>
 				</tr>
 				<tr>
