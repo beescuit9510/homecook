@@ -39,15 +39,15 @@ public class EventService {
 		}
 		return result;
 	}
-	
-	public ZcdEventVO updateOneEvent(int eventNo) {
-		return dao.updateOneEvent(eventNo);
-	}
 
+	public ZcdEventVO selectOneEvent(int eventNo) {
+		return dao.selectOneEvent(eventNo);
+	}
+/*
 	public ZcdEvent selectOneEvent(int eventNo) {
 		return dao.selectOneEvent(eventNo);
 	}
-
+*/
 	public int deleteEvent(int eventNo) {
 		return dao.deleteEvent(eventNo);
 	}
@@ -65,5 +65,9 @@ public class EventService {
 			return -1;
 		}
 		return result;
+	}
+
+	public int updateEvent2(ZcdEvent ze) {
+		return dao.updateEvent(ze);
 	}
 }

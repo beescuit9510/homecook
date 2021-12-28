@@ -145,19 +145,20 @@ ul {
 				<form action="/insertAnswer.do" method="post">
 					<ul>
 						<li>
-							<input type="hidden" name="pqWriter" value="15">
-							<input type="hidden" name="qnaRefNo" value="${pq.qnaNo }">
+							
+							<input type="hidden" name="qnaRefNo" value="${q.qnaNo }">
+							<input type="hidden" name="qnaAnswerNo" value="${q.qnaAnswerNo }">
 							<input type="hidden" name="productRefNo" value="${q.productRefNo }">
 							<input type="hidden" name="memberNo" value="${sessionScope.m.memberNo }">
-							<input type="text" name="qnaTitle" class="form-control" placeholder="제목" style="margin-bottom: 10px;">
-							<textarea name="qnaContent" class="form-control"placeholder="내용" style="margin-bottom: 10px;"></textarea>
+							<input type="text" name="qnaAnswerTitle" class="form-control" placeholder="제목" style="margin-bottom: 10px;">
+							<textarea name="qnaAnswerContent" class="form-control"placeholder="내용" style="margin-bottom: 10px;"></textarea>
 						</li>
 						<li>
-							<c:if test="${q.qnaAnswerer == null  }">
+							<c:if test="${q.qnaAnswerer == 0  }">
 								<input type="hidden" name="answerStatus" value="1">
 								<button type="submit" class="btn btn-block">등록</button>
 							</c:if>
-							<c:if test="${q.qnaAnswerer != null  }">
+							<c:if test="${q.qnaAnswerer != 0  }">
 								<input type="hidden" name="answerStatus" value="2">
 								<button type="submit" class="btn btn-block">수정</button>
 							</c:if>

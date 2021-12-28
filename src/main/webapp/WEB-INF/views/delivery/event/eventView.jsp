@@ -72,14 +72,15 @@
 	<script src="/summernote/lang/summernote-ko-KR.js"></script>
 	<link rel="stylesheet" href="/summernote/summernote-lite.css">
 		<div class="eventContent">
-			<img src="/resources/img/event/이벤트상세보기테스트.jpg">
-			<input type="text" name="eventContet" value="${ze.eventContent }" readonly="readonly" style="border: none;">
+		<input type="hidden" name="eventNo" value="${ze.eventNo }">
+			<img src="/resources/img/event/이벤트상세보기테스트.jpg" style="width: 100%;">
+			<div>${ze.eventContent }</div>
 		</div>
 		<div class="btnWrapper">
 			<a href="javascript:void(0)" class="buy_btn" style="margin-top: 16px;" onclick="list();">목록</a>
 			<c:if test="${sessionScope.m.memberLevel eq '관리자'}">
 			<a href="javascript:void(0)" class="buy_btn" style="margin-top: 16px;" onclick="updateEvent(this,'${ze.eventNo}');">수정</a>
-			<a href="javascript:void(0)" class="buy_btn" style="margin-top: 16px;" onclick="deletEvent(this,'${ze.eventNo}');">삭제</a>
+			<a href="javascript:void(0)" class="buy_btn" style="margin-top: 16px;" onclick="deleteEvent(this,'${ze.eventNo}');">삭제</a>
 			</c:if>
 		</div>
 		<!--<a style="display:scroll;position:fixed;bottom:100px;right:30px;" href="#" title="top">TOP</a>  -->

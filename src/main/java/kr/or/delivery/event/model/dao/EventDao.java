@@ -33,12 +33,12 @@ public class EventDao {
 	public int insertFile(ZcdEventFile zef) {
 		return sqlSession.insert("zcdevent.insertFile",zef);
 	}
-	
+	/*
 	public ZcdEvent selectOneEvent(int eventNo) {
 		return sqlSession.selectOne("zcdevent.selectOneEvent",eventNo);
 	}
-
-	public ZcdEventVO updateOneEvent(int eventNo) {
+*/
+	public ZcdEventVO selectOneEvent(int eventNo) {
 		return sqlSession.selectOne("zcdevent.updateOneEvent",eventNo);
 	}
 
@@ -53,4 +53,5 @@ public class EventDao {
 	public int updateFile(ZcdEventFile zef) {
 		return sqlSession.update("zcdevent.updateFile",zef);
 	}
+
 }

@@ -8,15 +8,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ZcdReview {
+	
 	private int reviewNo;
-	private int orderNo;
-	private int menuNo;
+	private int storeNo;
 	private int memberNo;
+	private int orderNo;
+	private String reviewDate;
 	private String reviewContent;
-	private String reviewPhotoname;
-	private String reviewPhotopath;
-	private String reviewStar;
-	private String reviewRecommend;
-	private String reviewReport;
-	private String riderRecommend;
+	private String reviewState;
+	
 }

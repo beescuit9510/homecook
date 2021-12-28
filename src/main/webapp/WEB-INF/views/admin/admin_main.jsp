@@ -7,7 +7,7 @@
 <title>Insert title here</title>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </head>
-<script type="text/javascript" src="resources/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="resources/js/admin/jquery-3.3.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <style>
 
@@ -45,12 +45,31 @@
 $(function()
 {	
 	var ctx = document.getElementById('myChart').getContext('2d'); 
+	var dayArray = new Array();
+	
+	
+	for(var i = 0; i < 7; ++i)
+	{
+		var now = new Date();
+		var today = new Date(now.setDate(now.getDate() - i));
+		
+		var year = today.getFullYear();
+		var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		var day = ('0' + today.getDate()).slice(-2);
+		
+		var dateString = year + '-' + month  + '-' + day;
+		
+		dayArray[i] = dateString;
+	}
+	
+	var dateCount = dayArray.length -1;
+	
 	var chart = new Chart(ctx, 
 			{ 
 				type: 'line', 
 				// 챠트를 그릴 데이타 
-				data: { labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], 
-				datasets: [{ label: 'My First dataset', backgroundColor: '#6653e3', borderColor: '#908b8f', data: [0, 10, 5, 2, 20, 30, 45] }] }, 
+				data: { labels: [dayArray[dateCount--], dayArray[dateCount--], dayArray[dateCount--], dayArray[dateCount--], dayArray[dateCount--], dayArray[dateCount--], dayArray[dateCount--]], 
+				datasets: [{ label: '고객 문의량', backgroundColor: '#6653e3', borderColor: '#908b8f', data: [5, 8, 5, 9, 15, 20, 15] }] }, 
 				// 옵션 
 				options: {} 
 			});
@@ -61,32 +80,34 @@ $(function()
 				type: 'bar', 
 				data: 
 				{ 
-					labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], 
+					labels: ['식품', '반려동물', '오피스', '생활용품', '헬스', '주방용품'], 
 					datasets: 
 						[{ 
-							label: '# of Votes', 
-							data: [12, 19, 3, 5, 2, 3], 
-							backgroundColor: [ 'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ], 
+							label: '판매량', 
+							data: [150, 190, 40, 100, 120, 80], 
+							backgroundColor: [ '#7f7f7f', '#7f7f7f', '#7f7f7f', '#7f7f7f', '#7f7f7f', '#7f7f7f' ], 
 							borderColor: [ 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)' ], 
-							borderWidth: 1 
+							borderWidth: 3 
 						}] }, 
 					options: { scales: { yAxes: [{ ticks: { beginAtZero: true } }] } } 
 				});
 	
 	var ctx3 = document.getElementById('myChart3'); 
+	
+	dateCount = dayArray.length -1;
 	var myChart = new Chart(ctx3, 
 			{ 
 				type: 'bar', 
 				data: 
 				{ 
-					labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], 
+					labels: [dayArray[dateCount--].substr(5), dayArray[dateCount--].substr(5), dayArray[dateCount--].substr(5), dayArray[dateCount--].substr(5), dayArray[dateCount--].substr(5), dayArray[dateCount--].substr(5)], 
 					datasets: 
 						[{ 
-							label: '# of Votes', 
+							label: '주문취소 건수', 
 							data: [12, 19, 3, 5, 2, 3], 
-							backgroundColor: [ 'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ], 
-							borderColor: [ 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)' ], 
-							borderWidth: 1 
+							backgroundColor: [ '#7f7f7f', '#7f7f7f', '#7f7f7f', '#7f7f7f', '#7f7f7f', '#7f7f7f' ], 
+							borderColor: [ '#a0a0a0', '#a0a0a0', '#a0a0a0', '#a0a0a0', '#a0a0a0', '#a0a0a0' ], 
+							borderWidth: 3 
 						}] }, 
 					options: { scales: { yAxes: [{ ticks: { beginAtZero: true } }] } } 
 				});

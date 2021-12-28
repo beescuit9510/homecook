@@ -182,7 +182,7 @@ public class SellerDao {
 	}
 
 	public ArrayList<QnaList> selectInquiryList(Map<Object, Object> qnaList) {
-		List<QnaList> list = sqlSession.selectList("product.selectInquiryList",qnaList);
+		List<QnaList> list = sqlSession.selectList("q.selectInquiryList",qnaList);
 		return (ArrayList<QnaList>)list;
 	}
 
@@ -195,6 +195,16 @@ public class SellerDao {
 	public QnaList selectOneQna(QnaList qnaList) {
 		
 		return sqlSession.selectOne("q.selectOneQna",qnaList);
+	}
+
+	public int insertQna(QnaList qnaList) {
+		
+		return sqlSession.insert("q.insertOneQna",qnaList);
+	}
+
+	public int updateQna(QnaList qnaList) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("q.updateOneQna",qnaList);
 	}
 
 
