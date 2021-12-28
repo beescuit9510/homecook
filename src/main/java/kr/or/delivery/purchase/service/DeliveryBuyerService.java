@@ -9,6 +9,7 @@ import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
+import kr.or.delivery.model.vo.ZcdReview;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.model.vo.updatePw;
 import kr.or.delivery.purchase.dao.DeliveryBuyerDao;
@@ -75,5 +76,9 @@ public class DeliveryBuyerService {
 
 	public int zcdChangeNum(ZcdCartVo cart) {
 		return dao.zcdChangeNum(cart);
+	}
+
+	public ArrayList<ZcdReview> selectReviewList(int memberNo) {
+		return dao.selectReviewList(memberNo);
 	}
 }

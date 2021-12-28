@@ -23,7 +23,7 @@
 	</update>
 	
 	<update id="changeNum">
-		update zcd_cart set amount=#{amount}, menu_allprice=#{amount}*(menu_allprice) where member_no=#{memberNo} and menu_no=#{menuNo}
+		update zcd_cart set amount=#{amount} where member_no=#{memberNo} and menu_no=#{menuNo}
 	</update>
 	
 	<select id="selectOneCart" resultType="zcv">
@@ -35,6 +35,9 @@
 			m.menu_name as menuName, 
 			zc.menu_allPrice as menuAllPrice,
 			zc.amount, 
+			zc.menu_allPrice * zc.amount as totalPrice,
+			zs.min_price as minPrice,
+			zc.menu_allPrice * zc.amount + zs.min_price as finalPrice,
 			zc.addmenu_info1 as addmenuInfo1, 
 			zc.addmenu_info2 as addmenuInfo2 
 		from zcd_cart zc
@@ -90,6 +93,19 @@
 		    sl.filepath
 		from zcd_store zs
 		join store_logo sl using (store_no)
+	</select>
+	
+	<select id="selectReviewList" resultType="kr.or.delivery.model.vo.ZcdReview">
+		select
+		    zr.review_no as reviewNo,
+		    zr.member_no as memberNo,
+		    zs.store_name as storeName,
+		    zr.review_date as reviewDate,
+		    zr.review_content as reviewContent
+		from zcd_review zr
+		join zcd_store zs using (store_no)
+		join menu_order mo using (order_no)
+		where zr.member_no=#{memberNo}
 	</select>
 	
 </mapper>
