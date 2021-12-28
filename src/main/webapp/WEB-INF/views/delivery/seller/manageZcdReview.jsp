@@ -79,7 +79,7 @@
         						<div class="content_div_opt1 overflow-text">리뷰번호</div>
         						<div class="content_div_opt2">작성일</div>
         						<div class="content_div_opt3">작성회원번호</div>
-        						<div class="content_div_opt4">답변작성</div>
+        						<div class="content_div_opt4">관리</div>
         					</div>
         					
 							<c:if test="${not empty zrp.list }">
@@ -99,7 +99,7 @@
 													<td><div class="content_div_opt1">${zr.reviewNo }</div></td>
 													<td><div class="content_div_opt2">${zr.reviewDate }</div></td>
 													<td><div class="content_div_opt3">${zr.memberNo }</div></td>
-													<td><div class="content_div_opt4">답변완료</div></td>
+													<td><div class="content_div_opt4"><a href="/commentView.do?reviewNo=${zr.reviewNo }" style="color: #9ac6e8;">답변수정</a></div></td>
 												</tr>
 											</c:when>
 										</c:choose>

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
-import kr.or.delivery.model.vo.ZcdCart;
+import kr.or.delivery.model.vo.ReviewComment;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
 import kr.or.delivery.model.vo.ZcdReview;
@@ -57,9 +57,13 @@ public class DeliveryBuyerController {
 		ZcdStore zs = service.selectOneMarket(storeNo);
 		ArrayList<MenuGroup> menuGrouplist = service.selectGroupList(storeNo);
 		ArrayList<Menu> menulist = service.selectAllMenuList();
+		ArrayList<ZcdReview> zrlist = service.selectZcdReviewList(zs.getStoreNo());
+		ArrayList<ReviewComment> rclist = service.selectReviewCommentList(zs.getMemberNo());
 		model.addAttribute("zs", zs);
 		model.addAttribute("menuGrouplist", menuGrouplist);
 		model.addAttribute("menulist", menulist);
+		model.addAttribute("zrlist", zrlist);
+		model.addAttribute("rclist", rclist);
 		return "delivery/seller/marketView";
 	}
 	

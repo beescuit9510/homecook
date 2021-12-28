@@ -555,6 +555,7 @@ public class DeliverySellerController {
 		String sellerName = service.selectSellerName(memberNo);
 		ArrayList<MenuGroup> menuGrouplist = service.selectGroupList(storeNo);
 		ArrayList<Menu> menulist = service.selectAllMenuList();
+		ArrayList<ReviewComment> rclist = service.selectReviewCommentList(memberNo);
 		/*
 		for (int i=0; i<menuGrouplist.size(); i++) {
 			int groupNo = menuGrouplist.get(i).getGroupNo();
@@ -562,11 +563,14 @@ public class DeliverySellerController {
 			ArrayList<Menu> menulist = service.selectMenuList(groupNo);
 		}
 		*/
+		ArrayList<ZcdReview> zrlist = service.selectZcdReviewList(storeNo);
 		model.addAttribute("zs", zs);
 		model.addAttribute("businessNo", businessNo);
 		model.addAttribute("sellerName", sellerName);
 		model.addAttribute("menuGrouplist", menuGrouplist);
 		model.addAttribute("menulist", menulist);
+		model.addAttribute("zrlist", zrlist);
+		model.addAttribute("rclist", rclist);
 		return "delivery/seller/marketView";
 	}
 	
@@ -758,10 +762,36 @@ public class DeliverySellerController {
 		int result = service.reviewWrite(rc);
 		if (result > 0) {
 			int result2 = service.updateReviewState(rc.getReviewNo());
-			model.addAttribute("msg","리뷰 작성이 완료되었습니다.");
+			model.addAttribute("msg","리뷰답변 작성이 완료되었습니다.");
 			model.addAttribute("loc", "/manageZcdReview.do?reqPage=1&storeNo=" + storeNo + "&reviewState=답변완료");
 		} else {
-			model.addAttribute("msg","리뷰 작성이 완료되지 않았습니다.");
+			model.addAttribute("msg","리뷰답변 작성이 완료되지 않았습니다.");
+			model.addAttribute("loc", "/manageZcdReview.do?reqPage=1&storeNo=" + storeNo + "&reviewState=미답변");
+		}
+		return "zipcoock/common/msg";
+	}
+	
+	@RequestMapping(value="/commentView.do")
+	public String commentView(HttpSession session, Model model, int reviewNo) {
+		ZcdReview zr = service.selectOneReview(reviewNo);
+		String memberId = service.selectMemberId(zr.getMemberNo());
+		ReviewComment rc = service.selectOneComment(reviewNo);
+		model.addAttribute("zr", zr);
+		model.addAttribute("rc", rc);
+		model.addAttribute("memberId", memberId);
+		return "delivery/seller/commentView";
+	}
+	
+	@RequestMapping(value="/commentModify.do")
+	public String commentModify(Member member, HttpSession session, Model model, ReviewComment rc, int storeNo) {
+		Member m = (Member)session.getAttribute("m");
+		rc.setMemberNo(m.getMemberNo());
+		int result = service.commentModify(rc);
+		if (result > 0) {
+			model.addAttribute("msg","리뷰답변 수정이 완료되었습니다.");
+			model.addAttribute("loc", "/manageZcdReview.do?reqPage=1&storeNo=" + storeNo + "&reviewState=답변완료");
+		} else {
+			model.addAttribute("msg","리뷰답변 수정이 완료되지 않았습니다.");
 			model.addAttribute("loc", "/manageZcdReview.do?reqPage=1&storeNo=" + storeNo + "&reviewState=미답변");
 		}
 		return "zipcoock/common/msg";

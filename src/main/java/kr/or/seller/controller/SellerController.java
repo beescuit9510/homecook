@@ -132,6 +132,7 @@ public class SellerController {
 		Member m = (Member) session.getAttribute("m");
 
 		BusinessSellerInfo bsi = service.selectOneSmember(m.getMemberNo());
+		model.addAttribute("bsi",bsi);
 		return "zipcoock/seller/mypage/insertProductFrm";
 	}
 

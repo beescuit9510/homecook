@@ -233,6 +233,23 @@ public class DeliverySellerDao {
 	public int updateReviewState(int reviewNo) {
 		return sqlSession.update("zcdseller.updateReviewState", reviewNo);
 	}
-	
+
+	public ReviewComment selectOneComment(int reviewNo) {
+		return sqlSession.selectOne("zcdseller.selectOneComment", reviewNo);
+	}
+
+	public int commentModify(ReviewComment rc) {
+		return sqlSession.update("zcdseller.commentModify", rc);
+	}
+
+	public ArrayList<ZcdReview> selectZcdReviewList(int storeNo) {
+		List<ZcdReview> list = sqlSession.selectList("zcdseller.selectZcdReviewList", storeNo);
+		return (ArrayList<ZcdReview>)list;
+	}
+
+	public ArrayList<ReviewComment> selectReviewCommentList(int memberNo) {
+		List<ReviewComment> list = sqlSession.selectList("zcdseller.selectReviewCommentList", memberNo);
+		return (ArrayList<ReviewComment>)list;
+	}
 
 }
