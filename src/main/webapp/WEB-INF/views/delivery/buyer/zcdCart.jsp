@@ -63,13 +63,13 @@
 	                        <div class="sum">${z.menuAllprice }원</div>
 	                    </div>
 	                    <div class="subdiv">
-	                        <div class="cartcmd">2000원</div>
+	                        <div class="cartcmd">${deliFee }원</div>
 	                    </div>
 	                </div>
-	                <c:set var="sum" value="${sum + (z.menuAllprice * z.amount+2000)}"/>
+	                <c:set var="sum" value="${sum + (z.menuAllprice * z.amount)}"/>
 				</c:forEach>
 				</div>                
-	            <div class="bigtext right-align box summoney">결제 예정 금액 <span class="blue" id="sum_p_price">${sum } 원</span></div>
+	            <div class="bigtext right-align box summoney">결제 예정 금액 <span class="blue" id="sum_p_price">${sum }</span>원 + 배달비 <span class="blue">${deliFee }</span>원 = <span class="blue">${finalPrice }</span>원</div>
 	    
 	            <div id="goorder" class="">
 	                <div class="clear"></div>
@@ -136,11 +136,18 @@
 		// 선택한 상품 주문 (ajax)
 		$("#orderList").click(function(){
 			var cartNo=$("#cartNo").val();
+			var checkArr=new Array();
+			$("input[name=buy]:checked").each(function(index,item){
+				checkArr.push($(this).attr("data-menuNo"));
+			});
+			$("#chk").val(checkArr);
 			$.ajax({
+				url:"/zcdOrder.do",
 				type:"post",
-				url:"/zcdOrderList.do"
+				data:{chkbox:checkArr}
 			})
 		});
+		
 		// 수량 변경
 		$('.updown').each(function(el, idx){
 			//수량 입력 필드 값 변경

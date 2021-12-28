@@ -17,6 +17,7 @@ import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
+import kr.or.delivery.model.vo.ZcdReview;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.model.vo.updatePw;
 import kr.or.delivery.purchase.service.DeliveryBuyerService;
@@ -43,24 +44,12 @@ public class DeliveryBuyerController {
 		return "delivery/buyer/mypage";
 	}
 	
-	@RequestMapping(value="zcdMyCoupon.do")
-	public String zcdMyCoupon() {
-		return "delivery/buyer/mypage/myCoupon";
-	}
-	
-	@RequestMapping(value="zcdBookmarks.do")
-	public String zcdBookmarks() {
-		return "delivery/buyer/mypage/bookmarks";
-	}
-	
 	@RequestMapping(value="zcdMyReview.do")
-	public String zcdMyReview() {
+	public String zcdMyReview(HttpSession session, Model model) {
+		Member m=(Member)session.getAttribute("m");
+		ArrayList<ZcdReview> zr=service.selectReviewList(m.getMemberNo());
+		model.addAttribute("zr",zr);
 		return "delivery/buyer/mypage/myReview";
-	}
-	
-	@RequestMapping(value="zcdMyQnA.do")
-	public String zcdMyQnA() {
-		return "delivery/buyer/mypage/myQnA";
 	}
 	
 	@RequestMapping(value="/storeView.do")
@@ -91,7 +80,14 @@ public class DeliveryBuyerController {
 	public String zcdCart(HttpSession session, Model model) {
 		Member m=(Member)session.getAttribute("m");
 		ArrayList<ZcdCartVo> zcv=service.selectOneCart(m.getMemberNo());
+		int deliFee=zcv.get(0).getMinPrice();
+		int totalPrice=zcv.get(0).getTotalPrice();
+		int finalPrice=zcv.get(0).getFinalPrice();
+		System.out.println(deliFee);
 		model.addAttribute("zcv", zcv);
+		model.addAttribute("deliFee",deliFee);
+		model.addAttribute("totalPrice",totalPrice);
+		model.addAttribute("finalPrice",finalPrice);
 		return "delivery/buyer/zcdCart";
 	}
 	
@@ -118,6 +114,8 @@ public class DeliveryBuyerController {
 	@RequestMapping(value = "zcdChangeNum.do")
 	public int zcdChangeNum (HttpSession session, ZcdCartVo cart, int amount, int menuNo) {
 		Member m=(Member)session.getAttribute("m");
+		System.out.println(amount);
+		System.out.println(menuNo);
 		cart.setAmount(amount);
 		cart.setMenuNo(menuNo);
 		cart.setMemberNo(m.getMemberNo());
@@ -130,7 +128,14 @@ public class DeliveryBuyerController {
 		Member m=(Member)session.getAttribute("m");
 		ArrayList<ZcdCartVo> zcv=service.selectOneCart(m.getMemberNo());
 		ArrayList<Address> addr=service.selectAddrList(m.getMemberNo());
-		model.addAttribute("zcv",zcv);
+		int deliFee=zcv.get(0).getMinPrice();
+		int totalPrice=zcv.get(0).getTotalPrice();
+		int finalPrice=zcv.get(0).getFinalPrice();
+		System.out.println(deliFee);
+		model.addAttribute("zcv", zcv);
+		model.addAttribute("deliFee",deliFee);
+		model.addAttribute("totalPrice",totalPrice);
+		model.addAttribute("finalPrice",finalPrice);
 		model.addAttribute("addr",addr);
 		return "delivery/buyer/orderList";
 	}
