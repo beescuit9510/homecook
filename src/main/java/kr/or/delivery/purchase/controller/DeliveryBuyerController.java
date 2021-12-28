@@ -1,6 +1,7 @@
 package kr.or.delivery.purchase.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.delivery.model.vo.Menu;
+import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
@@ -59,6 +63,17 @@ public class DeliveryBuyerController {
 		return "delivery/buyer/mypage/myQnA";
 	}
 	
+	@RequestMapping(value="/storeView.do")
+	public String marketView(int storeNo, HttpSession session, Model model) {
+		ZcdStore zs = service.selectOneMarket(storeNo);
+		ArrayList<MenuGroup> menuGrouplist = service.selectGroupList(storeNo);
+		ArrayList<Menu> menulist = service.selectAllMenuList();
+		model.addAttribute("zs", zs);
+		model.addAttribute("menuGrouplist", menuGrouplist);
+		model.addAttribute("menulist", menulist);
+		return "delivery/seller/marketView";
+	}
+	
 	@RequestMapping(value="addrList.do")
 	public String addrList(HttpSession session, Model model) {
 		Member m=(Member)session.getAttribute("m");
@@ -81,20 +96,33 @@ public class DeliveryBuyerController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="zcdDeleteOne.do")
-	public String zcdDeleteOne(int menuNo, Model model, HttpSession session) {
+	@RequestMapping(value = "zcdDeleteCart.do")
+	public int zcdDeleteCart (HttpSession session, @RequestParam(value = "chkbox[]") List<String> checkArr, ZcdCartVo cart) {
 		Member m=(Member)session.getAttribute("m");
-		ZcdCartVo zcv=new ZcdCartVo();
-		zcv.setMemberNo(m.getMemberNo());
-		zcv.setMenuNo(menuNo);
-		int result=service.deleteOneCart(zcv);
-		if(result>0) {
-			model.addAttribute("msg", "삭제 완료");
-		}else {
-			model.addAttribute("msg", "삭제 실패");
+		int memberNo=m.getMemberNo();
+		int result=0;
+		int menuNo=0;
+		if(m!=null) {
+			cart.setMemberNo(memberNo);
+			for(String i:checkArr) {
+				menuNo=Integer.parseInt(i);
+				cart.setMenuNo(menuNo);
+				service.deleteOneCart(cart);
+			}
+			result=1;
 		}
-		model.addAttribute("loc","/zcdCart.do");
-		return "common/msg";
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "zcdChangeNum.do")
+	public int zcdChangeNum (HttpSession session, ZcdCartVo cart, int amount, int menuNo) {
+		Member m=(Member)session.getAttribute("m");
+		cart.setAmount(amount);
+		cart.setMenuNo(menuNo);
+		cart.setMemberNo(m.getMemberNo());
+		int result=service.zcdChangeNum(cart);
+		return result;
 	}
 	
 	@RequestMapping(value="zcdOrderList.do")

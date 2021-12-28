@@ -56,7 +56,6 @@
 	        		</div>
         			<div class = "side_nav_content">
 	        			<a href="zcdMypage.do" class = "side_nav_div side_nav_div_selected"><span class = "side_nav_span side_nav_span_selected">정보 확인/수정</span></a>
-	        			<a href="zcdMyCoupon.do" class = "side_nav_div"><span class = "side_nav_span">쿠폰함</span></a>
 	        			<a href="zcdMyReview.do" class = "side_nav_div"><span class = "side_nav_span">리뷰내역</span></a>
 	        			<a href="zcdMyQnA.do" class = "side_nav_div"><span class = "side_nav_span">문의내역</span></a>
         			</div>
@@ -71,8 +70,8 @@
         				<div class = "content_div_opt3">주문내역</div>
         			</div>
         			<div class = "content_div_info">
-        				<div class = "content_div_opt2" id="text-emp">${sessionScope.m.deliveryLevel }</div>
-        				<div class = "content_div_opt1"><a href="/addrList.do" id="text-emp">보러가기</a></div>
+        				<div class = "content_div_opt1" id="text-emp">${sessionScope.m.deliveryLevel }</div>
+        				<div class = "content_div_opt2"><a href="/addrList.do" id="text-emp">보러가기</a></div>
         				<div class = "content_div_opt3"><a href="#" id="text-emp">보러가기</a></div>
         			</div>
         			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">정보 확인/수정</div>

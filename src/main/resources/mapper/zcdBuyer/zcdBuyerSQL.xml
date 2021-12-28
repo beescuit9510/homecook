@@ -22,6 +22,10 @@
 		update member set member_phone=#{memberPhone} where member_id=#{memberId}
 	</update>
 	
+	<update id="changeNum">
+		update zcd_cart set amount=#{amount}, menu_allprice=#{amount}*(menu_allprice) where member_no=#{memberNo} and menu_no=#{menuNo}
+	</update>
+	
 	<select id="selectOneCart" resultType="zcv">
 		select 
 			zc.cart_no as cartNo, 
@@ -40,7 +44,7 @@
 	</select>
 	
 	<delete id="deleteOneCart">
-		delete from zcd_cart where member_no=#{memberNo} and menu_no={menuNo}
+		delete from zcd_cart where member_no=#{memberNo} and menu_no=#{menuNo}
 	</delete>
 	
 	<select id="selectStoreList" resultType="zs">

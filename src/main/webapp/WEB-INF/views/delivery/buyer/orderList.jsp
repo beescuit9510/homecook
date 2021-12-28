@@ -19,22 +19,26 @@
 			<div class="content_title">주문/결제</div>
 				<div class="purchase-content">
 					<div class="purchaseInfo">
-						<div class="table-title">구매 정보 <span>내일(목) 12/23 도착 보장</span></div>
+						<div class="table-title">구매 정보</div>
 						<table class="purchaseInfo">
 							<tr>
 								<th>주문 정보</th>
 								<th>수량</th>
 								<th>결제 예정 금액</th>
 							</tr>
+							<c:set var="sum" value="0"/>
 							<c:forEach items="${zcv }" var="z">
 			            	<tr>
 			            		<td>${z.storeName }</td>
 			            		<td>${z.amount }</td>
 			            		<td>${z.menuAllprice }</td>
-			            		<td rowspan="2">총합</td>
 			            	</tr>
+			            	<c:set var="sum" value="${sum + (z.menuAllprice * z.amount)}"/>
 			            	</c:forEach>
-			            </table>			            
+			            </table>
+			           	<div class="listResult">
+			           		총 주문 금액 ${sum } 원
+			           	</div>   
 					</div>	
 					<div class="wrap-area">
 						<div class="deliveryInfo">
@@ -88,7 +92,7 @@
 								</tr>
 				            	<tr>
 				            		<td>연락처</td>
-				            		<td id="phone">010-0000-0000</td>
+				            		<td id="phone">${sessionScope.m.memberPhone }</td>
 				            	</tr>
 					           	<tr>
 					           		<td>배송 요청 사항</td>
@@ -101,15 +105,11 @@
 					        <table>
 					           	<tr>
 					           		<td>합 계</td>
-					           		<td><span id="result">30620</span>원</td>
+					           		<td><span id="result">${sum }</span>원</td>
 					           	</tr>
 					           	<tr>
 					           		<td>주문 금액</td>
 					           		<td>30000원</td>
-					           	</tr>
-					           	<tr>
-					           		<td>할인 금액</td>
-					           		<td>2000원</td>
 					           	</tr>
 				            	<tr>
 				            		<td>배달 금액</td>
