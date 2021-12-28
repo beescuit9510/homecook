@@ -101,7 +101,7 @@
 		     				
 		     				<td>
 			     					<form action="/updateProductFrm.do" style="line-height: 80px; background-color:"#007bff">
-			     					<button class="btn updateBtn" style="background-color: #9ac6e8; color:white">상품수정 </button>
+			     					<button class="btn updateBtn" style="background-color: #9ac6e8; color:white; min-width: 85px;">상품수정 </button>
 			     					<input type="hidden" name="productNo" value=${p.productNo }>
 			     					<input type="hidden" name="memberNo" value=${p.memberNo }>
 			     					</form>

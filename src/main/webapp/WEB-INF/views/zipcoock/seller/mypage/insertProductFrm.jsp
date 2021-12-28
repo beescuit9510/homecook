@@ -258,7 +258,7 @@ function insert() {
 					<tr>
 					<th>상호명</th>
 					<td colspan="4">
-						<input type="text" id="tradeName" name="tradeName" class="form-control" value="${bsi.tradeName} }" readonly> 
+						<input type="text" id="tradeName" name="tradeName" class="form-control" value="${bsi.tradeName}" readonly> 
 					</td>
 					</tr>
 					<tr>
