@@ -48,6 +48,7 @@
 		<a href="zcdMypage.do">마이페이지</a>
 		<a href="zcdCart.do">장바구니</a>
 		<a href="/admin.do">관리자마이페이지</a>
+		<a href="/eventList.do">이벤트</a>
 		<div class="eventImage"></div>
 		<div class="main-copy">
 			<img src="/resources/img/zcdBuyer/sofancoock.png">

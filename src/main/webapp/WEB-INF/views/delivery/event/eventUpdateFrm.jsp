@@ -151,7 +151,7 @@
 			data = new FormData();
 			data.append("file", file);
 			$.ajax({
-				url : "/eventUploadImage",
+				url : "/eventUploadImage.do",
 				type : "post",
 				data : data,
 				enctype : 'multipart/form-data',
