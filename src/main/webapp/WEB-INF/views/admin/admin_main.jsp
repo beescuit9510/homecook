@@ -7,7 +7,7 @@
 <title>Insert title here</title>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 </head>
-<script type="text/javascript" src="resources/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="resources/js/admin/jquery-3.3.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <style>
 
