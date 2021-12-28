@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.delivery.model.vo.Menu;
+import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
 import kr.or.delivery.model.vo.ZcdStore;
@@ -54,5 +56,24 @@ public class DeliveryBuyerService {
 
 	public ArrayList<ZcdMain> selectMainList() {
 		return dao.selectMainList();
+	}
+
+	public ZcdStore selectOneMarket(int storeNo) {
+		ZcdStore zs = dao.selectOneMarket(storeNo);
+		return zs;
+	}
+
+	public ArrayList<MenuGroup> selectGroupList(int storeNo) {
+		ArrayList<MenuGroup> list = dao.selectGroupList(storeNo);
+		return list;
+	}
+
+	public ArrayList<Menu> selectAllMenuList() {
+		ArrayList<Menu> list = dao.selectAllMenuList();
+		return list;
+	}
+
+	public int zcdChangeNum(ZcdCartVo cart) {
+		return dao.zcdChangeNum(cart);
 	}
 }

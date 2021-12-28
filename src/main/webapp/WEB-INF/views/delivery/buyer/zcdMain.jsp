@@ -58,7 +58,7 @@
 					<a href="#"><img src="" class="img-thumbnail p-0 border-0"></a>
 				</div>
 				<div class="col-md-6">
-					<form action="zcdFindResult.do" method="post">
+					<form action="/zcdFindResult.do" method="post">
 						<div class="input-group input-group-lg">
 							<input type="text" id="keyword" name="keyword" class="form-control" placeholder="음식을 검색해보세요" />
 							<div class="input-group-append">
@@ -92,7 +92,7 @@
 						<div class="card">
 							<img class="card-img-top" src="/resources/upload/zcdSeller/${m.filename }" alt="" />
 							<div class="card-body">
-								<a class="h6 goods_name product-name" href="/marketView.do?storeNo=${m.storeNo }">${m.storeName }</a>
+								<a class="h6 goods_name product-name" href="/storeView.do?storeNo=${m.storeNo }">${m.storeName }</a>
 							</div>
 						<div class="card-footer p-0"></div>
 						</div>
