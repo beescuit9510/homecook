@@ -39,12 +39,11 @@
 <a href="/eventList.do">이벤트 페이지</a>
 <a href="/coupon.do">쿠폰관리</a>
 <a href="/zcdStatistics.do">통계</a>
-
-
-
-
-
-
-
 </body>
+<script>
+$(function()
+{
+	location.href = "/call_MainPage.do";
+});
+</script>
 </html>
