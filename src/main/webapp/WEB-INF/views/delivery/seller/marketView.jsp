@@ -139,10 +139,8 @@
 	        				<div class="ekSBjK">${zs.storeName }</div>
 	        			</div>
 	        			<div class="fDZBJF">
-	        				<div class="ezeJar"> · 최소주문금액</div>
-	        				<span class="iNKAwY"><fmt:formatNumber value="${zs.minPrice }" pattern="#,###" /> 원 이상
-	        				<span style="font-weight: 500;">구매 시 주문 가능</span>
-	        				</span>
+	        				<div class="ezeJar" style="font-size: 16px;"> · 주문 배달비</div>
+	        				<span class="iNKAwY" style="font-size: 16px; font-weight: 500;"><fmt:formatNumber value="${zs.minPrice }" pattern="#,###" /> 원</span>
 	        			</div>
         			</section>
 	        		<section class="bMCyww">

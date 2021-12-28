@@ -233,6 +233,13 @@ public class DeliverySellerDao {
 	public int updateReviewState(int reviewNo) {
 		return sqlSession.update("zcdseller.updateReviewState", reviewNo);
 	}
-	
+
+	public ReviewComment selectOneComment(int reviewNo) {
+		return sqlSession.selectOne("zcdseller.selectOneComment", reviewNo);
+	}
+
+	public int commentModify(ReviewComment rc) {
+		return sqlSession.update("zcdseller.commentModify", rc);
+	}
 
 }

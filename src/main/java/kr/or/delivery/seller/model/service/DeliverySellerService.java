@@ -413,5 +413,16 @@ public class DeliverySellerService {
 		int result = dao.updateReviewState(reviewNo);
 		return result;
 	}
+
+	public ReviewComment selectOneComment(int reviewNo) {
+		ReviewComment rc = dao.selectOneComment(reviewNo);
+		return rc;
+	}
+
+	@Transactional
+	public int commentModify(ReviewComment rc) {
+		int result = dao.commentModify(rc);
+		return result;
+	}
 	
 }

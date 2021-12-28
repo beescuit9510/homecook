@@ -387,4 +387,18 @@
 		update zcd_review set review_state='답변완료' where review_no=#{reviewNo}
 	</update>
 	
+	<select id="selectOneComment" resultType="rc">
+		select
+			comment_no as commentNo,
+		    review_no as reviewNo,
+		    member_no as memberNo,
+		    TO_CHAR(comment_date, 'mm-dd(dy) hh24:mi:ss') as commentDate,
+		    comment_content as commentContent
+		from review_comment where review_no=#{reviewNo}
+	</select>
+	
+	<update id="commentModify" parameterType="rc">
+		update review_comment set comment_content=#{commentContent} where review_no=#{reviewNo}
+	</update>
+	
 </mapper>

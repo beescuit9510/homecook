@@ -93,14 +93,14 @@
         									
         									<span class="info_span">답변 내용</span>
         									<hr>
-	        								<form action="/reviewWrite.do" method="post">
+	        								<form action="/commentModify.do" method="post">
 	        									<fieldset>
-		        									<textarea class="form-control" name="commentContent" id="commentContent" rows="6" placeholder="내용을 입력하세요."></textarea>
+		        									<textarea class="form-control" name="commentContent" id="commentContent" rows="6" placeholder="내용을 입력하세요.">${rc.commentContent }</textarea>
 	        									</fieldset>
 	        									<br><br>
 	        									
 	        									<div class="row">
-		        									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/manageZcdReview.do?reqPage=1&storeNo=${zr.storeNo }&reviewState=미답변">취소</a>
+		        									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/manageZcdReview.do?reqPage=1&storeNo=${zr.storeNo }&reviewState=답변완료">취소</a>
 		        									<div class="col-md-auto"> </div>
 		        									<input type="submit" style="font-weight: 400; margin-right:200px;" class="buy_btn" id="submit" value="등록">
 		        									<input type="hidden" name="reviewNo" value="${zr.reviewNo }">
