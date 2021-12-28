@@ -32,7 +32,7 @@
 						썸네일 첨부파일
 					</th>
 					<td class="ew-content">
-						<input type="file" id="uploadImg" name="files" onchange="loadImg(this);" accept=".jpg,.png,.jpeg,.gif" multiple>
+						<input type="file" id="uploadImg" name="thumbnail" onchange="loadImg(this);" accept=".jpg,.png,.jpeg,.gif" multiple>
 					</td>
 				</tr>
 				<tr>
@@ -50,7 +50,7 @@
 						게시기간
 					</th>
 					<td class="ew-content">
-						<input name="eventFinishDate" id="datepicker" style="vertical-align: middle;">
+						<input name="eventFinishdate" id="datepicker" style="vertical-align: middle;">
 					</td>
 				</tr>
 				<tr>
@@ -125,6 +125,7 @@
 		function uploadImage(file,editor){
 			data = new FormData();
 			data.append("file",file);
+			console.log(data);
 			$.ajax({
 				url : "/eventUploadImage.do",
 				type : "post",

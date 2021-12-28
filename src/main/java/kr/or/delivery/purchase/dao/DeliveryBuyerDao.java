@@ -7,7 +7,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.delivery.model.vo.Menu;
+import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.ZcdCartVo;
+import kr.or.delivery.model.vo.ZcdMain;
+import kr.or.delivery.model.vo.ZcdReview;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.table.model.vo.Address;
 import kr.or.table.model.vo.Member;
@@ -36,7 +40,7 @@ public class DeliveryBuyerDao {
 	}
 
 	public int deleteOneCart(ZcdCartVo zcv) {
-		return sqlSession.delete("zcdBuyer.delteOneCart",zcv);
+		return sqlSession.delete("zcdBuyer.deleteOneCart",zcv);
 	}
 
 	public ArrayList<ZcdStore> selectStoreList() {
@@ -47,6 +51,34 @@ public class DeliveryBuyerDao {
 	public ArrayList<Address> selectAddrList(int memberNo) {
 		List<Address> list=sqlSession.selectList("zcdBuyer.selectAddrList");
 		return (ArrayList<Address>) list;
+	}
+
+	public ArrayList<ZcdMain> selectMainList() {
+		List<ZcdMain> list=sqlSession.selectList("zcdBuyer.selectMainList");
+		return (ArrayList<ZcdMain>) list;
+	}
+
+	public ZcdStore selectOneMarket(int storeNo) {
+		return sqlSession.selectOne("zcdseller.selectOneMarket", storeNo);
+	}
+
+	public ArrayList<MenuGroup> selectGroupList(int storeNo) {
+		List<MenuGroup> list = sqlSession.selectList("zcdseller.selectGroupList", storeNo);
+		return (ArrayList<MenuGroup>) list;
+	}
+
+	public ArrayList<Menu> selectAllMenuList() {
+		List<Menu> list = sqlSession.selectList("zcdseller.selectAllMenuList");
+		return (ArrayList<Menu>) list;
+	}
+
+	public int zcdChangeNum(ZcdCartVo cart) {
+		return sqlSession.update("zcdBuyer.changeNum",cart);
+	}
+
+	public ArrayList<ZcdReview> selectReviewList(int memberNo) {
+		List<ZcdReview> list=sqlSession.selectList("zcdBuyer.selectReviewList",memberNo);
+		return (ArrayList<ZcdReview>) list;
 	}
 	
 	

@@ -223,7 +223,7 @@
 
 .blue {
 	color: #9ac6e8;
-	margin: 0 20px;
+	margin: 0 10px;
 }
 
 .cartBtn{
@@ -329,12 +329,10 @@
 	border-bottom: 1px solid rgb(221, 221, 221);	
 }
 
-.purchaseInfo td{
-	
-}
 
-.purchaseInfo tr>th:first-child, .purchaseInf tr>td:first-child{
-	width: 50%;
+.purchaseInfo tr>th:first-child, .purchaseInfo tr>td:first-child{
+	width: 15%;
+	text-align: center;
 }
 
 .purchaseInfo td{
@@ -343,7 +341,7 @@
 	padding: 10px 20px;
 }
 
-.purchaseInfo tr>td:first-child{
+.purchaseInfo td:nth-child(2){
 	text-align: left;
 }
 

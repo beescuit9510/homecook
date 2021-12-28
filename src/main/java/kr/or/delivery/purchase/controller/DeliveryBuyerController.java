@@ -1,6 +1,7 @@
 package kr.or.delivery.purchase.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,10 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.or.delivery.model.vo.Menu;
+import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.ZcdCart;
 import kr.or.delivery.model.vo.ZcdCartVo;
+import kr.or.delivery.model.vo.ZcdMain;
+import kr.or.delivery.model.vo.ZcdReview;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.model.vo.updatePw;
 import kr.or.delivery.purchase.service.DeliveryBuyerService;
@@ -27,8 +33,8 @@ public class DeliveryBuyerController {
 	public String zcdMain(HttpSession session, Model model) {
 		Member m=(Member)session.getAttribute("m");
 		//ArrayList<Address> addr=service.selectAddrList(m.getMemberNo());
-		ArrayList<ZcdStore> store=service.selectStoreList();
-		model.addAttribute("store",store);
+		ArrayList<ZcdMain> main=service.selectMainList();
+		model.addAttribute("main",main);
 		//model.addAttribute("addr",addr);
 		return "delivery/buyer/zcdMain";
 	}
@@ -38,24 +44,23 @@ public class DeliveryBuyerController {
 		return "delivery/buyer/mypage";
 	}
 	
-	@RequestMapping(value="zcdMyCoupon.do")
-	public String zcdMyCoupon() {
-		return "delivery/buyer/mypage/myCoupon";
-	}
-	
-	@RequestMapping(value="zcdBookmarks.do")
-	public String zcdBookmarks() {
-		return "delivery/buyer/mypage/bookmarks";
-	}
-	
 	@RequestMapping(value="zcdMyReview.do")
-	public String zcdMyReview() {
+	public String zcdMyReview(HttpSession session, Model model) {
+		Member m=(Member)session.getAttribute("m");
+		ArrayList<ZcdReview> zr=service.selectReviewList(m.getMemberNo());
+		model.addAttribute("zr",zr);
 		return "delivery/buyer/mypage/myReview";
 	}
 	
-	@RequestMapping(value="zcdMyQnA.do")
-	public String zcdMyQnA() {
-		return "delivery/buyer/mypage/myQnA";
+	@RequestMapping(value="/storeView.do")
+	public String marketView(int storeNo, HttpSession session, Model model) {
+		ZcdStore zs = service.selectOneMarket(storeNo);
+		ArrayList<MenuGroup> menuGrouplist = service.selectGroupList(storeNo);
+		ArrayList<Menu> menulist = service.selectAllMenuList();
+		model.addAttribute("zs", zs);
+		model.addAttribute("menuGrouplist", menuGrouplist);
+		model.addAttribute("menulist", menulist);
+		return "delivery/seller/marketView";
 	}
 	
 	@RequestMapping(value="addrList.do")
@@ -75,25 +80,47 @@ public class DeliveryBuyerController {
 	public String zcdCart(HttpSession session, Model model) {
 		Member m=(Member)session.getAttribute("m");
 		ArrayList<ZcdCartVo> zcv=service.selectOneCart(m.getMemberNo());
+		int deliFee=zcv.get(0).getMinPrice();
+		int totalPrice=zcv.get(0).getTotalPrice();
+		int finalPrice=zcv.get(0).getFinalPrice();
+		System.out.println(deliFee);
 		model.addAttribute("zcv", zcv);
+		model.addAttribute("deliFee",deliFee);
+		model.addAttribute("totalPrice",totalPrice);
+		model.addAttribute("finalPrice",finalPrice);
 		return "delivery/buyer/zcdCart";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="zcdDeleteOne.do")
-	public String zcdDeleteOne(int menuNo, Model model, HttpSession session) {
+	@RequestMapping(value = "zcdDeleteCart.do")
+	public int zcdDeleteCart (HttpSession session, @RequestParam(value = "chkbox[]") List<String> checkArr, ZcdCartVo cart) {
 		Member m=(Member)session.getAttribute("m");
-		ZcdCartVo zcv=new ZcdCartVo();
-		zcv.setMemberNo(m.getMemberNo());
-		zcv.setMenuNo(menuNo);
-		int result=service.deleteOneCart(zcv);
-		if(result>0) {
-			model.addAttribute("msg", "삭제 완료");
-		}else {
-			model.addAttribute("msg", "삭제 실패");
+		int memberNo=m.getMemberNo();
+		int result=0;
+		int menuNo=0;
+		if(m!=null) {
+			cart.setMemberNo(memberNo);
+			for(String i:checkArr) {
+				menuNo=Integer.parseInt(i);
+				cart.setMenuNo(menuNo);
+				service.deleteOneCart(cart);
+			}
+			result=1;
 		}
-		model.addAttribute("loc","/zcdCart.do");
-		return "common/msg";
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "zcdChangeNum.do")
+	public int zcdChangeNum (HttpSession session, ZcdCartVo cart, int amount, int menuNo) {
+		Member m=(Member)session.getAttribute("m");
+		System.out.println(amount);
+		System.out.println(menuNo);
+		cart.setAmount(amount);
+		cart.setMenuNo(menuNo);
+		cart.setMemberNo(m.getMemberNo());
+		int result=service.zcdChangeNum(cart);
+		return result;
 	}
 	
 	@RequestMapping(value="zcdOrderList.do")
@@ -101,7 +128,14 @@ public class DeliveryBuyerController {
 		Member m=(Member)session.getAttribute("m");
 		ArrayList<ZcdCartVo> zcv=service.selectOneCart(m.getMemberNo());
 		ArrayList<Address> addr=service.selectAddrList(m.getMemberNo());
-		model.addAttribute("zcv",zcv);
+		int deliFee=zcv.get(0).getMinPrice();
+		int totalPrice=zcv.get(0).getTotalPrice();
+		int finalPrice=zcv.get(0).getFinalPrice();
+		System.out.println(deliFee);
+		model.addAttribute("zcv", zcv);
+		model.addAttribute("deliFee",deliFee);
+		model.addAttribute("totalPrice",totalPrice);
+		model.addAttribute("finalPrice",finalPrice);
 		model.addAttribute("addr",addr);
 		return "delivery/buyer/orderList";
 	}
