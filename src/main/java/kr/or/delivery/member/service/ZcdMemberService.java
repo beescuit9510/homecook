@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.delivery.member.dao.ZcdMemberDao;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PwChangeVO;
 
 @Service
 public class ZcdMemberService {
@@ -24,5 +25,18 @@ public class ZcdMemberService {
 
 	public int insertDeliveryMemberEnc(Member member) {
 		return dao.insertDeliveryMember(member);
+	}
+
+	public int zcdAdminChangePw(PwChangeVO pv) {
+		Member m = new Member();
+		m.setMemberId(pv.getMemberId());
+		m.setMemberPw(pv.getOldPassword());
+		Member member = dao.selectOneAdmin(m);
+		if(member == null) {
+			return -1;
+		}else {
+			m.setMemberPw(pv.getNewPassword());			
+			return dao.updateAdminPw(m);
+		}
 	}
 }

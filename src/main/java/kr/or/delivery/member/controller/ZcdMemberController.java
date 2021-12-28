@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.delivery.member.service.ZcdMemberService;
 import kr.or.table.model.vo.Member;
+import kr.or.table.model.vo.PwChangeVO;
 
 @Controller
 public class ZcdMemberController {
@@ -53,6 +54,20 @@ public class ZcdMemberController {
 			model.addAttribute("msg", "회원가입 실패");
 			model.addAttribute("loc", "/");
 		}
+		return "common/msg";
+	}
+	
+	@RequestMapping(value = "/zcdAdminChangePw.do")
+	public String zcdAdminChangePw(PwChangeVO pv, Model model) {
+		int result = service.zcdAdminChangePw(pv);
+		if(result==-1) {
+			model.addAttribute("msg", "비밀번호가 틀립니다.");
+		}else if(result==0) {
+			model.addAttribute("msg", "비밀번호 변경 실패");
+		}else {
+			model.addAttribute("msg", "비밀번호 변경 성공");
+		}
+		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
 }
