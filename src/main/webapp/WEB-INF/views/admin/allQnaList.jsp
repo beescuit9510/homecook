@@ -90,6 +90,8 @@
         						문의 전체 조회
         					</div>        					
         				</div>
+        				<div>
+        				</div><!-- test field -->
         				<table class = "memberTabel" id = "memberList" style = "width:100%;">
 						<tr class = "table_head">
 							<th>문의 번호</th><th>회원 이름</th><th>문의 제목</th><th>문의 작성시간</th>							

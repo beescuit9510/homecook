@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>admin Qa Info</title>
 </head>
 <style>
 .pageTtile
@@ -123,15 +123,15 @@
         	<div class = "main_content">
         		<div class = "main_content_field">
         			<!-- main content making area -->      
-        			<%@include file="/WEB-INF/views/admin/adminHeader.jsp" %>	 	
+        			<%@include file="/WEB-INF/views/admin/adminHeader.jsp" %>
         			<div class = "amdin_main_content">        				
         				<div class = "pageTtile">
         					<div class = "pageTtitle_box">
         						문의 상세 정보
         					</div>  		
         				</div>
-        				<div class = "admin_table" >
         				
+        				<div class = "admin_table" >        				
 						<table class = "admin_mView_Table" style = "width:70%;">
 							<tr class = "table-primary">
 								<th class = "q_table_00">문의 번호</th>
@@ -161,12 +161,15 @@
 							</tr>							
 						</table>
 						<input type= "hidden"  id = "memberNo_Save" value = "${sessionScope.m.memberNo }" >
-        			</div>      				      			
+        			</div>     
+        			
+        			 				      			
         		</div> <!-- main_content_field -->        		
         	</div> <!-- main content -->
         </div> <!-- main field -->
 		<%@include file="/WEB-INF/views/common/footer.jsp" %>
 	</div>
+
 <script>
 $(function()
 {
