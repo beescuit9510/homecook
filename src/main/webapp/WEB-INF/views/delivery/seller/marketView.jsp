@@ -114,8 +114,10 @@
 									  	<div class="card_info">매장명 : ${zs.storeName }</div>
 									    <div class="card_info">전화번호 : ${zs.storePhone }</div>
 									    <div class="card_info">주소 : ${zs.address1 } ${zs.address2 }</div>
+									    <!-- 
 									    <div class="card_info">대표자명 : ${sellerName }</div>
 									    <div class="card_info">사업자등록번호 : ${businessNo }</div>
+									     -->
 									  </div>		  
 								</div>
 								<div class="card">
