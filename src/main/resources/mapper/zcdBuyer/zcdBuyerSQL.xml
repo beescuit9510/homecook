@@ -50,6 +50,18 @@
 		delete from zcd_cart where member_no=#{memberNo} and menu_no=#{menuNo}
 	</delete>
 	
+	<insert id="insertReview">
+		insert into zcd_review values(zcd_review_seq.nextval, #{storeNo}, #{memberNo},#{orderNo}, sysdate, #{reviewContent},default)
+	</insert>
+	
+	<insert id="insertOrder">
+		insert into menu_order values(order_no_seq.nextval, #{memberNo}, #{storeNo}, #{orderRequest}, default, sysdate, #{orderAddress},#{orderAddress2})
+	</insert>
+	
+	<delete id="deleteReview">
+		delete from zcd_review where member_no=#{memberNo} and review_no=#{reviewNo}
+	</delete>
+	
 	<select id="selectStoreList" resultType="zs">
   		select 
 			store_no as storeNo,
@@ -73,6 +85,7 @@
   		from zcd_store
   	</select>
   	
+  		
   	<select id="selectAddrList" resultType="kr.or.zipcoock.cart.vo.Address" parameterType="_int">		
 		select 
 			member_no as memberNo,
@@ -85,10 +98,54 @@
 		where member_no = #{memberNo}
 	</select>
 	
+	<select id="selectOrderHistory" resultType="kr.or.delivery.model.vo.ZcdOrderHistory" parameterType="_int">
+		select
+		    mo.order_no as orderNo,
+		    mo.member_no as memberNo,
+		    store_no as storeNo,
+		    zs.store_name as storeName,
+		    mo.order_request as orderRequest,
+		    mo.order_state as orderState,
+		    mo.order_time as orderTime,
+		    mo.order_address as orderAddress,
+		    mo.order_address2 as orderAddress2
+		from menu_order mo
+		join zcd_store zs using (store_no)
+		where mo.member_no=#{memberNo}
+		order by 1 desc
+	</select>
+	
+	<select id="selectOneCg" resultType="kr.or.delivery.model.vo.ZcdCg">
+  		select
+		    store_no as storeNo,
+		    zs.store_name as storeName,
+		    category1,
+		    zs.min_price as minPrice,
+		    sl.filename,
+		    sl.filepath
+		from zcd_store zs
+		join store_logo sl using (store_no)
+  		where category1=#{category1}
+  	</select>
+  	
+  	<select id="selectkeyword" resultType="kr.or.delivery.model.vo.ZcdMain">
+  		select
+		    store_no as storeNo,
+		    zs.store_name as storeName,
+		    zs.min_price as minPrice,
+		    sl.filename,
+		    sl.filepath
+		from zcd_store zs
+		join store_logo sl using (store_no)
+  		where store_name like '%'||#{keyword}||'%' 
+  	</select>
+	
+	
 	<select id="selectMainList" resultType="kr.or.delivery.model.vo.ZcdMain" parameterType="_int">	
 		select
 		    store_no as storeNo,
 		    zs.store_name as storeName,
+		    zs.min_price as minPrice,
 		    sl.filename,
 		    sl.filepath
 		from zcd_store zs

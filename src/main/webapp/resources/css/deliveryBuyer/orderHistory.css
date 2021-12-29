@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.orderHistory{
+	width: 100%;
+	background-color: white;
+	border: 1px solid rgb(221, 221, 221);
+}
+
+.orderHistory th, .orderHistory td{
+	text-align: center;
+	padding: 10px;
+}
+
+.orderHistory th{
+	border-bottom: 1px solid rgb(221, 221, 221);
+	background-color: rgb(221, 221, 221);
+}
+
+.orderHistory th:nth-child(2)  {
+	width: 30%;
+}
+
+.orderHistory td:nth-child(2), .orderHistory td:nth-child(5){
+	text-align: left;	
+}
+
+.reviewBtn{
+	background-color: #73675c;
+	border: 1px solid #888888;
+	color: #ffffff;
+	cursor: pointer;
+	letter-spacing: -1px;
+	width: 100%;
+	height: 40px;
+	word-break: keep-all;
+	border-radius: 5px;
+	text-decoration: none;
+	font-size: 80%;
+}
+
+#insertRv textarea {
+	width: 100%;
+    resize: none;
+    padding: 10px;
+}

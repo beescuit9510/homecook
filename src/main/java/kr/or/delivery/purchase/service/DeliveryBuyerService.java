@@ -10,6 +10,7 @@ import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.ReviewComment;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
+import kr.or.delivery.model.vo.ZcdOrderHistory;
 import kr.or.delivery.model.vo.ZcdReview;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.model.vo.updatePw;
@@ -83,6 +84,26 @@ public class DeliveryBuyerService {
 		return dao.selectReviewList(memberNo);
 	}
 
+	public int zcdReviewDelete(ZcdReview zr) {
+		return dao.zcdReviewDelete(zr);
+	}
+
+	public ArrayList<ZcdOrderHistory> selectOrderHistory(int memberNo) {
+		return dao.selectOrderHistory(memberNo);
+	}
+
+	public int insertReview(ZcdReview zr) {
+		return dao.insertReview(zr);
+	}
+
+	public ArrayList<ZcdStore> selectOneCg(String category1) {
+		return dao.selectOneCg(category1);
+	}
+
+	public ArrayList<ZcdMain> selectkeyword(String keyword) {
+		return dao.selectkeyword(keyword);
+	}
+	
 	public ArrayList<ZcdReview> selectZcdReviewList(int storeNo) {
 		ArrayList<ZcdReview> zrlist = dao.selectZcdReviewList(storeNo);
 		return zrlist;

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,7 @@ import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.ReviewComment;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
+import kr.or.delivery.model.vo.ZcdOrderHistory;
 import kr.or.delivery.model.vo.ZcdReview;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.delivery.model.vo.updatePw;
@@ -52,6 +54,17 @@ public class DeliveryBuyerController {
 		return "delivery/buyer/mypage/myReview";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "zcdReviewDelete.do")
+	public int zcdReviewDelete(HttpSession session,Model model, int reviewNo) {
+		Member m=(Member)session.getAttribute("m");
+		ZcdReview zr=new ZcdReview();
+		zr.setMemberNo(m.getMemberNo());
+		zr.setReviewNo(reviewNo);
+		int result=service.zcdReviewDelete(zr);
+		return result;
+	}
+		
 	@RequestMapping(value="/storeView.do")
 	public String marketView(int storeNo, HttpSession session, Model model) {
 		ZcdStore zs = service.selectOneMarket(storeNo);
@@ -75,8 +88,17 @@ public class DeliveryBuyerController {
 		return "delivery/buyer/mypage/myAddr";
 	}
 	
+	@RequestMapping(value = "searchCg.do")
+	public String searchCg(Model model, String category1) {
+		ArrayList<ZcdStore> zs=service.selectOneCg(category1);
+		model.addAttribute("zs",zs);
+		return "delivery/buyer/findResult";
+	}
+	
 	@RequestMapping(value="zcdFindResult.do")
-	public String zcdFindResult() {
+	public String zcdFindResult(Model model, String keyword) {
+		ArrayList<ZcdMain> zs=service.selectkeyword(keyword);
+		model.addAttribute("zs",zs);
 		return "delivery/buyer/findResult";
 	}
 	
@@ -153,6 +175,32 @@ public class DeliveryBuyerController {
 			model.addAttribute("msg", "전화번호 변경 실패");
 		}
 		model.addAttribute("loc", "/zcdMypage.do");
+		return "common/msg";
+	}
+	
+	@RequestMapping(value = "zcdOrderHistory.do")
+	public String zcdOrderHistory(HttpSession session, Model model) {
+		Member m=(Member)session.getAttribute("m");
+		ArrayList<ZcdOrderHistory> zoh=service.selectOrderHistory(m.getMemberNo());
+		model.addAttribute("zoh",zoh);
+		return "delivery/buyer/mypage/myOrderHistory";
+	}
+	
+	@RequestMapping(value = "zcdInsertReview.do")
+	public String zcdInsertOrderHistory(HttpSession session, Model model, int storeNo, int orderNo, String reviewContent) {
+		Member m=(Member)session.getAttribute("m");
+		ZcdReview zr=new ZcdReview();
+		zr.setMemberNo(m.getMemberNo());
+		zr.setStoreNo(storeNo);
+		zr.setOrderNo(orderNo);
+		zr.setReviewContent(reviewContent);
+		int result=service.insertReview(zr);
+		if(result>0) {
+			model.addAttribute("msg", "리뷰 등록 성공");
+		}else {
+			model.addAttribute("msg", "리뷰 등록 실패");
+		}
+		model.addAttribute("loc", "/zcdOrderHistory.do");
 		return "common/msg";
 	}
 	
