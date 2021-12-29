@@ -342,7 +342,7 @@
 	</update>
 	
 	<update id="zcdOrderO2" parameterType="_int">
-		update menu_order set order_state='배달중' where order_no=#{orderNo}
+		update menu_order set order_state='배달대기' where order_no=#{orderNo}
 	</update>
 	
 	<select id="selectReviewList" parameterType="map" resultType="zr">

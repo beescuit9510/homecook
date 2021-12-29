@@ -832,7 +832,7 @@ public class DeliverySellerController {
 	@ResponseBody
 	public int deliveryStart2(int orderNo, Model model) {
 		MenuOrder mo = service.selectMenuOrder(orderNo);
-		int result = service.zcdOrderO2(mo.getOrderNo());
+		int result = service.zcdOrderStart(mo.getOrderNo());
 		System.out.println(result);
 		return result;
 	}
