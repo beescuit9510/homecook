@@ -151,14 +151,14 @@
 			data = new FormData();
 			data.append("file", file);
 			$.ajax({
-				url : "/eventUploadImage",
+				url : "/eventUploadImage.do",
 				type : "post",
 				data : data,
 				enctype : 'multipart/form-data',
 				processData : false,
 				contentType : false,
 				success : function(data) {
-					$(editor).summernote("insertImage", data);
+					$(editor).summernote("editor.insertImage",data.url);
 				}
 			});
 		}

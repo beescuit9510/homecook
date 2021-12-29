@@ -100,7 +100,7 @@
 	        									<br><br>
 	        									
 	        									<div class="row">
-		        									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/addMenuFrm.do?groupNo=${groupNo }&storeNo=${storeNo }">취소</a>
+		        									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/manageZcdReview.do?reqPage=1&storeNo=${zr.storeNo }&reviewState=미답변">취소</a>
 		        									<div class="col-md-auto"> </div>
 		        									<input type="submit" style="font-weight: 400; margin-right:200px;" class="buy_btn" id="submit" value="등록">
 		        									<input type="hidden" name="reviewNo" value="${zr.reviewNo }">

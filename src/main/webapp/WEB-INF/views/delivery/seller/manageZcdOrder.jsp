@@ -19,6 +19,12 @@
 	.pageNavi a {
 		text-align: center;
 	}
+	.gap {
+		width: 206px;
+	}
+	.gap>a {
+		width: 206px;
+	}
 
 </style>
 
@@ -65,19 +71,28 @@
         					<div class="nav nav-tabs" style="border-bottom: 1px solid rgb(221, 221, 221); margin-bottom: 10px;">
         						<c:choose>
         							<c:when test="${orderState eq '접수대기' }">
-        								<div class="nav-item"><a class="nav-link active" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=접수대기">접수대기</a></div>
-        								<div class="nav-item"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=처리중">처리중</a></div>
-	        							<div class="nav-item"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=완료">완료</a></div>
+        								<div class="nav-item gap"><a class="nav-link active" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=접수대기">접수대기</a></div>
+        								<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=처리중">처리중</a></div>
+        								<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=배달대기">배달대기</a></div>
+	        							<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=완료">완료</a></div>
         							</c:when>
         							<c:when test="${orderState eq '처리중' }">
-        								<div class="nav-item"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=접수대기">접수대기</a></div>
-        								<div class="nav-item"><a class="nav-link active" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=처리중">처리중</a></div>
-	        							<div class="nav-item"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=완료">완료</a></div>
+        								<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=접수대기">접수대기</a></div>
+        								<div class="nav-item gap"><a class="nav-link active" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=처리중">처리중</a></div>
+        								<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=배달대기">배달대기</a></div>
+	        							<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=완료">완료</a></div>
+        							</c:when>
+        							<c:when test="${orderState eq '배달대기' }">
+        								<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=접수대기">접수대기</a></div>
+        								<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=처리중">처리중</a></div>
+        								<div class="nav-item gap"><a class="nav-link active" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=배달대기">배달대기</a></div>
+	        							<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=완료">완료</a></div>
         							</c:when>
         							<c:when test="${orderState eq '완료' }">
-			        					<div class="nav-item"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=접수대기">접수대기</a></div>
-        								<div class="nav-item"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=처리중">처리중</a></div>
-			        					<div class="nav-item"><a class="nav-link active" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=완료">완료</a></div>        							
+			        					<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=접수대기">접수대기</a></div>
+        								<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=처리중">처리중</a></div>
+        								<div class="nav-item gap"><a class="nav-link" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=배달대기">배달대기</a></div>
+			        					<div class="nav-item gap"><a class="nav-link active" href="/manageZcdOrder.do?reqPage=1&storeNo=${storeNo }&orderState=완료">완료</a></div>        							
         							</c:when>
         						</c:choose>
         					</div>
@@ -109,6 +124,14 @@
 													<td><div class="content_div_opt4"><a href="/deliveryReceipt.do?orderNo=${mo.orderNo }" style="color: #9ac6e8;">배달접수</a></div></td>
 												</tr>	
 											</c:when>
+											<c:when test="${mo.orderState eq '배달대기' }">
+												<tr class="table_tr_height">
+													<td><div class="content_div_opt1">${mo.orderNo }</div></td>
+													<td><div class="content_div_opt2">${mo.orderTime }</div></td>
+													<td><div class="content_div_opt3 overflow-text">${mo.orderAddress } ${mo.orderAddress2 }</div></td>
+													<td><div class="content_div_opt4">배달대기</div></td>
+												</tr>	
+											</c:when>
 											<c:when test="${mo.orderState eq '완료' }">
 												<tr class="table_tr_height">
 													<td><div class="content_div_opt1">${mo.orderNo }</div></td>
@@ -123,28 +146,7 @@
 								</table>
 								<div class="pageNavi">${zop.pageNavi }</div>
 							</c:if>
-		
-							
-							<!-- 
-							<div class="tab-pane fade" id="b">
-        						<table class="content_div_table">
-									<c:if test="${not empty zop.list }">
-										<c:forEach items="${zop.list }" var="mo">
-											<c:if test="${mo.orderState eq '완료' }">
-												<tr class="table_tr_height">
-													<td><div class="content_div_opt1">${mo.orderNo }</div></td>
-													<td><div class="content_div_opt2">${mo.orderTime }</div></td>
-													<td><div class="content_div_opt3 overflow-text">${mo.orderAddress } ${mo.orderAddress2 }</div></td>
-													<td><div class="content_div_opt4"><a href="#" style="color: #9ac6e8;">완료</a></div></td>
-												</tr>											
-											</c:if>
-										</c:forEach>
-									</c:if>
-								</table>
-			
-								<div class="pageNavi">${zop.pageNavi }</div>
-							</div>
-							 -->
+
         				</div>
         			</div>
         		</div>

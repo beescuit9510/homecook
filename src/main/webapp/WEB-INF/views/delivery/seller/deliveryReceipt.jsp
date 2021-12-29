@@ -123,7 +123,8 @@
         									<a class="cart_btn" style="font-weight: 400; margin-left:200px;" href="/manageZcdOrder.do?reqPage=1&storeNo=${mo.storeNo }&orderState=처리중">취소</a>
         									<div class="col-md-auto"> </div>
         									<button type="button" id="deliveryStart" class="buy_btn" style="font-weight: 400; margin-right:200px;">배달 접수</button>
-        									<input type="hidden" id="orderNo" value="${mo.orderNo }">								
+        									<input type="hidden" id="orderNo" value="${mo.orderNo }">
+        									<input type="hidden" id="storeNo" value="${mo.storeNo }">							
        									</div>
 										 <br>
         								<div class="content_div_end"></div>
@@ -563,15 +564,21 @@
 			
 			
 			$("#deliveryStart").on("click", function() {
-				console.log(time);
 				var orderNo = $(this).next().val();
+				var storeNo = $(this).next().next().val();
 				
 				$.ajax({
 					url : "/deliveryStart.do",
-					data : {time : time, orderNo : orderNo},
+					data : {orderNo : orderNo},
 					type : "post",
-					success : function() {
-						
+					success : function(data) {
+						if (data == 1) {
+							alert("배달접수가 완료되었습니다.");
+							location.href = "/manageZcdOrder.do?reqPage=1&storeNo=" + storeNo + "&orderState=처리중";
+						} else {
+							alert("배달접수가 완료되지 않았습니다.");
+							location.href = "/manageZcdOrder.do?reqPage=1&storeNo=" + storeNo + "&orderState=처리중";
+						}
 					}
 				});
 			});

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
+import kr.or.delivery.model.vo.ReviewComment;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
 import kr.or.delivery.model.vo.ZcdOrderHistory;
@@ -101,5 +102,15 @@ public class DeliveryBuyerService {
 
 	public ArrayList<ZcdMain> selectkeyword(String keyword) {
 		return dao.selectkeyword(keyword);
+	}
+	
+	public ArrayList<ZcdReview> selectZcdReviewList(int storeNo) {
+		ArrayList<ZcdReview> zrlist = dao.selectZcdReviewList(storeNo);
+		return zrlist;
+	}
+
+	public ArrayList<ReviewComment> selectReviewCommentList(int memberNo) {
+		ArrayList<ReviewComment> rclist = dao.selectReviewCommentList(memberNo);
+		return rclist;
 	}
 }

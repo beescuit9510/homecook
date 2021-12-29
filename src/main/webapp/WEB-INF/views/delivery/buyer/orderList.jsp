@@ -55,7 +55,7 @@
 									<td>
 										<div class="addrList">
 											<c:forEach items="${addr }" var="a" varStatus="status">
-												<label><input type="radio" name="memberAddr" id="memberAddr" value="${a.addrNo }" checked>기본주소</label>
+												<label><input type="radio" name="memberAddr" id="memberAddr" value="${a.addrNo }">기본주소</label>
 											</c:forEach>
 										</div>
 									</td>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
+import kr.or.delivery.model.vo.ReviewComment;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
 import kr.or.delivery.model.vo.ZcdOrderHistory;
@@ -103,6 +104,16 @@ public class DeliveryBuyerDao {
 	public ArrayList<ZcdMain> selectkeyword(String keyword) {
 		List<ZcdMain> list=sqlSession.selectList("zcdBuyer.selectkeyword",keyword);
 		return (ArrayList<ZcdMain>) list;
+	}
+	
+	public ArrayList<ZcdReview> selectZcdReviewList(int storeNo) {
+		List<ZcdReview> list = sqlSession.selectList("zcdseller.selectZcdReviewList", storeNo);
+		return (ArrayList<ZcdReview>)list;
+	}
+
+	public ArrayList<ReviewComment> selectReviewCommentList(int memberNo) {
+		List<ReviewComment> list = sqlSession.selectList("zcdseller.selectReviewCommentList", memberNo);
+		return (ArrayList<ReviewComment>)list;
 	}
 	
 	

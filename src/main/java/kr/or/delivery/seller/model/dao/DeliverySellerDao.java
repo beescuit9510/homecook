@@ -233,6 +233,40 @@ public class DeliverySellerDao {
 	public int updateReviewState(int reviewNo) {
 		return sqlSession.update("zcdseller.updateReviewState", reviewNo);
 	}
-	
+
+	public ReviewComment selectOneComment(int reviewNo) {
+		return sqlSession.selectOne("zcdseller.selectOneComment", reviewNo);
+	}
+
+	public int commentModify(ReviewComment rc) {
+		return sqlSession.update("zcdseller.commentModify", rc);
+	}
+
+	public ArrayList<ZcdReview> selectZcdReviewList(int storeNo) {
+		List<ZcdReview> list = sqlSession.selectList("zcdseller.selectZcdReviewList", storeNo);
+		return (ArrayList<ZcdReview>)list;
+	}
+
+	public ArrayList<ReviewComment> selectReviewCommentList(int memberNo) {
+		List<ReviewComment> list = sqlSession.selectList("zcdseller.selectReviewCommentList", memberNo);
+		return (ArrayList<ReviewComment>)list;
+	}
+
+	public ArrayList<ZcdStore> selectZcdStoreList2() {
+		List<ZcdStore> list = sqlSession.selectList("zcdseller.selectZcdStoreList2");
+		return (ArrayList<ZcdStore>) list;
+	}
+
+	public int zcdOrderStart(int orderNo) {
+		return sqlSession.update("zcdseller.zcdOrderStart", orderNo);
+	}
+
+	public int zcdOrderEnd(int orderNo) {
+		return sqlSession.update("zcdseller.zcdOrderEnd", orderNo);
+	}
+
+	public int zcdOrderO2(int orderNo) {
+		return sqlSession.update("zcdseller.zcdOrderO2", orderNo);
+	}
 
 }

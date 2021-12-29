@@ -73,8 +73,7 @@
 	<link rel="stylesheet" href="/summernote/summernote-lite.css">
 		<div class="eventContent">
 		<input type="hidden" name="eventNo" value="${ze.eventNo }">
-			<img src="/resources/img/event/이벤트상세보기테스트.jpg" style="width: 100%;">
-			<div>${ze.eventContent }</div>
+			<div style="text-align: center;">${ze.eventContent }</div>
 		</div>
 		<div class="btnWrapper">
 			<a href="javascript:void(0)" class="buy_btn" style="margin-top: 16px;" onclick="list();">목록</a>

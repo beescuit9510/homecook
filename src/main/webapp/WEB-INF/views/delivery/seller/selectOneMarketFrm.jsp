@@ -100,7 +100,7 @@
 	        										<br>
 	        										
 	        										<div class="row">
-	        											<label for="minPrice" class="col-2 col-form-label">최소주문금액</label>
+	        											<label for="minPrice" class="col-2 col-form-label">배달비</label>
 	        											<div class="col-5">
 	        												<input type="text" class="form-control" id="minPrice"
 	        											 		name="minPrice" placeholder="최소주문금액을 입력하세요." maxlength="5" value="${zs.minPrice }">
@@ -162,25 +162,13 @@
 																<option value="한식">한식</option>
 											                    <option value="치킨">치킨</option>
 											                    <option value="분식">분식</option>
-											                    <option value="돈까스">돈까스</option>
+											                    <option value="돈까스/회/일식">돈까스/회/일식</option>
 											                    <option value="족발/보쌈">족발/보쌈</option>
-											                    <option value="찜/탕">찜/탕</option>
-											                    <option value="구이">구이</option>
 											                    <option value="피자">피자</option>
 											                    <option value="중식">중식</option>
-											                    <option value="일식">일식</option>
-											                    <option value="회/해물">회/해물</option>
 											                    <option value="양식">양식</option>
-											                    <option value="커피/차">커피/차</option>
-											                    <option value="디저트">디저트</option>
-											                    <option value="간식">간식</option>
-											                    <option value="아시안">아시안</option>
-											                    <option value="샌드위치">샌드위치</option>
-											                    <option value="샐러드">샐러드</option>
+											                    <option value="카페/디저트">카페/디저트</option>
 											                    <option value="버거">버거</option>
-											                    <option value="멕시칸">멕시칸</option>
-											                    <option value="도시락">도시락</option>
-											                    <option value="죽">죽</option>
 											        		</select>
 											        		<select id="category2" name="category2" class="form-select">
 											        			<c:choose>
@@ -422,7 +410,7 @@
     				alert("전화번호를 확인하세요.");
     				return false;
     			} else if (minPrice == "" || minPriceChk == false) {
-    				alert("최소주문금액을 확인하세요.");
+    				alert("배달비를 확인하세요.");
     				return false;
     			} else if (postcode == "" || address1 == "" || address2 == "" || address2Chk == false) {
     				alert("주소를 확인하세요.");

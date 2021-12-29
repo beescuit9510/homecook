@@ -96,6 +96,7 @@
 </style>
 </head>
 <body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<%@include file="/WEB-INF/views/common/deliveryHeader.jsp"%>
 	<div class="main_field">
 		<div class="main_content2">
@@ -117,14 +118,13 @@
 					<a href="/zcdStatistics.do" class="side_nav_div side_nav_div_selected"><span class="side_nav_span side_nav_span_selected">통계</span></a>
 				</div>
 			</div>
-			<div class="content_div">
+			<div class="content_div" style="width: 100%;">
 				<h3>통계관리</h3>
 				<hr>
-				<div class="zcdStatistics_search content_div">
-					<div style="width: 30%; float: left;">
-						<input type="text"> <input name="startDate" id="datepicker"> - <input type="text"> 
-						<input name="Date" id="datepicker">
-						<ul class="zcdStatistics_ul">
+				<div class="zcdStatistics_search content_div" style="width: 100%; margin: 0;">
+					<div style="width: 100%; float: left;">
+						<input type="text" id="datepicker1"> - <input type="text" id="datepicker2">
+						<ul class="zcdStatistics_ul" style="padding-top:5px;">
 							<li><a href="#" class="zcdStatistics_submit">이번주</a></li>
 							<li><a href="#" class="zcdStatistics_submit">지난주</a></li>
 							<li><a href="#" class="zcdStatistics_submit">이번달</a></li>
@@ -133,8 +133,8 @@
 					</div>
 					<div class="zcdStatistics_chart">
 						<div class="zcdChart_title">
-							<h3>일별 결제금액</h3>
-							<p>결제금액을 일별로 살펴볼수 있으며, 7일 평균 차트를 통해 결제금액을 살펴볼 수 있습니다.</p>
+							<h3>결제금액 통계</h3>
+							<p>결제금액을 일별로 살펴볼수 있으며, 기간을 정해서도 확인할 수 있습니다.</p>
 						</div>
 						<div class="zcdChart_content">
 							<img src="/resources/img/statistics/통계테스트이미지.jpg">
@@ -147,10 +147,10 @@
 	<!-- main field -->
 
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="styleshceet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script>
 		$(function() {
-			$("#datepicker").datepicker({
+			$("#datepicker1,#datepicker2").datepicker({
 				minDate : 0
 			});
 		});

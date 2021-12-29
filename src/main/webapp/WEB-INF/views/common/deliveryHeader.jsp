@@ -20,7 +20,10 @@
 						<c:when test="${sessionScope.m.memberLevel eq '딜리버리판매자'}">
 							<li><a href = "/manageMarketFrm.do">집쿠욱 딜리버리 판매자 메뉴로 이동</a></li> 
 						</c:when>		
-						<c:otherwise> 
+						<c:when test="${sessionScope.m.memberLevel eq '라이더'}">
+							<li><a href = "/manageDeliveryFrm.do">집쿠욱 딜리버리 라이더 메뉴로 이동</a></li>
+						</c:when>
+						<c:otherwise>
 							<li><div class = "memberName">[${sessionScope.m.memberName}]님 환영 합니다.</div></li>
 						 </c:otherwise>						
 					</c:choose>

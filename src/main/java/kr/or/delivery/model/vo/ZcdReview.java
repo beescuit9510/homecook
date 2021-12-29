@@ -1,7 +1,5 @@
 package kr.or.delivery.model.vo;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +14,7 @@ public class ZcdReview {
 	private int memberNo;
 	private int orderNo;
 	private String storeName;
-	private Date reviewDate;
+	private String reviewDate;
 	private String reviewContent;
 	private String reviewState;
 
