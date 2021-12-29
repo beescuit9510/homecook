@@ -11,6 +11,7 @@ import kr.or.delivery.model.vo.Menu;
 import kr.or.delivery.model.vo.MenuGroup;
 import kr.or.delivery.model.vo.ZcdCartVo;
 import kr.or.delivery.model.vo.ZcdMain;
+import kr.or.delivery.model.vo.ZcdOrderHistory;
 import kr.or.delivery.model.vo.ZcdReview;
 import kr.or.delivery.model.vo.ZcdStore;
 import kr.or.table.model.vo.Address;
@@ -79,6 +80,29 @@ public class DeliveryBuyerDao {
 	public ArrayList<ZcdReview> selectReviewList(int memberNo) {
 		List<ZcdReview> list=sqlSession.selectList("zcdBuyer.selectReviewList",memberNo);
 		return (ArrayList<ZcdReview>) list;
+	}
+
+	public int zcdReviewDelete(ZcdReview zr) {
+		return sqlSession.delete("zcdBuyer.deleteReview",zr);
+	}
+
+	public ArrayList<ZcdOrderHistory> selectOrderHistory(int memberNo) {
+		List<ZcdOrderHistory> list=sqlSession.selectList("zcdBuyer.selectOrderHistory",memberNo);
+		return (ArrayList<ZcdOrderHistory>) list;
+	}
+
+	public int insertReview(ZcdReview zr) {
+		return sqlSession.insert("zcdBuyer.insertReview",zr);
+	}
+
+	public ArrayList<ZcdStore> selectOneCg(String category1) {
+		List<ZcdStore> list=sqlSession.selectList("zcdBuyer.selectOneCg",category1);
+		return (ArrayList<ZcdStore>) list;
+	}
+
+	public ArrayList<ZcdMain> selectkeyword(String keyword) {
+		List<ZcdMain> list=sqlSession.selectList("zcdBuyer.selectkeyword",keyword);
+		return (ArrayList<ZcdMain>) list;
 	}
 	
 	

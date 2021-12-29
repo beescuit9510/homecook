@@ -39,6 +39,7 @@
 		text-align: center;
 	}
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="/resources/css/deliveryBuyer/buyerDefault.css">
 <link rel="stylesheet" href="/resources/css/deliveryBuyer/zcdCart.css">
 <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
@@ -84,9 +85,36 @@
        	<div class = "content_div_area">
        		<div class = "content_div_content">
        			<div class = "content_div_question">
+       			<c:if test="${empty zr}">
+       				<h3>작성한 리뷰가 없습니다.</h3>
+       			</c:if>
       			<c:forEach items="${zr }" var="zr" varStatus="status">
        				<div class="q-member-info">
-       					<span id="text-emp">${sessionScope.m.memberName }</span><span>${zr.reviewDate }</span><button class="abutton">삭제</button>
+       					<input type="hidden" id="reviewNo" value="${zr.reviewNo }">
+       					<span id="text-emp">${sessionScope.m.memberName }</span><span>${zr.reviewDate }</span><button class="abutton" id="delBtn">삭제</button>
+       					<script>
+       					$(function(){
+       						$("#delBtn").click(function(){
+       							var confirm_val=confirm("해당 리뷰를 삭제하시겠습니까?");
+       							
+       							if(confirm_val){
+       								var reviewNo=$("#reviewNo").val();
+       								$.ajax({
+       									url:"/zcdReviewDelete.do",
+       									type:"post",
+       									data:{reviewNo:reviewNo},
+       									success:function(result){
+       										if(result==1){
+       											location.href="/zcdMyReview.do";
+       										}else{
+       											alert("리뷰 삭제에 실패했습니다.");
+       										}
+       									}
+       								});
+       							}
+       						});
+       					});
+       					</script>
        				</div>
        				<div class="q-order-info">
        					<span>${zr.storeName }</span>

@@ -71,7 +71,7 @@
         			<div class = "content_div_info">
         				<div class = "content_div_opt1" id="text-emp">${sessionScope.m.deliveryLevel }</div>
         				<div class = "content_div_opt2"><a href="/addrList.do" id="text-emp">보러가기</a></div>
-        				<div class = "content_div_opt3"><a href="#" id="text-emp">보러가기</a></div>
+        				<div class = "content_div_opt3"><a href="/zcdOrderHistory.do" id="text-emp">보러가기</a></div>
         			</div>
         			<div class = "content_title" style="margin-top:20px; margin-bottom: 15px;">정보 확인/수정</div>
 	        		<div class = "content_div_info">

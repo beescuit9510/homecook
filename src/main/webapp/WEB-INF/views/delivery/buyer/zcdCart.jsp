@@ -200,7 +200,6 @@
 			success: function(result){
 				if(result==1){
 					location.href="/zcdCart.do";
-					reCalc();
 				}else{
 					alert("수량 변경에 실패하였습니다.");
 				}

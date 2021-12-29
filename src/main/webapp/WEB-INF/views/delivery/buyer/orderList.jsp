@@ -57,46 +57,12 @@
 											<c:forEach items="${addr }" var="a" varStatus="status">
 												<label><input type="radio" name="memberAddr" id="memberAddr" value="${a.addrNo }" checked>기본주소</label>
 											</c:forEach>
-											<!-- 
-											<button class="addrBtn" id="addAddr">추가</button>
-											<div id="addAddrFrm">
-												<form action="/addAddr.do" method="post" name="insertAddrFrm">
-													<div>배송지 추가</div>
-													<table>
-														<tr>
-															<td>배송지 별칭</td>
-															<td><input type="text" id="title"></td>
-														</tr>
-														<tr>
-															<td>주소 입력</td>
-															<td>
-																<input type="text" name="postcode" id="postcode" class="add_addr" readonly placeholder="우편번호">
-																<button type="button" id="findpostcode" style="width: 70px;">찾기</button>
-															</td>
-														</tr>
-														<tr>
-															<td></td>
-															<td><input type="text" name="address1" id="address1" class="add_addr" readonly placeholder="주소"></td>
-														</tr>
-														<tr>
-															<td></td>
-															<td><input type="text" name="address2" id="address2" class="add_addr" placeholder="상세주소" maxlength="40"></td>
-														</tr>
-														<tr>
-															<td></td>
-															<td id="addrBtn" style="text-align: center;"><button class="addAddrBtn">추가</button></td>
-														</tr>
-													</table>
-												</form>
-											</div>
-											 -->
-											<!-- 5개정도만 할 수 있게 -->
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<td>주소</td>
-									<td>서울시 영등포구 </td>
+									<td> </td>
 								</tr>
 				            	<tr>
 				            		<td>연락처</td>
@@ -196,6 +162,11 @@
 					$($(".purchase-content")[1]).css("display","block");
 					console.log("카드승인번호 : "+rsp.apply_num);
 					$("#payForm").submit();
+					
+					var storeNo;
+					var orderRequest;
+					var orderAddress;
+					var orderAddress2;
 				}else{
 					$($(".purchase-content")[0]).css("display","none");
 					$($(".purchase-content")[2]).css("display","block");
