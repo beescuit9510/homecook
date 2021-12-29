@@ -173,7 +173,7 @@
 	        			-->
 		        		<div class="isPSSz">
 		        			<!-- <button class="KZVRS"><span class="likeButton">♡</span></button> -->
-		        			<button class="hYJzRO jdSXaC">장바구니 보기</button>
+		        			<a class="hYJzRO jdSXaC" href="/zcdCart.do">장바구니 보기</a>
 		        		</div>
 	        		</section>
         		</div>
