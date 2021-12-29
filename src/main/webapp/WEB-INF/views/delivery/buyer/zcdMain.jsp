@@ -40,6 +40,18 @@
 	.star{
 		color: #ffa500;
 	}
+	#category {
+		margin:3px;
+		background-color: #9ac6e8;
+		width: 50px;
+		height: 97px;
+		line-height: 97px;
+		border-radius: 50px;
+	}
+	
+	#category a{
+		color: #fff;
+	}
 </style>
 </head>
 <body>
@@ -84,18 +96,17 @@
 				<h3 style="text-align: left">집쿡 맛집을 찾고 있다면</h3>
 				<div class="store-wrap">
 					<div class="row category-img">
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=한식">한식</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=치킨">치킨</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=분식">분식</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=돈까스">돈까스</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=족발/보쌈">족발/보쌈</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=찜/탕">찜/탕</a></div>
-					 	<div class="col-md-1"><a href="/searchCg.do?category1=피자">피자</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=중식">중식</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=일식">일식</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=디저트">디저트</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=샌드위치">샌드위치</a></div>
-					  	<div class="col-md-1"><a href="/searchCg.do?category1=버거">버거</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=한식">한식</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=치킨">치킨</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=분식">분식</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=돈까스">돈까스</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=족발/보쌈">족발/보쌈</a></div>
+					 	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=피자">피자</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=중식">중식</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=일식">일식</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=디저트">디저트</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=샌드위치">샌드위치</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=버거">버거</a></div>
 					</div>
 				</div>
 			</div>
@@ -108,7 +119,7 @@
 							<div class="card">
 								<img class="card-img-top" src="/resources/upload/zcdSeller/${m.filename }" alt="" />
 								<div class="card-body">
-									<a class="h6 goods_name product-name" href="/marketView.do?storeNo=${m.storeNo }">${m.storeName }</a>
+									<a class="h6 goods_name product-name" href="/marketView.do?storeNo=${m.storeNo }&memberNo=${sessionScope.m.memberNo}">${m.storeName }</a>
 									<p class="m-0"><small>배달비 ${m.minPrice }원</small></p>
 								</div>
 							<div class="card-footer p-0"></div>

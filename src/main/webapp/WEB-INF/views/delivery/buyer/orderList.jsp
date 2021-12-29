@@ -62,7 +62,7 @@
 								</tr>
 								<tr>
 									<td>주소</td>
-									<td> </td>
+									<td>${addr } </td>
 								</tr>
 				            	<tr>
 				            		<td>연락처</td>
@@ -103,7 +103,7 @@
 		<div class="purchase-content">
 			<div class="content_title_1">주문이 완료되었습니다.</div>
 			<div class="linkArea">
-			<a href="/zcdMain.do">메인으로</a><a href="/zcdOrderDetail.do">주문내역확인</a>
+			<a href="/zcdMain.do">메인으로</a><a href="/zcdOrderHistory.do">주문내역확인</a>
 			</div>
 		</div>
 		<div class="purchase-content">
