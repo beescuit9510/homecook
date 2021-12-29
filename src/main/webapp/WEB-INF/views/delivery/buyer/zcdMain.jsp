@@ -41,7 +41,7 @@
 		color: #ffa500;
 	}
 	#category {
-		margin:3px;
+		margin:20px;
 		background-color: #9ac6e8;
 		width: 50px;
 		height: 97px;
@@ -99,14 +99,11 @@
 					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=한식">한식</a></div>
 					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=치킨">치킨</a></div>
 					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=분식">분식</a></div>
-					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=돈까스">돈까스</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=돈까스/회/일식">일식</a></div>
 					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=족발/보쌈">족발/보쌈</a></div>
 					 	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=피자">피자</a></div>
 					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=중식">중식</a></div>
-					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=일식">일식</a></div>
-					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=디저트">디저트</a></div>
-					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=샌드위치">샌드위치</a></div>
-					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=버거">버거</a></div>
+					  	<div class="col-md-1" id="category"><a href="/searchCg.do?category1=카페/디저트">디저트</a></div>
 					</div>
 				</div>
 			</div>
